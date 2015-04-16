@@ -28,7 +28,7 @@ body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    background: url("../img/background.jpg") no-repeat center center;
+    background: url("../img/background.jpg") no-repeat center center fixed;
     background-size: cover;
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
     font-size:12px;
@@ -71,6 +71,7 @@ h1 {
     font-family: Raleway;
     color: #fff;
     font-size: 4.5em;
+    font-weight: normal;
     margin: 0;
 }
 h2{
@@ -78,40 +79,24 @@ h2{
     color: #fff;
     margin: 0;
 }
-.event {
-    border-radius:4px;
-    -webkit-border-radius:4px;
-    color:#FFFFFF;
-    font-size:12px;
-    margin:0px 30px;
-    padding:2px 0px;
+small, .small {
+    font-size: 85%;
 }
-
-.event.listening {
-    background-color:#333333;
-    display:block;
+a {
+    color: #428bca;
+    text-decoration: none;
+    background: 0 0;
 }
-
-.event.received {
-    background-color:#4B946A;
-    display:none;
+a:hover {
+    text-decoration: underline;
 }
-
-@keyframes fade {
-    from { opacity: 1.0; }
-    50% { opacity: 0.4; }
-    to { opacity: 1.0; }
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
- 
-@-webkit-keyframes fade {
-    from { opacity: 1.0; }
-    50% { opacity: 0.4; }
-    to { opacity: 1.0; }
-}
- 
-.blink {
-    animation:fade 3000ms infinite;
-    -webkit-animation:fade 3000ms infinite;
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 .container{
     position: absolute;
@@ -121,6 +106,7 @@ h2{
     right: 0;
     bottom: 20px;
     width: 100%;
+    max-width:500px;
     padding: 0 10px;
 }
 .signinform {
@@ -149,6 +135,24 @@ h2{
 .btn:hover{
     background-color: #5eabed;
 }
+.btn-lg, .btn-group-lg>.btn {
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.33;
+}
+.btn {
+    width: 100%;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+}
 .small {
     font-size: 12px;
     margin-bottom: 0;
@@ -168,4 +172,31 @@ h2{
     display: inline-block;
     margin-bottom: 5px;
     padding: 5px;
+}
+.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
 }
