@@ -21,7 +21,9 @@
 * {
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
-
+html {
+    height: 100%;
+}
 body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
@@ -66,16 +68,15 @@ body {
 }
 
 h1 {
-    font-size:24px;
-    font-weight:normal;
-    margin:0px;
-    overflow:visible;
-    padding:0px;
-    text-align:center;
+    font-family: Raleway;
+    color: #fff;
+    font-size: 4.5em;
+    margin: 0;
 }
 h2{
     font-family: Raleway;
     color: #fff;
+    margin: 0;
 }
 .event {
     border-radius:4px;
@@ -113,12 +114,18 @@ h2{
     -webkit-animation:fade 3000ms infinite;
 }
 .container{
-    width: 95%;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    bottom: 20px;
+    width: 100%;
+    padding: 0 10px;
 }
 .signinform {
-    margin-top: 20px;
     background-color: rgba(255,255,255, 0.7);
-    padding: 15px;
+    padding: 10px;
 }
 .form-control {
      border-radius: 0;
