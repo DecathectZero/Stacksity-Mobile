@@ -1,3 +1,5 @@
+@import url("http://fonts.googleapis.com/css?family=Raleway:300");
+
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -24,27 +26,21 @@ body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    background-color:#E4E4E4;
-    background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        color-stop(0, #A7A7A7),
-        color-stop(0.51, #E4E4E4)
-    );
-    background-attachment:fixed;
+    background: url("../img/background.jpg") no-repeat center center;
+    background-size: cover;
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
     font-size:12px;
     height:100%;
     margin:0px;
     padding:0px;
-    text-transform:uppercase;
     width:100%;
 }
-
+.site-wrapper {
+    display: table;
+    width: 100%;
+    background-color: rgba(0,0,0, 0.5);
+    height: 100%;
+}
 /* Portrait layout (default) */
 .app {
     background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
@@ -77,7 +73,10 @@ h1 {
     padding:0px;
     text-align:center;
 }
-
+h2{
+    font-family: Raleway;
+    color: #fff;
+}
 .event {
     border-radius:4px;
     -webkit-border-radius:4px;
@@ -112,4 +111,54 @@ h1 {
 .blink {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
+}
+.container{
+    width: 95%;
+}
+.signinform {
+    margin-top: 20px;
+    background-color: rgba(255,255,255, 0.7);
+    padding: 15px;
+}
+.form-control {
+     border-radius: 0;
+     position: relative;
+     height: auto;
+     -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+     box-sizing: border-box;
+     padding: 10px;
+    margin-bottom: 5px;
+ }
+.btn{
+    background: #428bca;
+    color: #fff;
+    border: none;
+    border-radius: 0;
+    padding: 10px;
+    font-weight: bold;
+    font-family: Raleway;
+}
+.btn:hover{
+    background-color: #5eabed;
+}
+.small {
+    font-size: 12px;
+    margin-bottom: 0;
+    margin-top: 5px;
+    text-align: center !important;
+    display: block;
+}
+.listlink a {
+    background: #CDE;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    -webkit-transition: background-color 0.2s ease-in;
+    -moz-transition: background-color 0.2s ease-in;
+    -o-transition: background-color 0.2s ease-in;
+    transition: background-color 0.2s ease-in;
+    display: inline-block;
+    margin-bottom: 5px;
+    padding: 5px;
 }
