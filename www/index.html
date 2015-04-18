@@ -43,15 +43,15 @@
                     <form class="signinform" id="login">
                         <p id="error-info" style="display: none"></p>
                         <label for="inputEm" class="sr-only">Username/Email</label>
-                        <input name="inputEm" type="text" id="inputEm" class="form-control" placeholder="Email/Username" required autofocus>
+                        <input name="inputEm" type="text" id="inputEm" class="form-control" placeholder="Email/Username" required>
                         <label for="inputPass" class="sr-only">Password</label>
                         <input name="inputPass" type="password" id="inputPass" class="form-control" placeholder="Password" required>
                         <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
                         <a class="small" href="password.html">Forgot your password or username?</a>
                     </form>
-                    <div class="signinform margintop">
-                        <a href="signup.html" class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</a>
-                    </div>
+                    <form class="signinform margintop" id="signup" action="signup.html">
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+                    </form>
                 </div>
             </div>
         </div>

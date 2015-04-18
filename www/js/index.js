@@ -18,6 +18,8 @@ $("#login").on('submit', function(e){
                 errorinfo("Password doesn't match username :/");
             }else if(data=='3'){
                 document.location.href = 'stack.html';
+            }else if(data=="69"){
+                errorinfo("Please fill in the fields");
             }else{
                 errorinfo("Oops something went wrong with the server, error code: " + data);
             }
