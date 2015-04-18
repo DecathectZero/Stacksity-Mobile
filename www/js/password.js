@@ -1,5 +1,5 @@
 function success(){
-    $("#info").slideUp();
+    $("#pass-reset").slideUp();
     $("#inforeg").show();
 }
 function errorinfo(inner){
@@ -8,7 +8,7 @@ function errorinfo(inner){
 }
 $("#pass-reset").on('submit', function(e){
     e.preventDefault();
-    $('#revbutton').html("Retrieving Password...Give it a moment");
+    $('#revbutton').html("Give it a moment");
     $.ajax({
         type     : "POST",
         cache    : false,
@@ -19,8 +19,6 @@ $("#pass-reset").on('submit', function(e){
                 success();
             }else if(data == "2"){
                 errorinfo("That Email doesn't seem to exist here");
-            }else if(data == "4"){
-                errorinfo("Wrong Captcha, try again!");
             }else{
                 alert("error: "+data);
             }
