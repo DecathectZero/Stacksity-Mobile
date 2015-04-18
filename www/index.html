@@ -33,20 +33,24 @@
         <link rel="stylesheet" type="text/css" href="css/index.css" />
 
     </head>
-    <body>
+    <body class="login">
         <div class="site-wrapper">
                 <div class="container">
                     <div class="intro">
                         <h2>Welcome to</h2>
                         <h1>STACK$ITY</h1>
                     </div>
-                    <form class="signinform margintop" id="login">
+                    <form class="signinform" id="login">
+                        <p id="error-info" style="display: none"></p>
                         <label for="inputEm" class="sr-only">Username/Email</label>
                         <input name="inputEm" type="text" id="inputEm" class="form-control" placeholder="Email/Username" required autofocus>
                         <label for="inputPass" class="sr-only">Password</label>
                         <input name="inputPass" type="password" id="inputPass" class="form-control" placeholder="Password" required>
                         <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-                        <a class="small" href="forgot_password.php">Forgot your password or username?</a>
+                        <a class="small" href="password.html">Forgot your password or username?</a>
+                    </form>
+                    <form class="signinform margintop" id="signup" action="signup.html">
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
                     </form>
                 </div>
             </div>
@@ -54,6 +58,6 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-        <script src="js/signup.js"></script>
+        <script src="js/index.js"></script>
     </body>
 </html>

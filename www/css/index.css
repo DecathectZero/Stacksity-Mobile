@@ -28,14 +28,22 @@ body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    background: url("../img/background.jpg") no-repeat center center fixed;
-    background-size: cover;
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
     font-size:12px;
     height:100%;
     margin:0px;
     padding:0px;
     width:100%;
+}
+.login{
+    background: url("../img/background.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+.password{
+    background: #0074D9;
+}
+.signup{
+    background: #001f3f;
 }
 .site-wrapper {
     display: table;
@@ -98,6 +106,9 @@ a:hover {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
+.margintop{
+    margin-top: 20px;
+}
 .container{
     position: absolute;
     margin-left: auto;
@@ -108,6 +119,10 @@ a:hover {
     width: 100%;
     max-width:500px;
     padding: 0 10px;
+}
+#inforeg p{
+    font-family: Raleway;
+    font-weight: bold;
 }
 .signinform {
     background-color: rgba(255,255,255, 0.7);
@@ -199,4 +214,12 @@ a:hover {
     overflow: hidden;
     clip: rect(0,0,0,0);
     border: 0;
+}
+#error-info{
+    text-align: center;
+    margin-top: 0px;
+    color: #fff;
+    width: 100%;
+    padding: 10px;
+    background-color: #FF4136;
 }
