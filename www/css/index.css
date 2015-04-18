@@ -146,9 +146,11 @@ a:hover {
     padding: 10px;
     font-weight: bold;
     font-family: Raleway;
+    text-decoration: none;
 }
 .btn:hover{
     background-color: #5eabed;
+    text-decoration: none;
 }
 .btn-lg, .btn-group-lg>.btn {
     padding: 10px 16px;
