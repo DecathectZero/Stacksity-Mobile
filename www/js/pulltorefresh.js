@@ -1,6 +1,3 @@
-/**
- * Created by killswitch on 4/18/2015.
- */
 /*!
  * jquery.plugin.pullToRefresh.js
  * version 1.0

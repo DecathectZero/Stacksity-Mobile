@@ -90,6 +90,7 @@ function startNews(startnum) {
     }
     var postnum = 0;
     $.getJSON('http://stacksity.com/mobile-php/feed.php', {id : stackid , start : startnum, user_id : user_id }, function(data) {
+        alert(data);
         if(null==data){
             checkEnd(postnum);
         }else{
