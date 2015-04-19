@@ -1,6 +1,5 @@
 .scrollable {
     overflow-y: auto;
-    height: 100%;
     -webkit-overflow-scrolling: touch;
     position: relative;
 }

@@ -60,27 +60,16 @@ var stackid = $('#stack').val();
 var post = false;
 
 var end = false;
+var bottom = false;
+var startnews = 0;
+var user_id = localStorage.getItem("user_id");
+
 function checkEnd(postnum){
     if(postnum == 0){
         end = true;
         $('.scroll').html('<p>No more posts</p>');
     }
 }
-var bottom = false;
-var startnews = 0;
-var user_id = localStorage.getItem("user_id");
-
-$(window).scroll(function() {
-    if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
-        if(!end&&!bottom){
-            alert("calling");
-            bottom = true;
-            $('.scroll').html('<p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>');
-            startNews(startnews);
-        }
-    }
-});
-
 startNews(startnews);
 function startNews(startnum) {
     //$.ajax({
@@ -122,3 +111,15 @@ function startNews(startnum) {
     });
     startnews = startnews + 10;
 }
+$(document).ready(function() {
+    $(window).scroll(function() {
+        if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+            alert("calling");
+            if(!end&&!bottom){
+                bottom = true;
+                $('.scroll').html('<p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>');
+                startNews(startnews);
+            }
+        }
+    });
+});
