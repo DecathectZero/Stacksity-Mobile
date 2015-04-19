@@ -63,6 +63,8 @@ var end = false;
 var bottom = false;
 var startnews = 0;
 var user_id = localStorage.getItem("user_id");
+var user_stack = localStorage.getItem("stack_id");
+var username = localStorage.getItem("username");
 
 function checkEnd(postnum){
     if(postnum == 0){
@@ -152,3 +154,112 @@ var exampleLoadingFunction = function() {
         resolve();
     } );
 };
+var posting  = false;
+$("#private").click( function(e){
+    e.preventDefault();
+    $('#privatefield').val(1);
+    $("#toppost").submit();
+});
+$("#toppost").on('submit', function(e){
+    e.preventDefault();
+    if(!posting){
+        posting = true;
+        $('.postb').html('<div class="loader">Loading...</div>');
+        e.preventDefault();
+        $.ajax({
+            type     : "POST",
+            cache    : false,
+            url      : 'http://www.stacksity.com/mobile-php/post.php',
+            data     : $(this).serialize()+"&user_id="+user_id+"&username="+username+"&stack_id="+stackid,
+            success  : function(data) {
+                if(data.length<=2) {
+                    if(data!=3){
+                        alert("error :" + data);
+                    }
+                }else{
+                    $('.background-image').hide();
+                    $('#toppost').trigger("reset");
+                    $( "#title-count").html("100");
+                    var element = $.parseJSON(data);
+                    if(element.posttype == 0){
+                        $(linkspost(element)).hide().prependTo('#feed').fadeIn("slow");
+                    }else if(element.posttype == 1){
+                        $(textspost(element)).hide().prependTo('#feed').fadeIn("slow");
+                    }else if(element.posttype == 2){
+                        $(imagepost(element)).hide().prependTo('#feed').fadeIn("slow");
+                    }else if(element.posttype == 3){
+                        $(videopost(element)).hide().prependTo('#feed').fadeIn("slow");
+                    }
+                }
+                $('.postb').html('Post');
+                $('#private').html('Private');
+                $('#privatefield').val(0);
+                posting = false;
+            },
+            error: function(xhr, status, error) {
+                alert("error"+ xhr.responseText);
+                $('.postb').html('Post');
+                $('#private').html('Private');
+                posting = false;
+            }
+        });
+    }else{
+        e.preventDefault();
+    }
+});
+$( ".follow" ).click(function() {
+    if($(this).val()==1){
+        $(this).val(0);
+        $(this).removeClass('followed');
+        $(this).html('Follow');
+        $("#followers").html(parseInt($("#followers").html())-1);
+    }else{
+        $(this).addClass('followed');
+        $(this).html('Followed');
+        $(this).val(1);
+        $("#followers").html(parseInt($("#followers").html())+1);
+    }
+    $.ajax({
+        type     : "POST",
+        cache    : false,
+        url      : 'php/follow.php',
+        data     : { stack: stackid},
+        success: function(data){
+        },
+        error: function(xhr, status, error) {
+            alert("error"+ xhr.responseText);
+        }
+    });
+});
+/* Drag'n drop stuff */
+function upload(file) {
+    /* Is the file an image? */
+    if (!file || !file.type.match(/image.*/)) return;
+    /* It is! */
+    document.body.className = "uploading";
+    $('#imageid').val("uploading...");
+    /* Lets build a FormData object*/
+    var fd = new FormData(); // I wrote about it: https://hacks.mozilla.org/2011/01/how-to-develop-a-html5-image-uploader/
+    fd.append("image", file); // Append the file
+    var xhr = new XMLHttpRequest(); // Create the XHR (Cross-Domain XHR FTW!!!) Thank you sooooo much imgur.com
+    xhr.open("POST", "https://api.imgur.com/3/image.json"); // Boooom!
+    xhr.onload = function() {
+        // Big win!
+        var link = JSON.parse(xhr.responseText).data.link;
+        $('#link').val(link);
+        $('#imageid').val(file.name);
+        $('#imagePostPreview').attr('src', link);
+        $('.background-image').show();
+        document.body.className = "uploaded";
+    }
+
+    xhr.setRequestHeader('Authorization', 'Client-ID 2caf3e86e092d76'); // Get your own key http://api.imgur.com/
+
+    // Ok, I don't handle the errors. An exercise for the reader.
+    /* And now, we send the formdata */
+    xhr.send(fd);
+}
+function stackTrace() {
+    var err = new Error();
+    return err.stack;
+}
