@@ -236,7 +236,6 @@ function trigger_myScroll(offset) {
     offset = 0;
     myScroll = new IScroll('#wrapper', {
         probeType:1, tap:true, click:false, preventDefaultException:{tagName:/.*/}, mouseWheel:true, scrollbars:false, keyBindings:false,
-        deceleration:0.01,
         startY:40
     });
 
