@@ -70,12 +70,23 @@ var bottom = false;
 var startnews = 0;
 var user_id = localStorage.getItem("user_id");
 
+$(window).scroll(function() {
+    if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+        if(!end&&!bottom){
+            alert("calling");
+            bottom = true;
+            $('.scroll').html('<p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>');
+            startNews(startnews);
+        }
+    }
+});
+
 startNews(startnews);
 function startNews(startnum) {
     //$.ajax({
     //    type     : "GET",
     //    cache    : false,
-    //    url      : 'http://stacksity.com/mobile-php/feed.php',
+    //    url      : 'http://stacksity.herokuapp.com/mobile-php/feed.php',
     //    data     : {id : stackid , start : startnum, user_id : user_id },
     //    crossDomain : true,
     //    success  : function(data) {
@@ -90,7 +101,6 @@ function startNews(startnum) {
     }
     var postnum = 0;
     $.getJSON('http://stacksity.com/mobile-php/feed.php', {id : stackid , start : startnum, user_id : user_id }, function(data) {
-        alert(data);
         if(null==data){
             checkEnd(postnum);
         }else{
@@ -112,25 +122,3 @@ function startNews(startnum) {
     });
     startnews = startnews + 10;
 }
-$(window).scroll(function() {
-    if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
-        if(!end&&!bottom){
-            bottom = true;
-            $('.scroll').html('<p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>');
-            startNews(startnews);
-        }
-    }
-});
-$('.scrollable').pullToRefresh({
-    callback: function() {
-        var def = $.Deferred();
-
-        setTimeout(function() {
-            $('#feed').empty();
-            startnews = 0;
-            startNews(startnews);
-        }, 3000);
-
-        return def.promise();
-    }
-});
