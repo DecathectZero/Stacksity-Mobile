@@ -55,7 +55,8 @@ var WebPullToRefresh = (function () {
             ptrEl: params.ptrEl || document.getElementById( defaults.ptrEl ),
             distanceToRefresh: params.distanceToRefresh || defaults.distanceToRefresh,
             loadingFunction: params.loadingFunction || defaults.loadingFunction,
-            resistance: params.resistance || defaults.resistance
+            resistance: params.resistance || defaults.resistance,
+            preventDefault: true
         };
 
         if ( ! options.contentEl || ! options.ptrEl ) {
