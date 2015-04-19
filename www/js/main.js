@@ -123,157 +123,32 @@ $(document).ready(function() {
     });
 });
 
-
-//window.onload = function() {
-//    WebPullToRefresh.init( {
-//        loadingFunction: exampleLoadingFunction
-//    } );
-//};
-//var exampleLoadingFunction = function() {
-//    return new Promise( function( resolve, reject ) {
+//function pullUpAction () {
+//    setTimeout(function () {	// <-- Simulate network congestion, remove setTimeout from production!
+//        $('#feed').empty();
+//        startnews = 0;
+//        startNews(startnews);
 //
-//        setTimeout(function () {	// <-- Simulate network congestion, remove setTimeout from production!
-//            $('#feed').empty();
-//            startnews = 0;
-//            startNews(startnews);
-//
-//            myScroll.refresh();
-//        }, 1000);	// <-- Simulate network congestion, remove setTimeout from production!
-//        resolve();
-//    } );
-//};
-var items_per_page = 10;
-var scroll_in_progress = false;
-var myScroll;
-load_content = function(refresh, next_page) {
+//        myScroll.refresh();
+//    }, 1000);	// <-- Simulate network congestion, remove setTimeout from production!
+//}
 
-    // This is a DEMO function which generates DEMO content into the scroller.
-    // Here you should place your AJAX request to fetch the relevant content (e.g. $.post(...))
 
-    console.log(refresh, next_page);
-    setTimeout(function() { // This immitates the CALLBACK of your AJAX function
+window.onload = function() {
+    WebPullToRefresh.init( {
+        loadingFunction: exampleLoadingFunction
+    } );
+};
+var exampleLoadingFunction = function() {
+    return new Promise( function( resolve, reject ) {
 
-        if (refresh) {
+        setTimeout(function () {	// <-- Simulate network congestion, remove setTimeout from production!
             $('#feed').empty();
             startnews = 0;
             startNews(startnews);
 
-            pullActionCallback();
-
-        } else {
-
-            if (myScroll) {
-                myScroll.destroy();
-                $(myScroll.scroller).attr('style', ''); // Required since the styles applied by IScroll might conflict with transitions of parent layers.
-                myScroll = null;
-            }
-            trigger_myScroll();
-
-        }
-    }, 1000);
-
+            myScroll.refresh();
+        }, 1000);	// <-- Simulate network congestion, remove setTimeout from production!
+        resolve();
+    } );
 };
-
-function pullDownAction() {
-    load_content('refresh');
-
-}
-function pullUpAction(callback) {
-    load_content('refresh', next_page);
-
-    if (callback) {
-        callback();
-    }
-}
-function pullActionCallback() {
-    if (pullDownEl && pullDownEl.className.match('loading')) {
-
-        pullDownEl.className = 'pullDown';
-        pullDownEl.querySelector('.pullDownLabel').innerHTML = 'Pull down to refresh';
-
-        myScroll.scrollTo(0, parseInt(pullUpOffset)*(-1), 200);
-
-    } else if (pullUpEl && pullUpEl.className.match('loading')) {
-
-        $('.pullUp').removeClass('loading').html('');
-
-    }
-}
-
-var pullActionDetect = {
-    count:0,
-    limit:10,
-    check:function(count) {
-        if (count) {
-            pullActionDetect.count = 0;
-        }
-        // Detects whether the momentum has stopped, and if it has reached the end - 200px of the scroller - it trigger the pullUpAction
-        setTimeout(function() {
-            if (myScroll.y <= (myScroll.maxScrollY + 200) && pullUpEl && !pullUpEl.className.match('loading')) {
-                $('.pullUp').addClass('loading').html('<span class="pullUpIcon">&nbsp;</span><span class="pullUpLabel">Loading...</span>');
-                pullUpAction();
-            } else if (pullActionDetect.count < pullActionDetect.limit) {
-                pullActionDetect.check();
-                pullActionDetect.count++;
-            }
-        }, 200);
-    }
-}
-
-function trigger_myScroll(offset) {
-    pullDownEl = document.querySelector('#wrapper .pullDown');
-    if (pullDownEl) {
-        pullDownOffset = pullDownEl.offsetHeight;
-    } else {
-        pullDownOffset = 0;
-    }
-    pullUpEl = document.querySelector('#wrapper .pullUp');
-    if (pullUpEl) {
-        pullUpOffset = pullUpEl.offsetHeight;
-    } else {
-        pullUpOffset = 0;
-    }
-    offset = 0;
-    myScroll = new IScroll('#wrapper', {
-        probeType:1, tap:true, click:false, preventDefaultException:{tagName:/.*/}, mouseWheel:true, scrollbars:false, keyBindings:false,
-        startY:40
-    });
-
-    myScroll.on('scrollStart', function () {
-        scroll_in_progress = true;
-    });
-    myScroll.on('scroll', function () {
-
-        scroll_in_progress = true;
-        if (this.y >= 5 && pullDownEl && !pullDownEl.className.match('flip')) {
-            pullDownEl.className = 'pullDown flip';
-            pullDownEl.querySelector('.pullDownLabel').innerHTML = 'Release to refresh';
-            this.minScrollY = 0;
-        } else if (this.y <= 5 && pullDownEl && pullDownEl.className.match('flip')) {
-            pullDownEl.className = 'pullDown';
-            pullDownEl.querySelector('.pullDownLabel').innerHTML = 'Pull down to refresh';
-            this.minScrollY = -pullDownOffset;
-        }
-
-        console.log(this.y);
-        pullActionDetect.check(0);
-    });
-    myScroll.on('scrollEnd', function () {
-        console.log('scroll ended');
-        setTimeout(function() {
-            scroll_in_progress = false;
-        }, 100);
-        if (pullDownEl && pullDownEl.className.match('flip')) {
-            pullDownEl.className = 'pullDown loading';
-            pullDownEl.querySelector('.pullDownLabel').innerHTML = 'Loading...';
-            pullDownAction();
-        }
-        // We let the momentum scroll finish, and if reached the end - loading the next page
-        pullActionDetect.check(0);
-    });
-
-    // In order to prevent seeing the "pull down to refresh" before the iScoll is trigger - the wrapper is located at left:-9999px and returned to left:0 after the iScoll is initiated
-    setTimeout(function() {
-        $('#wrapper').css({left:0});
-    }, 100);
-}
