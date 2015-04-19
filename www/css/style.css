@@ -1,6 +1,4 @@
-@import url("http://fonts.googleapis.com/css?family=Roboto");
 @import url("http://fonts.googleapis.com/css?family=Raleway:300");
-@import url(http://fonts.googleapis.com/css?family=Raleway:300);
 
 body, html{
     width: 100%;
@@ -594,7 +592,6 @@ h4{
     color: #fff;
 }
 .topbanner{
-    padding-top: 20px;
     background-color: #001f3f;
 }
 .userbanner{
