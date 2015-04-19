@@ -169,6 +169,7 @@ h4{
 #feed{
     background-color: #CCC;
     padding: 0;
+    z-index: 30;
 }
 .textfeed{
     float: left;

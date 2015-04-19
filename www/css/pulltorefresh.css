@@ -99,12 +99,10 @@
 
 #content {
     width: 100%;
-    min-height: 100%;
-    z-index: 999;
+    z-index: 20;
     -webkit-backface-visibility: hidden;
     -webkit-perspective: 1000;
     box-sizing: border-box;
-    position: absolute;
 }
 
 .ptr-loading #content, .ptr-reset #content,
