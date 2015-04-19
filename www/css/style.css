@@ -7,7 +7,7 @@ body, html{
     height: 100%;
     font-family: 'Raleway', sans-serif;
     font-weight: 300;
-    background-color: #f0f1f5;
+    background: #333;
 }
 h4{
     font-weight: 700;
@@ -15,6 +15,9 @@ h4{
     display: inline;
     margin: 0;
     margin-bottom: 0;
+}
+#content{
+    background-color: #f0f1f5;
 }
 .hide{
     display: none;
@@ -591,6 +594,7 @@ h4{
     color: #fff;
 }
 .topbanner{
+    padding-top: 20px;
     background-color: #001f3f;
 }
 .userbanner{
@@ -601,9 +605,6 @@ h4{
 }
 .item {
     background: #fafbfe;
-    -webkit-box-shadow: 0 1px 16px rgba(0,0,0,.1);
-    -moz-box-shadow: 0 1px 16px rgba(0,0,0,.1);
-    box-shadow: 0 1px 16px rgba(0,0,0,.1);
     text-align: left;
     padding: 15px 10px;
     margin-bottom: 1px;
@@ -611,9 +612,12 @@ h4{
 }
 .privatepost{
     background-image: url("../img/post/private.png");
-    -webkit-box-shadow: inset 0px 0px 38px -2px rgba(0,0,0,0.25);
-    -moz-box-shadow: inset 0px 0px 38px -2px rgba(0,0,0,0.25);
-    box-shadow: inset 0px 0px 38px -2px rgba(0,0,0,0.25);
+}
+.privatepost a{
+    color: crimson !important;
+}
+.privatepost a:hover{
+    color: #FF4136 !important;
 }
 
 .cvote{
@@ -864,6 +868,7 @@ h4{
 .bannertext{
     width: 100%;
     float: left;
+    text-align: center;
 }
 h1{
     font-size: 24px;
@@ -873,3 +878,4 @@ h1{
     background: center center no-repeat #000 url("http://static.pexels.com/wp-content/uploads/2014/12/analog-camera-photography-rolleicord-3832-830x550.jpg");
     background-size: cover;
 }
+

@@ -114,7 +114,6 @@ function startNews(startnum) {
 $(document).ready(function() {
     $(window).scroll(function() {
         if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
-            alert("calling");
             if(!end&&!bottom){
                 bottom = true;
                 $('.scroll').html('<p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>');
@@ -123,3 +122,33 @@ $(document).ready(function() {
         }
     });
 });
+
+//function pullUpAction () {
+//    setTimeout(function () {	// <-- Simulate network congestion, remove setTimeout from production!
+//        $('#feed').empty();
+//        startnews = 0;
+//        startNews(startnews);
+//
+//        myScroll.refresh();
+//    }, 1000);	// <-- Simulate network congestion, remove setTimeout from production!
+//}
+
+
+window.onload = function() {
+    WebPullToRefresh.init( {
+        loadingFunction: exampleLoadingFunction
+    } );
+};
+var exampleLoadingFunction = function() {
+    return new Promise( function( resolve, reject ) {
+
+        setTimeout(function () {	// <-- Simulate network congestion, remove setTimeout from production!
+            $('#feed').empty();
+            startnews = 0;
+            startNews(startnews);
+
+            myScroll.refresh();
+        }, 1000);	// <-- Simulate network congestion, remove setTimeout from production!
+        resolve();
+    } );
+};
