@@ -14,7 +14,7 @@ $("#login").on('submit', function(e){
     $.ajax({
         type     : "POST",
         cache    : false,
-        url      : 'http://stacksity.com/login.php',
+        url      : 'http://stacksity.com/mobile-php/login.php',
         data     : $(this).serialize(),
         dataType : "html",
         crossDomain : true,

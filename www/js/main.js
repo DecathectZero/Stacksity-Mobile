@@ -70,14 +70,14 @@ function checkEnd(postnum){
 }
 var bottom = false;
 var startnews = 0;
-
+var user_id = localStorage.getItem("user_id");
 startNews(startnews);
 function startNews(startnum) {
     if(end){
         return;
     }
     var postnum = 0;
-    $.getJSON('http://stacksity.com/php/feed.php', {id : stackid , start : startnum }, function(data) {
+    $.getJSON('http://stacksity.com/mobile-php/feed.php', {id : stackid , start : startnum, user_id : user_id }, function(data) {
         if(null==data){
             checkEnd(postnum);
         }else{
