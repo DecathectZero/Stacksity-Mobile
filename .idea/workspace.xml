@@ -2,34 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2577d0ad-423f-43a3-91bd-10b7ed64dd77" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\killswitch\Documents\Stacksity-Mobile\plugins\cordova-plugin-statusbar-master\.travis.yml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\killswitch\Documents\Stacksity-Mobile\plugins\cordova-plugin-statusbar-master\CONTRIBUTING.md" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\killswitch\Documents\Stacksity-Mobile\plugins\cordova-plugin-statusbar-master\LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\killswitch\Documents\Stacksity-Mobile\plugins\cordova-plugin-statusbar-master\NOTICE" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\killswitch\Documents\Stacksity-Mobile\plugins\cordova-plugin-statusbar-master\README.md" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\killswitch\Documents\Stacksity-Mobile\plugins\cordova-plugin-statusbar-master\RELEASENOTES.md" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\killswitch\Documents\Stacksity-Mobile\plugins\cordova-plugin-statusbar-master\doc\de\index.md" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\killswitch\Documents\Stacksity-Mobile\plugins\cordova-plugin-statusbar-master\doc\es\index.md" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\killswitch\Documents\Stacksity-Mobile\plugins\cordova-plugin-statusbar-master\doc\fr\index.md" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\killswitch\Documents\Stacksity-Mobile\plugins\cordova-plugin-statusbar-master\doc\it\index.md" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\killswitch\Documents\Stacksity-Mobile\plugins\cordova-plugin-statusbar-master\doc\ja\index.md" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\killswitch\Documents\Stacksity-Mobile\plugins\cordova-plugin-statusbar-master\doc\ko\index.md" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\killswitch\Documents\Stacksity-Mobile\plugins\cordova-plugin-statusbar-master\doc\pl\index.md" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\killswitch\Documents\Stacksity-Mobile\plugins\cordova-plugin-statusbar-master\doc\ru\index.md" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\killswitch\Documents\Stacksity-Mobile\plugins\cordova-plugin-statusbar-master\doc\zh\index.md" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\killswitch\Documents\Stacksity-Mobile\plugins\cordova-plugin-statusbar-master\package.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\killswitch\Documents\Stacksity-Mobile\plugins\cordova-plugin-statusbar-master\plugin.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\killswitch\Documents\Stacksity-Mobile\plugins\cordova-plugin-statusbar-master\src\android\StatusBar.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\killswitch\Documents\Stacksity-Mobile\plugins\cordova-plugin-statusbar-master\src\ios\CDVStatusBar.h" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\killswitch\Documents\Stacksity-Mobile\plugins\cordova-plugin-statusbar-master\src\ios\CDVStatusBar.m" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\killswitch\Documents\Stacksity-Mobile\plugins\cordova-plugin-statusbar-master\src\windows\StatusBarProxy.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\killswitch\Documents\Stacksity-Mobile\plugins\cordova-plugin-statusbar-master\src\wp\StatusBar.cs" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\killswitch\Documents\Stacksity-Mobile\plugins\cordova-plugin-statusbar-master\tests\plugin.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\killswitch\Documents\Stacksity-Mobile\plugins\cordova-plugin-statusbar-master\tests\tests.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\killswitch\Documents\Stacksity-Mobile\plugins\cordova-plugin-statusbar-master\www\statusbar.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.xml" afterPath="$PROJECT_DIR$/config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/pulltorefresh.js" afterPath="$PROJECT_DIR$/www/js/pulltorefresh.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Stacksity-Mobile.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -57,8 +30,8 @@
       <file leaf-file-name="config.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.46145493" vertical-offset="51" max-vertical-offset="1394">
-              <caret line="28" column="57" selection-start-line="28" selection-start-column="57" selection-end-line="28" selection-end-column="57" />
+            <state vertical-scroll-proportion="0.44299674" vertical-offset="408" max-vertical-offset="1394">
+              <caret line="48" column="61" selection-start-line="48" selection-start-column="61" selection-end-line="48" selection-end-column="61" />
               <folding />
             </state>
           </provider>
@@ -724,8 +697,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46145493" vertical-offset="51" max-vertical-offset="1394">
-          <caret line="28" column="57" selection-start-line="28" selection-start-column="57" selection-end-line="28" selection-end-column="57" />
+        <state vertical-scroll-proportion="0.44299674" vertical-offset="408" max-vertical-offset="1394">
+          <caret line="48" column="61" selection-start-line="48" selection-start-column="61" selection-end-line="48" selection-end-column="61" />
           <folding />
         </state>
       </provider>
