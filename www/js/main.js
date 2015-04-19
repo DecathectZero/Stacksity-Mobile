@@ -157,7 +157,7 @@ load_content = function(refresh, next_page) {
             $('#feed').empty();
             startnews = 0;
             startNews(startnews);
-            
+
             pullActionCallback();
 
         } else {
@@ -235,9 +235,9 @@ function trigger_myScroll(offset) {
     }
     offset = 0;
     myScroll = new IScroll('#wrapper', {
-        probeType:1, tap:true, click:false, preventDefaultException:{tagName:/.*/}, mouseWheel:true, scrollbars:true, fadeScrollbars:true, interactiveScrollbars:false, keyBindings:false,
-        deceleration:0.0002,
-        startY:(parseInt(offset)*(-1))
+        probeType:1, tap:true, click:false, preventDefaultException:{tagName:/.*/}, mouseWheel:true, scrollbars:false, keyBindings:false,
+        deceleration:0.01,
+        startY:40
     });
 
     myScroll.on('scrollStart', function () {
