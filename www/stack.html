@@ -21,7 +21,7 @@
 
 <input id="stack" type="hidden" value="0">
 <input id="stackname" type="hidden" value="topstack">
-
+<div class="scrollable">
 <div class="banner topbanner">
     <div class="center banner-inner">
         <div class="bannertext"><h1>topstack</h1>
@@ -53,7 +53,7 @@
                 <div class="input-group">
                     <span class="input-group-btn">
                     <span class="btn btn-primary btn-file" id="uploadimage">
-                    <span class="glyphicon glyphicon-camera"></span> Browse <input type="file" accept="image/x-png, image/gif, image/jpeg" onchange="upload(this.files[0])">
+                    <span class="glyphicon glyphicon-camera"></span> Photo <input type="file" accept="image/x-png, image/gif, image/jpeg" onchange="upload(this.files[0])">
                     </span>
                     </span>
                     <input type="text" id="imageid" class="form-control" readonly="">
@@ -76,6 +76,7 @@
 <div class="scroll center">
     <p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>
 </div>
+</div>
 <div class="modal fade" id="delpost">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -94,5 +95,6 @@
 <script src="js/autogrow.js"></script>
 <script src="js/output.js"></script>
 <script src="js/vote.js"></script>
+<script src="js/pulltorefresh.js"></script>
 <script src="js/main.js"></script>
 </body></html>

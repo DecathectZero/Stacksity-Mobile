@@ -1,10 +1,3 @@
-init();
-function init(){
-    if (localStorage.getItem("user_id") !== null) {
-        document.location.href = 'stack.html';
-    }
-}
-
 function errorinfo(inner){
     $('#error-info').html(inner);
     $('#error-info').slideDown();
