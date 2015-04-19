@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2577d0ad-423f-43a3-91bd-10b7ed64dd77" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/bloat.js" afterPath="$PROJECT_DIR$/www/js/bloat.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/css/pulltorefresh.css" afterPath="$PROJECT_DIR$/www/css/pulltorefresh.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/pulltorefresh.js" afterPath="$PROJECT_DIR$/www/js/pulltorefresh.js" />
     </list>
     <ignored path="Stacksity-Mobile.iws" />
@@ -40,11 +40,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.48" vertical-offset="0" max-vertical-offset="15045">
-              <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+            <state vertical-scroll-proportion="0.61494905" vertical-offset="14162" max-vertical-offset="15045">
+              <caret line="865" column="12" selection-start-line="865" selection-start-column="12" selection-end-line="865" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -60,11 +60,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pulltorefresh.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="pulltorefresh.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/pulltorefresh.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.09626274" vertical-offset="0" max-vertical-offset="883">
-              <caret line="5" column="15493" selection-start-line="5" selection-start-column="15493" selection-end-line="5" selection-end-column="15493" />
+            <state vertical-scroll-proportion="-3.4" vertical-offset="0" max-vertical-offset="204">
+              <caret line="5" column="15488" selection-start-line="5" selection-start-column="15488" selection-end-line="5" selection-end-column="15490" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -131,8 +131,8 @@
       <file leaf-file-name="pulltorefresh.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/css/pulltorefresh.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2159">
-              <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1221" max-vertical-offset="2176">
+              <caret line="106" column="23" selection-start-line="106" selection-start-column="23" selection-end-line="106" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -167,10 +167,10 @@
         <option value="$PROJECT_DIR$/www/css/style.css" />
         <option value="$PROJECT_DIR$/www/js/output.js" />
         <option value="$PROJECT_DIR$/www/js/main.js" />
-        <option value="$PROJECT_DIR$/www/css/pulltorefresh.css" />
         <option value="$PROJECT_DIR$/www/stack.html" />
         <option value="$PROJECT_DIR$/www/js/bloat.js" />
         <option value="$PROJECT_DIR$/www/js/pulltorefresh.js" />
+        <option value="$PROJECT_DIR$/www/css/pulltorefresh.css" />
       </list>
     </option>
   </component>
@@ -356,7 +356,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -704,22 +704,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.48" vertical-offset="0" max-vertical-offset="15045">
-          <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/css/pulltorefresh.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2159">
-          <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/output.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1102" max-vertical-offset="3366">
@@ -733,16 +717,6 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
           <caret line="6" column="39" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1748" max-vertical-offset="2703">
-          <caret line="133" column="3" selection-start-line="133" selection-start-column="3" selection-end-line="133" selection-end-column="3" />
-          <folding>
-            <marker date="1429456691819" expanded="true" signature="3592:3602" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -768,11 +742,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/pulltorefresh.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.09626274" vertical-offset="0" max-vertical-offset="883">
-          <caret line="5" column="15493" selection-start-line="5" selection-start-column="15493" selection-end-line="5" selection-end-column="15493" />
+        <state vertical-scroll-proportion="-3.4" vertical-offset="0" max-vertical-offset="204">
+          <caret line="5" column="15488" selection-start-line="5" selection-start-column="15488" selection-end-line="5" selection-end-column="15490" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1748" max-vertical-offset="2703">
+          <caret line="133" column="3" selection-start-line="133" selection-start-column="3" selection-end-line="133" selection-end-column="3" />
+          <folding>
+            <marker date="1429456691819" expanded="true" signature="3592:3602" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/css/pulltorefresh.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1221" max-vertical-offset="2176">
+          <caret line="106" column="23" selection-start-line="106" selection-start-column="23" selection-end-line="106" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.61494905" vertical-offset="14162" max-vertical-offset="15045">
+          <caret line="865" column="12" selection-start-line="865" selection-start-column="12" selection-end-line="865" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>
