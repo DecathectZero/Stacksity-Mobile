@@ -1,5 +1,6 @@
 function success(){
     $("#pass-reset").slideUp();
+    $("#error-info").hide();
     $("#inforeg").show();
 }
 function errorinfo(inner){

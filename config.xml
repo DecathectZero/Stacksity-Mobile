@@ -2,7 +2,7 @@
 <widget id="com.stacksity.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Stacksity</name>
     <description>
-        Hello World sample application that responds to the deviceready event.
+        Stacksity is a social network allowing users to submit and vote on content.
     </description>
     <author email="support@stacksity.com" href="http://stacksity.com">
         Stacksity Team
