@@ -270,6 +270,7 @@ $('.scrollable').pullToRefresh({
         var def = $.Deferred();
 
         setTimeout(function() {
+            alert("okay");
             def.resolve();
         }, 3000);
 

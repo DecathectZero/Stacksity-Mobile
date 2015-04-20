@@ -24,7 +24,10 @@
         init();
     </script>
 <body>
-
+<script type="text/javascript">
+    var isTouch = !!('ontouchstart' in window);
+    document.getElementById('body').setAttribute('class', isTouch ? 'touch' : 'desktop');
+</script>
 <input id="stack" type="hidden" value="0">
 <input id="stackname" type="hidden" value="topstack">
 <div class="scrollable">
@@ -97,7 +100,7 @@
         </div>
     </div>
 </div>
-<script src="js/jquery.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script src="js/bootstrap.js"></script>
     <script src="js/pulltorefresh.js"></script>
     <script src="js/autogrow.js"></script>
