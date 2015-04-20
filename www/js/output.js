@@ -170,36 +170,25 @@ var user_id = localStorage.getItem("user_id");
 var delete_id = 0;
 $(document).on('click', '.delete', function(e) {
     delete_id = $(this).data('delete');
-    navigator.notification.confirm(
-        'Are you sure you want to delete this post?', // message
-        onConfirm,            // callback to invoke with index of button pressed
-        'Delete',           // title
-        ['Cancel','Confirm']         // buttonLabels
-    );
-    if(confirm("Are you sure you want to delete this post?")){
-
-    }
-    e.preventDefault();
+    $('#delpost').modal();
     return false;
 });
-
-function onConfirm(buttonIndex) {
-    if(buttonIndex==2){
-        $.ajax({
-            type     : "GET",
-            cache    : false,
-            url      : 'http://www.stacksity.com/mobile-php/deletepost.php',
-            data     : {delid : delete_id, user_id: user_id},
-            success  : function(data) {
-                if(data==0){
-                    $('#'+delete_id).fadeOut();
-                }else{
-                    alert(data);
-                }
-            },
-            error: function(xhr, status, error) {
-                alert("error"+ xhr.responseText);
+$('#deletelink').click(function(e){
+    $.ajax({
+        type     : "GET",
+        cache    : false,
+        url      : 'http://www.stacksity.com/mobile-php/deletepost.php',
+        data     : {delid : delete_id, user_id: user_id},
+        success  : function(data) {
+            if(data==0){
+                $('#'+delete_id).fadeOut();
+            }else{
+                alert(data);
             }
-        });
-    }
-}
+        },
+        error: function(xhr, status, error) {
+            alert("error"+ xhr.responseText);
+        }
+    });
+    $('#delpost').modal('hide');
+});

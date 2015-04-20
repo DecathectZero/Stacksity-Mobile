@@ -757,17 +757,9 @@ h4{
 .modal-dialog, .modal-content{
     border-radius: 0;
 }
-.modal:before {
-    display: inline-block;
-    vertical-align: middle;
-    content: " ";
-    height: 100%;
-}
 
 .modal-dialog {
-    display: inline-block;
     text-align: left;
-    vertical-align: middle;
 }
 .comment_link{
     font-weight: bold;

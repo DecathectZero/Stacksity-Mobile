@@ -91,11 +91,23 @@
 <div class="scroll center">
     <p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>
 </div>
+<div class="modal fade" id="delpost">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>Are you sure you want to delete this post?</p>
+            </div>
+            <div class="modal-footer">
+                <a id="deletelink" class="btn btn-primary">Delete</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
 </div>
-    <script src="js/jquery.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.js"></script>
     <script src="js/pulltorefresh.js"></script>
     <script src="js/bloat.js"></script>
-    <script src="js/bootstrap.js"></script>
     <script src="js/autogrow.js"></script>
     <script src="js/output.js"></script>
     <script src="js/vote.js"></script>
