@@ -827,11 +827,16 @@ h1{
 
 .footer { background: #1c5380; position: fixed; bottom: 0; width: 100%; text-align: center; z-index: 999 }
 .botmenu{
-    padding: 15px 10px 10px 10px;
+    padding: 0;
+}
+.quarter{
+    width: 25%;
+    float: left;
+    padding: 12px 10px 5px 10px;
 }
 .botmenu a{
     color: #fff;
-    font-size: 24px;
+    font-size: 16px;
 }
 .botmenu a:hover, .botmenu a:focus{
     color: #9aa9c8;;
