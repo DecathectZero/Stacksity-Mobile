@@ -13,14 +13,15 @@
                 message: {
                     pull: 'Pull to refresh',
                     release: 'Release to refresh',
-                    loading: 'Loading'
+                    loading: 'Loading...'
                 }
             }, options),
             html = '<div class="pull-to-refresh">' +
                 '<div class="icon"></div>' +
                 '<div class="message">' +
                 '<i class="arrow"></i>' +
-                '<i class="spinner large"></i>' +
+                '<div class="topcoat-spinner spinner large"></div>' +
+//					'<i class="spinner large"></i>' +
                 '<span class="pull">' + cfg.message.pull + '</span>' +
                 '<span class="release">' + cfg.message.release + '</span>' +
                 '<span class="loading">' + cfg.message.loading + '</span>' +

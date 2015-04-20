@@ -47,13 +47,13 @@
 .pull-to-refresh >.message >i.arrow {
     width: 20px;
     height: 40px;
-    background-image: url('../img/arrow.png');
+    background-image: url('img/arrow.png');
 }
 
 .pull-to-refresh >.message >i.spinner {
     width: 16px;
     height: 16px;
-    background-image: url('../img/spinner.gif');
+    background-image: url('img/spinner.gif');
 }
 
 .pull-to-refresh >.message >span.pull,

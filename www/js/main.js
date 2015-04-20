@@ -113,7 +113,7 @@ function startNews(startnum) {
     });
     startnews = startnews + 10;
 }
-$(document).ready(function() {
+/*$(document).ready(function() {
     $(window).scroll(function() {
         if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
             if(!end&&!bottom){
@@ -123,7 +123,7 @@ $(document).ready(function() {
             }
         }
     });
-});
+});*/
 
 //function pullUpAction () {
 //    setTimeout(function () {	// <-- Simulate network congestion, remove setTimeout from production!
@@ -265,14 +265,16 @@ function stackTrace() {
     var err = new Error();
     return err.stack;
 }
+
+
 $('.scrollable').pullToRefresh({
     callback: function() {
         var def = $.Deferred();
-
+        alert("okay");
         setTimeout(function() {
-            alert("okay");
+
             def.resolve();
-        }, 3000);
+        }, 10);
 
         return def.promise();
     }
