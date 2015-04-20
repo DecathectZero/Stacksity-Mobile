@@ -826,12 +826,8 @@ h1{
 }
 
 .footer { background: #1c5380; position: fixed; bottom: 0; width: 100%; text-align: center; z-index: 999 }
-.botmenu .row a .glyphicon{
-    overflow: auto;
-    padding: 15px 0 5px 0;
-}
 .botmenu{
-    padding: 0;
+    padding: 15px 10px 10px 10px;
 }
 .botmenu a{
     color: #fff;

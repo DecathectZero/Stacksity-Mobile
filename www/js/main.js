@@ -234,10 +234,13 @@ function stackTrace() {
 $('.scrollable').pullToRefresh({
     callback: function() {
         var def = $.Deferred();
-        $("#feed").empty();
-        startnews = 0;
-        startNews(startnews);
-        def.resolve();
+
+        setTimeout(function() {
+            $("#feed").empty();
+            startnews = 0;
+            startNews(startnews);
+            def.resolve();
+        }, 3000);
 
         return def.promise();
     }
