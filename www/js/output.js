@@ -1,4 +1,4 @@
-
+var stackid = localStorage.getItem("stack");
 /**
  * Created by killswitch on 4/18/2015.
  */
@@ -35,6 +35,17 @@ function priv(priv){
         return "";
     }
 }
+function stacknames(from, from_id, too, too_id){
+    var stack_name = '<a class="stacklink" href="stack.html" data-link="'+from_id+'">'+ from + '</a> ';
+    if(stackid == 0){
+        if(from_id==too_id){
+            stack_name += ' to <a class="stacklink" href="stack.html" data-link="'+from_id+'">$self</a>';
+        }else{
+            stack_name += ' to <a class="stacklink" href="stack.html" data-link="'+too_id+'">'+too+'</a>';
+        }
+    }
+    return stack_name;
+}
 function voting(votetype, count){
     var re = '<div class="vbutton stackup" name="up"></div>'+
         '<p class="count">'+count+'</p>'+
@@ -53,23 +64,14 @@ function voting(votetype, count){
 function imagepost(element){
     var count = element.upstacks-element.downstacks;
     var vote = voting(element.vote, count);
-    var stack_name;
-    if(stackid != 0){
-        stack_name = '';
-    }else{
-        if(element.username==element.stackname){
-            stack_name = ' to <a href="/stack.php?id='+ element.stack_id+'">$self</a>';
-        }else{
-            stack_name = ' to <a href="/stack.php?id='+ element.stack_id+'">'+element.stackname+'</a>';
-        }
-    }
+
     return '<div class="item ipost '+priv(element.private)+'" id="'+element.post_id+'">' +
     '<div class="vote login">'+
     vote +
     '</div>'+
     '<div class="textcon"><div class="linkwrapper">' +
     '<a href="'+getlink(element.post_id, element.link)+'" target="_blank" style="text-decoration: none"><h4>' + element.title + '</h4></a>' +
-    '<p><a href="/stack.php?id='+ element.poster_id+'">'+ element.username + '</a> '+stack_name+' | '+ element.created +'</p>' +
+    '<p>'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id)+' | '+ element.created +'</p>' +
     '<a href="'+element.link+'" target="_blank">' +
     '<div class="imagewrap">'+element.embed+'</div>' +
     '</a>' +
@@ -81,16 +83,6 @@ function imagepost(element){
 function videopost(element){
     var count = element.upstacks-element.downstacks;
     var vote = voting(element.vote, count);
-    var stack_name;
-    if(stackid != 0){
-        stack_name = '';
-    }else{
-        if(element.username==element.stackname){
-            stack_name = ' to <a href="/stack.php?id='+ element.stack_id+'">$self</a>';
-        }else{
-            stack_name = ' to <a href="/stack.php?id='+ element.stack_id+'">'+element.stackname+'</a>';
-        }
-    }
 
     return '<div class="item vpost '+priv(element.private)+'" id="'+element.post_id+'">' +
     '<div class="vote login">'+
@@ -98,7 +90,7 @@ function videopost(element){
     '</div>'+
     '<div class="textcon">' +
     '<a href="'+getlink(element.post_id, element.link)+'" target="_blank" style="text-decoration: none"><h4>' + element.title + '</h4></a>' +
-    '<p><a href="/stack.php?id='+ element.poster_id+'">'+ element.username + '</a> '+stack_name+' | '+ element.created +'</p>' +
+    '<p>'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id)+' | '+ element.created +'</p>' +
         //'<a href="/'+element.link+'" target="_blank">' +
     '<div class="linkwrapper"><div class="videowrapper">'+element.embed+'</div>'+
     '<div class="textfeed"><p class="content">'+element.text+'</p></div></div>'+comments(element)+
@@ -108,23 +100,13 @@ function videopost(element){
 function linkspost(element){
     var count = element.upstacks-element.downstacks
     var vote = voting(element.vote, count);
-    var stack_name;
-    if(stackid != 0){
-        stack_name = '';
-    }else{
-        if(element.username==element.stackname){
-            stack_name = ' to <a href="/stack.php?id='+ element.stack_id+'">$self</a>';
-        }else{
-            stack_name = ' to <a href="/stack.php?id='+ element.stack_id+'">'+element.stackname+'</a>';
-        }
-    }
     return '<div class="item lpost '+priv(element.private)+'" id="'+element.post_id+'">' +
     '<div class="vote login">'+
     vote +
     '</div>'+
     '<div class="textcon">' +
     '<a href="'+getlink(element.post_id, element.link)+'" target="_blank" style="text-decoration: none"><h4>' + element.title + '</h4></a>' +
-    '<p><a href="/stack.php?id='+ element.poster_id+'">'+ element.username + '</a> '+stack_name+' | '+ element.created +'</p>' +
+    '<p>'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id)+' | '+ element.created +'</p>' +
     '<div class="linkwrapper"><a href="'+element.link+'" target="_blank">' +
     '<div class="linkcon"></div><div class="linkcontainer"><img class="linkimage" src="'+ element.image +'"></div>' +
     '</a>' +
@@ -135,16 +117,6 @@ function linkspost(element){
 function textspost(element){
     var count = element.upstacks-element.downstacks;
     var vote = voting(element.vote, count);
-    var stack_name;
-    if(stackid != 0){
-        stack_name = '';
-    }else{
-        if(element.username==element.stackname){
-            stack_name = ' to <a href="/stack.php?id='+ element.stack_id+'">$self</a>';
-        }else{
-            stack_name = ' to <a href="/stack.php?id='+ element.stack_id+'">'+element.stackname+'</a>';
-        }
-    }
     var link;
     if(post){
         link = '<h4>' + element.title + '</h4>';
@@ -157,8 +129,7 @@ function textspost(element){
     '</div>'+
     '<div class="textcon">' +
     link +
-    '<p><a href="/stack.php?id='+ element.poster_id+'">'+ element.username +
-    '</a>'+stack_name +' | '+ element.created +'</p>' +
+    '<p>'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id)+' | '+ element.created +'</p>' +
     '<p class="content">'+$("<textarea/>").html(element.text).text()+'</p>' +comments(element)+
     '</div>' +
     '</div>';
@@ -191,4 +162,7 @@ $('#deletelink').click(function(e){
         }
     });
     $('#delpost').modal('hide');
+});
+$(document).on('click', '.stacklink', function(e) {
+    localStorage.setItem('stack', $(this).data("link"));
 });

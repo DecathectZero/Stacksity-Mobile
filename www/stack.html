@@ -17,19 +17,44 @@
 
     <script type="text/javascript">
         function init(){
-            if (localStorage.getItem("user_id") === null) {
+            if (localStorage.getItem("user_id") === null || localStorage.getItem("stack") === null ) {
                 document.location.href = 'index.html';
             }
         }
         init();
     </script>
+    <script src="js/jquery.js"></script>
 <body>
-<!--<script type="text/javascript">-->
-    <!--var isTouch = !!('ontouchstart' in window);-->
-    <!--document.getElementById('body').setAttribute('class', isTouch ? 'touch' : 'desktop');-->
-<!--</script>-->
-<!--<input id="stack" type="hidden" value="0">-->
-<!--<input id="stackname" type="hidden" value="topstack">-->
+<script type="text/javascript">
+    var isTouch = !!('ontouchstart' in window);
+    document.getElementById('body').setAttribute('class', isTouch ? 'touch' : 'desktop');
+</script>
+<div class="footer">
+    <div class="center botmenu">
+        <div class="row">
+            <a class="stacklink" href="stack.html" data-link="0">
+                <div class="col-xs-3">
+                    <div class="glyphicon glyphicon glyphicon-home"></div>
+                </div>
+            </a>
+            <a class="stacklink" href="stack.html" data-link="0">
+                <div class="col-xs-3">
+                    <div class="glyphicon glyphicon glyphicon-bell"></div>
+                </div>
+            </a>
+            <a class="stacklink" href="stack.html" data-link="0">
+                <div class="col-xs-3">
+                    <div class="glyphicon glyphicon-search"></div>
+                </div>
+            </a>
+            <a class="stacklink" href="stack.html" data-link="0">
+                <div class="col-xs-3">
+                    <div class="glyphicon glyphicon glyphicon glyphicon-user"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
 <div class="scrollable">
     <div class="wrap">
         <div class="banner topbanner center">
@@ -83,24 +108,23 @@
         <div class="center" id="feed">
         </div>
         <div class="scroll center">
-            <p>Loading Posts</p>
+            <p>Loading Posts</p> <img src="img/11.gif"/>
         </div>
     </div>
 </div>
-<!--<div class="modal fade" id="delpost">-->
-    <!--<div class="modal-dialog">-->
-        <!--<div class="modal-content">-->
-            <!--<div class="modal-body">-->
-                <!--<p>Are you sure you want to delete this post?</p>-->
-            <!--</div>-->
-            <!--<div class="modal-footer">-->
-                <!--<a id="deletelink" class="btn btn-primary">Delete</a>-->
-                <!--<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</div>-->
-<script src="js/jquery.js"></script>
+<div class="modal fade" id="delpost">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>Are you sure you want to delete this post?</p>
+            </div>
+            <div class="modal-footer">
+                <a id="deletelink" class="btn btn-primary">Delete</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="js/bootstrap.js"></script>
     <script src="js/pulltorefresh.js"></script>
     <script src="js/autogrow.js"></script>

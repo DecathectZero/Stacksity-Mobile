@@ -1,8 +1,9 @@
 .scrollable {
     overflow-y: auto;
-    height: 100%;
+    height: calc(100% - 40px);
     -webkit-overflow-scrolling: touch;
     position: relative;
+    top: 0;
 }
 
 .scrollable .wrap {

@@ -26,53 +26,6 @@ h4{
 .marginbottom{
     margin-bottom: 20px !important;
 }
-.headergap {
-    padding-top: 50px;
-}
-.navbar-default{
-    background: #1c5380;
-    -webkit-box-shadow: 0 5px 25px 5px rgba(0,0,0,.2);
-    -moz-box-shadow: 0 5px 25px 5px rgba(0,0,0,.2);
-    box-shadow: 0 5px 25px 5px rgba(0,0,0,.2);
-}
-.navbar{
-    border: none;
-}
-.navbar-default .navbar-nav>li>a, .navbar-default .navbar-brand, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:active{
-    -webkit-transition: color .2s ease-in;
-    -moz-transition: color .2s ease-in;
-    -o-transition: color .2s ease-in;
-    transition: color .2s ease-in;
-    color: #fff;
-    text-shadow: none;
-}
-.navbar-default .navbar-brand{
-    font-size:32px;
-    text-shadow: none;
-}
-.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus, .navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover, .navbar-default .navbar-nav .open .dropdown-menu>li>a:focus{
-    color: #9aa9c8;
-    text-shadow: none;
-}
-.navbar-default .navbar-toggle .icon-bar{
-    background-color: #fff;
-}
-.navbar-nav .open .dropdown-menu{
-    background-color: #fff;
-    border-radius: 0;
-    padding: 0;
-}
-.navbar-nav{
-    margin-bottom: 0;
-}
-.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus {
-    background-color: #9aa9c8;
-    color: #fff;
-    -webkit-transition: background-color .2s ease-in-out;
-    -moz-transition: background-color .2s ease-in-out;
-    -o-transition: background-color .2s ease-in-out;
-    transition: backgroud-color .2s ease-in-out;
-}
 .site-wrapper-inner {
     display: table-cell;
     vertical-align: top;
@@ -594,6 +547,10 @@ h4{
 .topbanner{
     background-color: #001f3f;
 }
+.scroll img{
+    margin-top: -4px;
+    margin-left: 5px;
+}
 .userbanner{
     background-color: #3D9970;
 }
@@ -868,3 +825,20 @@ h1{
     background-size: cover;
 }
 
+.footer { background: #1c5380; position: fixed; bottom: 0; width: 100%; text-align: center; z-index: 999 }
+.botmenu .row a .glyphicon{
+    overflow: auto;
+    padding: 15px 0 5px 0;
+}
+.botmenu{
+    padding: 0;
+}
+.botmenu a{
+    color: #fff;
+    font-size: 24px;
+}
+.botmenu a:hover, .botmenu a:focus{
+    color: #9aa9c8;;
+}
+.botmenu .row{
+}

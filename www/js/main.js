@@ -113,52 +113,16 @@ function startNews(startnum) {
     });
     startnews = startnews + 10;
 }
-/*$(document).ready(function() {
-    $(window).scroll(function() {
-        if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+$(document).ready(function() {
+    $(".scrollable").scroll(function() {
+        if($(".scrollable").scrollTop() + $(window).height() > $(".wrap").height() - 100) {
             if(!end&&!bottom){
                 bottom = true;
-                $('.scroll').html('<p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>');
+                $('.scroll').html('<p>Loading Posts</p> <img src="img/11.gif"/>');
                 startNews(startnews);
             }
         }
     });
-});*/
-
-//function pullUpAction () {
-//    setTimeout(function () {	// <-- Simulate network congestion, remove setTimeout from production!
-//        $('#feed').empty();
-//        startnews = 0;
-//        startNews(startnews);
-//
-//        myScroll.refresh();
-//    }, 1000);	// <-- Simulate network congestion, remove setTimeout from production!
-//}
-
-
-window.onload = function() {
-    WebPullToRefresh.init( {
-        loadingFunction: exampleLoadingFunction
-    } );
-};
-var exampleLoadingFunction = function() {
-    return new Promise( function( resolve, reject ) {
-
-        setTimeout(function () {	// <-- Simulate network congestion, remove setTimeout from production!
-            $('#feed').empty();
-            startnews = 0;
-            startNews(startnews);
-
-            myScroll.refresh();
-        }, 1000);	// <-- Simulate network congestion, remove setTimeout from production!
-        resolve();
-    } );
-};
-var posting  = false;
-$("#private").click( function(e){
-    e.preventDefault();
-    $('#privatefield').val(1);
-    $("#toppost").submit();
 });
 $("#toppost").on('submit', function(e){
     e.preventDefault();
@@ -270,12 +234,10 @@ function stackTrace() {
 $('.scrollable').pullToRefresh({
     callback: function() {
         var def = $.Deferred();
-        setTimeout(function() {
-            $("#feed").empty();
-            startnews = 0;
-            startNews(startnews);
-            def.resolve();
-        }, 3000);
+        $("#feed").empty();
+        startnews = 0;
+        startNews(startnews);
+        def.resolve();
 
         return def.promise();
     }
