@@ -430,7 +430,6 @@ h4{
     background-color: #3C81A8;
 }
 .banner {
-    width: 100%;
     padding-top: 10px;
     background-color: #5eabed;
 }
@@ -593,7 +592,6 @@ h4{
     color: #fff;
 }
 .topbanner{
-    padding-top: 20px;
     background-color: #001f3f;
 }
 .userbanner{
