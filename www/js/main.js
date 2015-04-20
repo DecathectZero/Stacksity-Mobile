@@ -270,11 +270,12 @@ function stackTrace() {
 $('.scrollable').pullToRefresh({
     callback: function() {
         var def = $.Deferred();
-        alert("okay");
         setTimeout(function() {
-
+            $("#feed").empty();
+            startnews = 0;
+            startNews(startnews);
             def.resolve();
-        }, 10);
+        }, 3000);
 
         return def.promise();
     }
