@@ -170,7 +170,21 @@ var user_id = localStorage.getItem("user_id");
 var delete_id = 0;
 $(document).on('click', '.delete', function(e) {
     delete_id = $(this).data('delete');
+    navigator.notification.confirm(
+        'Are you sure you want to delete this post?', // message
+        onConfirm,            // callback to invoke with index of button pressed
+        'Delete',           // title
+        ['Cancel','Confirm']         // buttonLabels
+    );
     if(confirm("Are you sure you want to delete this post?")){
+
+    }
+    e.preventDefault();
+    return false;
+});
+
+function onConfirm(buttonIndex) {
+    if(buttonIndex==2){
         $.ajax({
             type     : "GET",
             cache    : false,
@@ -188,6 +202,4 @@ $(document).on('click', '.delete', function(e) {
             }
         });
     }
-    e.preventDefault();
-    return false;
-});
+}
