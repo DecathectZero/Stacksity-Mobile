@@ -56,7 +56,7 @@ $( "#title-input" ).keyup(function() {
     $( "#title-count").html(100-length);
 });
 
-var stackid = $('#stack').val();
+var stackid = localStorage.getItem('stack');
 var post = false;
 
 var end = false;
@@ -163,14 +163,16 @@ $("#private").click( function(e){
 $("#toppost").on('submit', function(e){
     e.preventDefault();
     if(!posting){
+        var data = $(this).serialize()+"&user_id="+user_id+"&username="+username+"&stack_id="+user_stack+"&stack="+stackid;
         posting = true;
         $('.postb').html('<div class="loader">Loading...</div>');
         e.preventDefault();
         $.ajax({
-            type     : "POST",
+            type     : "GET",
             cache    : false,
             url      : 'http://www.stacksity.com/mobile-php/post.php',
-            data     : $(this).serialize()+"&user_id="+user_id+"&username="+username+"&stack_id="+stackid,
+            crossDomain : true,
+            data     : data,
             success  : function(data) {
                 if(data.length<=2) {
                     if(data!=3){

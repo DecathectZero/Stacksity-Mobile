@@ -165,29 +165,29 @@ function textspost(element){
 }/**
  * Created by killswitch on 3/21/2015.
  */
+var user_id = localStorage.getItem("user_id");
+
 var delete_id = 0;
 $(document).on('click', '.delete', function(e) {
     delete_id = $(this).data('delete');
-    $('#delpost').modal({keyboard: true});
-    return false;
-});
-$('#deletelink').click(function(e){
-    $.ajax({
-        type     : "POST",
-        cache    : false,
-        url      : '/php/deletepost.php',
-        data     : {delid : delete_id},
-        success  : function(data) {
-            if(data==0){
-                $('#'+delete_id).fadeOut();
-            }else{
-                alert(data);
+    if(confirm("Are you sure you want to delete this post?")){
+        $.ajax({
+            type     : "GET",
+            cache    : false,
+            url      : 'http://www.stacksity.com/mobile-php/deletepost.php',
+            data     : {delid : delete_id, user_id: user_id},
+            success  : function(data) {
+                if(data==0){
+                    $('#'+delete_id).fadeOut();
+                }else{
+                    alert(data);
+                }
+            },
+            error: function(xhr, status, error) {
+                alert("error"+ xhr.responseText);
             }
-            $('#delpost').modal('hide');
-        },
-        error: function(xhr, status, error) {
-            alert("error"+ xhr.responseText);
-            $('#delpost').modal('hide');
-        }
-    });
+        });
+    }
+    e.preventDefault();
+    return false;
 });
