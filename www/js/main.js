@@ -101,20 +101,18 @@ function startNews(startnum) {
     startnews = startnews + 10;
 }
 var calling = false;
-/*$(document).ready(function() {
+$(document).ready(function() {
     $(".scrollable").scroll(function() {
-        if(!calling){
             if($(".scrollable").scrollTop() + $(window).height() > $(".wrap").height() - 100) {
-                if(!end&&!bottom){
-                    alert("calling");
+                if(!end&&!bottom&&!calling&&$(".scrollable").scrollTop()>0){
+                    alert($(".scrollable").scrollTop());
                     bottom = true;
                     $('.scroll').html('<p>Loading Posts</p> <img src="img/11.gif"/>');
                     startNews(startnews);
                 }
             }
-        }
     });
-});*/
+});
 $("#toppost").on('submit', function(e){
     e.preventDefault();
     if(!posting){
