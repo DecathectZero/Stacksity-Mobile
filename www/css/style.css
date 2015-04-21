@@ -301,7 +301,8 @@ h4{
     outline: none;
     float: right;
     height: 30px;
-    width: 80px;
+    padding: 0 10px;
+    min-width: 80px;
     background-color: #2EBF15;
     color: #fff;
     font-size: 18px;
