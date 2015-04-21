@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2014 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+
+    <title>Stacksity</title>
+    <script src ="cordova.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+</head>
+<body class="signup">
+<div class="site-wrapper">
+    <div class="container">
+        <div class="intro">
+            <h1>Sign Up</h1>
+        </div>
+        <form class="signinform" id="account" role="form" data-toggle="validator">
+            <div id="inforeg" style="display: none">
+                <p>Alright, you're good to go. You can now <b>Login</b>.<br> Welcome to Stacksity :D</p>
+            </div>
+            <div id="info">
+                <p id="error-info" style="display: none"></p>
+                <label for="inputName" class="sr-only">Full Name</label>
+                <input name="name" type="text" id="inputName" class="form-control" placeholder="Full Name" required="">
+                <label for="inputEmail" class="sr-only">Email address</label>
+                <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" maxlength="254">
+                <label for="inputName" class="sr-only">Stacksity Username</label>
+                <input name="username" type="text" id="inputUsername" class="form-control margintop" placeholder="Stacksity Username" required="" maxlength="32">
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required="" maxlength="32">
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+                <p class="small">By signing up, you agree to the Terms of Service</p>
+            </div>
+        </form>
+        <form class="signinform margintop" id="signup" action="index.html">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
+        </form>
+    </div>
+</div>
+</div>
+
+<script src="js/jquery.js"></script>
+<script src="js/signup.js"></script>
+</body>
+</html>
