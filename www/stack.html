@@ -22,8 +22,8 @@
         //
         function onDeviceReady() {
             StatusBar.overlaysWebView(false);
-            StatusBar.styleLightContent();
             StatusBar.backgroundColorByHexString("#1c5380");
+            StatusBar.styleLightContent();
         }
         function init(){
             if (localStorage.getItem("user_id") === null || localStorage.getItem("stack") === null ) {
