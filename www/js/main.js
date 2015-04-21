@@ -58,6 +58,7 @@ $( "#title-input" ).keyup(function() {
 
 var stackid = localStorage.getItem('stack');
 var post = false;
+var posting = false;
 
 var end = false;
 var bottom = false;
