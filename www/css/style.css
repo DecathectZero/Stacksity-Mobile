@@ -14,6 +14,10 @@ h4{
     margin: 0;
     margin-bottom: 0;
 }
+a{
+    z-index: 998;
+    display: inline-block;
+}
 #content{
     background-color: #f0f1f5;
 }

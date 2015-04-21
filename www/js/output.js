@@ -12,10 +12,10 @@ function youtube_parser(url){
     }
 }
 function getlink(el, link){
-    if(post){
-        return link;
+    if(el==0||post){
+        return '<a href = "'+link+'" target = "_blank" style="text-decoration:none" onclick = "window.open(\''+link+'\' , \'_blank\', \'location=yes\'); return false">';
     }
-    return '/p/'+el;
+    return '<a href="post.html">';
 }
 function comments(element){
     var del = '';
@@ -70,9 +70,9 @@ function imagepost(element){
     vote +
     '</div>'+
     '<div class="textcon"><div class="linkwrapper">' +
-    '<a href="'+getlink(element.post_id, element.link)+'" target="_blank" style="text-decoration: none"><h4>' + element.title + '</h4></a>' +
+    getlink(element.post_id, element.link)+'<h4>' + element.title + '</h4></a>' +
     '<p>'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id)+' | '+ element.created +'</p>' +
-    '<a href="'+element.link+'" target="_blank">' +
+    getlink(0, element.link) +
     '<div class="imagewrap">'+element.embed+'</div>' +
     '</a>' +
     '<div class="textfeed"><p class="content">'+element.text+'</p><p class="content"></p></div></div>'+comments(element)+
@@ -89,7 +89,7 @@ function videopost(element){
     vote +
     '</div>'+
     '<div class="textcon">' +
-    '<a href="'+getlink(element.post_id, element.link)+'" target="_blank" style="text-decoration: none"><h4>' + element.title + '</h4></a>' +
+    getlink(element.post_id, element.link)+'<h4>' + element.title + '</h4></a>' +
     '<p>'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id)+' | '+ element.created +'</p>' +
         //'<a href="/'+element.link+'" target="_blank">' +
     '<div class="linkwrapper"><div class="videowrapper">'+element.embed+'</div>'+
@@ -105,12 +105,12 @@ function linkspost(element){
     vote +
     '</div>'+
     '<div class="textcon">' +
-    '<a href="'+getlink(element.post_id, element.link)+'" target="_blank" style="text-decoration: none"><h4>' + element.title + '</h4></a>' +
+    getlink(element.post_id, element.link)+'<h4>' + element.title + '</h4></a>' +
     '<p>'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id)+' | '+ element.created +'</p>' +
-    '<div class="linkwrapper"><a href="'+element.link+'" target="_blank">' +
+    '<div class="linkwrapper">' + getlink(0, element.link) +
     '<div class="linkcon"></div><div class="linkcontainer"><img class="linkimage" src="'+ element.image +'"></div>' +
-    '</a>' +
-    '<p class="content">'+element.text+'</p></div>'+comments(element)+'</div>'+
+    '<p class="content">'+element.text+'</p></a>' +
+    '</div>'+comments(element)+'</div>'+
     '</div>' +
     '</div>'
 }
@@ -121,7 +121,7 @@ function textspost(element){
     if(post){
         link = '<h4>' + element.title + '</h4>';
     }else{
-        link =   '<a href="'+getlink(element.post_id, element.link)+'" target="_blank" style="text-decoration: none"><h4>' + element.title + '</h4></a>';
+        link =   getlink(element.post_id, element.link)+'<h4>' + element.title + '</h4></a>';
     }
     return '<div class="item tpost '+priv(element.private)+'" id="'+element.post_id+'">' +
     '<div class="vote login">'+
