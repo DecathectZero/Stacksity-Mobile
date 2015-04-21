@@ -13,7 +13,7 @@ function youtube_parser(url){
 }
 function getlink(el, link){
     if(el==0||post){
-        return '<a href = "'+link+'" style="text-decoration:none" onclick = "window.open(\''+link+'\' , \'_blank\', \'location=yes\', EnableViewPortScale=yes); return false;">';
+        return '<a href = "'+link+'" style="text-decoration:none" onclick = "window.open(\''+link+'\' , \'_blank\', \'location=yes\', \'EnableViewPortScale=yes\'); return false;">';
     }
     return '<a href="post.html">';
 }
