@@ -222,6 +222,7 @@ $('.scrollable').pullToRefresh({
     callback: function() {
         var def = $.Deferred();
         $("#feed").empty();
+        end = false;
         def.resolve();
         startnews = 0;
         startNews(startnews);
