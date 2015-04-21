@@ -241,10 +241,10 @@ $('.scrollable').pullToRefresh({
         var def = $.Deferred();
         $("#feed").empty();
         def.resolve();
-        setTimeout(function() {
+        /*setTimeout(function() {
             startnews = 0;
             startNews(startnews);
-        }, 1000);
+        }, 1000);*/
         return def.promise();
     }
 });
