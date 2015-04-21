@@ -229,15 +229,19 @@ function stackTrace() {
     var err = new Error();
     return err.stack;
 }
-
+function delaynews(){
+    setTimeout(function() {
+        startnews = 0;
+        startNews(startnews);
+    }, 1000);
+}
 
 $('.scrollable').pullToRefresh({
     callback: function() {
         var def = $.Deferred();
         $("#feed").empty();
-        startnews = 0;
 
-        startNews(startnews);
+        delaynews();
 
         def.resolve();
 
