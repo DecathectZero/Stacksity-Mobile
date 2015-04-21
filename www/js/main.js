@@ -113,10 +113,11 @@ function startNews(startnum) {
     });
     startnews = startnews + 10;
 }
+var call = false;
 $(document).ready(function() {
     $(".scrollable").scroll(function() {
         if($(".scrollable").scrollTop() + $(window).height() > $(".wrap").height() - 100) {
-            if(!end&&!bottom){
+            if(!end&&!bottom&&!call){
                 bottom = true;
                 $('.scroll').html('<p>Loading Posts</p> <img src="img/11.gif"/>');
                 startNews(startnews);
@@ -238,13 +239,12 @@ function delaynews(){
 
 $('.scrollable').pullToRefresh({
     callback: function() {
+        call = true;
         var def = $.Deferred();
         def.resolve();
-        startnews = 0;
         $("#feed").empty();
-        setTimeout(function() {
-            startNews(startnews);
-        }, 3000);
+        delaynews();
+        call = false;
         return def.promise();
     }
 });
