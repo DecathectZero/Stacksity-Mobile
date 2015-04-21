@@ -226,7 +226,7 @@ $('.scrollable').pullToRefresh({
         startnews = 0;
         setTimeout(function(){
             startNews(startnews);
-        },1000);
+        },100);
         return def.promise();
     }
 });
