@@ -100,12 +100,11 @@ function startNews(startnum) {
     });
     startnews = startnews + 10;
 }
-var calling = false;
+
 $(document).ready(function() {
     $(".scrollable").scroll(function() {
             if($(".scrollable").scrollTop() + $(window).height() > $(".wrap").height() - 100) {
-                if(!end&&!bottom&&!calling&&$(".scrollable").scrollTop()>0){
-                    alert($(".scrollable").scrollTop());
+                if(!end&&!bottom&&$(".scrollable").scrollTop()>10){
                     bottom = true;
                     $('.scroll').html('<p>Loading Posts</p> <img src="img/11.gif"/>');
                     startNews(startnews);
@@ -221,13 +220,13 @@ function stackTrace() {
 
 $('.scrollable').pullToRefresh({
     callback: function() {
-        call = true;
         var def = $.Deferred();
         def.resolve();
         $("#feed").empty();
         startnews = 0;
-        startNews(startnews);
-        call = false;
+        setTimeout(function(){
+            startNews(startnews);
+        },1000);
         return def.promise();
     }
 });
