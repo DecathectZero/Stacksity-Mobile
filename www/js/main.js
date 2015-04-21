@@ -239,12 +239,12 @@ function delaynews(){
 $('.scrollable').pullToRefresh({
     callback: function() {
         var def = $.Deferred();
-        $("#feed").empty();
         def.resolve();
-        /*setTimeout(function() {
-            startnews = 0;
+        startnews = 0;
+        $("#feed").empty();
+        setTimeout(function() {
             startNews(startnews);
-        }, 1000);*/
+        }, 3000);
         return def.promise();
     }
 });
