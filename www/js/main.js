@@ -101,7 +101,7 @@ function startNews(startnum) {
     startnews = startnews + 10;
 }
 var calling = false;
-$(document).ready(function() {
+/*$(document).ready(function() {
     $(".scrollable").scroll(function() {
         if(!calling){
             if($(".scrollable").scrollTop() + $(window).height() > $(".wrap").height() - 100) {
@@ -114,7 +114,7 @@ $(document).ready(function() {
             }
         }
     });
-});
+});*/
 $("#toppost").on('submit', function(e){
     e.preventDefault();
     if(!posting){
@@ -220,22 +220,15 @@ function stackTrace() {
     var err = new Error();
     return err.stack;
 }
-function delaynews(){
-    setTimeout(function() {
-        startnews = 0;
-        alert(startnews);
-        startNews(startnews);
-    }, 1000);
-}
 
 $('.scrollable').pullToRefresh({
     callback: function() {
-        startnews = 0;
         call = true;
         var def = $.Deferred();
         def.resolve();
         $("#feed").empty();
-        delaynews();
+        startnews = 0;
+        startNews(startnews);
         call = false;
         return def.promise();
     }
