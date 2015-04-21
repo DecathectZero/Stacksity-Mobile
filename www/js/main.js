@@ -74,24 +74,11 @@ function checkEnd(postnum){
 }
 startNews(startnews);
 function startNews(startnum) {
-    //$.ajax({
-    //    type     : "GET",
-    //    cache    : false,
-    //    url      : 'http://stacksity.herokuapp.com/mobile-php/feed.php',
-    //    data     : {id : stackid , start : startnum, user_id : user_id },
-    //    crossDomain : true,
-    //    success  : function(data) {
-    //        alert(data);
-    //    },
-    //    error: function(xhr, status, error) {
-    //        alert("error: "+xhr.responseText);
-    //    }
-    //});
     if(end){
         return;
     }
     var postnum = 0;
-    $.getJSON('http://stacksity.com/mobile-php/feed.php', {id : stackid , start : startnum, user_id : user_id }, function(data) {
+    $.getJSON('http://stacksity.com/mobile-php/feed.php', {id : stackid , start : startnum , user_id : user_id }, function(data) {
         if(null==data){
             checkEnd(postnum);
         }else{
@@ -113,14 +100,17 @@ function startNews(startnum) {
     });
     startnews = startnews + 10;
 }
-var call = false;
+var calling = false;
 $(document).ready(function() {
     $(".scrollable").scroll(function() {
-        if($(".scrollable").scrollTop() + $(window).height() > $(".wrap").height() - 100) {
-            if(!end&&!bottom&&!call){
-                bottom = true;
-                $('.scroll').html('<p>Loading Posts</p> <img src="img/11.gif"/>');
-                startNews(startnews);
+        if(!calling){
+            if($(".scrollable").scrollTop() + $(window).height() > $(".wrap").height() - 100) {
+                if(!end&&!bottom){
+                    alert("calling");
+                    bottom = true;
+                    $('.scroll').html('<p>Loading Posts</p> <img src="img/11.gif"/>');
+                    startNews(startnews);
+                }
             }
         }
     });
@@ -233,12 +223,14 @@ function stackTrace() {
 function delaynews(){
     setTimeout(function() {
         startnews = 0;
+        alert(startnews);
         startNews(startnews);
     }, 1000);
 }
 
 $('.scrollable').pullToRefresh({
     callback: function() {
+        startnews = 0;
         call = true;
         var def = $.Deferred();
         def.resolve();
