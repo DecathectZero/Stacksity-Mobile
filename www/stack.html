@@ -21,9 +21,9 @@
         // device APIs are available
         //
         function onDeviceReady() {
-            StatusBar.overlaysWebView(false);
-            //StatusBar.backgroundColorByHexString("#1c5380");
             StatusBar.styleLightContent();
+            StatusBar.overlaysWebView(false);
+            StatusBar.backgroundColorByHexString("#1c5380");
         }
         function init(){
             if (localStorage.getItem("user_id") === null || localStorage.getItem("stack") === null ) {

@@ -5,7 +5,7 @@ body, html{
     height: 100%;
     font-family: 'Raleway', sans-serif;
     font-weight: 300;
-    background: #f0f1f5;
+    background: #e9eaed;
 }
 h4{
     font-weight: 700;
@@ -16,7 +16,8 @@ h4{
 }
 a{
     z-index: 998;
-    display: inline-block;
+    display: inline;
+    word-wrap: break-word;
 }
 #content{
     background-color: #f0f1f5;
@@ -124,7 +125,6 @@ a{
     margin-left: auto;
 }
 #feed{
-    background-color: #CCC;
     padding: 0;
     z-index: 30;
 }
@@ -182,6 +182,7 @@ a{
 }
 .textcon p.content{
     color: #999 !important;
+    word-wrap: break-word;
 }
 .textcon p.link{
     color: #bbb; !important;
@@ -565,9 +566,12 @@ a{
 .item {
     background: #fafbfe;
     text-align: left;
-    padding: 15px 10px;
-    margin-bottom: 1px;
+    padding: 10px 10px;
+    margin-bottom: 15px;
     overflow: auto;
+    background: #fff;
+    border: 1px solid;
+    border-color: #e5e6e9 #dfe0e4 #d0d1d5;
 }
 .privatepost{
     background-image: url("../img/post/private.png");
