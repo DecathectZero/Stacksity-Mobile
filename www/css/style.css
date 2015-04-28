@@ -322,7 +322,7 @@ a{
     width: 100%;
     color: #ccc;
     background-color: #777;
-    margin: 0;
+    margin: 0 0 15px 0;
     padding: 5px 16px;
     font-weight: normal;
 }
@@ -379,12 +379,12 @@ a{
     text-align: center;
 }
 .stackup{
-    background-image: url("../img/post/stackup.svg");
+    background-image: url("../img/post/StacksityUpstack.svg");
     background-repeat: repeat;
     background-size: 100%;
 }
 .stackdown{
-    background-image: url("../img/post/stackdown.svg");
+    background-image: url("../img/post/StacksityDownstack.svg");
     background-repeat: repeat;
     background-size: 100%;
 }
@@ -571,7 +571,7 @@ a{
     color: #fff;
 }
 .topbanner{
-    background-color: #001f3f;
+    background-color: #232937;
 }
 .scroll img{
     margin-top: -4px;
@@ -859,7 +859,7 @@ h1{
     padding: 0;
 }
 .quarter{
-    width: 25%;
+    width: 20%;
     float: left;
     padding: 12px 10px 5px 10px;
 }
@@ -871,4 +871,7 @@ h1{
     color: #9aa9c8;;
 }
 .botmenu .row{
+}
+.active{
+    background-color: #001f3f;
 }

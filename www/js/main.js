@@ -57,6 +57,9 @@ $( "#title-input" ).keyup(function() {
 });
 
 var stackid = localStorage.getItem('stack');
+if(stackid == '0'){
+    $('#topstack').addClass('active');
+}
 var post = false;
 var posting = false;
 
