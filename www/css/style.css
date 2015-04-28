@@ -6,6 +6,9 @@ body, html{
     font-family: 'Raleway', sans-serif;
     font-weight: 300;
     background-color: #1c5380;
+    -webkit-backface-visibility: hidden;
+    backface-visibility:hidden;
+    -moz-backface-visibility:hidden;
 }
 h4{
     font-weight: bold;
@@ -22,6 +25,9 @@ a{
 }
 #content{
     background-color: #e9eaed;
+    -webkit-backface-visibility: hidden;
+    backface-visibility:hidden;
+    -moz-backface-visibility:hidden;
 }
 .hide{
     display: none;
@@ -260,7 +266,7 @@ a{
     resize: none;
     display: block;
     overflow: hidden;
-    padding: 2px 5px;
+    padding:5px 5px;
     margin: 0 auto;
     outline: none;
     border: solid 1px #AAA;
