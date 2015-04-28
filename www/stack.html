@@ -11,12 +11,11 @@
 
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstraptheme.css">
-
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/pulltorefresh.css">
 
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script src="js/jquery.js"></script>
+    <script src="js/jquerymobile.js"></script>
     <script type="text/javascript">
         function init(){
             if (localStorage.getItem("user_id") === null || localStorage.getItem("stack") === null ) {
@@ -26,9 +25,9 @@
         init();
     </script>
 <body>
-<div class="footer" style=" background: #1c5380; position: fixed !important; bottom: 0; width: 100%; text-align: center; z-index: 999 ">
+<div class="footer">
     <div class="center botmenu">
-        <a class="stacklink" href="stack.html" data-link="0">
+        <a class="stacklink" href="stack.html" data-link="0" data-transition="fade">
             <div class="quarter" id="topstack">
                 <div class="glyphicon glyphicon glyphicon-home"></div>
             </div>

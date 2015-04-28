@@ -6,9 +6,6 @@ body, html{
     font-family: 'Raleway', sans-serif;
     font-weight: 300;
     background-color: #1c5380;
-    -webkit-backface-visibility: hidden;
-    backface-visibility:hidden;
-    -moz-backface-visibility:hidden;
 }
 h4{
     font-weight: bold;
@@ -23,11 +20,9 @@ a{
     display: inline;
     word-wrap: break-word;
 }
+.ui-page { -webkit-backface-visibility: hidden; }
 #content{
     background-color: #e9eaed;
-    -webkit-backface-visibility: hidden;
-    backface-visibility:hidden;
-    -moz-backface-visibility:hidden;
 }
 .hide{
     display: none;
@@ -846,6 +841,8 @@ h1{
     background: center center no-repeat #000 url("http://static.pexels.com/wp-content/uploads/2014/12/analog-camera-photography-rolleicord-3832-830x550.jpg");
     background-size: cover;
 }
+
+.footer { background: #1c5380; position: fixed; bottom: 0; width: 100%; text-align: center; z-index: 999 }
 .botmenu{
     padding: 0;
 }
