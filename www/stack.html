@@ -13,8 +13,10 @@
     <link rel="stylesheet" href="css/bootstraptheme.css">
 
     <link rel="stylesheet" href="css/style.css">
-    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <link rel="stylesheet" href="css/pulltorefresh.css">
 
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script src="js/jquery.js"></script>
     <script type="text/javascript">
         document.addEventListener("deviceready", onDeviceReady, false);
         // device APIs are available
@@ -31,7 +33,6 @@
         }
         init();
     </script>
-    <script src="js/jquery.js"></script>
 <body>
 <script type="text/javascript">
     var isTouch = !!('ontouchstart' in window);
@@ -66,6 +67,18 @@
         </a>
     </div>
 </div>
+<div id="ptr">
+    <!-- Pull down arrow indicator -->
+    <span class="genericon glyphicon glyphicon-chevron-left"></span>
+
+    <!-- CSS-based loading indicator -->
+    <div class="loading">
+        <span id="l1"></span>
+        <span id="l2"></span>
+        <span id="l3"></span>
+    </div>
+</div>
+<div id="content">
         <div class="banner topbanner center">
             <div class="center banner-inner">
                 <div class="bannertext"><h1>topstack</h1>
@@ -119,7 +132,8 @@
         <div class="scroll center">
             <p>Loading Posts</p> <img src="img/11.gif"/>
         </div>
-<div class="botgap"></div>
+    <div class="botgap"></div>
+</div>
 <div class="modal fade" id="delpost">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -133,6 +147,8 @@
         </div>
     </div>
 </div>
+<script src="js/bloat.js"></script>
+<script src="js/pulltorefresh.js"></script>
 <script src="js/bootstrap.js"></script>
 <script src="js/autogrow.js"></script>
 <script src="js/output.js"></script>

@@ -13,7 +13,6 @@ function name(){if(stackid == 0){
     $("#posting").html(stackname);
 }
 }*/
-
 function linkpost(){
     $('#imagepost').hide();
     $('#textpost').hide();
@@ -103,6 +102,7 @@ function startNews(startnum) {
         }
     });
     startnews = startnews + 10;
+    return true;
 }
 
 $(window).scroll(function() {
@@ -219,15 +219,36 @@ function stackTrace() {
     var err = new Error();
     return err.stack;
 }
+//
+//$('.scrollable').pullToRefresh({
+//    callback: function() {
+//        var def = $.Deferred();
+//        $("#feed").empty();
+//        end = false;
+//        def.resolve();
+//        startnews = 0;
+//        startNews(startnews);
+//        return def.promise();
+//    }
+//})
 
-$('.scrollable').pullToRefresh({
-    callback: function() {
-        var def = $.Deferred();
+window.onload = function() {
+    WebPullToRefresh.init( {
+        loadingFunction: exampleLoadingFunction
+    } );
+};
+// Just an example loading function that returns a
+// promise that WebPullToRefresh can use.
+var exampleLoadingFunction = function() {
+    return new Promise( function( resolve, reject ) {
         $("#feed").empty();
         end = false;
-        def.resolve();
         startnews = 0;
         startNews(startnews);
-        return def.promise();
-    }
-});
+        if (startNews(startnews)) {
+            resolve();
+        } else {
+            reject();
+        }
+    } );
+};
