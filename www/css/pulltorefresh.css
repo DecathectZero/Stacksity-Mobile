@@ -102,6 +102,7 @@
     -webkit-backface-visibility: hidden;
     -webkit-perspective: 1000;
     box-sizing: border-box;
+    min-height: 100%;
 }
 
 .ptr-loading #content, .ptr-reset #content,

@@ -106,8 +106,9 @@ function startNews(startnum) {
 }
 
 $(window).scroll(function() {
-    if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+    if($(window).scrollTop() + $(window).height() > $("#content").height() - 100) {
         if(!end&&!bottom){
+            alert("lol");
             bottom = true;
             $('.scroll').html('<p>Loading Posts</p> <img src="img/11.gif"/>');
             startNews(startnews);
@@ -244,7 +245,6 @@ var exampleLoadingFunction = function() {
         $("#feed").empty();
         end = false;
         startnews = 0;
-        startNews(startnews);
         if (startNews(startnews)) {
             resolve();
         } else {
