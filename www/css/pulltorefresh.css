@@ -98,7 +98,6 @@
 }
 
 #content {
-    min-height: 100%;
     z-index: 20;
     -webkit-backface-visibility: hidden;
     -webkit-perspective: 1000;
