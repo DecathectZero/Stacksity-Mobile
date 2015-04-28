@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="css/bootstraptheme.css">
 
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/pulltorefresh.css">
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 
     <script type="text/javascript">
@@ -21,9 +20,9 @@
         // device APIs are available
         //
         function onDeviceReady() {
-            StatusBar.styleLightContent();
             StatusBar.overlaysWebView(false);
             StatusBar.backgroundColorByHexString("#1c5380");
+            StatusBar.styleLightContent();
         }
         function init(){
             if (localStorage.getItem("user_id") === null || localStorage.getItem("stack") === null ) {
@@ -58,8 +57,6 @@
         </div>
     </div>
 </div>
-<div class="scrollable">
-    <div class="wrap">
         <div class="banner topbanner center">
             <div class="center banner-inner">
                 <div class="bannertext"><h1>topstack</h1>
@@ -113,8 +110,7 @@
         <div class="scroll center">
             <p>Loading Posts</p> <img src="img/11.gif"/>
         </div>
-    </div>
-</div>
+<div class="botgap"></div>
 <div class="modal fade" id="delpost">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -129,10 +125,9 @@
     </div>
 </div>
 <script src="js/bootstrap.js"></script>
-    <script src="js/pulltorefresh.js"></script>
-    <script src="js/autogrow.js"></script>
-    <script src="js/output.js"></script>
-    <script src="js/vote.js"></script>
-    <script src="js/main.js"></script>
+<script src="js/autogrow.js"></script>
+<script src="js/output.js"></script>
+<script src="js/vote.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

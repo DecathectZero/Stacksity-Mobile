@@ -169,7 +169,8 @@ a{
     margin-left: 3%;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    width: 90%;
+    width: 94%;
+    margin-right: 3%;
 }
 .linkcon{
     margin-top: 10px;
@@ -349,16 +350,18 @@ a{
     font-weight: bold;
 }
 .vote{
-    float: left;
-    width: 7%;
+    display: block;
+    height: 50px;
+    width: 100%;
 }
 .vbutton{
-    width: 100%;
-    padding-top: 100%;
+    width: 40px;
+    height: 40px;
     background-size: 100%;
     background-repeat: no-repeat;
     cursor: pointer;
     background-color: #fafbfe;
+    float: left;
 }
 .vbutton:hover{
     -webkit-box-shadow: 0 0 5px #999;
@@ -368,9 +371,12 @@ a{
 }
 .count{
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    display: block;
-    text-align: center;
     margin-bottom: 0;
+    width: 30px;
+    height: 40px;
+    line-height: 40px;
+    float: left;
+    text-align: center;
 }
 .stackup{
     background-image: url("../img/post/stackup.svg");
@@ -500,7 +506,21 @@ a{
 }
 .linkwrapper{
     overflow: auto;
-    margin-bottom: 10px;
+}
+.votewrap{
+    display: block;
+    margin: 0 auto;
+    width: 110px;
+}
+.comwrap{
+    margin: 0 auto;
+    display: table;
+}
+.comwrapper{
+    width: 100%;
+}
+.botgap{
+    padding-top: 30px;
 }
 .counter{
     position: absolute;
