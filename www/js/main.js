@@ -232,22 +232,22 @@ function stackTrace() {
 //    }
 //})
 
-window.onload = function() {
-    WebPullToRefresh.init( {
-        loadingFunction: exampleLoadingFunction
-    } );
-};
-// Just an example loading function that returns a
-// promise that WebPullToRefresh can use.
-var exampleLoadingFunction = function() {
-    return new Promise( function( resolve, reject ) {
-        $("#feed").empty();
-        end = false;
-        startnews = 0;
-        if (startNews(startnews)) {
-            resolve();
-        } else {
-            reject();
-        }
-    } );
-};
+//window.onload = function() {
+//    WebPullToRefresh.init( {
+//        loadingFunction: exampleLoadingFunction
+//    } );
+//};
+//// Just an example loading function that returns a
+//// promise that WebPullToRefresh can use.
+//var exampleLoadingFunction = function() {
+//    return new Promise( function( resolve, reject ) {
+//        $("#feed").empty();
+//        end = false;
+//        startnews = 0;
+//        if (startNews(startnews)) {
+//            resolve();
+//        } else {
+//            reject();
+//        }
+//    } );
+//};
