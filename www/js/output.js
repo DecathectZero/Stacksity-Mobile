@@ -1,16 +1,3 @@
-var stackid = localStorage.getItem("stack");
-/**
- * Created by killswitch on 4/18/2015.
- */
-function youtube_parser(url){
-    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
-    var match = url.match(regExp);
-    if (match&&match[7].length==11){
-        return match[7];
-    }else{
-        //alert("Url incorrecta");
-    }
-}
 function getlink(el, link){
     if(el==0||post){
         return '<a href = "'+link+'" style="text-decoration:none" onclick = "window.open(\''+link+'\' , \'_blank\', \'location=yes,enableViewportScale=yes\'); return false;">';
@@ -133,7 +120,7 @@ function textspost(element){
 }/**
  * Created by killswitch on 3/21/2015.
  */
-var user_id = localStorage.getItem("user_id");
+var id = window.localStorage.getItem('session_id');
 
 var delete_id = 0;
 $(document).on('click', '.delete', function(e) {
@@ -145,8 +132,8 @@ $('#deletelink').click(function(e){
     $.ajax({
         type     : "GET",
         cache    : false,
-        url      : 'http://www.stacksity.com/mobile-php/deletepost.php',
-        data     : {delid : delete_id, user_id: user_id},
+        url      : 'http://www.stacksity.com/php/deletepost.php',
+        data     : {delid : delete_id, session_id: id},
         success  : function(data) {
             if(data==0){
                 $('#'+delete_id).fadeOut();

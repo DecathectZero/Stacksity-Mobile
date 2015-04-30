@@ -243,7 +243,7 @@ a{
     background-color: #CCC;
 }
 .postcon{
-    padding: 5px 12px;
+    padding: 5px 12px 0 12px;
 }
 .postcon p {
     font-family: arial;
@@ -278,9 +278,9 @@ a{
 }
 .postsub{
     width: 100%;
-    background-color: #AAA;
-    padding: 0px 16px;
+    padding: 0px 12px;
     overflow: hidden;
+    margin-bottom: 10px;
 }
 .postsub label{
     width: 100%;
@@ -300,6 +300,7 @@ a{
 .postb{
     cursor: pointer;
     margin: 0;
+    margin-left: 5px;
     border: none;
     outline: none;
     float: right;

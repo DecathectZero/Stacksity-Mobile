@@ -1,3 +1,4 @@
+localStorage.clear();
 function errorinfo(inner){
     $('#error-info').html(inner);
     $('#error-info').slideDown();
@@ -7,7 +8,7 @@ $("#login").on('submit', function(e){
     $.ajax({
         type     : "POST",
         cache    : false,
-        url      : 'http://stacksity.com/mobile-php/login.php',
+        url      : 'http://stacksity.com/login.php',
         data     : $(this).serialize(),
         dataType : "html",
         crossDomain : true,
@@ -18,11 +19,8 @@ $("#login").on('submit', function(e){
                 errorinfo("Password doesn't match username :/");
             }else if(data=="69"){
                 errorinfo("Please fill in the fields");
-            }else if(data.length>2){
-                var login = JSON.parse(data);
-                window.localStorage.setItem('user_id',login.user_id);
-                window.localStorage.setItem('stack_id',login.stack_id);
-                window.localStorage.setItem('username',login.username);
+            }else if(data.length>1){
+                window.localStorage.setItem('session_id',data.substring(3));
                 window.localStorage.setItem('stack',0);
                 document.location.href = 'stack.html';
             }else{

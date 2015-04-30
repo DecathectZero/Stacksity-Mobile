@@ -61,13 +61,10 @@ if(stackid == '0'){
 }
 var post = false;
 var posting = false;
-
 var end = false;
 var bottom = false;
 var startnews = 0;
-var user_id = localStorage.getItem("user_id");
-var user_stack = localStorage.getItem("stack_id");
-var username = localStorage.getItem("username");
+var id = window.localStorage.getItem('session_id');
 
 function checkEnd(postnum){
     if(postnum == 0){
@@ -81,7 +78,7 @@ function startNews(startnum) {
         return;
     }
     var postnum = 0;
-    $.getJSON('http://stacksity.com/mobile-php/feed.php', {id : stackid , start : startnum , user_id : user_id }, function(data) {
+    $.getJSON('http://stacksity.com/php/feed.php', {id : stackid , start : startnum , session_id: id }, function(data) {
         if(null==data){
             checkEnd(postnum);
         }else{
@@ -104,12 +101,11 @@ function startNews(startnum) {
     startnews = startnews + 10;
     return true;
 }
-
-$(window).scroll(function() {
-    if($(window).scrollTop() + $(window).height() > $("#content").height() - 100) {
+$(document).bind("scrollstop", function() {
+    if($(window).scrollTop() + $(window).height() > $("#content").height() - 200) {
         if(!end&&!bottom){
             bottom = true;
-            $('.scroll').html('<p>Loading Posts</p> <img src="img/11.gif"/>');
+            $('.scroll').html('<p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>');
             startNews(startnews);
         }
     }
@@ -117,14 +113,14 @@ $(window).scroll(function() {
 $("#toppost").on('submit', function(e){
     e.preventDefault();
     if(!posting){
-        var data = $(this).serialize()+"&user_id="+user_id+"&username="+username+"&stack_id="+user_stack+"&stack="+stackid;
+        var data = $(this).serialize()+"&stack="+stackid+"&session_id="+id;
         posting = true;
         $('.postb').html('<div class="loader">Loading...</div>');
         e.preventDefault();
         $.ajax({
-            type     : "GET",
+            type     : "POST",
             cache    : false,
-            url      : 'http://www.stacksity.com/mobile-php/post.php',
+            url      : 'http://stacksity.com/php/post.php',
             crossDomain : true,
             data     : data,
             success  : function(data) {
@@ -179,7 +175,7 @@ $( ".follow" ).click(function() {
         type     : "POST",
         cache    : false,
         url      : 'php/follow.php',
-        data     : { stack: stackid},
+        data     : { stack: stackid, session_id: id},
         success: function(data){
         },
         error: function(xhr, status, error) {
@@ -219,35 +215,3 @@ function stackTrace() {
     var err = new Error();
     return err.stack;
 }
-//
-//$('.scrollable').pullToRefresh({
-//    callback: function() {
-//        var def = $.Deferred();
-//        $("#feed").empty();
-//        end = false;
-//        def.resolve();
-//        startnews = 0;
-//        startNews(startnews);
-//        return def.promise();
-//    }
-//})
-
-//window.onload = function() {
-//    WebPullToRefresh.init( {
-//        loadingFunction: exampleLoadingFunction
-//    } );
-//};
-//// Just an example loading function that returns a
-//// promise that WebPullToRefresh can use.
-//var exampleLoadingFunction = function() {
-//    return new Promise( function( resolve, reject ) {
-//        $("#feed").empty();
-//        end = false;
-//        startnews = 0;
-//        if (startNews(startnews)) {
-//            resolve();
-//        } else {
-//            reject();
-//        }
-//    } );
-//};
