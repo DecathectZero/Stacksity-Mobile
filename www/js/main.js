@@ -136,6 +136,7 @@ $("#toppost").on('submit', function(e){
                     if(element.posttype == 0){
                         $(linkspost(element)).hide().prependTo('#feed').fadeIn("slow");
                     }else if(element.posttype == 1){
+                        $('#text').val('').change();
                         $(textspost(element)).hide().prependTo('#feed').fadeIn("slow");
                     }else if(element.posttype == 2){
                         $(imagepost(element)).hide().prependTo('#feed').fadeIn("slow");

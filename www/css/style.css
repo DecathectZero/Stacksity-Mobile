@@ -282,7 +282,7 @@ a{
     width: 100%;
     padding: 0px 12px;
     overflow: hidden;
-    margin-top: 5px;
+    margin-top: 10px;
     margin-bottom: 10px;
 }
 .postsub label{
@@ -820,9 +820,6 @@ a{
 .background-image{
     background-color: #fff;
     margin: 10px 0px 5px 0px;
-}
-.input-group{
-    margin-bottom: 5px;
 }
 .btn-primary{
     background: #428bca;

@@ -148,5 +148,11 @@ $('#deletelink').click(function(e){
     $('#delpost').modal('hide');
 });
 $(document).on('click', '.stacklink', function(e) {
+    e.preventDefault();
     localStorage.setItem('stack', $(this).data("link"));
+    jQuery.mobile.changePage(window.location.href, {
+        allowSamePageTransition: true,
+        transition: 'none',
+        reloadPage: true
+    });
 });
