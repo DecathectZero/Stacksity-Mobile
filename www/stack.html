@@ -9,23 +9,34 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
+    <!--<link rel="stylesheet" href="css/jquerymobile.css">-->
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstraptheme.css">
     <link rel="stylesheet" href="css/style.css">
-
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script src="js/jquery.js"></script>
-    <script src="js/jquerymobile.js"></script>
+    <script type="text/javascript">
+        document.addEventListener("deviceready", onDeviceReady, false);
+        // device APIs are available
+        //
+        function onDeviceReady() {
+            StatusBar.overlaysWebView(false);
+            StatusBar.backgroundColorByHexString("#1c5380");
+            StatusBar.styleLightContent();
+        }
+
+    </script>
     <script src="js/checklogin.js"></script>
+    <!--<script src="js/jquerymobile.js"></script>-->
 <body>
 <div class="footer">
     <div class="center botmenu">
-        <a class="stacklink" href="stack.html" data-link="0" data-transition="fade">
+        <a class="stacklink" href="stack.html" data-link="0">
             <div class="quarter" id="topstack">
                 <div class="glyphicon glyphicon glyphicon-home"></div>
             </div>
         </a>
-        <a class="stacklink" href="stack.html" data-link="0">
+        <a class="stacklink" href="index.html" data-link="0">
             <div class="quarter" id="allstack">
                     <div class="glyphicon glyphicon glyphicon-th-list"></div>
             </div>
@@ -48,71 +59,73 @@
     </div>
 </div>
 <!--<div id="ptr">-->
-    <!--&lt;!&ndash; Pull down arrow indicator &ndash;&gt;-->
+    <!--<!-- Pull down arrow indicator -->-->
     <!--<span class="genericon glyphicon glyphicon-chevron-left"></span>-->
 
-    <!--&lt;!&ndash; CSS-based loading indicator &ndash;&gt;-->
+    <!--<!-- CSS-based loading indicator -->-->
     <!--<div class="loading">-->
         <!--<span id="l1"></span>-->
         <!--<span id="l2"></span>-->
         <!--<span id="l3"></span>-->
     <!--</div>-->
 <!--</div>-->
-<div id="content">
-        <div class="banner topbanner center">
-            <div class="center banner-inner">
-                <div class="bannertext"><h1>topstack</h1>
-                    <p>Your frontpage of stacks</p></div> </div>
-        </div>
-        <div class="center post">
-            <div class="row postrow posting">
-                <a class="col-xs-4" onclick="linkpost()" id="postlink">Link</a>
-                <a class="col-xs-4" onclick="textpost()" id="posttext">Text</a>
-                <a class="col-xs-4 active" onclick="imagepostShow()" id="postimage">Image</a>
+<div data-role="page">
+    <div id="content" data-role="main">
+            <div class="banner topbanner center">
+                <div class="center banner-inner">
+                    <div class="bannertext"><h1>topstack</h1>
+                        <p>Your frontpage of stacks</p></div> </div>
             </div>
-            <form class="postform" id="toppost">
-                <input type="hidden" id="posttype" name="type" value="0">
-                <input type="hidden" name="user_value" value="1">
-                <div class="postcon">
-                    <p>title <span id="title-count">100</span></p>
-                    <input name="title" type="text" id="title-input" class="texts" placeholder="post title" maxlength="100" required="">
-                    <div id="linkpost" style="display: none;">
-                        <p>link <span id="link-alert"></span></p>
-                        <input name="link" type="url" id="link" class="texts" placeholder="submit a link here" maxlength="500" required="">
-                    </div>
-                    <div id="textpost" style="display: none;">
-                        <p>text</p>
-                        <textarea name="text" class="expanding" id="text" placeholder="Write something here..." rows="2" maxlength="6500"></textarea>
-                    </div>
-                    <div id="imagepost">
-                        <p>image</p>
-                        <div class="input-group">
+            <div class="center post">
+                <div class="row postrow posting">
+                    <a class="col-xs-4" onclick="linkpost()" id="postlink">Link</a>
+                    <a class="col-xs-4" onclick="textpost()" id="posttext">Text</a>
+                    <a class="col-xs-4 active" onclick="imagepostShow()" id="postimage">Image</a>
+                </div>
+                <form class="postform" id="toppost">
+                    <input type="hidden" id="posttype" name="type" value="0">
+                    <input type="hidden" name="user_value" value="1">
+                    <div class="postcon">
+                        <p>title <span id="title-count">100</span></p>
+                        <input name="title" type="text" id="title-input" class="texts" placeholder="post title" maxlength="100" required="">
+                        <div id="linkpost" style="display: none;">
+                            <p>link <span id="link-alert"></span></p>
+                            <input name="link" type="url" id="link" class="texts" placeholder="submit a link here" maxlength="500" required="">
+                        </div>
+                        <div id="textpost" style="display: none;">
+                            <p>text</p>
+                            <textarea name="text" class="expanding" id="text" placeholder="Write something here..." rows="2" maxlength="6500"></textarea>
+                        </div>
+                        <div id="imagepost">
+                            <p>image</p>
+                            <div class="input-group">
                 <span class="input-group-btn">
                 <span class="btn btn-primary btn-file" id="uploadimage">
                 <span class="glyphicon glyphicon-camera"></span> Photo <input type="file" accept="image/x-png, image/gif, image/jpeg" onchange="upload(this.files[0])">
                 </span>
                 </span>
-                            <input type="text" id="imageid" class="form-control" readonly="">
+                                <input type="text" id="imageid" class="form-control" readonly="">
+                            </div>
+                            <div class="background-image"><img src="" id="imagePostPreview" class="img-responsive"></div>
                         </div>
-                        <div class="background-image"><img src="" id="imagePostPreview" class="img-responsive"></div>
                     </div>
-                </div>
-                <div class="postsub">
-                    <input type="hidden" name="setprivate" value="0" id="privatefield">
-                    <button type="submit" class="postb">Post</button>
-                    <button type="button" id="private" class="postb private">Private</button>
-                </div>
-                <label class="postlabel">
-                    posting to <span class="bold" id="posting">karthus</span>
-                </label>
-            </form>
-        </div>
-        <div class="center" id="feed">
-        </div>
-        <div class="scroll center">
-            <p>Loading Posts</p> <img src="img/11.gif"/>
-        </div>
-    <div class="botgap"></div>
+                    <div class="postsub">
+                        <input type="hidden" name="setprivate" value="0" id="privatefield">
+                        <button type="submit" class="postb">Post</button>
+                        <button type="button" id="private" class="postb private">Private</button>
+                    </div>
+                    <label class="postlabel">
+                        posting to <span class="bold" id="posting">karthus</span>
+                    </label>
+                </form>
+            </div>
+            <div class="center" id="feed">
+            </div>
+            <div class="scroll center">
+                <p>Loading Posts</p> <img src="img/11.gif"/>
+            </div>
+            <div class="botgap"></div>
+    </div>
 </div>
 <div class="modal fade" id="delpost">
     <div class="modal-dialog">

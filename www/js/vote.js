@@ -1,9 +1,9 @@
-var user_id = localStorage.getItem("user_id");
+var id = window.localStorage.getItem('session_id');
 
 $(document).on('click', '.vbutton', function(){
-    var id = $(this).closest('.item').attr("id");
+    var vid = $(this).closest('.item').attr("id");
     var name = $(this).attr("name");
-    var dataString = 'id='+ id +"&user_id="+user_id;
+    var dataString = 'id='+ vid +"&session_id="+id;
     var parent = $(this);
     var votes = parseInt(parent.siblings(".count").html());
     if (name=='up') {
@@ -22,8 +22,8 @@ $(document).on('click', '.vbutton', function(){
             }
         }
         $.ajax({
-            type: "GET",
-            url: "http:stacksity.com/mobile-php/stackup.php",
+            type: "POST",
+            url: "http:stacksity.com/php/stackup.php",
             data: dataString,
             cache: false,
 
@@ -46,8 +46,8 @@ $(document).on('click', '.vbutton', function(){
             }
         }
         $.ajax({
-            type: "GET",
-            url: "http:stacksity.com/mobile-php/stackdown.php",
+            type: "POST",
+            url: "http:stacksity.com/php/stackdown.php",
             data: dataString,
             cache: false,
 

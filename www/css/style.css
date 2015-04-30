@@ -23,6 +23,8 @@ a{
 .ui-page { -webkit-backface-visibility: hidden; }
 #content{
     background-color: #e9eaed;
+    -webkit-overflow-scrolling: touch;
+    min-height: 100%;
 }
 .hide{
     display: none;
@@ -280,6 +282,7 @@ a{
     width: 100%;
     padding: 0px 12px;
     overflow: hidden;
+    margin-top: 5px;
     margin-bottom: 10px;
 }
 .postsub label{
@@ -515,7 +518,7 @@ a{
     width: 100%;
 }
 .botgap{
-    padding-top: 30px;
+    padding-top: 10px;
 }
 .counter{
     position: absolute;
@@ -581,7 +584,7 @@ a{
 .item {
     background: #fafbfe;
     text-align: left;
-    padding: 10px 0px;
+    padding: 20px 0px;
     margin-bottom: 15px;
     overflow: auto;
     background: #fff;

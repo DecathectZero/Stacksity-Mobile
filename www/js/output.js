@@ -130,9 +130,9 @@ $(document).on('click', '.delete', function(e) {
 });
 $('#deletelink').click(function(e){
     $.ajax({
-        type     : "GET",
+        type     : "POST",
         cache    : false,
-        url      : 'http://www.stacksity.com/php/deletepost.php',
+        url      : 'http://stacksity.com/php/deletepost.php',
         data     : {delid : delete_id, session_id: id},
         success  : function(data) {
             if(data==0){
