@@ -1,18 +1,31 @@
-/**
- * Created by killswitch on 4/18/2015.
- */
-//var self = $('#selfid').html();
-//var stackname = $('#stackname').val();
-//var stackid = $('#stack').val();
-//var post = false;
+function refreshPage(current) {
+    localStorage.setItem('stack', $(current).data("link"));
+    $.mobile.changePage(
+        window.location.href,
+        {
+            allowSamePageTransition : true,
+            transition              : 'flow',
+            showLoadMsg             : false,
+            reloadPage              : true,
+            reverse: false,
+            changeHash: false
+        }
+    );
+    $(".feed").empty();
+}
+
 imagepostShow();
 /*name();
-function name(){if(stackid == 0){
-    $("#posting").html(self);
-}else{
-    $("#posting").html(stackname);
-}
-}*/
+ function name(){if(stackid == 0){
+ $("#posting").html(self);
+ }else{
+ $("#posting").html(stackname);
+ }
+ }*/
+
+startnews = 0;
+startNews(startnews);
+
 function linkpost(){
     $('#imagepost').hide();
     $('#textpost').hide();
@@ -72,8 +85,8 @@ function checkEnd(postnum){
         $('.scroll').html('<p>No more posts</p>');
     }
 }
-startNews(startnews);
 function startNews(startnum) {
+    alert(startnum);
     if(end){
         return;
     }
@@ -84,13 +97,13 @@ function startNews(startnum) {
         }else{
             $.each(data, function(index, element) {
                 if(element.posttype == 0){
-                    $('#feed').append(linkspost(element));
+                    $('.ui-page-active .feed').append(linkspost(element));
                 }else if(element.posttype == 1){
-                    $('#feed').append(textspost(element));
+                    $('.ui-page-active .feed').append(textspost(element));
                 }else if(element.posttype == 2){
-                    $('#feed').append(imagepost(element));
+                    $('.ui-page-active .feed').append(imagepost(element));
                 }else if(element.posttype == 3){
-                    $('#feed').append(videopost(element));
+                    $('.ui-page-active .feed').append(videopost(element));
                 }
                 postnum++;
             });

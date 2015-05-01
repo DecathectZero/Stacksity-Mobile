@@ -147,23 +147,3 @@ $('#deletelink').click(function(e){
     });
     $('#delpost').modal('hide');
 });
-
-function refreshPage() {
-
-    alert("FUCK");
-    $.mobile.changePage(
-        window.location.href,
-        {
-            allowSamePageTransition : true,
-            transition              : 'none',
-            showLoadMsg             : false,
-            reloadPage              : true
-        }
-    );
-}
-
-$(document).on('click', '.stacklink', function(e) {
-    e.preventDefault();
-    localStorage.setItem('stack', $(this).data("link"));
-    refreshPage();
-});
