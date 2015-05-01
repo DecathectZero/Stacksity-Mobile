@@ -111,8 +111,8 @@ function startNews(startnum) {
     startnews = startnews + 10;
     return true;
 }
-$(window).scroll(function() {
-    if($(window).scrollTop() + $(window).height() > $("#content").height() - 200) {
+$(document).bind("scrollstop", function() {
+    if($(window).scrollTop() + $(window).height() > $(".ui-page-active .content").height() - 200) {
         if(!end&&!bottom){
             bottom = true;
             $('.scroll').html('<p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>');

@@ -24,7 +24,15 @@
             StatusBar.backgroundColorByHexString("#1c5380");
             StatusBar.styleLightContent();
         }
+    </script>
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
 
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
     </script>
     <script src="js/bootstrap.js"></script>
     <script src="js/autogrow.js"></script>
@@ -35,44 +43,57 @@
     <script src="js/main.js"></script>
     <script>
         $(document).on('pagecontainershow',function(event,ui){
+            checklogin();
             ui.prevPage.remove();
             startnews = 0;
             startNews(startnews);
+            try {
+                _gaq.push(['_setAccount', 'UA-46439393-3']);
+
+                hash = location.hash;
+
+                if (hash) {
+                    _gaq.push(['_trackPageview', hash.substr(1)]);
+                } else {
+                    _gaq.push(['_trackPageview']);
+                }
+            } catch(err) {
+
+            }
         });
     </script>
 <body>
-<div data-role="page">
-    <script>checklogin();</script>
-    <div class="footer">
-        <div class="center botmenu">
-            <a class="stacklink" onclick="refreshPage(this)" data-link="0">
-                <div class="quarter" id="topstack">
-                    <div class="glyphicon glyphicon glyphicon-home"></div>
-                </div>
-            </a>
-            <a class="stacklink" href="index.html" data-link="0">
-                <div class="quarter" id="allstack">
-                    <div class="glyphicon glyphicon glyphicon-th-list"></div>
-                </div>
-            </a>
-            <a class="stacklink" href="stack.html" data-link="0">
-                <div class="quarter">
-                    <div class="glyphicon glyphicon glyphicon-bell"></div>
-                </div>
-            </a>
-            <a class="stacklink" href="stack.html" data-link="0">
-                <div class="quarter">
-                    <div class="glyphicon glyphicon glyphicon-search"></div>
-                </div>
-            </a>
-            <a class="stacklink" href="stack.html" data-link="0">
-                <div class="quarter">
-                    <div class="glyphicon glyphicon glyphicon-user"></div>
-                </div>
-            </a>
-        </div>
+<div class="footer">
+    <div class="center botmenu">
+        <a class="stacklink" onclick="refreshPage(this)" data-link="0">
+            <div class="quarter" id="topstack">
+                <div class="glyphicon glyphicon glyphicon-home"></div>
+            </div>
+        </a>
+        <a class="stacklink" href="index.html" data-link="0">
+            <div class="quarter" id="allstack">
+                <div class="glyphicon glyphicon glyphicon-th-list"></div>
+            </div>
+        </a>
+        <a class="stacklink" href="stack.html" data-link="0">
+            <div class="quarter">
+                <div class="glyphicon glyphicon glyphicon-bell"></div>
+            </div>
+        </a>
+        <a class="stacklink" href="stack.html" data-link="0">
+            <div class="quarter">
+                <div class="glyphicon glyphicon glyphicon-search"></div>
+            </div>
+        </a>
+        <a class="stacklink" href="stack.html" data-link="0">
+            <div class="quarter">
+                <div class="glyphicon glyphicon glyphicon-user"></div>
+            </div>
+        </a>
     </div>
-    <div id="content" data-role="main">
+</div>
+<div data-role="page">
+    <div id="content" data-role="main" class="content">
             <div class="banner topbanner center">
                 <div class="center banner-inner">
                     <div class="bannertext"><h1>topstack</h1>

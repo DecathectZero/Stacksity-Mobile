@@ -1,11 +1,11 @@
 function success(){
     $("#pass-reset").slideUp();
-    $("#error-info").hide();
-    $("#inforeg").show();
+    $("#perror-info").hide();
+    $("#pinforeg").show();
 }
-function errorinfo(inner){
-    $('#error-info').html(inner);
-    $('#error-info').slideDown();
+function perrorinfo(inner){
+    $('#perror-info').html(inner);
+    $('#perror-info').slideDown();
 }
 $("#pass-reset").on('submit', function(e){
     e.preventDefault();
@@ -19,7 +19,7 @@ $("#pass-reset").on('submit', function(e){
             if(data == "3"){
                 success();
             }else if(data == "2"){
-                errorinfo("That Email doesn't seem to exist here");
+                perrorinfo("That Email doesn't seem to exist here");
             }else{
                 alert("error: "+data);
             }
