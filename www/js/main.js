@@ -101,7 +101,7 @@ function startNews(startnum) {
     startnews = startnews + 10;
     return true;
 }
-$(document).bind("scrollstop", function() {
+$(window).scroll(function() {
     if($(window).scrollTop() + $(window).height() > $("#content").height() - 200) {
         if(!end&&!bottom){
             bottom = true;

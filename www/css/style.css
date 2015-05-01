@@ -5,7 +5,7 @@ body, html{
     height: 100%;
     font-family: 'Raleway', sans-serif;
     font-weight: 300;
-    background-color: #1c5380;
+    background-color: #e9eaed;
 }
 h4{
     font-weight: bold;
@@ -515,6 +515,7 @@ a{
     display: table;
 }
 .comwrapper{
+    margin-top: 5px;
     width: 100%;
 }
 .botgap{
