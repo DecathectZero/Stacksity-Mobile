@@ -33,11 +33,19 @@
     <script src="js/checklogin.js"></script>
     <script src="js/vote.js"></script>
     <script src="js/main.js"></script>
+    <script>
+        $(document).on('pagecontainershow',function(event,ui){
+            ui.prevPage.remove();
+            startnews = 0;
+            startNews(startnews);
+        });
+    </script>
 <body>
 <div data-role="page">
+    <script>checklogin();</script>
     <div class="footer">
         <div class="center botmenu">
-            <a onclick="refreshPage(this)" data-link="0">
+            <a class="stacklink" onclick="refreshPage(this)" data-link="0">
                 <div class="quarter" id="topstack">
                     <div class="glyphicon glyphicon glyphicon-home"></div>
                 </div>
@@ -64,7 +72,6 @@
             </a>
         </div>
     </div>
-    <script>checklogin();</script>
     <div id="content" data-role="main">
             <div class="banner topbanner center">
                 <div class="center banner-inner">
@@ -117,7 +124,7 @@
             <div class="center feed" id="feed">
             </div>
             <div class="scroll center">
-                <div class="loader">Loading...</div>
+                <p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>
             </div>
             <div class="botgap"></div>
     </div>

@@ -1,10 +1,11 @@
 function refreshPage(current) {
     localStorage.setItem('stack', $(current).data("link"));
+
     $.mobile.changePage(
         window.location.href,
         {
             allowSamePageTransition : true,
-            transition              : 'flow',
+            transition              : 'none',
             showLoadMsg             : false,
             reloadPage              : true,
             reverse: false,
@@ -22,9 +23,6 @@ imagepostShow();
  $("#posting").html(stackname);
  }
  }*/
-
-startnews = 0;
-startNews(startnews);
 
 function linkpost(){
     $('#imagepost').hide();
@@ -86,7 +84,6 @@ function checkEnd(postnum){
     }
 }
 function startNews(startnum) {
-    alert(startnum);
     if(end){
         return;
     }
