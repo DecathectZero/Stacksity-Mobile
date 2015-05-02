@@ -20,7 +20,13 @@ a{
     display: inline;
     word-wrap: break-word;
 }
-.ui-page { -webkit-backface-visibility: hidden; }
+.ui-page {
+    background: transparent;
+    -webkit-backface-visibility: hidden;
+}
+.ui-content{
+    background: transparent;
+}
 #content{
     background-color: #e9eaed;
     -webkit-overflow-scrolling: touch;

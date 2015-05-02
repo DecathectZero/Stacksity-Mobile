@@ -35,6 +35,13 @@ body {
     padding:0px;
     width:100%;
 }
+.ui-page {
+    background: transparent;
+    -webkit-backface-visibility: hidden;
+}
+.ui-content{
+    background: transparent;
+}
 .login{
     background: url("../img/background.jpg") no-repeat center center fixed;
     background-size: cover;
@@ -44,12 +51,6 @@ body {
 }
 .signup{
     background: #001f3f;
-}
-.site-wrapper {
-    display: block;
-    width: 100%;
-    background-color: rgba(0,0,0, 0.5);
-    height: 100%;
 }
 /* Portrait layout (default) */
 .app {

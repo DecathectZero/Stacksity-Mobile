@@ -40,8 +40,8 @@
         <script src="js/jquerymobile.js"></script>
     </head>
     <body>
-        <div data-role="page" id="loginpage">
-            <div class="site-wrapper login" data-role="main">
+        <div data-role="page" id="loginpage" class="login">
+            <div data-role="main">
                 <div class="container">
                     <div class="intro">
                         <h2>Welcome to</h2>
@@ -54,10 +54,10 @@
                         <label for="inputPass" class="sr-only">Password</label>
                         <input data-role="none" name="inputPass" type="password" id="inputPass" class="form-control" placeholder="Password" required>
                         <button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-                        <a class="small" href="#passpage" data-transition="slidedown">Forgot your password or username?</a>
+                        <a class="small" href="#passpage" data-transition="slide" data-direction="reverse">Forgot your password or username?</a>
                     </form>
                     <form class="signinform margintop">
-                        <a href="#signuppage" data-transition="slidedown"><button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button></a>
+                        <a href="#signuppage" data-transition="slide"><button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button></a>
                     </form>
                 </div>
             </div>
@@ -90,16 +90,13 @@
                             }else{
                                 errorinfo("Oops something went wrong with the server, error code: " + data);
                             }
-                        },
-                        error: function(xhr, status, error) {
-                            alert("error: "+xhr.responseText);
                         }
                     });
                 });
             </script>
         </div>
-        <div data-role="page" id="signuppage" >
-            <div class="site-wrapper signup">
+        <div data-role="page" id="signuppage" class="signup">
+            <div data-role="main">
                 <div class="container">
                     <div class="intro">
                         <h1>Sign Up</h1>
@@ -123,7 +120,7 @@
                         </div>
                     </form>
                     <form class="signinform margintop">
-                        <a data-rel="back"><button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Log In</button></a>
+                        <a data-rel="back" data-direction="reverse"><button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Log In</button></a>
                     </form>
                 </div>
             </div>
@@ -174,8 +171,8 @@
                 });
             </script>
         </div>
-        <div data-role="page" id="passpage">
-            <div class="site-wrapper" data-role="main" class="password">
+        <div data-role="page" id="passpage" class="password">
+            <div data-role="main">
                 <div class="container">
                     <div class="intro">
                         <h1>Password Reset</h1>
@@ -199,7 +196,7 @@
                         </form>
                     </div>
                     <form class="signinform margintop">
-                        <a data-rel="back"><button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Log In</button></a>
+                        <a data-rel="back" data-direction="reverse"><button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Log In</button></a>
                     </form>
                 </div>
             </div>
