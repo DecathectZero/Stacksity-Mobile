@@ -40,8 +40,8 @@
         <script src="js/jquerymobile.js"></script>
     </head>
     <body>
-        <div data-role="page" id="loginpage" class="login">
-            <div class="site-wrapper">
+        <div data-role="page" id="loginpage">
+            <div class="site-wrapper login" data-role="main">
                 <div class="container">
                     <div class="intro">
                         <h2>Welcome to</h2>
@@ -54,10 +54,10 @@
                         <label for="inputPass" class="sr-only">Password</label>
                         <input data-role="none" name="inputPass" type="password" id="inputPass" class="form-control" placeholder="Password" required>
                         <button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-                        <a class="small" href="#passpage" data-transition="flow">Forgot your password or username?</a>
+                        <a class="small" href="#passpage" data-transition="slidedown">Forgot your password or username?</a>
                     </form>
-                    <form class="signinform margintop" id="signup" action="#page" data-transition="flow">
-                        <button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+                    <form class="signinform margintop">
+                        <a href="#signuppage" data-transition="slidedown"><button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button></a>
                     </form>
                 </div>
             </div>
@@ -98,8 +98,8 @@
                 });
             </script>
         </div>
-        <div data-role="page" id="page" class="signup">
-            <div class="site-wrapper">
+        <div data-role="page" id="signuppage" >
+            <div class="site-wrapper signup">
                 <div class="container">
                     <div class="intro">
                         <h1>Sign Up</h1>
@@ -122,8 +122,8 @@
                             <p class="small">By signing up, you agree to the Terms of Service</p>
                         </div>
                     </form>
-                    <form class="signinform margintop" data-rel="back" data-direction="reverse">
-                        <button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
+                    <form class="signinform margintop">
+                        <a data-rel="back"><button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Log In</button></a>
                     </form>
                 </div>
             </div>
@@ -174,8 +174,8 @@
                 });
             </script>
         </div>
-        <div data-role="page" id="passpage" class="password">
-            <div class="site-wrapper">
+        <div data-role="page" id="passpage">
+            <div class="site-wrapper" data-role="main" class="password">
                 <div class="container">
                     <div class="intro">
                         <h1>Password Reset</h1>
@@ -198,8 +198,8 @@
                             </div>
                         </form>
                     </div>
-                    <form class="signinform margintop" data-rel="back" data-direction="reverse">
-                        <button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
+                    <form class="signinform margintop">
+                        <a data-rel="back"><button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Log In</button></a>
                     </form>
                 </div>
             </div>

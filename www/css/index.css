@@ -46,7 +46,7 @@ body {
     background: #001f3f;
 }
 .site-wrapper {
-    display: table;
+    display: block;
     width: 100%;
     background-color: rgba(0,0,0, 0.5);
     height: 100%;
