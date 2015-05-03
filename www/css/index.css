@@ -34,7 +34,10 @@ body {
     margin:0px;
     padding:0px;
     width:100%;
+    background-color: #000;
 }
+.header {position:fixed;z-index:10;top:0;width:100%}
+.footer {position:fixed;z-index:10;bottom:0;width:100%}
 .ui-page {
     background: transparent;
     -webkit-backface-visibility: hidden;

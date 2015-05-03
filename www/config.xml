@@ -41,6 +41,8 @@
     <preference name="StatusBarOverlaysWebView" value="false"/>
     <preference name="StatusBarBackgroundColor" value="#1c5380"/>
     <preference name="StatusBarStyle" value="lightcontent" />
+    <preference name="auto-hide-splash-screen" value="false" />
+    <preference name="SplashScreenDelay" value="5000" />
     <!-- Plugins -->
 
     <!-- Core plugins -->
