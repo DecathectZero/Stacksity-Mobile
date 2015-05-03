@@ -1,4 +1,7 @@
-@import url("http://fonts.googleapis.com/css?family=Raleway:300");
+@font-face {
+    font-family: 'Raleway';
+    src: url("../fonts/Raleway-Light.ttf");
+}
 
 body, html{
     width: 100%;
