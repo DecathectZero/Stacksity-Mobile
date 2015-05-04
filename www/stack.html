@@ -34,18 +34,17 @@
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
     </script>
+    <script src="js/main.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/autogrow.js"></script>
     <script src="js/output.js"></script>
     <script src="js/jquerymobile.js"></script>
     <script src="js/checklogin.js"></script>
     <script src="js/vote.js"></script>
-    <script src="js/main.js"></script>
     <script>
         $(document).on('pagecontainershow',function(event,ui){
-            init();
-            imagepostShow();
             checklogin();
+            imagepostShow();
             ui.prevPage.remove();
             startnews = 0;
             startNews(startnews);
@@ -65,12 +64,12 @@
         });
     </script>
 <body>
-<div class="footer" data-role="footer" data-position="fixed">
+<div class="footer" data-position="fixed">
     <div class="center botmenu">
-            <div class="quarter" id="topstack" onclick="refreshPage(this, 1)" data-link="0">
+            <div class="quarter" id="topstack" onclick="refreshPage(1)">
                 <div class="glyphicon glyphicon glyphicon-home"></div>
             </div>
-            <div class="quarter" id="allstack" onclick="refreshPage(this, 2)" data-link="-1">
+            <div class="quarter" id="allstack" onclick="refreshPage(2)">
                 <div class="glyphicon glyphicon glyphicon-th-list"></div>
             </div>
             <div class="quarter">
@@ -79,7 +78,7 @@
             <div class="quarter">
                 <div class="glyphicon glyphicon glyphicon-search"></div>
             </div>
-            <div class="quarter" id="userstack" onclick="refreshPage(this, 5)">
+            <div class="quarter" id="userstack" onclick="refreshPage(5)">
                 <div class="glyphicon glyphicon glyphicon-user"></div>
             </div>
     </div>
@@ -148,12 +147,22 @@
                     <p>Are you sure you want to delete this post?</p>
                 </div>
                 <div class="modal-footer">
-                    <a id="deletelink" class="btn btn-primary">Delete</a>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <a data-role="none" onclick="del()" id="deletelink" class="btn btn-primary">Delete</a>
+                    <button data-role="none" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>init();
+$(document).bind("scrollstop", function() {
+    if($(window).scrollTop() + $(window).height() > $(".ui-page-active .content").height() - 200) {
+        if(!end&&!bottom){
+            bottom = true;
+            $('.scroll').html('<p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>');
+            startNews(startnews);
+        }
+    }
+});</script>
 </body>
 </html>

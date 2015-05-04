@@ -23,6 +23,9 @@ a{
     display: inline;
     word-wrap: break-word;
 }
+#deletelink{
+    color:#fff;
+}
 .ui-page {
     background: transparent;
     -webkit-backface-visibility: hidden;

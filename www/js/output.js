@@ -25,7 +25,7 @@ function priv(priv){
 }
 function stacknames(from, from_id, too, too_id){
     var stack_name = '<a class="stacklink" href="stack.html" data-link="'+from_id+'">'+ from + '</a> ';
-    if(stackid == 0){
+    if(stackid == 0 || stackid == -1){
         if(from_id==too_id){
             stack_name += ' to <a class="stacklink" href="stack.html" data-link="'+from_id+'">$self</a>';
         }else{
@@ -117,10 +117,7 @@ function textspost(element){
     '</div>'+comments(element)+
     '</div>' +
     '</div>';
-}/**
- * Created by killswitch on 3/21/2015.
- */
-var id = window.localStorage.getItem('session_id');
+}
 
 var delete_id = 0;
 $(document).on('click', '.delete', function(e) {
@@ -128,7 +125,7 @@ $(document).on('click', '.delete', function(e) {
     $('#delpost').modal();
     return false;
 });
-$('#deletelink').click(function(e){
+function del(){
     $.ajax({
         type     : "POST",
         cache    : false,
@@ -146,4 +143,4 @@ $('#deletelink').click(function(e){
         }
     });
     $('#delpost').modal('hide');
-});
+}

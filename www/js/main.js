@@ -4,37 +4,37 @@ var end = false;
 var bottom = false;
 var startnews = 0;
 var id = window.localStorage.getItem('session_id');
-var stackid = localStorage.getItem('stack');
+var stackid = 0;
 var userstack = localStorage.getItem('ustack');
 var option = 1;
 
 function init(){
+    var goto = 0;
     $('.active').removeClass('active');
     if(option == 1){
         $('#topstack').addClass('active');
     }else if(option == 2){
         $('#allstack').addClass('active');
+        goto = -1;
     }else if(option == 5){
         $('#userstack').addClass('active');
+        goto = userstack;
     }
+    return goto;
 }
 
-function refreshPage(current, opt) {
+function refreshPage(opt) {
+    end = false;
+    bottom = false;
     if(option == opt){
-        $('html, body').stop().animate({ scrollTop : 0 }, 500, function(){
+        $('body').stop().animate({ scrollTop : 0 }, 500, function(){
             $(".feed").empty();
             startnews = 0;
             startNews(startnews);
         });
     }else{
         option = opt;
-        init();
-        var goto;
-        if(option == 5){
-            goto = userstack;
-        }else{
-            goto = $(current).data("link")
-        }
+        var goto = init();
         localStorage.setItem('stack', goto);
         stackid = goto;
         $.mobile.changePage(
@@ -134,15 +134,6 @@ function startNews(startnum) {
     startnews = startnews + 10;
     return true;
 }
-$(document).bind("scrollstop", function() {
-    if($(window).scrollTop() + $(window).height() > $(".ui-page-active .content").height() - 200) {
-        if(!end&&!bottom){
-            bottom = true;
-            $('.scroll').html('<p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>');
-            startNews(startnews);
-        }
-    }
-});
 $("#toppost").on('submit', function(e){
     e.preventDefault();
     if(!posting){

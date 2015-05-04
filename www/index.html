@@ -71,7 +71,9 @@
                 </div>
             </div>
             <script>
-                localStorage.clear();
+                if (localStorage.getItem("session_id") != null) {
+                    document.location.href = 'stack.html';
+                }
                 function errorinfo(inner){
                     $('#error-info').html(inner);
                     $('#error-info').slideDown();
@@ -93,7 +95,6 @@
                             }else if(data=="69"){
                                 errorinfo("Please fill in the fields");
                             }else if(data.length>1){
-                                alert(data);
                                 var element = JSON.parse(data);
                                 window.localStorage.setItem('session_id',element.session_id);
                                 window.localStorage.setItem('stack',0);
