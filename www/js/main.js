@@ -28,6 +28,7 @@ function refreshPage(current, opt) {
         });
     }else{
         option = opt;
+        init();
         var goto;
         if(option == 5){
             goto = userstack;
