@@ -43,8 +43,10 @@
     <script src="js/main.js"></script>
     <script>
         $(document).on('pagecontainershow',function(event,ui){
+            init();
             checklogin();
             ui.prevPage.remove();
+            alert(stackid);
             startnews = 0;
             startNews(startnews);
             try {
@@ -70,22 +72,22 @@
                 <div class="glyphicon glyphicon glyphicon-home"></div>
             </div>
         </a>
-        <a class="stacklink" href="index.html" data-link="0">
+        <a class="stacklink" onclick="refreshPage(this)" data-link="-1">
             <div class="quarter" id="allstack">
                 <div class="glyphicon glyphicon glyphicon-th-list"></div>
             </div>
         </a>
-        <a class="stacklink" href="stack.html" data-link="0">
+        <a class="stacklink" data-link="0">
             <div class="quarter">
                 <div class="glyphicon glyphicon glyphicon-bell"></div>
             </div>
         </a>
-        <a class="stacklink" href="stack.html" data-link="0">
+        <a class="stacklink" data-link="0">
             <div class="quarter">
                 <div class="glyphicon glyphicon glyphicon-search"></div>
             </div>
         </a>
-        <a class="stacklink" href="stack.html" data-link="0">
+        <a class="stacklink" onclick="refreshPage(this)" data-link="0">
             <div class="quarter">
                 <div class="glyphicon glyphicon glyphicon-user"></div>
             </div>

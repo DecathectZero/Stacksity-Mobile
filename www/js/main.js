@@ -1,18 +1,43 @@
-function refreshPage(current) {
-    localStorage.setItem('stack', $(current).data("link"));
+var post = false;
+var posting = false;
+var end = false;
+var bottom = false;
+var startnews = 0;
+var id = window.localStorage.getItem('session_id');
+var stackid = localStorage.getItem('stack');
 
-    $.mobile.changePage(
-        window.location.href,
-        {
-            allowSamePageTransition : true,
-            transition              : 'none',
-            showLoadMsg             : false,
-            reloadPage              : true,
-            reverse: false,
-            changeHash: false
-        }
-    );
-    $(".feed").empty();
+function init(){
+    $('.active').removeClass('active');
+    if(stackid == '0'){
+        $('#topstack').addClass('active');
+    }else if(stackid == '-1'){
+        $('#allstack').addClass('active');
+    }
+}
+
+function refreshPage(current) {
+    var goto = $(current).data("link");
+    if(stackid==goto){
+        $('html, body').stop().animate({ scrollTop : 0 }, 500, function(){
+            $(".feed").empty();
+            startnews = 0;
+            startNews(startnews);
+        });
+    }else{
+        localStorage.setItem('stack', goto);
+        stackid = localStorage.getItem('stack');
+        $.mobile.changePage(
+            window.location.href,
+            {
+                allowSamePageTransition : true,
+                transition              : 'none',
+                showLoadMsg             : false,
+                reloadPage              : true,
+                reverse: false,
+                changeHash: false
+            }
+        );
+    }
 }
 
 imagepostShow();
@@ -65,17 +90,6 @@ $( "#title-input" ).keyup(function() {
     var length = $( this ).val().length;
     $( "#title-count").html(100-length);
 });
-
-var stackid = localStorage.getItem('stack');
-if(stackid == '0'){
-    $('#topstack').addClass('active');
-}
-var post = false;
-var posting = false;
-var end = false;
-var bottom = false;
-var startnews = 0;
-var id = window.localStorage.getItem('session_id');
 
 function checkEnd(postnum){
     if(postnum == 0){
