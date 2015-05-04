@@ -44,9 +44,9 @@
     <script>
         $(document).on('pagecontainershow',function(event,ui){
             init();
+            imagepostShow();
             checklogin();
             ui.prevPage.remove();
-            alert(stackid);
             startnews = 0;
             startNews(startnews);
             try {
@@ -67,31 +67,21 @@
 <body>
 <div class="footer" data-role="footer" data-position="fixed">
     <div class="center botmenu">
-        <a class="stacklink" onclick="refreshPage(this)" data-link="0">
-            <div class="quarter" id="topstack">
+            <div class="quarter" id="topstack" onclick="refreshPage(this, 1)" data-link="0">
                 <div class="glyphicon glyphicon glyphicon-home"></div>
             </div>
-        </a>
-        <a class="stacklink" onclick="refreshPage(this)" data-link="-1">
-            <div class="quarter" id="allstack">
+            <div class="quarter" id="allstack" onclick="refreshPage(this, 2)" data-link="-1">
                 <div class="glyphicon glyphicon glyphicon-th-list"></div>
             </div>
-        </a>
-        <a class="stacklink" data-link="0">
             <div class="quarter">
                 <div class="glyphicon glyphicon glyphicon-bell"></div>
             </div>
-        </a>
-        <a class="stacklink" data-link="0">
             <div class="quarter">
                 <div class="glyphicon glyphicon glyphicon-search"></div>
             </div>
-        </a>
-        <a class="stacklink" onclick="refreshPage(this)" data-link="0">
-            <div class="quarter">
+            <div class="quarter" id="userstack" onclick="refreshPage(this, 5)">
                 <div class="glyphicon glyphicon glyphicon-user"></div>
             </div>
-        </a>
     </div>
 </div>
 <div data-role="page">

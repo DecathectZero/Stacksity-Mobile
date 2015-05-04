@@ -5,32 +5,42 @@ var bottom = false;
 var startnews = 0;
 var id = window.localStorage.getItem('session_id');
 var stackid = localStorage.getItem('stack');
+var userstack = localStorage.getItem('ustack');
+var option = 1;
 
 function init(){
     $('.active').removeClass('active');
-    if(stackid == '0'){
+    if(option == 1){
         $('#topstack').addClass('active');
-    }else if(stackid == '-1'){
+    }else if(option == 2){
         $('#allstack').addClass('active');
+    }else if(option == 5){
+        $('#userstack').addClass('active');
     }
 }
 
-function refreshPage(current) {
-    var goto = $(current).data("link");
-    if(stackid==goto){
+function refreshPage(current, opt) {
+    if(option == opt){
         $('html, body').stop().animate({ scrollTop : 0 }, 500, function(){
             $(".feed").empty();
             startnews = 0;
             startNews(startnews);
         });
     }else{
+        option = opt;
+        var goto;
+        if(option == 5){
+            goto = userstack;
+        }else{
+            goto = $(current).data("link")
+        }
         localStorage.setItem('stack', goto);
-        stackid = localStorage.getItem('stack');
+        stackid = goto;
         $.mobile.changePage(
             window.location.href,
             {
                 allowSamePageTransition : true,
-                transition              : 'none',
+                transition              : 'flow',
                 showLoadMsg             : false,
                 reloadPage              : true,
                 reverse: false,
@@ -39,8 +49,6 @@ function refreshPage(current) {
         );
     }
 }
-
-imagepostShow();
 /*name();
  function name(){if(stackid == 0){
  $("#posting").html(self);
