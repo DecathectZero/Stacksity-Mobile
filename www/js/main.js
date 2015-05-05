@@ -7,6 +7,8 @@ var id = window.localStorage.getItem('session_id');
 var stackid = 0;
 var userstack = localStorage.getItem('ustack');
 var option = 1;
+var explore = false;
+var changepage = true;
 
 function init(){
     var goto = 0;
@@ -23,20 +25,76 @@ function init(){
     return goto;
 }
 
+function posts(type){
+    $.mobile.changePage(
+        "#postpage",
+        {
+            transition: 'slideup',
+            showLoadMsg : false
+        }
+    );
+}
+
+function bannerset(){
+    $.ajax({
+        type     : "POST",
+        cache    : false,
+        url      : 'http://stacksity.com/php/stacknameJSON.php',
+        crossDomain : true,
+        data     : {stack:stackid},
+        success  : function(data) {
+            if(data==1){
+                alert("this stack doesn't exist");
+                refreshPage(1);
+            }else{
+                var element = JSON.parse(data);
+                $(".bannertitle").html(element.stackname);
+                $(".bannerdesc").html(element.stack_desc);
+                //$(".banner").slideDown({complete:function(){
+                //    startnews = 0;
+                //    startNews(startnews);
+                //}});
+                if(stackid==0){
+                    $(".banner").addClass("topbanner");
+                }else if(stackid==-1){
+                    $(".banner").addClass("allbanner");
+                }else if(element.is_user){
+                    $(".banner").addClass("userbanner");
+                }
+                $(".banner").slideDown();
+                startnews = 0;
+                startNews(startnews);
+            }
+        },
+        error: function(request) {
+            if(request.status == 0) {
+                alert("You're offline!");
+            }else{
+                alert("Error Connection");
+            }
+        }
+    });
+}
+
 function refreshPage(opt) {
     end = false;
     bottom = false;
     if(option == opt){
-        $('body').stop().animate({ scrollTop : 0 }, 500, function(){
+        $('body').stop().animate({ scrollTop : 0 }, 1000, function(){
             $(".feed").empty();
             startnews = 0;
             startNews(startnews);
         });
     }else{
+        var rev = false;
+        if(opt<option){
+            rev = true;
+        }
         option = opt;
         var goto = init();
         localStorage.setItem('stack', goto);
         stackid = goto;
+        changepage = true;
         $.mobile.changePage(
             window.location.href,
             {
@@ -44,7 +102,7 @@ function refreshPage(opt) {
                 transition              : 'flow',
                 showLoadMsg             : false,
                 reloadPage              : true,
-                reverse: false,
+                reverse: rev,
                 changeHash: false
             }
         );
@@ -134,13 +192,18 @@ function startNews(startnum) {
     startnews = startnews + 10;
     return true;
 }
-$("#toppost").on('submit', function(e){
+$(document).on("click", "#private", function(e){
+    e.preventDefault();
+    $('#privatefield').val(1);
+    $("#toppost").submit();
+});
+$(document).on('submit', "#toppost", function(e){
     e.preventDefault();
     if(!posting){
+        checklogin();
         var data = $(this).serialize()+"&stack="+stackid+"&session_id="+id;
         posting = true;
         $('.postb').html('<div class="loader">Loading...</div>');
-        e.preventDefault();
         $.ajax({
             type     : "POST",
             cache    : false,
@@ -173,16 +236,19 @@ $("#toppost").on('submit', function(e){
                 $('#privatefield').val(0);
                 posting = false;
             },
-            error: function(xhr, status, error) {
-                alert("error"+ xhr.responseText);
+            error: function(request) {
+                if(request.status == 0) {
+                    alert("You're offline!");
+                }else{
+                    alert("Error Connection");
+                }
                 $('.postb').html('Post');
                 $('#private').html('Private');
                 posting = false;
             }
         });
-    }else{
-        e.preventDefault();
     }
+    return false;
 });
 $( ".follow" ).click(function() {
     if($(this).val()==1){
