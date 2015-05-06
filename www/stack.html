@@ -24,8 +24,6 @@
             StatusBar.backgroundColorByHexString("#1c5380");
             StatusBar.styleLightContent();
         }
-    </script>
-    <script type="text/javascript">
         var _gaq = _gaq || [];
 
         (function() {
@@ -33,6 +31,16 @@
             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
+        $(document).bind("mobileinit", function () {
+            // Setting #container div as a jqm pageContainer
+            $.mobile.pageContainer = $('#container');
+            // Setting default page transition to slide
+            $.mobile.defaultPageTransition = 'slide';
+            $.mobile.getMaxScrollForTransition = function(){
+                return parseInt($(window).scrollTop() + $(window).height())+1;
+            };
+//            alert($.mobile.getMaxScrollForTransition());
+        });
     </script>
     <script src="js/main.js"></script>
     <script src="js/bootstrap.js"></script>
@@ -42,12 +50,34 @@
     <script src="js/checklogin.js"></script>
     <script src="js/vote.js"></script>
     <script>
+        $(document).on('pagebeforeshow',function(event,ui){
+            checklogin();
+        });
         $(document).on('pagecontainershow',function(event,ui){
             if(changepage){
                 changepage = false;
                 ui.prevPage.remove();
-                checklogin();
+//                $('<div data-role="header" data-position="fixed" class="head">'+
+//                '<div class="row posting center">'+
+//                '<a class="col-xs-4" onclick="postOpen(1)">Link</a>'+
+//                '<a class="col-xs-4" onclick="postOpen(2)">Text</a>'+
+//                '<a class="col-xs-4 active" onclick="postOpen(3)">Image</a>'+
+//                '</div>'+
+//                '</div>')
+//                        .appendTo($( ".ui-page-active" ) )
+//                        .toolbar({ position: "fixed" });
                 bannerset();
+                $(".ui-page-active .extracontainer").bind("scrollstop", function() {
+                    if(!postbox){
+                        if($(".ui-page-active .extracontainer").scrollTop() + $(window).height() > $(".ui-page-active .con").height() - 200) {
+                            if(!end&&!bottom){
+                                bottom = true;
+                                $('.scroll').html('<p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>');
+                                startNews(startnews);
+                            }
+                        }
+                    }
+                });
                 try {
                     _gaq.push(['_setAccount', 'UA-46439393-3']);
 
@@ -58,11 +88,9 @@
                     } else {
                         _gaq.push(['_trackPageview']);
                     }
-                } catch(err) {
+                } catch (err) {
 
                 }
-            }else{
-
             }
         });
     </script>
@@ -99,85 +127,87 @@
         </div>
     </div>
 </div>
-<div data-role="page" id="stackpage">
-    <div data-role="header" data-position="fixed">
-        <div class="row posting center">
-            <a class="col-xs-4" onclick="posts(1)">Link</a>
-            <a class="col-xs-4" onclick="posts(2)">Text</a>
-            <a class="col-xs-4 active" onclick="posts(3)">Image</a>
+<div id="container">
+    <div data-role="page" data-dom-cache="true" id="stackpage">
+        <div data-role="header" data-id="persistent" data-position="fixed" class="head" data-fullscreen="true" data-tap-toggle="false">
+            <div class="row posting center">
+                <a class="col-xs-4" onclick="postOpen(1)">Link</a>
+                <a class="col-xs-4" onclick="postOpen(2)">Text</a>
+                <a class="col-xs-4 active" onclick="postOpen(3)">Image</a>
+            </div>
+        </div>
+        <div class="extracontainer">
+            <div class="topgap"></div>
+            <div class="con">
+                <div class="banner center" style="display: none">
+                    <div class="center banner-inner">
+                        <div class="bannertext"><h1 class="bannertitle">topstack</h1>
+                            <p class="bannerdesc">Your frontpage of stacks</p></div>
+                    </div>
+                </div>
+                <div class="center feed">
+                </div>
+                <div class="scroll center">
+                    <p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>
+                </div>
+                <div class="botgap"></div>
+            </div>
         </div>
     </div>
-    <div id="content" data-role="main" class="content">
-            <div class="banner center" style="display: none">
-                <div class="center banner-inner">
-                    <div class="bannertext"><h1 class="bannertitle">topstack</h1>
-                        <p class="bannerdesc">Your frontpage of stacks</p></div>
+
+    <div data-role="page" id="postpage">
+        <div data-role="header">
+            <label class="postlabel">
+                <div class="center" style="padding: 0">
+                    <a class="ui-btn-left" data-rel="back" data-role="button" onclick="postbox = false;" data-corners="false">cancel</a>
+                    posting to <span class="bold" id="posting">karthus</span>
+                </div>
+            </label>
+        </div>
+        <div class="center post">
+            <div class="row postrow posting">
+                <a class="col-xs-4" onclick="linkpost()" id="postlink">Link</a>
+                <a class="col-xs-4" onclick="textpost()" id="posttext">Text</a>
+                <a class="col-xs-4 active" onclick="imagepostShow()" id="postimage">Image</a>
+            </div>
+            <form class="postform toppost" id="toppost">
+                <input type="hidden" id="posttype" name="type" value="0">
+                <input type="hidden" name="user_value" value="1">
+                <div class="postcon">
+                    <p>title <span id="title-count">100</span></p>
+                    <input name="title" type="text" id="title-input" class="texts" placeholder="post title" maxlength="100" required="" data-role="none" autofocus="1">
+                    <div id="linkpost" style="display: none;">
+                        <p>link <span id="link-alert"></span></p>
+                        <input name="link" type="url" id="link" class="texts" placeholder="submit a link here" maxlength="500" required="" data-role="none">
                     </div>
-            </div>
-            <div class="center feed">
-            </div>
-            <div class="scroll center">
-                <p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>
-            </div>
-            <div class="botgap"></div>
-    </div>
-</div>
-<div data-role="page" id="postpage">
-    <div data-role="header">
-        <a data-rel="back">cancel</a>
-    </div>
-    <div class="center post">
-    <div class="row postrow posting">
-        <a class="col-xs-4" onclick="linkpost()" id="postlink">Link</a>
-        <a class="col-xs-4" onclick="textpost()" id="posttext">Text</a>
-        <a class="col-xs-4 active" onclick="imagepostShow()" id="postimage">Image</a>
-    </div>
-    <form class="postform toppost" id="toppost">
-        <input type="hidden" id="posttype" name="type" value="0">
-        <input type="hidden" name="user_value" value="1">
-        <div class="postcon">
-            <p>title <span id="title-count">100</span></p>
-            <input name="title" type="text" id="title-input" class="texts" placeholder="post title" maxlength="100" required="" data-role="none" autofocus="1">
-            <div id="linkpost" style="display: none;">
-                <p>link <span id="link-alert"></span></p>
-                <input name="link" type="url" id="link" class="texts" placeholder="submit a link here" maxlength="500" required="" data-role="none">
-            </div>
-            <div id="textpost" style="display: none;">
-                <p>text</p>
-                <textarea name="text" class="expanding" id="text" placeholder="Write something here..." rows="2" maxlength="6500" data-role="none"></textarea>
-            </div>
-            <div id="imagepost">
-                <p>image</p>
-                <div class="input-group">
+                    <div id="textpost" style="display: none;">
+                        <p>text</p>
+                        <textarea name="text" class="expanding" id="text" placeholder="Write something here..." rows="2" maxlength="6500" data-role="none"></textarea>
+                    </div>
+                    <div id="imagepost">
+                        <p>image</p>
+                        <div class="input-group">
                 <span class="input-group-btn">
                 <span class="btn btn-primary btn-file" id="uploadimage">
                 <span class="glyphicon glyphicon-camera" ></span> Photo <input type="file" accept="image/x-png, image/gif, image/jpeg" onchange="upload(this.files[0])" data-role="none">
                 </span>
                 </span>
-                    <input type="text" id="imageid" class="form-control" readonly="" data-role="none">
+                            <input type="text" id="imageid" class="form-control" readonly="" data-role="none">
+                        </div>
+                        <div class="background-image"><img src="" id="imagePostPreview" class="img-responsive"></div>
+                    </div>
                 </div>
-                <div class="background-image"><img src="" id="imagePostPreview" class="img-responsive"></div>
-            </div>
+                <div class="postsub">
+                    <input type="hidden" name="setprivate" value="0" id="privatefield">
+                    <button type="submit" class="postb" data-role="none">Post</button>
+                    <button type="button" id="private" class="postb private" data-role="none">Private</button>
+                </div>
+            </form>
         </div>
-        <div class="postsub">
-            <input type="hidden" name="setprivate" value="0" id="privatefield">
-            <button type="submit" class="postb" data-role="none">Post</button>
-            <button type="button" id="private" class="postb private" data-role="none">Private</button>
-        </div>
-        <label class="postlabel">
-            posting to <span class="bold" id="posting">karthus</span>
-        </label>
-    </form>
-</div></div>
-<script>init();
-$(document).bind("scrollstop", function() {
-    if($(window).scrollTop() + $(window).height() > $(".ui-page-active .content").height() - 200) {
-        if(!end&&!bottom){
-            bottom = true;
-            $('.scroll').html('<p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>');
-            startNews(startnews);
-        }
-    }
-});</script>
+    </div>
+</div>
+<script>
+init();
+</script>
 </body>
 </html>

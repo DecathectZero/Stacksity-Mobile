@@ -9,6 +9,7 @@ var userstack = localStorage.getItem('ustack');
 var option = 1;
 var explore = false;
 var changepage = true;
+var postbox = false;
 
 function init(){
     var goto = 0;
@@ -24,8 +25,8 @@ function init(){
     }
     return goto;
 }
-
-function posts(type){
+function postOpen(type){
+    postbox = true;
     $.mobile.changePage(
         "#postpage",
         {
@@ -36,6 +37,7 @@ function posts(type){
 }
 
 function bannerset(){
+    $(".banner").hide();
     $.ajax({
         type     : "POST",
         cache    : false,
@@ -62,6 +64,8 @@ function bannerset(){
                     $(".banner").addClass("userbanner");
                 }
                 $(".banner").slideDown();
+                end = false;
+                bottom = false;
                 startnews = 0;
                 startNews(startnews);
             }
@@ -77,8 +81,6 @@ function bannerset(){
 }
 
 function refreshPage(opt) {
-    end = false;
-    bottom = false;
     if(option == opt){
         $('body').stop().animate({ scrollTop : 0 }, 1000, function(){
             $(".feed").empty();
@@ -99,7 +101,7 @@ function refreshPage(opt) {
             window.location.href,
             {
                 allowSamePageTransition : true,
-                transition              : 'flow',
+                transition              : 'slide',
                 showLoadMsg             : false,
                 reloadPage              : true,
                 reverse: rev,

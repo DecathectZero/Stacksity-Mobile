@@ -2,8 +2,8 @@
     font-family: 'Raleway';
     src: url("../fonts/Raleway-Light.ttf");
 }
-
 body, html{
+    margin: 0;
     width: 100%;
     height: 100%;
     font-family: 'Raleway', sans-serif;
@@ -33,10 +33,23 @@ a{
 .ui-content{
     background: transparent;
 }
-#content{
-    background-color: #e9eaed;
+.ui-page-header-fixed { padding-top: 30px !important; }
+.extracontainer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
-    min-height: 100%;
+}
+.con{
+    background-color: #e9eaed;
 }
 .hide{
     display: none;
@@ -220,6 +233,7 @@ a{
 }
 .posting{
     padding: 0;
+    height: 30px;
 }
 .posting a{
     background: #BCD;
@@ -352,7 +366,7 @@ a{
 .scroll{
     height: 40px;
     line-height: 40px;
-    background-color: #1c5380;
+    background-color: #0c4370;
     padding: 0 20px;
     margin-bottom: 20px;
     color: #fff;
@@ -406,6 +420,11 @@ a{
 }
 .stack-down{
     background-color: #3C81A8;
+}
+.topgap{
+    padding-top: 30px;
+    width: 100%;
+    background: #000;
 }
 .banner {
     padding-top: 20px;

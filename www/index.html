@@ -42,6 +42,9 @@
                 navigator.splashscreen.hide();
                 StatusBar.hide();
             }
+            if (localStorage.getItem("session_id") != null) {
+                document.location.href = 'stack.html';
+            }
         </script>
         <script src="js/jquery.js"></script>
         <script src="js/jquerymobile.js"></script>
@@ -71,9 +74,6 @@
                 </div>
             </div>
             <script>
-                if (localStorage.getItem("session_id") != null) {
-                    document.location.href = 'stack.html';
-                }
                 function errorinfo(inner){
                     $('#error-info').html(inner);
                     $('#error-info').slideDown();
