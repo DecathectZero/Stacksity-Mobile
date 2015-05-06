@@ -36,9 +36,9 @@
             $.mobile.pageContainer = $('#container');
             // Setting default page transition to slide
             $.mobile.defaultPageTransition = 'slide';
-            $.mobile.getMaxScrollForTransition = function(){
-                return parseInt($(window).scrollTop() + $(window).height())+1;
-            };
+//            $.mobile.getMaxScrollForTransition = function(){
+//                return parseInt($(window).height())+1;
+//            };
 //            alert($.mobile.getMaxScrollForTransition());
         });
     </script>
@@ -178,12 +178,14 @@
 
     <div data-role="page" id="postpage">
         <div data-role="header">
-            <label class="postlabel">
-                <div class="postbar" style="padding: 0">
-                    <a class="cancelpost" data-rel="back" data-role="button" onclick="postbox = false;" data-corners="false">cancel</a>
-                    <p>posting to <span class="bold" id="posting"></span></p>
-                </div>
-            </label>
+            <div class="center" style="padding: 0">
+                <label class="postlabel">
+                    <div class="postbar" style="padding: 0">
+                        <a class="cancelpost" data-rel="back" data-role="button" onclick="postbox = false;" data-corners="false">cancel</a>
+                        <p>posting to <span class="bold" id="posting"></span></p>
+                    </div>
+                </label>
+            </div>
         </div>
         <div class="center post">
             <div class="row postrow posting">
