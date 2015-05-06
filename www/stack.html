@@ -52,9 +52,21 @@
     <script>
         $(document).on('pagebeforeshow',function(event,ui){
             checklogin();
+            if(postbox){
+                if(postype==1){
+                    linkpost();
+                }else if(postype==2){
+                    textpost();
+                }else if(postype==3){
+                    imagepostShow();
+                }
+            }else if(postdata!=null){
+                $.mobile.silentScroll(0);
+            }
         });
         $(document).on('pagecontainershow',function(event,ui){
             if(changepage){
+                postbox = false;
                 changepage = false;
                 ui.prevPage.remove();
 //                $('<div data-role="header" data-position="fixed" class="head">'+
@@ -91,6 +103,8 @@
                 } catch (err) {
 
                 }
+            }else if(postdata!=null){
+                parsePostData();
             }
         });
     </script>
@@ -158,9 +172,9 @@
     <div data-role="page" id="postpage">
         <div data-role="header">
             <label class="postlabel">
-                <div class="center" style="padding: 0">
-                    <a class="ui-btn-left" data-rel="back" data-role="button" onclick="postbox = false;" data-corners="false">cancel</a>
-                    posting to <span class="bold" id="posting">karthus</span>
+                <div class="postbar" style="padding: 0">
+                    <a class="cancelpost" data-rel="back" data-role="button" onclick="postbox = false;" data-corners="false">cancel</a>
+                    <p>posting to <span class="bold" id="posting">karthus</span></p>
                 </div>
             </label>
         </div>
@@ -203,6 +217,7 @@
                     <button type="button" id="private" class="postb private" data-role="none">Private</button>
                 </div>
             </form>
+            <div class="botgap"></div>
         </div>
     </div>
 </div>

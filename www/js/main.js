@@ -10,6 +10,7 @@ var option = 1;
 var explore = false;
 var changepage = true;
 var postbox = false;
+var postype = 1;
 
 function init(){
     var goto = 0;
@@ -27,6 +28,7 @@ function init(){
 }
 function postOpen(type){
     postbox = true;
+    postype = type;
     $.mobile.changePage(
         "#postpage",
         {
@@ -199,6 +201,7 @@ $(document).on("click", "#private", function(e){
     $('#privatefield').val(1);
     $("#toppost").submit();
 });
+var postdata = null;
 $(document).on('submit', "#toppost", function(e){
     e.preventDefault();
     if(!posting){
@@ -213,30 +216,9 @@ $(document).on('submit', "#toppost", function(e){
             crossDomain : true,
             data     : data,
             success  : function(data) {
-                if(data.length<=2) {
-                    if(data!=3){
-                        alert("error :" + data);
-                    }
-                }else{
-                    $('.background-image').hide();
-                    $('#toppost').trigger("reset");
-                    $( "#title-count").html("100");
-                    var element = $.parseJSON(data);
-                    if(element.posttype == 0){
-                        $(linkspost(element)).hide().prependTo('#feed').fadeIn("slow");
-                    }else if(element.posttype == 1){
-                        $('#text').val('').change();
-                        $(textspost(element)).hide().prependTo('#feed').fadeIn("slow");
-                    }else if(element.posttype == 2){
-                        $(imagepost(element)).hide().prependTo('#feed').fadeIn("slow");
-                    }else if(element.posttype == 3){
-                        $(videopost(element)).hide().prependTo('#feed').fadeIn("slow");
-                    }
-                }
-                $('.postb').html('Post');
-                $('#private').html('Private');
-                $('#privatefield').val(0);
-                posting = false;
+                postdata = data;
+                postbox = false;
+                $.mobile.back();
             },
             error: function(request) {
                 if(request.status == 0) {
@@ -252,6 +234,34 @@ $(document).on('submit', "#toppost", function(e){
     }
     return false;
 });
+function parsePostData(){
+    var data = postdata;
+    if(data.length<=2) {
+        if(data!=3){
+            alert("error :" + data);
+        }
+    }else{
+        $('.background-image').hide();
+        $('#toppost').trigger("reset");
+        $( "#title-count").html("100");
+        var element = $.parseJSON(data);
+        if(element.posttype == 0){
+            $(linkspost(element)).hide().prependTo('.ui-page-active .feed').fadeIn("slow");
+        }else if(element.posttype == 1){
+            $('#text').val('').change();
+            $(textspost(element)).hide().prependTo('.ui-page-active .feed').fadeIn("slow");
+        }else if(element.posttype == 2){
+            $(imagepost(element)).hide().prependTo('.ui-page-active .feed').fadeIn("slow");
+        }else if(element.posttype == 3){
+            $(videopost(element)).hide().prependTo('.ui-page-active .feed').fadeIn("slow");
+        }
+    }
+    $('.postb').html('Post');
+    $('#private').html('Private');
+    $('#privatefield').val(0);
+    posting = false;
+    postdata = null;
+}
 $( ".follow" ).click(function() {
     if($(this).val()==1){
         $(this).val(0);

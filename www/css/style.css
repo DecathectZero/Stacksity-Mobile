@@ -78,6 +78,7 @@ a{
     font-size: 20px;
     margin-top: 0px;
 }
+
 .sr-only {
     position: absolute;
     width: 1px;
@@ -346,14 +347,31 @@ a{
     background-color: #1DAE04;
     border-bottom: 3px solid #0B9C03;
 }
+.postbar{
+    max-width: 720px;
+}
 .postlabel{
-    text-align: right;
     width: 100%;
     color: #ccc;
     background-color: #777;
     margin: 0 0 15px 0;
-    padding: 5px 16px;
+    padding: 5px 12px;
     font-weight: normal;
+}
+.cancelpost{
+    font-family: Raleway;
+    font-size: 16px !important;
+    padding: 5px 10px !important;
+    text-align: left;
+}
+.postlabel p{
+    float: right;
+    height: 32px;
+    margin-top: 8px;
+    margin-right: 12px;
+    vertical-align: middle;
+    line-height: 32px;
+    display: inline;
 }
 #private{
     margin-right: 0 !important;
