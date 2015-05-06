@@ -24,12 +24,12 @@ function priv(priv){
     }
 }
 function stacknames(from, from_id, too, too_id){
-    var stack_name = '<a class="stacklink" href="stack.html" data-link="'+from_id+'">'+ from + '</a> ';
+    var stack_name = '<a class="stacklink" data-link="'+from_id+'">'+ from + '</a> ';
     if(stackid == 0 || stackid == -1){
         if(from_id==too_id){
-            stack_name += ' to <a class="stacklink" href="stack.html" data-link="'+from_id+'">$self</a>';
+            stack_name += ' to <a class="stacklink" data-link="'+from_id+'">$self</a>';
         }else{
-            stack_name += ' to <a class="stacklink" href="stack.html" data-link="'+too_id+'">'+too+'</a>';
+            stack_name += ' to <a class="stacklink" data-link="'+too_id+'">'+too+'</a>';
         }
     }
     return stack_name;

@@ -53,6 +53,8 @@
         $(document).on('pagebeforeshow',function(event,ui){
             checklogin();
             if(postbox){
+                $('.footer').hide();
+                initPostBox();
                 if(postype==1){
                     linkpost();
                 }else if(postype==2){
@@ -60,7 +62,10 @@
                 }else if(postype==3){
                     imagepostShow();
                 }
-            }else if(postdata!=null){
+            }else{
+                $('.footer').show();
+            }
+            if(postdata!=null){
                 $.mobile.silentScroll(0);
             }
         });
@@ -155,8 +160,10 @@
             <div class="con">
                 <div class="banner center" style="display: none">
                     <div class="center banner-inner">
-                        <div class="bannertext"><h1 class="bannertitle">topstack</h1>
-                            <p class="bannerdesc">Your frontpage of stacks</p></div>
+                        <div class="bannertext">
+                            <h1 class="bannertitle"></h1>
+                            <p class="bannerdesc"></p>
+                        </div>
                     </div>
                 </div>
                 <div class="center feed">
@@ -174,7 +181,7 @@
             <label class="postlabel">
                 <div class="postbar" style="padding: 0">
                     <a class="cancelpost" data-rel="back" data-role="button" onclick="postbox = false;" data-corners="false">cancel</a>
-                    <p>posting to <span class="bold" id="posting">karthus</span></p>
+                    <p>posting to <span class="bold" id="posting"></span></p>
                 </div>
             </label>
         </div>
@@ -186,7 +193,6 @@
             </div>
             <form class="postform toppost" id="toppost">
                 <input type="hidden" id="posttype" name="type" value="0">
-                <input type="hidden" name="user_value" value="1">
                 <div class="postcon">
                     <p>title <span id="title-count">100</span></p>
                     <input name="title" type="text" id="title-input" class="texts" placeholder="post title" maxlength="100" required="" data-role="none" autofocus="1">
@@ -201,12 +207,13 @@
                     <div id="imagepost">
                         <p>image</p>
                         <div class="input-group">
-                <span class="input-group-btn">
-                <span class="btn btn-primary btn-file" id="uploadimage">
-                <span class="glyphicon glyphicon-camera" ></span> Photo <input type="file" accept="image/x-png, image/gif, image/jpeg" onchange="upload(this.files[0])" data-role="none">
-                </span>
-                </span>
-                            <input type="text" id="imageid" class="form-control" readonly="" data-role="none">
+                        <span class="input-group-btn">
+                            <span class="btn btn-primary btn-file" id="uploadimage">
+                             <span class="glyphicon glyphicon-camera" ></span> Photo
+                            <input type="file" accept="image/x-png, image/gif, image/jpeg" onchange="upload(this.files[0])" data-role="none">
+                            </span>
+                        </span>
+                        <input type="text" id="imageid" class="form-control" readonly="" data-role="none">
                         </div>
                         <div class="background-image"><img src="" id="imagePostPreview" class="img-responsive"></div>
                     </div>

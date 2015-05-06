@@ -5,12 +5,15 @@ var bottom = false;
 var startnews = 0;
 var id = window.localStorage.getItem('session_id');
 var stackid = 0;
+var stackname = null;
 var userstack = localStorage.getItem('ustack');
+var username = localStorage.getItem('username');
 var option = 1;
 var explore = false;
 var changepage = true;
 var postbox = false;
 var postype = 1;
+var is_user = 0;
 
 function init(){
     var goto = 0;
@@ -26,16 +29,19 @@ function init(){
     }
     return goto;
 }
+
 function postOpen(type){
-    postbox = true;
-    postype = type;
-    $.mobile.changePage(
-        "#postpage",
-        {
-            transition: 'slideup',
-            showLoadMsg : false
-        }
-    );
+    if(!postbox){
+        postbox = true;
+        postype = type;
+        $.mobile.changePage(
+            "#postpage",
+            {
+                transition: 'slideup',
+                showLoadMsg : false
+            }
+        );
+    }
 }
 
 function bannerset(){
@@ -45,25 +51,43 @@ function bannerset(){
         cache    : false,
         url      : 'http://stacksity.com/php/stacknameJSON.php',
         crossDomain : true,
-        data     : {stack:stackid},
+        data     : {stack:stackid, session_id:id},
         success  : function(data) {
             if(data==1){
                 alert("this stack doesn't exist");
                 refreshPage(1);
             }else{
                 var element = JSON.parse(data);
-                $(".bannertitle").html(element.stackname);
-                $(".bannerdesc").html(element.stack_desc);
+                stackname = element.stackname;
+                $(".bannertitle").html(stackname)
                 //$(".banner").slideDown({complete:function(){
                 //    startnews = 0;
                 //    startNews(startnews);
                 //}});
+                is_user = 0;
                 if(stackid==0){
                     $(".banner").addClass("topbanner");
+                    $(".bannerdesc").html(element.stack_desc);
                 }else if(stackid==-1){
                     $(".banner").addClass("allbanner");
-                }else if(element.is_user){
-                    $(".banner").addClass("userbanner");
+                    $(".bannerdesc").html(element.stack_desc);
+                }else{
+                    if(element.is_user=="1"){
+                        $(".banner").addClass("userbanner");
+                        is_user = 1;
+                    }
+                    var space = '';
+                    if(element.stack_desc!=""&&element.stack_desc!=null){
+                        space = '<br>';
+                    }
+                    $(".bannerdesc").html(element.stack_desc+space+element.followers+' followers');
+                    if(userstack!=stackid){
+                        if(element.following){
+                            $('.ui-page-active .bannertext').append('<br> <button class="follow followed" value="1" data-role="none">Followed</button>')
+                        }else{
+                            $('.ui-page-active .bannertext').append('<br> <button class="follow" value="0" data-role="none">Follow</button>')
+                        }
+                    }
                 }
                 $(".banner").slideDown();
                 end = false;
@@ -80,6 +104,17 @@ function bannerset(){
             }
         }
     });
+}
+
+function initPostBox(){
+    if(stackid == 0 || stackid == -1){
+        $("#posting").html(username);
+    }else{
+        if(is_user==0){
+            $('#private').hide();
+        }
+        $("#posting").html(stackname);
+    }
 }
 
 function refreshPage(opt) {
@@ -100,7 +135,7 @@ function refreshPage(opt) {
         stackid = goto;
         changepage = true;
         $.mobile.changePage(
-            window.location.href,
+            document.location.href,
             {
                 allowSamePageTransition : true,
                 transition              : 'slide',
@@ -112,6 +147,30 @@ function refreshPage(opt) {
         );
     }
 }
+$(document).on('click', '.stacklink',function(){
+    //option = 0;
+    var goto = $(this).data('link');
+    if(goto == userstack){
+        refreshPage(5);
+    }else{
+        $('.active').removeClass('active');
+        localStorage.setItem('stack', goto);
+        stackid = goto;
+        option = 0;
+        changepage = true;
+        $.mobile.changePage(
+            document.location.href,
+            {
+                allowSamePageTransition : true,
+                transition              : 'flip',
+                showLoadMsg             : false,
+                reloadPage              : true,
+                changeHash: false
+            }
+        );
+    }
+
+});
 /*name();
  function name(){if(stackid == 0){
  $("#posting").html(self);
@@ -206,7 +265,7 @@ $(document).on('submit', "#toppost", function(e){
     e.preventDefault();
     if(!posting){
         checklogin();
-        var data = $(this).serialize()+"&stack="+stackid+"&session_id="+id;
+        var data = $(this).serialize()+"&stack="+stackid+"&user_value="+is_user+"&session_id="+id;
         posting = true;
         $('.postb').html('<div class="loader">Loading...</div>');
         $.ajax({
@@ -262,7 +321,7 @@ function parsePostData(){
     posting = false;
     postdata = null;
 }
-$( ".follow" ).click(function() {
+$(document).on('click', '.follow', function(){
     if($(this).val()==1){
         $(this).val(0);
         $(this).removeClass('followed');
@@ -277,7 +336,7 @@ $( ".follow" ).click(function() {
     $.ajax({
         type     : "POST",
         cache    : false,
-        url      : 'php/follow.php',
+        url      : 'http://stacksity.com/php/follow.php',
         data     : { stack: stackid, session_id: id},
         success: function(data){
         },
