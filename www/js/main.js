@@ -178,6 +178,10 @@ function searchPageRefresh(){
         });
     }
 }
+$(".quarter").on('tap', function (e) {
+    $(this).trigger('click');
+    e.preventDefault();
+});
 function refreshPage(opt) {
     if(option == opt){
         if(isStackOption()){
