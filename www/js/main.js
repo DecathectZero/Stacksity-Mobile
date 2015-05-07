@@ -10,11 +10,13 @@ var userstack = localStorage.getItem('ustack');
 var username = localStorage.getItem('username');
 var option = 1;
 var explore = false;
+var exploring = false;
 var changepage = true;
 var postbox = false;
 var postype = 1;
 var is_user = 0;
 var dontdelete = false;
+var loading = false;
 
 function postOpen(type){
     if(!postbox){
@@ -44,13 +46,14 @@ function bannerset(){
             }else{
                 var element = JSON.parse(data);
                 stackname = element.stackname;
-                $(".ui-page-active .bannertitle").html(stackname);
                 //$(".banner").slideDown({complete:function(){
                 //    startnews = 0;
                 //    startNews(startnews);
                 //}});
                 is_user = 0;
                 stackid = element.stack;
+                $(".ui-page-active .bannertext").html('<h1 class="bannertitle"></h1><p class="bannerdesc"></p>');
+                $(".ui-page-active .bannertitle").html(stackname);
                 if(stackid==0){
                     $(".ui-page-active .banner").addClass("topbanner");
                     $(".ui-page-active .bannerdesc").html(element.stack_desc);
@@ -66,7 +69,7 @@ function bannerset(){
                     if(element.stack_desc!=""&&element.stack_desc!=null){
                         space = '<br>';
                     }
-                    $(".ui-page-active .bannerdesc").html(element.stack_desc+space+element.followers+' followers');
+                    $(".ui-page-active .bannerdesc").html('<b>'+element.stack_desc+space+"<span class='followers'>"+element.followers+'</span> followers</b>');
                     if(userstack!=stackid){
                         if(element.following){
                             $('.ui-page-active .bannertext').append('<br> <button class="follow followed" value="1" data-role="none">Followed</button>')
@@ -138,16 +141,48 @@ function getOption(){
     }
     return null;
 }
+function refresh(){
+    bottom = false;
+    end = false;
+    loading = true;
+    $('.ui-page-active .scroll').html('<p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>');
+    if($(".ui-page-active .extracontainer").scrollTop()==0){
+        $(".ui-page-active .feed").empty();
+        startnews = 0;
+        startNews(startnews);
+    }else{
+        $('.ui-page-active .extracontainer').stop().animate({ scrollTop : 0 }, 1000, function(){
+            $(".ui-page-active .feed").empty();
+            startnews = 0;
+            startNews(startnews);
+        });
+    }
+}
+function searchPageRefresh(){
+    $(".stackls").empty();
+    getStacks($('#fs'),2);
+    getStacks($('#fu'),1);
+    function getStacks(el, type_id){
+        $.getJSON('http://stacksity.com/php/getstacks.php', {id : type_id, session_id:id}, function(data) {
+            $.each(data, function(index, element) {
+                if(type_id==2){
+                    el.append('<a href="'+element.stackname+'">'+element.stackname+'</a>');
+                }else{
+                    el.append('<a href="stack.php?id='+element.stack_id+'">'+element.stackname+'</a>');
+                }
+            });
+        });
+    }
+}
 function refreshPage(opt) {
     if(option == opt){
         if(isStackOption()){
-            $('.ui-page-active .extracontainer').stop().animate({ scrollTop : 0 }, 1000, function(){
-                $(".ui-page-active .feed").empty();
-                startnews = 0;
-                startNews(startnews);
-            });
+            refresh();
+        }else if(option == 4){
+            searchPageRefresh();
         }
     }else{
+        explore = false;
         var rev = false;
         if(opt<option){
             rev = true;
@@ -161,7 +196,7 @@ function refreshPage(opt) {
         var goto = init();
         if(goto>-2){
             changepage = true;
-            localStorage.setItem('stack', goto);
+            //localStorage.setItem('stack', goto);
             stackid = goto;
             $.mobile.changePage(
                 getOption(),
@@ -186,33 +221,53 @@ function refreshPage(opt) {
 $(document).on('click', '.stacklink',function(){
     //option = 0;
     var goto = $(this).data('link');
-    if(goto == userstack){
+    linkToStack(goto);
+});
+function linkToStack(goto){
+    if(goto == userstack || goto == username){
         refreshPage(5);
     }else{
         $('.active').removeClass('active');
-        localStorage.setItem('stack', goto);
-        stackid = goto;
-        if(isStackOption()){
-            option = 6;
-            changepage = true;
-            $.mobile.changePage(
-                document.location.href,
-                {
-                    allowSamePageTransition : true,
-                    transition              : 'flip',
-                    showLoadMsg             : false,
-                    reloadPage              : true,
-                    changeHash: false
-                }
-            );
+        //localStorage.setItem('stack', goto);
+        option = 6;
+        if(explore){
+            if(goto != stackid && goto != stackname){
+                stackid = goto;
+                dontdelete = true;
+                explore = true;
+                $.mobile.changePage(
+                    window.location.href,
+                    {
+                        allowSamePageTransition : true,
+                        transition              : 'flip',
+                        showLoadMsg             : false,
+                        reloadPage              : true
+                    }
+                );
+            }else{
+                refresh();
+            }
         }else{
-            option = 6;
-            changepage = true;
-            $.mobile.back({});
+            if(goto != stackid && goto != stackname){
+                //alert(goto);
+                var banner = $('*[data-url="explorepage"] .banner');
+                $('*[data-url="explorepage"]').data("initialized", null);
+                banner.hide();
+                banner.removeClass("userbanner");
+                $('*[data-url="explorepage"] .feed').empty();
+                stackid = goto;
+                explore = true;
+                $.mobile.changePage(
+                    "#explorepage",
+                    {
+                        transition              : 'flip',
+                        showLoadMsg             : false
+                    }
+                );
+            }
         }
     }
-
-});
+}
 /*name();
  function name(){if(stackid == 0){
  $("#posting").html(self);
@@ -273,9 +328,11 @@ function startNews(startnum) {
     if(end){
         return;
     }
+    loading = true;
     var postnum = 0;
     $.getJSON('http://stacksity.com/php/feed.php', {id : stackid , start : startnum , session_id: id }, function(data) {
         if(null==data){
+            loading = false;
             checkEnd(postnum);
         }else{
             $.each(data, function(index, element) {
@@ -290,6 +347,7 @@ function startNews(startnum) {
                 }
                 postnum++;
             });
+            loading = false;
             bottom = false;
             checkEnd(postnum);
         }
@@ -317,8 +375,8 @@ $(document).on('submit', "#toppost", function(e){
             crossDomain : true,
             data     : data,
             success  : function(data) {
-                postdata = data;
                 postbox = false;
+                postdata = data;
                 $.mobile.back();
             },
             error: function(request) {
@@ -342,7 +400,6 @@ function parsePostData(){
             alert("error :" + data);
         }
     }else{
-        alert("postdata");
         $('.background-image').hide();
         $('#toppost').trigger("reset");
         $( "#title-count").html("100");
@@ -369,12 +426,12 @@ $(document).on('click', '.follow', function(){
         $(this).val(0);
         $(this).removeClass('followed');
         $(this).html('Follow');
-        $(".ui-page-active .follow").html(parseInt($(".ui-page-active .follow").html())-1);
+        $(".ui-page-active .followers").html(parseInt($(".ui-page-active .followers").html())-1);
     }else{
         $(this).addClass('followed');
         $(this).html('Followed');
         $(this).val(1);
-        $(".ui-page-active .follow").html(parseInt($(".ui-page-active .follow").html())+1);
+        $(".ui-page-active .followers").html(parseInt($(".ui-page-active .followers").html())+1);
     }
     $.ajax({
         type     : "POST",

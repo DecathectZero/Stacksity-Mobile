@@ -252,7 +252,7 @@ a{
     -o-transition: background-color 0.2s ease-in;
     transition: background-color 0.2s ease-in;
 }
-.posting a:hover, .posting a:focus{
+.posting a:active, .posting a:focus{
     background: #BCD;
     color: #fff;
     background-color: #5eabed;
@@ -269,7 +269,7 @@ a{
     -o-transition: background-color 0.2s ease-in;
     transition: background-color 0.2s ease-in;
 }
-.listlink a:hover, .listlink a:focus{
+.listlink a:active, .listlink a:focus{
     background: #BCD;
     color: #fff;
     background-color: #5eabed;
@@ -349,7 +349,7 @@ a{
     font-size: 18px;
     margin-top: 5px;
 }
-.postb:hover{
+.postb:active{
     background-color: #1DAE04;
     border-bottom: 3px solid #0B9C03;
 }
@@ -383,7 +383,7 @@ a{
     margin-right: 0 !important;
     background-color: #5b92fa;
 }
-#private:hover{
+#private:active{
     background-color: #4b82da;
     border-bottom: 3px solid #3b72da;
 }
@@ -416,7 +416,7 @@ a{
     background-color: #fafbfe;
     float: left;
 }
-.vbutton:hover{
+.vbutton:active{
     border: 1px solid #999;
 }
 .count{
@@ -615,7 +615,7 @@ a{
     display: inline-block;
     float: none;
 }
-.follow:hover{
+.follow:active{
     background-color: #fff;
     color: #4b82ea;
     border-bottom: 3px solid #3b72da;
@@ -624,7 +624,7 @@ a{
     background-color: #fff;
     color: #4b82ea;
 }
-.followed:hover{
+.followed:active{
     background-color: #5b92fa;
     color: #fff;
 }
@@ -660,7 +660,7 @@ a{
 .privatepost a{
     color: crimson !important;
 }
-.privatepost a:hover{
+.privatepost a:active{
     color: #FF4136 !important;
 }
 
@@ -686,7 +686,7 @@ a{
     height: 25px;
     margin: 0 0 5px 0;
 }
-.cbutton:hover{
+.cbutton:active{
     border: 1px solid #999;
 }
 .comment-content{
@@ -710,10 +710,10 @@ a{
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     margin-bottom:0;
 }
-.comment:hover{
+.comment:active{
     border-left: 3px solid #FF4136;
 }
-.comment-content:hover{
+.comment-content:active{
     background-color: #f4f5fa;
 }
 .score{
@@ -722,7 +722,7 @@ a{
 .tagline{
     margin-bottom: 3px;
 }
-.tagline a:hover{
+.tagline a:active{
     text-decoration: underline;
 }
 .depth{
@@ -746,7 +746,7 @@ a{
     color: #266282;
     cursor: pointer;
 }
-.cancelreply:hover, .cancelreply:focus{
+.cancelreply:active, .cancelreply:focus{
     color: #fff;
 }
 .stacklist{
@@ -755,7 +755,7 @@ a{
     margin-top: 15px;
 }
 .stacks{
-    margin-top: 20px;
+    padding-top: 0;
 }
 .stacklist h5{
     font-weight: 700;
@@ -832,7 +832,7 @@ a{
 .dropdown-menu>li>a {
     padding: 8px;
 }
-.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus{
+.dropdown-menu>li>a:active,.dropdown-menu>li>a:focus{
     color:#333!important;
     text-decoration:none;
 }
@@ -889,7 +889,7 @@ a{
     color: #fff;
     border: none;
 }
-.btn-primary:hover{
+.btn-primary:active{
     background-color: #5eabed;
 }
 .bannertext{
@@ -920,7 +920,7 @@ h1{
     color: #fff;
     font-size: 16px;
 }
-.botmenu a:hover, .botmenu a:focus{
+.botmenu a:active, .botmenu a:focus{
     color: #9aa9c8;;
 }
 .botmenu .row{
@@ -938,7 +938,7 @@ h1{
     display: inline-block;
     float: none;
 }
-.follow:hover{
+.follow:active{
     background-color: #fff;
     color: #4b82ea;
     border-bottom: 3px solid #3b72da;
@@ -947,7 +947,7 @@ h1{
     background-color: #fff;
     color: #4b82ea;
 }
-.followed:hover{
+.followed:active{
     background-color: #5b92fa;
     color: #fff;
 }

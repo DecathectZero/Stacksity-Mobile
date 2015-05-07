@@ -68,14 +68,13 @@
             if(postdata!=null){
                 $.mobile.silentScroll(0);
             }
-//            if(changepage){
-//                $(".ui-active-page .banner").hide();
-//                $(".ui-active-page .feed").empty();
-//            }
+            if(option==4){
+                searchPageRefresh();
+            }
         });
         $(document).on('pagecontainershow',function(event,ui){
             if(isStackOption()){
-                postbox = false;
+                loading = false;
                 end = false;
                 bottom = false;
 //                if(dontdelete){
@@ -83,12 +82,30 @@
 //                }else{
 //                    ui.prevPage.remove();
 //                }
-                if($(".ui-page-active").data("initialized")==null){
-                    $(".ui-page-active").data("initialized", true);
-                    bannerset();
-                }else if(explore){
-                    ui.prevPage.remove();
-                    bannerset();
+                if(postdata!=null){
+                    parsePostData();
+                }else{
+                    if($(".ui-page-active").data("initialized")==null&&!postbox){
+                        $(".ui-page-active").data("initialized", true);
+                        bannerset();
+                        $(".ui-page-active .extracontainer").bind("scrollstop", function() {
+                            if(!postbox){
+                                if($(".ui-page-active .extracontainer").scrollTop() + $(window).height() > $(".ui-page-active .con").height() - 200) {
+                                    if(!end&&!bottom&&!loading){
+                                        bottom = true;
+                                        $('.ui-page-active .scroll').html('<p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>');
+                                        startNews(startnews);
+                                    }
+                                }
+                            }
+                        });
+                    }
+                    if(explore){
+                        if(dontdelete){
+                            dontdelete = false;
+                            ui.prevPage.remove();
+                        }
+                    }
                 }
 //                $('<div data-role="header" data-position="fixed" class="head">'+
 //                '<div class="row posting center">'+
@@ -99,17 +116,6 @@
 //                '</div>')
 //                        .appendTo($( ".ui-page-active" ) )
 //                        .toolbar({ position: "fixed" });
-                $(".ui-page-active .extracontainer").bind("scrollstop", function() {
-                    if(!postbox){
-                        if($(".ui-page-active .extracontainer").scrollTop() + $(window).height() > $(".ui-page-active .con").height() - 200) {
-                            if(!end&&!bottom){
-                                bottom = true;
-                                $('.scroll').html('<p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>');
-                                startNews(startnews);
-                            }
-                        }
-                    }
-                });
 //                try {
 //                    _gaq.push(['_setAccount', 'UA-46439393-3']);
 //
@@ -123,8 +129,6 @@
 //                } catch (err) {
 //
 //                }
-            }else if(postdata!=null){
-                parsePostData();
             }
         });
     </script>
@@ -176,8 +180,6 @@
                 <div class="banner center" style="display: none">
                     <div class="center banner-inner">
                         <div class="bannertext">
-                            <h1 class="bannertitle"></h1>
-                            <p class="bannerdesc"></p>
                         </div>
                     </div>
                 </div>
@@ -248,12 +250,41 @@
         </div>
     </div>
 
+    <div data-role="page" data-dom-cache="false" id="explorepage">
+        <div data-role="header" data-id="persistent" data-position="fixed" class="head" data-fullscreen="true" data-tap-toggle="false">
+            <div class="row posting center">
+                <a class="col-xs-4" onclick="postOpen(1)">Link</a>
+                <a class="col-xs-4" onclick="postOpen(2)">Text</a>
+                <a class="col-xs-4 active" onclick="postOpen(3)">Image</a>
+            </div>
+        </div>
+        <div class="extracontainer">
+            <div class="topgap"></div>
+            <div class="con">
+                <div class="banner center" style="display: none">
+                    <div class="center banner-inner">
+                        <div class="bannertext">
+                            <h1 class="bannertitle"></h1>
+                            <p class="bannerdesc"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="center feed">
+                </div>
+                <div class="scroll center">
+                    <p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>
+                </div>
+                <div class="botgap"></div>
+            </div>
+        </div>
+    </div>
+
     <div data-role="page" id="postpage">
         <div data-role="header">
             <div class="center" style="padding: 0">
                 <label class="postlabel">
                     <div class="postbar" style="padding: 0">
-                        <a class="cancelpost" data-rel="back" data-role="button" onclick="postbox = false;" data-corners="false">cancel</a>
+                        <a class="cancelpost" data-rel="back" data-role="button" data-corners="false" onclick="postbox = false">cancel</a>
                         <p>posting to <span class="bold" id="posting"></span></p>
                     </div>
                 </label>
@@ -302,11 +333,79 @@
     </div>
 
     <div data-role="page" data-dom-cache="true" id="searchpage">
-        <a class="stacklink" data-link="1">lol</a>
+        <div class="center stacks">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="stacksearch" class="stacklist">
+                        <h1>Search for Stacks</h1>
+                        <ul id="autocomplete" data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Search for stacks.." data-filter-theme="d"></ul>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="stacklist">
+                        <h5>Followed Stacks</h5>
+                        <div class="stackls stackl" id="fs"></div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="stacklist">
+                        <h5>Followed Users</h5>
+                        <div class="stackls stackl" id="fu"></div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="stacklist">
+                        <h5>Explore Stacks</h5>
+                        <div class="stackl" id="es">
+                            <a class="stacklink" data-link="17">$cute</a>
+                            <a class="stacklink" data-link="14">$lol</a>
+                            <a class="stacklink" data-link="20">$fitness</a>
+                            <a class="stacklink" data-link="15">$food</a>
+                            <a class="stacklink" data-link="21">$gaming</a>
+                            <a class="stacklink" data-link="74">$interesting</a>
+                            <a class="stacklink" data-link="42">$music</a>
+                            <a class="stacklink" data-link="6">$news</a>
+                            <a class="stacklink" data-link="16">$science</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="botgap"></div>
     </div>
 </div>
 <script>
 init();
+$( "#autocomplete" ).on( "listviewbeforefilter", function ( e, data ) {
+    var $ul = $( this ),
+            $input = $( data.input ),
+            value = $input.val(),
+            html = "";
+    $ul.html( "" );
+    if ( value && value.length > 0) {
+        $ul.html( "<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>" );
+        $ul.listview( "refresh" );
+//        alert($input.val());
+        $.ajax({
+            url: "http://stacksity.com/php/search.php",
+            dataType: "json",
+            type: "GET",
+            crossDomain: true,
+            data: {
+                term: $input.val()
+            }
+        }).then( function ( response ) {
+//            alert(JSON.stringify(response));
+            //html += "<li class='stacklink' data-link='"+value+"'>" + value + "</a></li>";
+            $.each( response, function ( i, val ) {
+                html += "<li class='stacklink' data-link='"+val.id+"'>" + val.value + "</a></li>";
+            });
+            $ul.html( html );
+            $ul.listview( "refresh" );
+            $ul.trigger( "updatelayout");
+        });
+    }
+});
 </script>
 </body>
 </html>
