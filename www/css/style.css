@@ -60,6 +60,7 @@ a:active{
     overflow: auto;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
+    -webkit-backface-visibility: hidden;
 }
 .con{
     background-color: #e9eaed;
