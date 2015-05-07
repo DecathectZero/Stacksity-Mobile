@@ -38,9 +38,9 @@ a{
     width: 100%;
     height: 100%;
     position: absolute;
-    top: 0;
+    /*top: 0;*/
     right: 0;
-    bottom: 0;
+    /*bottom: 0;*/
     left: 0;
     margin: 0;
     padding: 0;
@@ -202,6 +202,11 @@ a{
     width: 95%;
     margin-right: 2.5%;
 }
+.postinfo{
+    font-size: 16px !important;
+    margin: 5px 0;
+}
+.ui-dialog  .ui-header .ui-btn-icon-notext	{ display:none;}
 .linkcon{
     margin-top: 10px;
 }
@@ -274,7 +279,7 @@ a{
     background-color: #CCC;
 }
 .postcon{
-    padding: 5px 12px 0 12px;
+    padding: 5px 12px 5px 12px;
 }
 .postcon p {
     font-family: arial;
@@ -342,6 +347,7 @@ a{
     background-color: #2EBF15;
     color: #fff;
     font-size: 18px;
+    margin-top: 5px;
 }
 .postb:hover{
     background-color: #1DAE04;
@@ -442,7 +448,7 @@ a{
 .topgap{
     padding-top: 30px;
     width: 100%;
-    background: #000;
+    background: transparent;
 }
 .banner {
     padding-top: 20px;

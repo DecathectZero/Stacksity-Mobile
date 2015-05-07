@@ -14,21 +14,7 @@ var changepage = true;
 var postbox = false;
 var postype = 1;
 var is_user = 0;
-
-function init(){
-    var goto = 0;
-    $('.active').removeClass('active');
-    if(option == 1){
-        $('#topstack').addClass('active');
-    }else if(option == 2){
-        $('#allstack').addClass('active');
-        goto = -1;
-    }else if(option == 5){
-        $('#userstack').addClass('active');
-        goto = userstack;
-    }
-    return goto;
-}
+var dontdelete = false;
 
 function postOpen(type){
     if(!postbox){
@@ -45,7 +31,6 @@ function postOpen(type){
 }
 
 function bannerset(){
-    $(".banner").hide();
     $.ajax({
         type     : "POST",
         cache    : false,
@@ -59,28 +44,29 @@ function bannerset(){
             }else{
                 var element = JSON.parse(data);
                 stackname = element.stackname;
-                $(".bannertitle").html(stackname)
+                $(".ui-page-active .bannertitle").html(stackname);
                 //$(".banner").slideDown({complete:function(){
                 //    startnews = 0;
                 //    startNews(startnews);
                 //}});
                 is_user = 0;
+                stackid = element.stack;
                 if(stackid==0){
-                    $(".banner").addClass("topbanner");
-                    $(".bannerdesc").html(element.stack_desc);
+                    $(".ui-page-active .banner").addClass("topbanner");
+                    $(".ui-page-active .bannerdesc").html(element.stack_desc);
                 }else if(stackid==-1){
-                    $(".banner").addClass("allbanner");
-                    $(".bannerdesc").html(element.stack_desc);
+                    $(".ui-page-active .banner").addClass("allbanner");
+                    $(".ui-page-active .bannerdesc").html(element.stack_desc);
                 }else{
                     if(element.is_user=="1"){
-                        $(".banner").addClass("userbanner");
+                        $(".ui-page-active .banner").addClass("userbanner");
                         is_user = 1;
                     }
                     var space = '';
                     if(element.stack_desc!=""&&element.stack_desc!=null){
                         space = '<br>';
                     }
-                    $(".bannerdesc").html(element.stack_desc+space+element.followers+' followers');
+                    $(".ui-page-active .bannerdesc").html(element.stack_desc+space+element.followers+' followers');
                     if(userstack!=stackid){
                         if(element.following){
                             $('.ui-page-active .bannertext').append('<br> <button class="follow followed" value="1" data-role="none">Followed</button>')
@@ -89,9 +75,7 @@ function bannerset(){
                         }
                     }
                 }
-                $(".banner").slideDown();
-                end = false;
-                bottom = false;
+                $(".ui-page-active .banner").slideDown();
                 startnews = 0;
                 startNews(startnews);
             }
@@ -109,42 +93,94 @@ function bannerset(){
 function initPostBox(){
     if(stackid == 0 || stackid == -1){
         $("#posting").html(username);
+        $('#private').show();
     }else{
         if(is_user==0){
             $('#private').hide();
+        }else{
+            $('#private').show();
         }
         $("#posting").html(stackname);
     }
 }
-
+function isStackOption(){
+    if(option != 3 && option != 4){
+        return true;
+    }
+    return false;
+}
+function init(){
+    var goto = 0;
+    $('.active').removeClass('active');
+    if(option == 1){
+        $('#topstack').addClass('active');
+    }else if(option == 2){
+        $('#allstack').addClass('active');
+        goto = -1;
+    }else if(option == 4){
+        $('#searchstack').addClass('active');
+        goto = -2;
+    }else if(option == 5){
+        $('#userstack').addClass('active');
+        goto = userstack;
+    }
+    return goto;
+}
+function getOption(){
+    if(option == 1){
+        return "#toppage";
+    }else if(option == 2){
+        return "#allpage";
+    }else if(option == 4){
+        return "#searchpage";
+    }else if(option == 5){
+        return "#userpage";
+    }
+    return null;
+}
 function refreshPage(opt) {
     if(option == opt){
-        $('body').stop().animate({ scrollTop : 0 }, 1000, function(){
-            $(".feed").empty();
-            startnews = 0;
-            startNews(startnews);
-        });
+        if(isStackOption()){
+            $('.ui-page-active .extracontainer').stop().animate({ scrollTop : 0 }, 1000, function(){
+                $(".ui-page-active .feed").empty();
+                startnews = 0;
+                startNews(startnews);
+            });
+        }
     }else{
         var rev = false;
         if(opt<option){
             rev = true;
         }
+        var trans = 'slide';
+        if(option == 6){
+            rev = true;
+            trans = 'flip';
+        }
         option = opt;
         var goto = init();
-        localStorage.setItem('stack', goto);
-        stackid = goto;
-        changepage = true;
-        $.mobile.changePage(
-            document.location.href,
-            {
-                allowSamePageTransition : true,
-                transition              : 'slide',
-                showLoadMsg             : false,
-                reloadPage              : true,
-                reverse: rev,
-                changeHash: false
-            }
-        );
+        if(goto>-2){
+            changepage = true;
+            localStorage.setItem('stack', goto);
+            stackid = goto;
+            $.mobile.changePage(
+                getOption(),
+                {
+                    transition              : trans,
+                    showLoadMsg             : false,
+                    reverse: rev
+                }
+            );
+        }else if(goto == -2){
+            $.mobile.changePage(
+                "#searchpage",
+                {
+                    transition              : trans,
+                    showLoadMsg             : false,
+                    reverse: rev
+                }
+            );
+        }
     }
 }
 $(document).on('click', '.stacklink',function(){
@@ -156,18 +192,24 @@ $(document).on('click', '.stacklink',function(){
         $('.active').removeClass('active');
         localStorage.setItem('stack', goto);
         stackid = goto;
-        option = 0;
-        changepage = true;
-        $.mobile.changePage(
-            document.location.href,
-            {
-                allowSamePageTransition : true,
-                transition              : 'flip',
-                showLoadMsg             : false,
-                reloadPage              : true,
-                changeHash: false
-            }
-        );
+        if(isStackOption()){
+            option = 6;
+            changepage = true;
+            $.mobile.changePage(
+                document.location.href,
+                {
+                    allowSamePageTransition : true,
+                    transition              : 'flip',
+                    showLoadMsg             : false,
+                    reloadPage              : true,
+                    changeHash: false
+                }
+            );
+        }else{
+            option = 6;
+            changepage = true;
+            $.mobile.back({});
+        }
     }
 
 });
@@ -300,6 +342,7 @@ function parsePostData(){
             alert("error :" + data);
         }
     }else{
+        alert("postdata");
         $('.background-image').hide();
         $('#toppost').trigger("reset");
         $( "#title-count").html("100");
@@ -326,12 +369,12 @@ $(document).on('click', '.follow', function(){
         $(this).val(0);
         $(this).removeClass('followed');
         $(this).html('Follow');
-        $("#followers").html(parseInt($("#followers").html())-1);
+        $(".ui-page-active .follow").html(parseInt($(".ui-page-active .follow").html())-1);
     }else{
         $(this).addClass('followed');
         $(this).html('Followed');
         $(this).val(1);
-        $("#followers").html(parseInt($("#followers").html())+1);
+        $(".ui-page-active .follow").html(parseInt($(".ui-page-active .follow").html())+1);
     }
     $.ajax({
         type     : "POST",

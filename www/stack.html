@@ -68,12 +68,28 @@
             if(postdata!=null){
                 $.mobile.silentScroll(0);
             }
+//            if(changepage){
+//                $(".ui-active-page .banner").hide();
+//                $(".ui-active-page .feed").empty();
+//            }
         });
         $(document).on('pagecontainershow',function(event,ui){
-            if(changepage){
+            if(isStackOption()){
                 postbox = false;
-                changepage = false;
-                ui.prevPage.remove();
+                end = false;
+                bottom = false;
+//                if(dontdelete){
+//                   dontdelete = false;
+//                }else{
+//                    ui.prevPage.remove();
+//                }
+                if($(".ui-page-active").data("initialized")==null){
+                    $(".ui-page-active").data("initialized", true);
+                    bannerset();
+                }else if(explore){
+                    ui.prevPage.remove();
+                    bannerset();
+                }
 //                $('<div data-role="header" data-position="fixed" class="head">'+
 //                '<div class="row posting center">'+
 //                '<a class="col-xs-4" onclick="postOpen(1)">Link</a>'+
@@ -83,7 +99,6 @@
 //                '</div>')
 //                        .appendTo($( ".ui-page-active" ) )
 //                        .toolbar({ position: "fixed" });
-                bannerset();
                 $(".ui-page-active .extracontainer").bind("scrollstop", function() {
                     if(!postbox){
                         if($(".ui-page-active .extracontainer").scrollTop() + $(window).height() > $(".ui-page-active .con").height() - 200) {
@@ -95,19 +110,19 @@
                         }
                     }
                 });
-                try {
-                    _gaq.push(['_setAccount', 'UA-46439393-3']);
-
-                    hash = location.hash;
-
-                    if (hash) {
-                        _gaq.push(['_trackPageview', hash.substr(1)]);
-                    } else {
-                        _gaq.push(['_trackPageview']);
-                    }
-                } catch (err) {
-
-                }
+//                try {
+//                    _gaq.push(['_setAccount', 'UA-46439393-3']);
+//
+//                    hash = location.hash;
+//
+//                    if (hash) {
+//                        _gaq.push(['_trackPageview', hash.substr(1)]);
+//                    } else {
+//                        _gaq.push(['_trackPageview']);
+//                    }
+//                } catch (err) {
+//
+//                }
             }else if(postdata!=null){
                 parsePostData();
             }
@@ -125,7 +140,7 @@
             <div class="quarter">
                 <div class="glyphicon glyphicon glyphicon-bell"></div>
             </div>
-            <div class="quarter">
+            <div class="quarter" id="searchstack" onclick="refreshPage(4)">
                 <div class="glyphicon glyphicon glyphicon-search"></div>
             </div>
             <div class="quarter" id="userstack" onclick="refreshPage(5)">
@@ -147,7 +162,64 @@
     </div>
 </div>
 <div id="container">
-    <div data-role="page" data-dom-cache="true" id="stackpage">
+    <div data-role="page" data-dom-cache="true" id="toppage">
+        <div data-role="header" data-id="persistent" data-position="fixed" class="head" data-fullscreen="true" data-tap-toggle="false">
+            <div class="row posting center">
+                <a class="col-xs-4" onclick="postOpen(1)">Link</a>
+                <a class="col-xs-4" onclick="postOpen(2)">Text</a>
+                <a class="col-xs-4 active" onclick="postOpen(3)">Image</a>
+            </div>
+        </div>
+        <div class="extracontainer">
+            <div class="topgap"></div>
+            <div class="con">
+                <div class="banner center" style="display: none">
+                    <div class="center banner-inner">
+                        <div class="bannertext">
+                            <h1 class="bannertitle"></h1>
+                            <p class="bannerdesc"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="center feed">
+                </div>
+                <div class="scroll center">
+                    <p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>
+                </div>
+                <div class="botgap"></div>
+            </div>
+        </div>
+    </div>
+    <div data-role="page" data-dom-cache="true" id="allpage">
+        <div data-role="header" data-id="persistent" data-position="fixed" class="head" data-fullscreen="true" data-tap-toggle="false">
+            <div class="row posting center">
+                <a class="col-xs-4" onclick="postOpen(1)">Link</a>
+                <a class="col-xs-4" onclick="postOpen(2)">Text</a>
+                <a class="col-xs-4 active" onclick="postOpen(3)">Image</a>
+            </div>
+        </div>
+        <div class="extracontainer">
+            <div class="topgap"></div>
+            <div class="con">
+                <div class="banner center" style="display: none">
+                    <div class="center banner-inner">
+                        <div class="bannertext">
+                            <h1 class="bannertitle"></h1>
+                            <p class="bannerdesc"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="center feed">
+                </div>
+                <div class="scroll center">
+                    <p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>
+                </div>
+                <div class="botgap"></div>
+            </div>
+        </div>
+    </div>
+
+    <div data-role="page" data-dom-cache="true" id="userpage">
         <div data-role="header" data-id="persistent" data-position="fixed" class="head" data-fullscreen="true" data-tap-toggle="false">
             <div class="row posting center">
                 <a class="col-xs-4" onclick="postOpen(1)">Link</a>
@@ -226,8 +298,11 @@
                     <button type="button" id="private" class="postb private" data-role="none">Private</button>
                 </div>
             </form>
-            <div class="botgap"></div>
         </div>
+    </div>
+
+    <div data-role="page" data-dom-cache="true" id="searchpage">
+        <a class="stacklink" data-link="1">lol</a>
     </div>
 </div>
 <script>

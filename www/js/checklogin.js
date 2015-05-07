@@ -21,7 +21,7 @@ function checklogin(){
             }
         },
         error: function(xhr, status, error) {
-            alert("error: "+xhr.responseText);
+            //alert("error: "+xhr.responseText);
         }
     });
 }

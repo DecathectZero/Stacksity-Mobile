@@ -56,7 +56,7 @@ function imagepost(element){
     return '<div class="item ipost '+priv(element.private)+'" id="'+element.post_id+'">' +
     '<div class="textcon"><div class="linkwrapper">' +
     getlink(element.post_id, element.link)+'<h4>' + element.title + '</h4></a>' +
-    '<p>'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id)+' | '+ element.created +'</p>' +
+    '<p class="postinfo">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id)+' | '+ element.created +'</p>' +
     getlink(0, element.link) +
     '<div class="imagewrap">'+element.embed+'</div>' +
     '</a>' +
@@ -74,7 +74,7 @@ function videopost(element){
     return '<div class="item vpost '+priv(element.private)+'" id="'+element.post_id+'">' +
     '<div class="textcon">' +
     getlink(element.post_id, element.link)+'<h4>' + element.title + '</h4></a>' +
-    '<p>'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id)+' | '+ element.created +'</p>' +
+    '<p class="postinfo">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id)+' | '+ element.created +'</p>' +
         //'<a href="/'+element.link+'" target="_blank">' +
     '<div class="linkwrapper"><div class="videowrapper">'+element.embed+'</div>'+
     '<div class="textfeed"><p class="content">'+element.text+'</p></div></div><div class="vote login">'+
@@ -89,7 +89,7 @@ function linkspost(element){
     return '<div class="item lpost '+priv(element.private)+'" id="'+element.post_id+'">' +
     '<div class="textcon">' +
     getlink(element.post_id, element.link)+'<h4>' + element.title + '</h4></a>' +
-    '<p>'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id)+' | '+ element.created +'</p>' +
+    '<p class="postinfo">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id)+' | '+ element.created +'</p>' +
     '<div class="linkwrapper">' + getlink(0, element.link) +
     '<div class="linkcon"></div><div class="linkcontainer"><img class="linkimage" src="'+ element.image +'"></div>' +
     '<p class="content">'+element.text+'</p></a>' +
@@ -111,7 +111,7 @@ function textspost(element){
     return '<div class="item tpost '+priv(element.private)+'" id="'+element.post_id+'">' +
     '<div class="textcon">' +
     link +
-    '<p>'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id)+' | '+ element.created +'</p>' +
+    '<p class="postinfo">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id)+' | '+ element.created +'</p>' +
     '<p class="content">'+$("<textarea/>").html(element.text).text()+'</p><div class="vote login">'+
     vote +
     '</div>'+comments(element)+
