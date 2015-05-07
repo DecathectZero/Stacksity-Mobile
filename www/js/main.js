@@ -166,9 +166,9 @@ function searchPageRefresh(){
         $.getJSON('http://stacksity.com/php/getstacks.php', {id : type_id, session_id:id}, function(data) {
             $.each(data, function(index, element) {
                 if(type_id==2){
-                    el.append('<a href="'+element.stackname+'">'+element.stackname+'</a>');
+                    el.append('<a class="stacklink" data-link="'+element.stackname+'">'+element.stackname+'</a>');
                 }else{
-                    el.append('<a href="stack.php?id='+element.stack_id+'">'+element.stackname+'</a>');
+                    el.append('<a class="stacklink" data-link="'+element.stack_id+'">'+element.stackname+'</a>');
                 }
             });
         });
@@ -218,11 +218,6 @@ function refreshPage(opt) {
         }
     }
 }
-$(document).on('click', '.stacklink',function(){
-    //option = 0;
-    var goto = $(this).data('link');
-    linkToStack(goto);
-});
 function linkToStack(goto){
     if(goto == userstack || goto == username){
         refreshPage(5);
@@ -268,6 +263,11 @@ function linkToStack(goto){
         }
     }
 }
+$(document).on('click', '.stacklink',function(){
+    //option = 0;
+    var goto = $(this).data('link');
+    linkToStack(goto);
+});
 /*name();
  function name(){if(stackid == 0){
  $("#posting").html(self);
