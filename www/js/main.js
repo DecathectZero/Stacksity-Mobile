@@ -166,9 +166,9 @@ function searchPageRefresh(){
         $.getJSON('http://stacksity.com/php/getstacks.php', {id : type_id, session_id:id}, function(data) {
             $.each(data, function(index, element) {
                 if(type_id==2){
-                    el.append('<a class="stacklink" data-link="'+element.stackname+'">'+element.stackname+'</a>');
+                    el.append('<a onClick="linkToStack(\''+element.stackname+'\')">'+element.stackname+'</a>');
                 }else{
-                    el.append('<a class="stacklink" data-link="'+element.stack_id+'">'+element.stackname+'</a>');
+                    el.append('<a onClick="linkToStack('+element.stack_id+')">'+element.stackname+'</a>');
                 }
             });
         });

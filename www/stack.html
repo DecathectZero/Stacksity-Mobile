@@ -357,15 +357,15 @@
                     <div class="stacklist">
                         <h5>Explore Stacks</h5>
                         <div class="stackl" id="es">
-                            <a class="stacklink" data-link="17">$cute</a>
-                            <a class="stacklink" data-link="14">$lol</a>
-                            <a class="stacklink" data-link="20">$fitness</a>
-                            <a class="stacklink" data-link="15">$food</a>
-                            <a class="stacklink" data-link="21">$gaming</a>
-                            <a class="stacklink" data-link="74">$interesting</a>
-                            <a class="stacklink" data-link="42">$music</a>
-                            <a class="stacklink" data-link="6">$news</a>
-                            <a class="stacklink" data-link="16">$science</a>
+                            <a onclick="linkToStack(17)">$cute</a>
+                            <a onclick="linkToStack(14)">$lol</a>
+                            <a onclick="linkToStack(20)">$fitness</a>
+                            <a onclick="linkToStack(15)">$food</a>
+                            <a onclick="linkToStack(21)">$gaming</a>
+                            <a onclick="linkToStack(74)">$interesting</a>
+                            <a onclick="linkToStack(42)">$music</a>
+                            <a onclick="linkToStack(6)">$news</a>
+                            <a onclick="linkToStack(16)">$science</a>
                         </div>
                     </div>
                 </div>
@@ -398,7 +398,7 @@ $( "#autocomplete" ).on( "listviewbeforefilter", function ( e, data ) {
 //            alert(JSON.stringify(response));
             //html += "<li class='stacklink' data-link='"+value+"'>" + value + "</a></li>";
             $.each( response, function ( i, val ) {
-                html += "<li class='stacklink' data-link='"+val.id+"'>" + val.value + "</a></li>";
+                html += "<li onclick='linkToStack("+val.id+")'>" + val.value + "</a></li>";
             });
             $ul.html( html );
             $ul.listview( "refresh" );
