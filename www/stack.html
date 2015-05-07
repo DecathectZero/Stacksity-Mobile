@@ -21,7 +21,7 @@
         //
         function onDeviceReady() {
             StatusBar.overlaysWebView(false);
-            StatusBar.backgroundColorByHexString("#1c5380");
+            StatusBar.backgroundColorByHexString("#ffffff");
             StatusBar.styleLightContent();
         }
         var _gaq = _gaq || [];
@@ -68,9 +68,6 @@
             if(postdata!=null){
                 $.mobile.silentScroll(0);
             }
-            if(option==4){
-                searchPageRefresh();
-            }
         });
         $(document).on('pagecontainershow',function(event,ui){
             if(isStackOption()){
@@ -85,8 +82,7 @@
                 if(postdata!=null){
                     parsePostData();
                 }else{
-                    if($(".ui-page-active").data("initialized")==null&&!postbox){
-                        $(".ui-page-active").data("initialized", true);
+                    if($(".ui-page-active").data("stack_id")==null&&!postbox){
                         bannerset();
                         $(".ui-page-active .extracontainer").bind("scrollstop", function() {
                             if(!postbox){
@@ -99,6 +95,10 @@
                                 }
                             }
                         });
+                    }else if(!postbox){
+                        stackid = $(".ui-page-active").data("stack_id");
+                        is_user = $(".ui-page-active").data("is_user");
+                        stackname = $(".ui-page-active").data("stackname");
                     }
                     if(explore){
                         if(dontdelete){
@@ -161,6 +161,19 @@
             <div class="modal-footer">
                 <a data-role="none" id="deletelink" onclick="del()" class="btn btn-primary">Delete</a>
                 <button data-role="none" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="commentdelete" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>Are you sure you want to delete this comment?</p>
+            </div>
+            <div class="modal-footer">
+                <a id="deletecomment" class="btn btn-primary">Delete</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>
@@ -300,7 +313,7 @@
                 <input type="hidden" id="posttype" name="type" value="0">
                 <div class="postcon">
                     <p>title <span id="title-count">100</span></p>
-                    <input name="title" type="text" id="title-input" class="texts" placeholder="post title" maxlength="100" required="" data-role="none" autofocus="1">
+                    <input name="title" type="text" id="title-input" class="texts" placeholder="post title" maxlength="100" required="" data-role="none">
                     <div id="linkpost" style="display: none;">
                         <p>link <span id="link-alert"></span></p>
                         <input name="link" type="url" id="link" class="texts" placeholder="submit a link here" maxlength="500" required="" data-role="none">
@@ -373,6 +386,9 @@
         </div>
         <div class="botgap"></div>
     </div>
+    <div data-role="page" data-dom-cache="true" id="post">
+
+    </div>
 </div>
 <script>
 init();
@@ -406,6 +422,7 @@ $( "#autocomplete" ).on( "listviewbeforefilter", function ( e, data ) {
         });
     }
 });
+searchPageRefresh();
 </script>
 </body>
 </html>

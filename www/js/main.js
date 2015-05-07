@@ -52,6 +52,9 @@ function bannerset(){
                 //}});
                 is_user = 0;
                 stackid = element.stack;
+                $(".ui-page-active").data("stack_id", stackid);
+                $(".ui-page-active").data("is_user", is_user);
+                $(".ui-page-active").data("stackname", stackname);
                 $(".ui-page-active .bannertext").html('<h1 class="bannertitle"></h1><p class="bannerdesc"></p>');
                 $(".ui-page-active .bannertitle").html(stackname);
                 if(stackid==0){
@@ -94,6 +97,7 @@ function bannerset(){
 }
 
 function initPostBox(){
+    //alert(stackid);
     if(stackid == 0 || stackid == -1){
         $("#posting").html(username);
         $('#private').show();
@@ -246,7 +250,7 @@ function linkToStack(goto){
             if(goto != stackid && goto != stackname){
                 //alert(goto);
                 var banner = $('*[data-url="explorepage"] .banner');
-                $('*[data-url="explorepage"]').data("initialized", null);
+                $('*[data-url="explorepage"]').data("stack_id", null);
                 banner.hide();
                 banner.removeClass("userbanner");
                 $('*[data-url="explorepage"] .feed').empty();

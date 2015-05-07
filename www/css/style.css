@@ -34,6 +34,8 @@ a:active{
 .ui-page {
     background: transparent;
     -webkit-backface-visibility: hidden;
+    height: 100%;
+    overflow: hidden;
 }
 .ui-content{
     background: transparent;
@@ -51,7 +53,7 @@ a:active{
     padding: 0;
     overflow: auto;
     overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
+    /*-webkit-overflow-scrolling: touch;*/
 }
 .con{
     background-color: #e9eaed;
@@ -247,7 +249,7 @@ a:active{
     height: 30px;
 }
 .posting a{
-    background: #BCD;
+    background: #fff;
     text-align: center;
     padding: 5px 0;
     text-decoration: none;
@@ -257,7 +259,7 @@ a:active{
     -o-transition: background-color 0.2s ease-in;
     transition: background-color 0.2s ease-in;
 }
-.posting a:active, .posting a:focus{
+.posting a:active{
     background: #BCD;
     color: #fff;
     background-color: #5eabed;
@@ -909,6 +911,11 @@ h1{
 }
 
 .footer { background: #1c5380; position: fixed; bottom: 0; width: 100%; text-align: center; z-index: 999 }
+.head{
+    -webkit-box-shadow: 0 5px 25px 5px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 5px 25px 5px rgba(0,0,0,.2);
+    box-shadow: 0 5px 25px 5px rgba(0,0,0,.2);
+}
 .botmenu{
     padding: 0;
 }
