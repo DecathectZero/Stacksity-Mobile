@@ -22,6 +22,11 @@ a{
     z-index: 998;
     display: inline;
     word-wrap: break-word;
+    text-decoration: none;
+}
+a:active{
+    color: #38c;
+    text-decoration: none;
 }
 #deletelink{
     color:#fff;
@@ -204,7 +209,7 @@ a{
 }
 .postinfo{
     font-size: 16px !important;
-    margin: 5px 0;
+    margin: 8px 0 !important;
 }
 .ui-dialog  .ui-header .ui-btn-icon-notext	{ display:none;}
 .linkcon{
@@ -721,9 +726,6 @@ a{
 }
 .tagline{
     margin-bottom: 3px;
-}
-.tagline a:active{
-    text-decoration: underline;
 }
 .depth{
     margin-top: 10px;

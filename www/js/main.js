@@ -321,7 +321,7 @@ $( "#title-input" ).keyup(function() {
 function checkEnd(postnum){
     if(postnum == 0){
         end = true;
-        $('.scroll').html('<p>No more posts</p>');
+        $('.ui-page-active .scroll').html('<p>No more posts</p>');
     }
 }
 function startNews(startnum) {
