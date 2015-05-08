@@ -18,23 +18,6 @@ var is_user = 0;
 var dontdelete = false;
 var loading = false;
 
-$.event.special.tap = {
-    setup: function() {
-        var self = this,
-            $self = $(self);
-
-        $self.on('touchstart', function(startEvent) {
-            var target = startEvent.target;
-
-            $self.one('touchend', function(endEvent) {
-                if (target == endEvent.target) {
-                    $.event.simulate('tap', self, endEvent);
-                }
-            });
-        });
-    }
-};
-
 function postOpen(type){
     if(!postbox){
         postbox = true;
@@ -192,11 +175,6 @@ function searchPageRefresh(){
         });
     }
 }
-$(".quarter").on('tap', function (e) {
-    alert("tap");
-    $(this).trigger('click');
-    e.preventDefault();
-});
 function refreshPage(opt) {
     if(option == opt){
         if(isStackOption()){

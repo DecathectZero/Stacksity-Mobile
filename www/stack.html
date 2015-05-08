@@ -426,6 +426,27 @@ $( "#autocomplete" ).on( "listviewbeforefilter", function ( e, data ) {
     }
 });
 searchPageRefresh();
+$.event.special.tap = {
+    setup: function() {
+        var self = this,
+                $self = $(self);
+
+        $self.on('touchstart', function(startEvent) {
+            var target = startEvent.target;
+
+            $self.one('touchend', function(endEvent) {
+                if (target == endEvent.target) {
+                    $.event.simulate('tap', self, endEvent);
+                }
+            });
+        });
+    }
+};
+$(".quarter").on('tap', function (e) {
+    alert("tap");
+    $(this).trigger('click');
+    e.preventDefault();
+});
 </script>
 </body>
 </html>
