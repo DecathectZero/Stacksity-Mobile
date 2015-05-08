@@ -46,10 +46,6 @@ function bannerset(){
             }else{
                 var element = JSON.parse(data);
                 stackname = element.stackname;
-                //$(".banner").slideDown({complete:function(){
-                //    startnews = 0;
-                //    startNews(startnews);
-                //}});
                 is_user = 0;
                 stackid = element.stack;
                 $(".ui-page-active").data("stack_id", stackid);
@@ -81,9 +77,10 @@ function bannerset(){
                         }
                     }
                 }
-                $(".ui-page-active .banner").slideDown();
-                startnews = 0;
-                startNews(startnews);
+                $(".ui-page-active .banner").slideDown({complete:function(){
+                    startnews = 0;
+                    startNews(startnews);
+                }});
             }
         },
         error: function(request) {
@@ -95,7 +92,6 @@ function bannerset(){
         }
     });
 }
-
 function initPostBox(){
     //alert(stackid);
     if(stackid == 0 || stackid == -1){
@@ -178,9 +174,9 @@ function searchPageRefresh(){
         });
     }
 }
-$(".quarter").on('tap', function (e) {
-    $(this).trigger('click');
-    e.preventDefault();
+$('.quarter').on('touchstart', function () {
+    option = $(this).data("option");
+    refreshPage(option);
 });
 function refreshPage(opt) {
     if(option == opt){
