@@ -18,6 +18,23 @@ var is_user = 0;
 var dontdelete = false;
 var loading = false;
 
+$.event.special.tap = {
+    setup: function() {
+        var self = this,
+            $self = $(self);
+
+        $self.on('touchstart', function(startEvent) {
+            var target = startEvent.target;
+
+            $self.one('touchend', function(endEvent) {
+                if (target == endEvent.target) {
+                    $.event.simulate('tap', self, endEvent);
+                }
+            });
+        });
+    }
+};
+
 function postOpen(type){
     if(!postbox){
         postbox = true;
@@ -92,6 +109,7 @@ function bannerset(){
         }
     });
 }
+
 function initPostBox(){
     //alert(stackid);
     if(stackid == 0 || stackid == -1){
@@ -174,9 +192,9 @@ function searchPageRefresh(){
         });
     }
 }
-$('.quarter').on('touchstart', function () {
-    option = $(this).data("option");
-    refreshPage(option);
+$(".quarter").on('tap', function (e) {
+    $(this).trigger('click');
+    e.preventDefault();
 });
 function refreshPage(opt) {
     if(option == opt){
