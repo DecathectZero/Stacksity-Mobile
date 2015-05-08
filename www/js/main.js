@@ -193,6 +193,7 @@ function searchPageRefresh(){
     }
 }
 $(".quarter").on('tap', function (e) {
+    alert("tap");
     $(this).trigger('click');
     e.preventDefault();
 });
