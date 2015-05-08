@@ -949,9 +949,9 @@ h1{
 .active{
     background-color: #001f3f;
 }
-.quarter:hover, .quarter:focus{
-     background-color: #001f3f;
- }
+/*.quarter:hover, .quarter:focus{*/
+     /*background-color: #001f3f;*/
+ /*}*/
 .follow{
     width: 80px;
     height: 30px;
