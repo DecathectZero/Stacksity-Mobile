@@ -32,7 +32,7 @@ function postOpen(type){
     }
 }
 
-function bannerset(){
+function bannerset(activepage, stackid){
     $.ajax({
         type     : "POST",
         cache    : false,
@@ -40,6 +40,7 @@ function bannerset(){
         crossDomain : true,
         data     : {stack:stackid, session_id:id},
         success  : function(data) {
+            //alert(activepage.attr("id")+" "+stackid);
             if(data==1){
                 alert("this stack doesn't exist");
                 refreshPage(1);
@@ -48,38 +49,38 @@ function bannerset(){
                 stackname = element.stackname;
                 is_user = 0;
                 stackid = element.stack;
-                $(".ui-page-active").data("stack_id", stackid);
-                $(".ui-page-active").data("is_user", is_user);
-                $(".ui-page-active").data("stackname", stackname);
-                $(".ui-page-active .bannertext").html('<h1 class="bannertitle"></h1><p class="bannerdesc"></p>');
-                $(".ui-page-active .bannertitle").html(stackname);
+                activepage.data("stack_id", stackid);
+                activepage.data("is_user", is_user);
+                activepage.data("stackname", stackname);
+                activepage.find(".bannertext").html('<h1 class="bannertitle"></h1><p class="bannerdesc"></p>');
+                activepage.find(".bannertitle").html(stackname);
                 if(stackid==0){
-                    $(".ui-page-active .banner").addClass("topbanner");
-                    $(".ui-page-active .bannerdesc").html(element.stack_desc);
+                    activepage.find(".banner").addClass("topbanner");
+                    activepage.find(".bannerdesc").html(element.stack_desc);
                 }else if(stackid==-1){
-                    $(".ui-page-active .banner").addClass("allbanner");
-                    $(".ui-page-active .bannerdesc").html(element.stack_desc);
+                    activepage.find(".banner").addClass("allbanner");
+                    activepage.find(".bannerdesc").html(element.stack_desc);
                 }else{
                     if(element.is_user=="1"){
-                        $(".ui-page-active .banner").addClass("userbanner");
+                        activepage.find(".banner").addClass("userbanner");
                         is_user = 1;
                     }
                     var space = '';
                     if(element.stack_desc!=""&&element.stack_desc!=null){
                         space = '<br>';
                     }
-                    $(".ui-page-active .bannerdesc").html('<b>'+element.stack_desc+space+"<span class='followers'>"+element.followers+'</span> followers</b>');
+                    activepage.find(".bannerdesc").html('<b>'+element.stack_desc+space+"<span class='followers'>"+element.followers+'</span> followers</b>');
                     if(userstack!=stackid){
                         if(element.following){
-                            $('.ui-page-active .bannertext').append('<br> <button class="follow followed" value="1" data-role="none">Followed</button>')
+                            activepage.find('.bannertext').append('<br> <button class="follow followed" value="1" data-role="none">Followed</button>')
                         }else{
-                            $('.ui-page-active .bannertext').append('<br> <button class="follow" value="0" data-role="none">Follow</button>')
+                            activepage.find('.bannertext').append('<br> <button class="follow" value="0" data-role="none">Follow</button>')
                         }
                     }
                 }
-                $(".ui-page-active .banner").slideDown({complete:function(){
+                activepage.find(".banner").slideDown({complete:function(){
                     startnews = 0;
-                    startNews(startnews);
+                    startNews(startnews,activepage, stackid);
                 }});
             }
         },
@@ -150,12 +151,12 @@ function refresh(){
     if($(".ui-page-active .extracontainer").scrollTop()==0){
         $(".ui-page-active .feed").empty();
         startnews = 0;
-        startNews(startnews);
+        startNews(startnews, $.mobile.activePage);
     }else{
         $('.ui-page-active .extracontainer').stop().animate({ scrollTop : 0 }, 1000, function(){
             $(".ui-page-active .feed").empty();
             startnews = 0;
-            startNews(startnews);
+            startNews(startnews, $.mobile.activePage);
         });
     }
 }
@@ -196,7 +197,6 @@ function refreshPage(opt) {
         option = opt;
         var goto = init();
         if(goto>-2){
-            changepage = true;
             //localStorage.setItem('stack', goto);
             stackid = goto;
             $.mobile.changePage(
@@ -325,7 +325,7 @@ function checkEnd(postnum){
         $('.ui-page-active .scroll').html('<p>No more posts</p>');
     }
 }
-function startNews(startnum) {
+function startNews(startnum, activepage, stackid) {
     if(end){
         return;
     }
@@ -338,13 +338,13 @@ function startNews(startnum) {
         }else{
             $.each(data, function(index, element) {
                 if(element.posttype == 0){
-                    $('.ui-page-active .feed').append(linkspost(element));
+                    activepage.find('.feed').append(linkspost(element));
                 }else if(element.posttype == 1){
-                    $('.ui-page-active .feed').append(textspost(element));
+                    activepage.find('.feed').append(textspost(element));
                 }else if(element.posttype == 2){
-                    $('.ui-page-active .feed').append(imagepost(element));
+                    activepage.find('.feed').append(imagepost(element));
                 }else if(element.posttype == 3){
-                    $('.ui-page-active .feed').append(videopost(element));
+                    activepage.find('.feed').append(videopost(element));
                 }
                 postnum++;
             });
