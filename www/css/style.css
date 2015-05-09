@@ -45,7 +45,7 @@ a:active{
 #container{
     height: 100%;
     width: 100%;
-    position: fixed;
+    position: absolute;
 }
 .extracontainer {
     max-width: 100%;
