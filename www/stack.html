@@ -99,17 +99,17 @@
                             is_user = activepage.data("is_user");
                             stackname = activepage.data("stackname");
                         }
-                        if(explore){
-                            if(dontdelete){
-                                dontdelete = false;
-                                ui.prevPage.remove();
-                            }
-                        }
                     }
                 }
             }
         });
         $(document).on('pageshow',function(event,ui){
+            if(explore){
+                if(dontdelete){
+                    dontdelete = false;
+                    ui.prevPage.remove();
+                }
+            }
             if(!postbox){
                 if(isStackOption()){
                     if(postdata!=null){
@@ -286,9 +286,9 @@
     </div>
     <div class="center post">
         <div class="row postrow posting">
-            <a class="col-xs-4" onclick="postOpen(1)" class="postlink">Link</a>
-            <a class="col-xs-4" onclick="postOpen(2)" class="postlink">Text</a>
-            <a class="col-xs-4 active" onclick="postOpen(3)" class="postlink">Image</a>
+            <a class="col-xs-4 postlink" onclick="linkpost()" id="postlink">Link</a>
+            <a class="col-xs-4 postlink" onclick="textpost()" id="posttext">Text</a>
+            <a class="col-xs-4 postlink" onclick="imagepostShow()" id="postimage">Image</a>
         </div>
         <form class="postform toppost" id="toppost">
             <input type="hidden" id="posttype" name="type" value="0">

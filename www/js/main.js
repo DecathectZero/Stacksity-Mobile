@@ -151,12 +151,12 @@ function refresh(){
     if($(".ui-page-active .extracontainer").scrollTop()==0){
         $(".ui-page-active .feed").empty();
         startnews = 0;
-        startNews(startnews, $.mobile.activePage);
+        startNews(startnews, $.mobile.activePage, stackid);
     }else{
         $('.ui-page-active .extracontainer').stop().animate({ scrollTop : 0 }, 1000, function(){
             $(".ui-page-active .feed").empty();
             startnews = 0;
-            startNews(startnews, $.mobile.activePage);
+            startNews(startnews, $.mobile.activePage, stackid);
         });
     }
 }
