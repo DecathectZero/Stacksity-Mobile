@@ -31,7 +31,7 @@
             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
-        $(document).bind("mobileinit", function () {
+        $(document).one("mobileinit", function () {
             // Setting #container div as a jqm pageContainer
             $.mobile.pageContainer = $('#container');
             // Setting default page transition to slide
@@ -134,8 +134,9 @@
         });
     </script>
 <body>
-<div class="footer" data-position="fixed">
-    <div class="center botmenu">
+<div id="container">
+    <div class="footer" data-position="fixed">
+        <div class="center botmenu">
             <div class="quarter" id="topstack" onclick="refreshPage(1)">
                 <div class="glyphicon glyphicon glyphicon-home"></div>
             </div>
@@ -151,41 +152,40 @@
             <div class="quarter" id="userstack" onclick="refreshPage(5)">
                 <div class="glyphicon glyphicon glyphicon-user"></div>
             </div>
+        </div>
     </div>
-</div>
-<div class="modal fade" id="delpost" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body">
-                <p>Are you sure you want to delete this post?</p>
-            </div>
-            <div class="modal-footer">
-                <a data-role="none" id="deletelink" onclick="del()" class="btn btn-primary">Delete</a>
-                <button data-role="none" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+    <div class="modal fade" id="delpost" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Are you sure you want to delete this post?</p>
+                </div>
+                <div class="modal-footer">
+                    <a data-role="none" id="deletelink" onclick="del()" class="btn btn-primary">Delete</a>
+                    <button data-role="none" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="modal fade" id="commentdelete" style="display: none;">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body">
-                <p>Are you sure you want to delete this comment?</p>
-            </div>
-            <div class="modal-footer">
-                <a id="deletecomment" class="btn btn-primary">Delete</a>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+    <div class="modal fade" id="commentdelete" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Are you sure you want to delete this comment?</p>
+                </div>
+                <div class="modal-footer">
+                    <a id="deletecomment" class="btn btn-primary">Delete</a>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div id="container">
     <div data-role="page" data-dom-cache="true" id="toppage">
         <div data-role="header" data-id="persistent" data-position="fixed" class="head" data-fullscreen="true" data-tap-toggle="false">
             <div class="row posting center">
-                <a class="col-xs-4" onclick="postOpen(1)">Link</a>
-                <a class="col-xs-4" onclick="postOpen(2)">Text</a>
-                <a class="col-xs-4 active" onclick="postOpen(3)">Image</a>
+                <a class="col-xs-4" onclick="postOpen(1)" class="postlink">Link</a>
+                <a class="col-xs-4" onclick="postOpen(2)" class="postlink">Text</a>
+                <a class="col-xs-4 active" onclick="postOpen(3)" class="postlink">Image</a>
             </div>
         </div>
         <div class="extracontainer">
@@ -209,9 +209,9 @@
     <div data-role="page" data-dom-cache="true" id="allpage">
         <div data-role="header" data-id="persistent" data-position="fixed" class="head" data-fullscreen="true" data-tap-toggle="false">
             <div class="row posting center">
-                <a class="col-xs-4" onclick="postOpen(1)">Link</a>
-                <a class="col-xs-4" onclick="postOpen(2)">Text</a>
-                <a class="col-xs-4 active" onclick="postOpen(3)">Image</a>
+                <a class="col-xs-4" onclick="postOpen(1)" class="postlink">Link</a>
+                <a class="col-xs-4" onclick="postOpen(2)" class="postlink">Text</a>
+                <a class="col-xs-4 active" onclick="postOpen(3)" class="postlink">Image</a>
             </div>
         </div>
         <div class="extracontainer">
@@ -238,9 +238,9 @@
     <div data-role="page" data-dom-cache="true" id="userpage">
         <div data-role="header" data-id="persistent" data-position="fixed" class="head" data-fullscreen="true" data-tap-toggle="false">
             <div class="row posting center">
-                <a class="col-xs-4" onclick="postOpen(1)">Link</a>
-                <a class="col-xs-4" onclick="postOpen(2)">Text</a>
-                <a class="col-xs-4 active" onclick="postOpen(3)">Image</a>
+                <a class="col-xs-4" onclick="postOpen(1)" class="postlink">Link</a>
+                <a class="col-xs-4" onclick="postOpen(2)" class="postlink">Text</a>
+                <a class="col-xs-4 active" onclick="postOpen(3)" class="postlink">Image</a>
             </div>
         </div>
         <div class="extracontainer">
@@ -267,9 +267,9 @@
     <div data-role="page" data-dom-cache="false" id="explorepage">
         <div data-role="header" data-id="persistent" data-position="fixed" class="head" data-fullscreen="true" data-tap-toggle="false">
             <div class="row posting center">
-                <a class="col-xs-4" onclick="postOpen(1)">Link</a>
-                <a class="col-xs-4" onclick="postOpen(2)">Text</a>
-                <a class="col-xs-4 active" onclick="postOpen(3)">Image</a>
+                <a class="col-xs-4" onclick="postOpen(1)" class="postlink">Link</a>
+                <a class="col-xs-4" onclick="postOpen(2)" class="postlink">Text</a>
+                <a class="col-xs-4 active" onclick="postOpen(3)" class="postlink">Image</a>
             </div>
         </div>
         <div class="extracontainer">
@@ -306,9 +306,9 @@
         </div>
         <div class="center post">
             <div class="row postrow posting">
-                <a class="col-xs-4" onclick="linkpost()" id="postlink">Link</a>
-                <a class="col-xs-4" onclick="textpost()" id="posttext">Text</a>
-                <a class="col-xs-4 active" onclick="imagepostShow()" id="postimage">Image</a>
+                <a class="col-xs-4" onclick="postOpen(1)" class="postlink">Link</a>
+                <a class="col-xs-4" onclick="postOpen(2)" class="postlink">Text</a>
+                <a class="col-xs-4 active" onclick="postOpen(3)" class="postlink">Image</a>
             </div>
             <form class="postform toppost" id="toppost">
                 <input type="hidden" id="posttype" name="type" value="0">
