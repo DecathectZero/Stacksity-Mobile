@@ -192,7 +192,7 @@ function refreshPage(opt) {
         var trans = 'slide';
         if(option == 6){
             rev = true;
-            trans = 'flip';
+            trans = 'turn';
         }
         option = opt;
         var goto = init();
@@ -235,7 +235,7 @@ function linkToStack(goto){
                     window.location.href,
                     {
                         allowSamePageTransition : true,
-                        transition              : 'flip',
+                        transition              : 'turn',
                         showLoadMsg             : false,
                         reloadPage              : true
                     }
@@ -256,7 +256,7 @@ function linkToStack(goto){
                 $.mobile.changePage(
                     "#explorepage",
                     {
-                        transition              : 'flip',
+                        transition              : 'turn',
                         showLoadMsg             : false
                     }
                 );
