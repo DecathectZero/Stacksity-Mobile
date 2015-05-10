@@ -221,10 +221,10 @@ function refreshPage(opt) {
     }else{
         explore = false;
         var rev = false;
-        if(opt<option){
-            rev = true;
-        }
-        var trans = 'slide';
+        //if(opt<option){
+        //    rev = true;
+        //}
+        var trans = 'none';
         if(option == 6){
             rev = true;
             trans = 'turn';
