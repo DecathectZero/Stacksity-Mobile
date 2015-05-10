@@ -139,10 +139,48 @@ function getOption(){
     }
     return null;
 }
+function startNews(startnum, activepage, stackid) {
+    if(!loading){
+        if(end){
+            return;
+        }
+        loading = true;
+        var postnum = 0;
+        $.getJSON('http://stacksity.com/php/feed.php', {id : stackid , start : startnum , session_id: id }, function(data) {
+            if(null==data){
+                loading = false;
+                checkEnd(postnum);
+            }else{
+                //if(startnum>19){
+                //    var div = activepage.find(".extracontainer");
+                //    activepage.find('.item:lt('+data.length+')').remove();
+                //    div.scrollTop = div.scrollHeight;
+                //    alert(data.length);
+                //}
+                $.each(data, function(index, element) {
+                    if(element.posttype == 0){
+                        activepage.find('.feed').append(linkspost(element));
+                    }else if(element.posttype == 1){
+                        activepage.find('.feed').append(textspost(element));
+                    }else if(element.posttype == 2){
+                        activepage.find('.feed').append(imagepost(element));
+                    }else if(element.posttype == 3){
+                        activepage.find('.feed').append(videopost(element));
+                    }
+                    postnum++;
+                });
+                loading = false;
+                bottom = false;
+                startnews = startnews + 10;
+                checkEnd(postnum);
+            }
+        });
+    }
+}
 function refresh(){
     bottom = false;
     end = false;
-    loading = true;
+    loading = false;
     $('.ui-page-active .scroll').html('<p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>');
     if($(".ui-page-active .extracontainer").scrollTop()==0){
         $(".ui-page-active .feed").empty();
@@ -173,6 +211,7 @@ function searchPageRefresh(){
     }
 }
 function refreshPage(opt) {
+    alert("click");
     if(option == opt){
         if(isStackOption()){
             refresh();
@@ -319,44 +358,6 @@ function checkEnd(postnum){
     if(postnum == 0){
         end = true;
         $('.ui-page-active .scroll').html('<p>No more posts</p>');
-    }
-}
-function startNews(startnum, activepage, stackid) {
-    if(!loading){
-        if(end){
-            return;
-        }
-        loading = true;
-        var postnum = 0;
-        $.getJSON('http://stacksity.com/php/feed.php', {id : stackid , start : startnum , session_id: id }, function(data) {
-            if(null==data){
-                loading = false;
-                checkEnd(postnum);
-            }else{
-                //if(startnum>19){
-                //    var div = activepage.find(".extracontainer");
-                //    activepage.find('.item:lt('+data.length+')').remove();
-                //    div.scrollTop = div.scrollHeight;
-                //    alert(data.length);
-                //}
-                $.each(data, function(index, element) {
-                    if(element.posttype == 0){
-                        activepage.find('.feed').append(linkspost(element));
-                    }else if(element.posttype == 1){
-                        activepage.find('.feed').append(textspost(element));
-                    }else if(element.posttype == 2){
-                        activepage.find('.feed').append(imagepost(element));
-                    }else if(element.posttype == 3){
-                        activepage.find('.feed').append(videopost(element));
-                    }
-                    postnum++;
-                });
-                loading = false;
-                bottom = false;
-                startnews = startnews + 10;
-                checkEnd(postnum);
-            }
-        });
     }
 }
 $(document).on("click", "#private", function(e){

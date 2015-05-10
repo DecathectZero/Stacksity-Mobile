@@ -72,7 +72,7 @@ function videopost(element){
     var vote = voting(element.vote, count);
 
     return '<div class="item vpost '+priv(element.private)+'" data-post="'+element.post_id+'">' +
-    '<div class="textcon">><div class="margins">' +
+    '<div class="textcon"><div class="margins">' +
     getlink(element.post_id, element.link)+'<h4>' + element.title + '</h4></a>' +
     '<p class="postinfo">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id)+' | '+ element.created +'</p></div>' +
         //'<a href="/'+element.link+'" target="_blank">' +

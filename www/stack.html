@@ -105,7 +105,7 @@
                             activepage.find(".extracontainer").bind("scrollstop", function() {
                                 if(!postbox){
                                     if(activepage.find(".extracontainer").scrollTop() + $(window).height() > activepage.find(".con").height() - 200) {
-//                                        alert("bottom")
+//                                        alert("bottom");
                                         if(!end&&!bottom&&!loading){
                                             bottom = true;
                                             activepage.find('.scroll').html('<p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>');
