@@ -978,6 +978,15 @@ h1{
     height: 30px;
 }
 .posthead a{
-    font-size: 24px !important;
+    font-size: 20px !important;
     line-height: 28px !important;
+}
+.posthead a:hover{
+    text-decoration: none;
+}
+.posthead a:active{
+    color: #0088bb;
+}
+.ui-bar-a {
+    border: none;
 }

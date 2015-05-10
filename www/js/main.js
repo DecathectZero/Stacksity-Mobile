@@ -19,6 +19,7 @@ var postid = 0;
 
 function postOpen(type){
     if(!postbox){
+        changepage = true;
         postbox = true;
         postype = type;
         $.mobile.changePage(
@@ -210,6 +211,7 @@ function searchPageRefresh(){
         });
     }
 }
+var changepage = false;
 function refreshPage(opt) {
     //alert("click");
     if(option == opt){
@@ -231,6 +233,7 @@ function refreshPage(opt) {
         }
         option = opt;
         var goto = init();
+        changepage = true;
         if(goto>-2){
             //localStorage.setItem('stack', goto);
             stackid = goto;
@@ -490,10 +493,11 @@ $(document).on('tap','.postlink',function(e){
 
 /*post stuff*/
 var preopt;
-$(document).on('click','.toPost',function(e){
+$(document).on('click','.toPost',function(){
     postid = $(this).data("postlink");
     preopt = option;
     option = 7;
+    changepage = true;
     $.mobile.changePage(
         "#post",
         {
@@ -503,9 +507,6 @@ $(document).on('click','.toPost',function(e){
 });
 function getPost(postid)
 {
-    $('#postcon').empty();
-    $('#commentfeed').empty();
-    $('#postcon').hide();
     $.getJSON('http://stacksity.com/php/postname.php', {id : postid, session_id:id}, function(element){
         if(null==element){
             alert("post not found");
