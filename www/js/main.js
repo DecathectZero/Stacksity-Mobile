@@ -211,7 +211,7 @@ function searchPageRefresh(){
     }
 }
 function refreshPage(opt) {
-    alert("click");
+    //alert("click");
     if(option == opt){
         if(isStackOption()){
             refresh();
@@ -484,8 +484,8 @@ function stackTrace() {
 }
 
 $(document).on('tap','.postlink',function(e){
-    $(this).trigger('click');
     e.preventDefault();
+    $(this).trigger('click');
 })
 
 /*post stuff*/
