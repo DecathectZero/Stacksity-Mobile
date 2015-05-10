@@ -1,16 +1,16 @@
 function getlink(el, link){
-    if(el==0||post){
+    if(el==0||(option == 7)){
         return '<a href = "'+link+'" style="text-decoration:none" onclick = "window.open(\''+link+'\' , \'_blank\', \'location=yes,enableViewportScale=yes\'); return false;">';
     }
-    return '<a href="post.html">';
+    return '<a data-postlink="'+el+'" class="toPost">';
 }
 function comments(element){
     var del = '';
     if(element.delete){
         del = '<a class="delete commentlink" data-delete="'+element.post_id+'">delete<span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>';
     }
-    if(!post){
-        del = '<a class="commentlink" href="/p/'+element.post_id+'" target="_blank">'+element.comments+' comments</a>'+del+'<span class="pid">Post#'+element.post_id+'</span>';
+    if(option!=7){
+        del = '<a class="toPost" data-postlink="'+element.post_id+'">'+element.comments+' comments</a>'+del+'<span class="pid">Post#'+element.post_id+'</span>';
     }else{
         del = del+'<span class="pid">Post#'+element.post_id+'</span>';
     }
@@ -53,14 +53,14 @@ function imagepost(element){
     var count = element.upstacks-element.downstacks;
     var vote = voting(element.vote, count);
 
-    return '<div class="item ipost '+priv(element.private)+'" id="'+element.post_id+'">' +
-    '<div class="textcon"><div class="linkwrapper">' +
+    return '<div class="item ipost '+priv(element.private)+'" data-post="'+element.post_id+'">' +
+    '<div class="textcon"><div class="linkwrapper"><div class="margins"> ' +
     getlink(element.post_id, element.link)+'<h4>' + element.title + '</h4></a>' +
-    '<p class="postinfo">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id)+' | '+ element.created +'</p>' +
+    '<p class="postinfo">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id)+' | '+ element.created +'</p></div>' +
     getlink(0, element.link) +
     '<div class="imagewrap">'+element.embed+'</div>' +
     '</a>' +
-    '<div class="textfeed"><p class="content">'+element.text+'</p></div></div><div class="vote login">'+
+    '<div class="textfeed margins"><p class="content">'+element.text+'</p></div></div><div class="vote login">'+
     vote +
     '</div>'+comments(element)+
         /*'<p class="link">'+link.substring(0,100)+'</p>'+<a href="'+element.link+'">See More</a>*/
@@ -71,13 +71,13 @@ function videopost(element){
     var count = element.upstacks-element.downstacks;
     var vote = voting(element.vote, count);
 
-    return '<div class="item vpost '+priv(element.private)+'" id="'+element.post_id+'">' +
-    '<div class="textcon">' +
+    return '<div class="item vpost '+priv(element.private)+'" data-post="'+element.post_id+'">' +
+    '<div class="textcon">><div class="margins">' +
     getlink(element.post_id, element.link)+'<h4>' + element.title + '</h4></a>' +
-    '<p class="postinfo">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id)+' | '+ element.created +'</p>' +
+    '<p class="postinfo">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id)+' | '+ element.created +'</p></div>' +
         //'<a href="/'+element.link+'" target="_blank">' +
     '<div class="linkwrapper"><div class="videowrapper">'+element.embed+'</div>'+
-    '<div class="textfeed"><p class="content">'+element.text+'</p></div></div><div class="vote login">'+
+    '<div class="textfeed margins"><p class="content">'+element.text+'</p></div></div><div class="vote login">'+
     vote +
     '</div>'+comments(element)+
     '</div>' +
@@ -86,8 +86,8 @@ function videopost(element){
 function linkspost(element){
     var count = element.upstacks-element.downstacks
     var vote = voting(element.vote, count);
-    return '<div class="item lpost '+priv(element.private)+'" id="'+element.post_id+'">' +
-    '<div class="textcon">' +
+    return '<div class="item lpost '+priv(element.private)+'" data-post="'+element.post_id+'">' +
+    '<div class="textcon margins">' +
     getlink(element.post_id, element.link)+'<h4>' + element.title + '</h4></a>' +
     '<p class="postinfo">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id)+' | '+ element.created +'</p>' +
     '<div class="linkwrapper">' + getlink(0, element.link) +
@@ -103,16 +103,16 @@ function textspost(element){
     var count = element.upstacks-element.downstacks;
     var vote = voting(element.vote, count);
     var link;
-    if(post){
+    if(option==7){
         link = '<h4>' + element.title + '</h4>';
     }else{
         link =   getlink(element.post_id, element.link)+'<h4>' + element.title + '</h4></a>';
     }
-    return '<div class="item tpost '+priv(element.private)+'" id="'+element.post_id+'">' +
-    '<div class="textcon">' +
+    return '<div class="item tpost '+priv(element.private)+'" data-post="'+element.post_id+'">' +
+    '<div class="textcon margins">' +
     link +
     '<p class="postinfo">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id)+' | '+ element.created +'</p>' +
-    '<p class="content">'+$("<textarea/>").html(element.text).text()+'</p><div class="vote login">'+
+    '<p class="content">'+element.text+'</p><div class="vote login">'+
     vote +
     '</div>'+comments(element)+
     '</div>' +
@@ -133,7 +133,7 @@ function del(){
         data     : {delid : delete_id, session_id: id},
         success  : function(data) {
             if(data==0){
-                $('#'+delete_id).fadeOut();
+                $('*[data-post="'+delete_id+'"]').fadeOut();
             }else{
                 alert(data);
             }

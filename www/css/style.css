@@ -212,11 +212,14 @@ a:active{
 .textcon{
     word-wrap: break-word;
     float: left;
-    margin-left: 2.5%;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    width: 95%;
+    width:100%
+}
+.margins{
     margin-right: 2.5%;
+    margin-left: 2.5%;
+    width: 95%;
 }
 .postinfo{
     font-size: 16px !important;
@@ -257,7 +260,7 @@ a:active{
     padding: 0;
     height: 30px;
 }
-.posting a{
+.posting div, .posting a{
     background: #fff;
     text-align: center;
     padding: 5px 0;
@@ -502,8 +505,6 @@ a:active{
     color: #fff;
 }
 #postcon{
-    margin-top: 20px;
-    margin-bottom: 10px;
     padding: 0;
 }
 #comments{
@@ -568,7 +569,7 @@ a:active{
         box-shadow: 0 10px 0 0 #FFF;
     }
 }
-.commentlink{
+.commentlink, .toPost{
     font-weight: bold;
     margin-right: 10px;
     cursor: pointer;
@@ -691,7 +692,7 @@ a:active{
     padding-bottom: 5px;
     margin-top: -1px;
 }
-.commentfeed{
+#commentfeed{
     background-color: #fafbfe;
     padding-top: 1px;
     padding-bottom: 10px;
@@ -960,16 +961,24 @@ h1{
     display: inline-block;
     float: none;
 }
-.follow:active{
-    background-color: #fff;
-    color: #4b82ea;
-    border-bottom: 3px solid #3b72da;
-}
+/*.follow:active{*/
+    /*background-color: #fff;*/
+    /*color: #4b82ea;*/
+    /*border-bottom: 3px solid #3b72da;*/
+/*}*/
 .followed{
     background-color: #fff;
     color: #4b82ea;
 }
-.followed:active{
-    background-color: #5b92fa;
-    color: #fff;
+/*.followed:active{*/
+    /*background-color: #5b92fa;*/
+    /*color: #fff;*/
+/*}*/
+.posthead{
+    background-color: #fff;
+    height: 30px;
+}
+.posthead a{
+    font-size: 24px !important;
+    line-height: 28px !important;
 }

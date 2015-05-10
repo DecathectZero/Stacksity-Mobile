@@ -10,13 +10,12 @@ var userstack = localStorage.getItem('ustack');
 var username = localStorage.getItem('username');
 var option = 1;
 var explore = false;
-var exploring = false;
-var changepage = true;
 var postbox = false;
 var postype = 1;
 var is_user = 0;
 var dontdelete = false;
 var loading = false;
+var postid = 0;
 
 function postOpen(type){
     if(!postbox){
@@ -61,10 +60,6 @@ function bannerset(activepage, stackid){
                     activepage.find(".banner").addClass("allbanner");
                     activepage.find(".bannerdesc").html(element.stack_desc);
                 }else{
-                    if(element.is_user=="1"){
-                        activepage.find(".banner").addClass("userbanner");
-                        is_user = 1;
-                    }
                     var space = '';
                     if(element.stack_desc!=""&&element.stack_desc!=null){
                         space = '<br>';
@@ -76,6 +71,10 @@ function bannerset(activepage, stackid){
                         }else{
                             activepage.find('.bannertext').append('<br> <button class="follow" value="0" data-role="none">Follow</button>')
                         }
+                    }
+                    if(element.is_user=="1"){
+                        activepage.find(".banner").addClass("userbanner");
+                        is_user = 1;
                     }
                 }
                 activepage.find(".banner").slideDown({complete:function(){
@@ -109,10 +108,7 @@ function initPostBox(){
     }
 }
 function isStackOption(){
-    if(option != 3 && option != 4){
-        return true;
-    }
-    return false;
+    return (option != 3 && option != 4 && option != 7);
 }
 function init(){
     var goto = 0;
@@ -326,35 +322,42 @@ function checkEnd(postnum){
     }
 }
 function startNews(startnum, activepage, stackid) {
-    if(end){
-        return;
-    }
-    loading = true;
-    var postnum = 0;
-    $.getJSON('http://stacksity.com/php/feed.php', {id : stackid , start : startnum , session_id: id }, function(data) {
-        if(null==data){
-            loading = false;
-            checkEnd(postnum);
-        }else{
-            $.each(data, function(index, element) {
-                if(element.posttype == 0){
-                    activepage.find('.feed').append(linkspost(element));
-                }else if(element.posttype == 1){
-                    activepage.find('.feed').append(textspost(element));
-                }else if(element.posttype == 2){
-                    activepage.find('.feed').append(imagepost(element));
-                }else if(element.posttype == 3){
-                    activepage.find('.feed').append(videopost(element));
-                }
-                postnum++;
-            });
-            loading = false;
-            bottom = false;
-            checkEnd(postnum);
+    if(!loading){
+        if(end){
+            return;
         }
-    });
-    startnews = startnews + 10;
-    return true;
+        loading = true;
+        var postnum = 0;
+        $.getJSON('http://stacksity.com/php/feed.php', {id : stackid , start : startnum , session_id: id }, function(data) {
+            if(null==data){
+                loading = false;
+                checkEnd(postnum);
+            }else{
+                //if(startnum>19){
+                //    var div = activepage.find(".extracontainer");
+                //    activepage.find('.item:lt('+data.length+')').remove();
+                //    div.scrollTop = div.scrollHeight;
+                //    alert(data.length);
+                //}
+                $.each(data, function(index, element) {
+                    if(element.posttype == 0){
+                        activepage.find('.feed').append(linkspost(element));
+                    }else if(element.posttype == 1){
+                        activepage.find('.feed').append(textspost(element));
+                    }else if(element.posttype == 2){
+                        activepage.find('.feed').append(imagepost(element));
+                    }else if(element.posttype == 3){
+                        activepage.find('.feed').append(videopost(element));
+                    }
+                    postnum++;
+                });
+                loading = false;
+                bottom = false;
+                startnews = startnews + 10;
+                checkEnd(postnum);
+            }
+        });
+    }
 }
 $(document).on("click", "#private", function(e){
     e.preventDefault();
@@ -477,4 +480,51 @@ function upload(file) {
 function stackTrace() {
     var err = new Error();
     return err.stack;
+}
+
+$(document).on('tap','.postlink',function(e){
+    $(this).trigger('click');
+    e.preventDefault();
+})
+
+/*post stuff*/
+var preopt;
+$(document).on('click','.toPost',function(e){
+    postid = $(this).data("postlink");
+    preopt = option;
+    option = 7;
+    $.mobile.changePage(
+        "#post",
+        {
+            showLoadMsg             : false
+        }
+    );
+});
+function getPost(postid)
+{
+    $('#postcon').empty();
+    $('#commentfeed').empty();
+    $('#postcon').hide();
+    $.getJSON('http://stacksity.com/php/postname.php', {id : postid, session_id:id}, function(element){
+        if(null==element){
+            alert("post not found");
+            $.mobile.back();
+        }else{
+            if(element.posttype == 0){
+                $('#postcon').append(linkspost(element));
+            }else if(element.posttype == 1){
+                $('#postcon').append(textspost(element));
+            }else if(element.posttype == 2){
+                $('#postcon').append(imagepost(element));
+            }else if(element.posttype == 3){
+                $('#postcon').append(videopost(element));
+            }
+            $("#postcon").slideDown();
+        }
+        if(element.comments>0){
+            //getComment(0, 0, $(".commentfeed"));
+        }else{
+            $('#commentfeed').append("<div class='nocomments'>No comments currently</div>");
+        }
+    });
 }

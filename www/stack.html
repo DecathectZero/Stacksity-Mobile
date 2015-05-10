@@ -16,6 +16,22 @@
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script src="js/jquery.js"></script>
     <script type="text/javascript">
+        $.event.special.tap = {
+            setup: function() {
+                var self = this,
+                        $self = $(self);
+
+                $self.on('touchstart', function(startEvent) {
+                    var target = startEvent.target;
+
+                    $self.one('touchend', function(endEvent) {
+                        if (target == endEvent.target) {
+                            $.event.simulate('tap', self, endEvent);
+                        }
+                    });
+                });
+            }
+        };
         document.addEventListener("deviceready", onDeviceReady, false);
         // device APIs are available
         //
@@ -81,11 +97,15 @@
                         activepage.find(".extracontainer").scrollTop(0);
                     }else{
                         if(activepage.data("stack_id")==null&&!postbox){
+                            if(explore){
+                                activepage.find('.scroll').html('<p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>');
+                            }
                             var activestack = stackid;
                             bannerset(activepage, activestack);
                             activepage.find(".extracontainer").bind("scrollstop", function() {
                                 if(!postbox){
                                     if(activepage.find(".extracontainer").scrollTop() + $(window).height() > activepage.find(".con").height() - 200) {
+//                                        alert("bottom")
                                         if(!end&&!bottom&&!loading){
                                             bottom = true;
                                             activepage.find('.scroll').html('<p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>');
@@ -100,6 +120,8 @@
                             stackname = activepage.data("stackname");
                         }
                     }
+                }else if(option == 7){
+                    getPost(postid);
                 }
             }
         });
@@ -192,7 +214,8 @@
         </div>
     </div>
 </div>
-<div data-role="page" data-dom-cache="true" id="allpage" data>
+
+<div data-role="page" data-dom-cache="true" id="allpage">
     <div data-role="header" data-id="persistent" data-position="fixed" class="head" data-fullscreen="true" data-tap-toggle="false">
         <div class="row posting center">
             <a class="col-xs-4" onclick="postOpen(1)" class="postlink">Link</a>
@@ -218,6 +241,7 @@
         </div>
     </div>
 </div>
+
 
 <div data-role="page" data-dom-cache="true" id="userpage">
     <div data-role="header" data-id="persistent" data-position="fixed" class="head" data-fullscreen="true" data-tap-toggle="false">
@@ -286,9 +310,9 @@
     </div>
     <div class="center post">
         <div class="row postrow posting">
-            <a class="col-xs-4 postlink" onclick="linkpost()" id="postlink">Link</a>
-            <a class="col-xs-4 postlink" onclick="textpost()" id="posttext">Text</a>
-            <a class="col-xs-4 postlink" onclick="imagepostShow()" id="postimage">Image</a>
+            <div class="col-xs-4 postlink" onclick="linkpost()" id="postlink">Link</div>
+            <div class="col-xs-4 postlink" onclick="textpost()" id="posttext">Text</div>
+            <div class="col-xs-4 postlink" onclick="imagepostShow()" id="postimage">Image</div>
         </div>
         <form class="postform toppost" id="toppost">
             <input type="hidden" id="posttype" name="type" value="0">
@@ -369,8 +393,28 @@
         <div class="botgap"></div>
     </div>
 </div>
-<div data-role="page" data-dom-cache="true" id="post">
-
+<div data-role="page" id="post">
+    <div data-role="header"  style="position: fixed; top: 0; width: 100%" class="head posthead">
+        <a data-role="none" data-rel="back" class="glyphicon glyphicon-chevron-left postlink" onclick="option=preopt"></a>
+    </div>
+    <div class="extracontainer">
+        <div class="topgap"></div>
+        <div id="postcon" class="center" >
+        </div>
+        <div id="comments" class="center">
+            <form id="commentform">
+                <div class="postcon">
+                    <textarea name="text" class="expanding" placeholder="Write something here..." rows="2"></textarea>
+                </div>
+                <div class="postsub">
+                    <button type="submit" class="postb" data-corners="false">comment</button>
+                </div>
+            </form>
+            <div id="commentfeed">
+            </div>
+        </div>
+        <div class="botgap"></div>
+    </div>
 </div>
 </div>
 <script>
@@ -406,30 +450,10 @@
         }
     });
     searchPageRefresh();
-    $.event.special.tap = {
-        setup: function() {
-            var self = this,
-                    $self = $(self);
-
-            $self.on('touchstart', function(startEvent) {
-                var target = startEvent.target;
-
-                $self.one('touchend', function(endEvent) {
-                    if (target == endEvent.target) {
-                        $.event.simulate('tap', self, endEvent);
-                    }
-                });
-            });
-        }
-    };
     $(".quarter").on('tap', function (e) {
         $(this).trigger('click');
         e.preventDefault();
     });
-    $(document).on('tap','.postlink',function(e){
-        $(this).trigger('click');
-        e.preventDefault();
-    })
 </script>
 </body>
 </html>
