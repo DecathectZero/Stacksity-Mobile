@@ -47,16 +47,6 @@
             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
-        $(document).one("mobileinit", function () {
-            // Setting #container div as a jqm pageContainer
-            $.mobile.pageContainer = $('#container');
-            // Setting default page transition to slide
-            $.mobile.defaultPageTransition = 'slide';
-//            $.mobile.getMaxScrollForTransition = function(){
-//                return parseInt($(window).height())+1;
-//            };
-//            alert($.mobile.getMaxScrollForTransition());
-        });
     </script>
     <script src="js/main.js"></script>
     <script src="js/bootstrap.js"></script>
@@ -66,6 +56,15 @@
     <script src="js/checklogin.js"></script>
     <script src="js/vote.js"></script>
     <script>
+        $(document).one("mobileinit", function () {
+
+            // Setting #container div as a jqm pageContainer
+            $.mobile.pageContainer = $('#container');
+
+            // Setting default page transition to slide
+            $.mobile.defaultPageTransition = 'slide';
+
+        });
         $(document).on('pagebeforeshow',function(event,ui){
             checklogin();
             if(postbox){
@@ -142,280 +141,280 @@
         });
     </script>
 <body>
-<div id="container">
-<div class="footer" style="position: fixed; bottom: 0; width: 100%">
-    <div class="center botmenu">
-        <div class="quarter" id="topstack" onclick="refreshPage(1)">
-            <div class="glyphicon glyphicon glyphicon-home"></div>
-        </div>
-        <div class="quarter" id="allstack" onclick="refreshPage(2)">
-            <div class="glyphicon glyphicon glyphicon-th-list"></div>
-        </div>
-        <div class="quarter">
-            <div class="glyphicon glyphicon glyphicon-bell"></div>
-        </div>
-        <div class="quarter" id="searchstack" onclick="refreshPage(4)">
-            <div class="glyphicon glyphicon glyphicon-search"></div>
-        </div>
-        <div class="quarter" id="userstack" onclick="refreshPage(5)">
-            <div class="glyphicon glyphicon glyphicon-user"></div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="delpost" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body">
-                <p>Are you sure you want to delete this post?</p>
+    <div class="footer" style="position: fixed; bottom: 0; width: 100%">
+        <div class="center botmenu">
+            <div class="quarter" id="topstack" onclick="refreshPage(1)">
+                <div class="glyphicon glyphicon glyphicon-home"></div>
             </div>
-            <div class="modal-footer">
-                <a data-role="none" id="deletelink" onclick="del()" class="btn btn-primary">Delete</a>
-                <button data-role="none" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <div class="quarter" id="allstack" onclick="refreshPage(2)">
+                <div class="glyphicon glyphicon glyphicon-th-list"></div>
+            </div>
+            <div class="quarter">
+                <div class="glyphicon glyphicon glyphicon-bell"></div>
+            </div>
+            <div class="quarter" id="searchstack" onclick="refreshPage(4)">
+                <div class="glyphicon glyphicon glyphicon-search"></div>
+            </div>
+            <div class="quarter" id="userstack" onclick="refreshPage(5)">
+                <div class="glyphicon glyphicon glyphicon-user"></div>
             </div>
         </div>
     </div>
-</div>
-<div class="modal fade" id="commentdelete" style="display: none;">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body">
-                <p>Are you sure you want to delete this comment?</p>
-            </div>
-            <div class="modal-footer">
-                <a id="deletecomment" class="btn btn-primary">Delete</a>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div data-role="page" data-dom-cache="true" id="toppage">
-    <div data-role="header" data-id="persistent" style="position: fixed; top: 0; width: 100%" class="head" data-tap-toggle="false">
-        <div class="row posting center">
-            <a class="col-xs-4" onclick="postOpen(1)" class="postlink">Link</a>
-            <a class="col-xs-4" onclick="postOpen(2)" class="postlink">Text</a>
-            <a class="col-xs-4 active" onclick="postOpen(3)" class="postlink">Image</a>
-        </div>
-    </div>
-    <div class="extracontainer">
-        <div class="con">
-            <div class="topgap"></div>
-            <div class="banner center" style="display: none">
-                <div class="center banner-inner">
-                    <div class="bannertext">
-                    </div>
+    <div class="modal fade" id="delpost" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Are you sure you want to delete this post?</p>
+                </div>
+                <div class="modal-footer">
+                    <a data-role="none" id="deletelink" onclick="del()" class="btn btn-primary">Delete</a>
+                    <button data-role="none" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
-            <div class="center feed">
-            </div>
-            <div class="scroll center">
-                <p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>
-            </div>
-            <div class="botgap"></div>
         </div>
     </div>
-</div>
+    <div class="modal fade" id="commentdelete" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Are you sure you want to delete this comment?</p>
+                </div>
+                <div class="modal-footer">
+                    <a id="deletecomment" class="btn btn-primary">Delete</a>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container">
+        <div data-role="page" data-dom-cache="true" id="toppage">
+            <div data-role="header" data-id="persistent" style="position: fixed; top: 0; width: 100%" class="head" data-tap-toggle="false">
+                <div class="row posting center">
+                    <a class="col-xs-4" onclick="postOpen(1)" class="postlink">Link</a>
+                    <a class="col-xs-4" onclick="postOpen(2)" class="postlink">Text</a>
+                    <a class="col-xs-4 active" onclick="postOpen(3)" class="postlink">Image</a>
+                </div>
+            </div>
+            <div class="extracontainer">
+                <div class="con">
+                    <div class="topgap"></div>
+                    <div class="banner center" style="display: none">
+                        <div class="center banner-inner">
+                            <div class="bannertext">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="center feed">
+                    </div>
+                    <div class="scroll center">
+                        <p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>
+                    </div>
+                    <div class="botgap"></div>
+                </div>
+            </div>
+        </div>
 
-<div data-role="page" data-dom-cache="true" id="allpage">
-    <div data-role="header" data-id="persistent" style="position: fixed; top: 0; width: 100%" class="head" data-tap-toggle="false">
-        <div class="row posting center">
-            <a class="col-xs-4" onclick="postOpen(1)" class="postlink">Link</a>
-            <a class="col-xs-4" onclick="postOpen(2)" class="postlink">Text</a>
-            <a class="col-xs-4 active" onclick="postOpen(3)" class="postlink">Image</a>
-        </div>
-    </div>
-    <div class="extracontainer">
-        <div class="con">
-            <div class="topgap"></div>
-            <div class="banner center" style="display: none">
-                <div class="center banner-inner">
-                    <div class="bannertext">
-                    </div>
+        <div data-role="page" data-dom-cache="true" id="allpage">
+            <div data-role="header" data-id="persistent" style="position: fixed; top: 0; width: 100%" class="head" data-tap-toggle="false">
+                <div class="row posting center">
+                    <a class="col-xs-4" onclick="postOpen(1)" class="postlink">Link</a>
+                    <a class="col-xs-4" onclick="postOpen(2)" class="postlink">Text</a>
+                    <a class="col-xs-4 active" onclick="postOpen(3)" class="postlink">Image</a>
                 </div>
             </div>
-            <div class="center feed">
+            <div class="extracontainer">
+                <div class="con">
+                    <div class="topgap"></div>
+                    <div class="banner center" style="display: none">
+                        <div class="center banner-inner">
+                            <div class="bannertext">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="center feed">
+                    </div>
+                    <div class="scroll center">
+                        <p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>
+                    </div>
+                    <div class="botgap"></div>
+                </div>
             </div>
-            <div class="scroll center">
-                <p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>
-            </div>
-            <div class="botgap"></div>
         </div>
-    </div>
-</div>
 
 
-<div data-role="page" data-dom-cache="true" id="userpage">
-    <div data-role="header" data-id="persistent" style="position: fixed; top: 0; width: 100%" class="head" data-tap-toggle="false">
-        <div class="row posting center">
-            <a class="col-xs-4" onclick="postOpen(1)" class="postlink">Link</a>
-            <a class="col-xs-4" onclick="postOpen(2)" class="postlink">Text</a>
-            <a class="col-xs-4 active" onclick="postOpen(3)" class="postlink">Image</a>
-        </div>
-    </div>
-    <div class="extracontainer">
-        <div class="con">
-            <div class="topgap"></div>
-            <div class="banner center" style="display: none">
-                <div class="center banner-inner">
-                    <div class="bannertext">
-                    </div>
+        <div data-role="page" data-dom-cache="true" id="userpage">
+            <div data-role="header" data-id="persistent" style="position: fixed; top: 0; width: 100%" class="head" data-tap-toggle="false">
+                <div class="row posting center">
+                    <a class="col-xs-4" onclick="postOpen(1)" class="postlink">Link</a>
+                    <a class="col-xs-4" onclick="postOpen(2)" class="postlink">Text</a>
+                    <a class="col-xs-4 active" onclick="postOpen(3)" class="postlink">Image</a>
                 </div>
             </div>
-            <div class="center feed">
+            <div class="extracontainer">
+                <div class="con">
+                    <div class="topgap"></div>
+                    <div class="banner center" style="display: none">
+                        <div class="center banner-inner">
+                            <div class="bannertext">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="center feed">
+                    </div>
+                    <div class="scroll center">
+                        <p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>
+                    </div>
+                    <div class="botgap"></div>
+                </div>
             </div>
-            <div class="scroll center">
-                <p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>
-            </div>
-            <div class="botgap"></div>
         </div>
-    </div>
-</div>
 
-<div data-role="page" data-dom-cache="false" id="explorepage">
-    <div data-role="header" data-id="persistent" style="position: fixed; top: 0; width: 100%" class="head" data-tap-toggle="false">
-        <div class="row posting center">
-            <a class="col-xs-4" onclick="postOpen(1)" class="postlink">Link</a>
-            <a class="col-xs-4" onclick="postOpen(2)" class="postlink">Text</a>
-            <a class="col-xs-4 active" onclick="postOpen(3)" class="postlink">Image</a>
-        </div>
-    </div>
-    <div class="extracontainer">
-        <div class="con">
-            <div class="topgap"></div>
-            <div class="banner center" style="display: none">
-                <div class="center banner-inner">
-                    <div class="bannertext">
-                    </div>
+        <div data-role="page" data-dom-cache="false" id="explorepage">
+            <div data-role="header" data-id="persistent" style="position: fixed; top: 0; width: 100%" class="head" data-tap-toggle="false">
+                <div class="row posting center">
+                    <a class="col-xs-4" onclick="postOpen(1)" class="postlink">Link</a>
+                    <a class="col-xs-4" onclick="postOpen(2)" class="postlink">Text</a>
+                    <a class="col-xs-4 active" onclick="postOpen(3)" class="postlink">Image</a>
                 </div>
             </div>
-            <div class="center feed">
+            <div class="extracontainer">
+                <div class="con">
+                    <div class="topgap"></div>
+                    <div class="banner center" style="display: none">
+                        <div class="center banner-inner">
+                            <div class="bannertext">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="center feed">
+                    </div>
+                    <div class="scroll center">
+                        <p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>
+                    </div>
+                    <div class="botgap"></div>
+                </div>
             </div>
-            <div class="scroll center">
-                <p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>
-            </div>
-            <div class="botgap"></div>
         </div>
-    </div>
-</div>
 
-<div data-role="page" id="postpage">
-    <div data-role="header">
-        <div class="center" style="padding: 0">
-            <label class="postlabel">
-                <div class="postbar" style="padding: 0">
-                    <a class="cancelpost" data-rel="back" data-role="button" data-corners="false" onclick="postbox = false">cancel</a>
-                    <p>posting to <span class="bold" id="posting"></span></p>
+        <div data-role="page" id="postpage">
+            <div data-role="header">
+                <div class="center" style="padding: 0">
+                    <label class="postlabel">
+                        <div class="postbar" style="padding: 0">
+                            <a class="cancelpost" data-rel="back" data-role="button" data-corners="false" onclick="postbox = false">cancel</a>
+                            <p>posting to <span class="bold" id="posting"></span></p>
+                        </div>
+                    </label>
                 </div>
-            </label>
-        </div>
-    </div>
-    <div class="center post">
-        <div class="row postrow posting">
-            <div class="col-xs-4 postlink" onclick="linkpost()" id="postlink">Link</div>
-            <div class="col-xs-4 postlink" onclick="textpost()" id="posttext">Text</div>
-            <div class="col-xs-4 postlink" onclick="imagepostShow()" id="postimage">Image</div>
-        </div>
-        <form class="postform toppost" id="toppost">
-            <input type="hidden" id="posttype" name="type" value="0">
-            <div class="postcon">
-                <p>title <span id="title-count">100</span></p>
-                <input name="title" type="text" id="title-input" class="texts" placeholder="post title" maxlength="100" required="" data-role="none">
-                <div id="linkpost" style="display: none;">
-                    <p>link <span id="link-alert"></span></p>
-                    <input name="link" type="url" id="link" class="texts" placeholder="submit a link here" maxlength="500" required="" data-role="none">
+            </div>
+            <div class="center post">
+                <div class="row postrow posting">
+                    <div class="col-xs-4 postlink" onclick="linkpost()" id="postlink">Link</div>
+                    <div class="col-xs-4 postlink" onclick="textpost()" id="posttext">Text</div>
+                    <div class="col-xs-4 postlink" onclick="imagepostShow()" id="postimage">Image</div>
                 </div>
-                <div id="textpost" style="display: none;">
-                    <p>text</p>
-                    <textarea name="text" class="expanding" id="text" placeholder="Write something here..." rows="2" maxlength="6500" data-role="none"></textarea>
-                </div>
-                <div id="imagepost">
-                    <p>image</p>
-                    <div class="input-group">
-                        <span class="input-group-btn">
-                            <span class="btn btn-primary btn-file" id="uploadimage">
-                             <span class="glyphicon glyphicon-camera" ></span> Photo
-                            <input type="file" accept="image/x-png, image/gif, image/jpeg" onchange="upload(this.files[0])" data-role="none">
-                            </span>
-                        </span>
-                        <input type="text" id="imageid" class="form-control" readonly="" data-role="none">
+                <form class="postform toppost" id="toppost">
+                    <input type="hidden" id="posttype" name="type" value="0">
+                    <div class="postcon">
+                        <p>title <span id="title-count">100</span></p>
+                        <input name="title" type="text" id="title-input" class="texts" placeholder="post title" maxlength="100" required="" data-role="none">
+                        <div id="linkpost" style="display: none;">
+                            <p>link <span id="link-alert"></span></p>
+                            <input name="link" type="url" id="link" class="texts" placeholder="submit a link here" maxlength="500" required="" data-role="none">
+                        </div>
+                        <div id="textpost" style="display: none;">
+                            <p>text</p>
+                            <textarea name="text" class="expanding" id="text" placeholder="Write something here..." rows="2" maxlength="6500" data-role="none"></textarea>
+                        </div>
+                        <div id="imagepost">
+                            <p>image</p>
+                            <div class="input-group">
+                                <span class="input-group-btn">
+                                    <span class="btn btn-primary btn-file" id="uploadimage">
+                                     <span class="glyphicon glyphicon-camera" ></span> Photo
+                                    <input type="file" accept="image/x-png, image/gif, image/jpeg" onchange="upload(this.files[0])" data-role="none">
+                                    </span>
+                                </span>
+                                <input type="text" id="imageid" class="form-control" readonly="" data-role="none">
+                            </div>
+                            <div class="background-image"><img src="" id="imagePostPreview" class="img-responsive"></div>
+                        </div>
                     </div>
-                    <div class="background-image"><img src="" id="imagePostPreview" class="img-responsive"></div>
-                </div>
+                    <div class="postsub">
+                        <input type="hidden" name="setprivate" value="0" id="privatefield">
+                        <button type="submit" class="postb" data-role="none">Post</button>
+                        <button type="button" id="private" class="postb private" data-role="none">Private</button>
+                    </div>
+                </form>
             </div>
-            <div class="postsub">
-                <input type="hidden" name="setprivate" value="0" id="privatefield">
-                <button type="submit" class="postb" data-role="none">Post</button>
-                <button type="button" id="private" class="postb private" data-role="none">Private</button>
-            </div>
-        </form>
-    </div>
-</div>
+        </div>
 
-<div data-role="page" data-dom-cache="true" id="searchpage">
-    <div class="extracontainer">
-        <div class="center stacks">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div id="stacksearch" class="stacklist">
-                        <h1>Search for Stacks</h1>
-                        <ul id="autocomplete" data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Search for stacks.." data-filter-theme="d"></ul>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="stacklist">
-                        <h5>Followed Stacks</h5>
-                        <div class="stackls stackl" id="fs"></div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="stacklist">
-                        <h5>Followed Users</h5>
-                        <div class="stackls stackl" id="fu"></div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="stacklist">
-                        <h5>Explore Stacks</h5>
-                        <div class="stackl" id="es">
-                            <a onclick="linkToStack(17)">$cute</a>
-                            <a onclick="linkToStack(14)">$lol</a>
-                            <a onclick="linkToStack(20)">$fitness</a>
-                            <a onclick="linkToStack(15)">$food</a>
-                            <a onclick="linkToStack(21)">$gaming</a>
-                            <a onclick="linkToStack(74)">$interesting</a>
-                            <a onclick="linkToStack(42)">$music</a>
-                            <a onclick="linkToStack(6)">$news</a>
-                            <a onclick="linkToStack(16)">$science</a>
+        <div data-role="page" data-dom-cache="true" id="searchpage">
+            <div class="extracontainer">
+                <div class="center stacks">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div id="stacksearch" class="stacklist">
+                                <h1>Search for Stacks</h1>
+                                <ul id="autocomplete" data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Search for stacks.." data-filter-theme="d"></ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="stacklist">
+                                <h5>Followed Stacks</h5>
+                                <div class="stackls stackl" id="fs"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="stacklist">
+                                <h5>Followed Users</h5>
+                                <div class="stackls stackl" id="fu"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="stacklist">
+                                <h5>Explore Stacks</h5>
+                                <div class="stackl" id="es">
+                                    <a onclick="linkToStack(17)">$cute</a>
+                                    <a onclick="linkToStack(14)">$lol</a>
+                                    <a onclick="linkToStack(20)">$fitness</a>
+                                    <a onclick="linkToStack(15)">$food</a>
+                                    <a onclick="linkToStack(21)">$gaming</a>
+                                    <a onclick="linkToStack(74)">$interesting</a>
+                                    <a onclick="linkToStack(42)">$music</a>
+                                    <a onclick="linkToStack(6)">$news</a>
+                                    <a onclick="linkToStack(16)">$science</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="botgap"></div>
             </div>
         </div>
-        <div class="botgap"></div>
-    </div>
-</div>
-<div data-role="page" id="post">
-    <div data-role="header"  style="position: fixed; top: 0; width: 100%" class="head posthead">
-        <a data-role="none" data-rel="back" class="glyphicon glyphicon-chevron-left postlink" onclick="option=preopt"></a>
-    </div>
-    <div class="extracontainer">
-        <div class="topgap"></div>
-        <div id="postcon" class="center" >
-        </div>
-        <div id="comments" class="center">
-            <form id="commentform">
-                <div class="postcon">
-                    <textarea name="text" class="expanding" placeholder="Write something here..." rows="2"></textarea>
+        <div data-role="page" id="post">
+            <div data-role="header"  style="position: fixed; top: 0; width: 100%" class="head posthead">
+                <a data-role="none" data-rel="back" class="glyphicon glyphicon-chevron-left postlink" onclick="option=preopt"></a>
+            </div>
+            <div class="extracontainer">
+                <div class="topgap"></div>
+                <div id="postcon" class="center" >
                 </div>
-                <div class="postsub">
-                    <button type="submit" class="postb" data-corners="false">comment</button>
+                <div id="comments" class="center">
+                    <form id="commentform">
+                        <div class="postcon">
+                            <textarea name="text" class="expanding" placeholder="Write something here..." rows="2"></textarea>
+                        </div>
+                        <div class="postsub">
+                            <button type="submit" class="postb" data-corners="false">comment</button>
+                        </div>
+                    </form>
+                    <div id="commentfeed">
+                    </div>
                 </div>
-            </form>
-            <div id="commentfeed">
+                <div class="botgap"></div>
             </div>
         </div>
-        <div class="botgap"></div>
-    </div>
-</div>
 </div>
 <script>
     init();
