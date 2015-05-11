@@ -121,18 +121,18 @@
                             }
                             var activestack = stackid;
                             bannerset(activepage, activestack);
-                             var contain = activepage.find(".extracontainer");
+                            var contain = activepage.find(".extracontainer");
                             contain.bind("scrollstop", function() {
-//                                if(!postbox){
-//                                    if(contain.scrollTop() + $(window).height() > activepage.find(".con").height() - 200) {
+                                if(!postbox){
+                                    if(contain.scrollTop() + $(window).height() > activepage.find(".con").height() - 200) {
 //                                        alert("bottom");
-//                                        if(!end&&!bottom&&!loading){
-//                                            bottom = true;
-//                                            activepage.find('.scroll').html('<p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>');
-//                                            startNews(startnews,activepage, activestack);
-//                                        }
-//                                    }
-//                                }
+                                        if(!end&&!bottom&&!loading){
+                                            bottom = true;
+                                            activepage.find('.scroll').html('<p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>');
+                                            startNews(startnews,activepage, activestack);
+                                        }
+                                    }
+                                }
                             });
                         }else{
                             stackid = activepage.data("stack_id");
