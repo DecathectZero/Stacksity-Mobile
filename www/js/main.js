@@ -51,6 +51,7 @@ function bannerset(activepage, stackid){
                 stackid = element.stack;
                 activepage.data("stack_id", stackid);
                 activepage.data("is_user", is_user);
+                activepage.data("startnews", 0);
                 activepage.data("stackname", stackname);
                 activepage.find(".bannertext").html('<h1 class="bannertitle"></h1><p class="bannerdesc"></p>');
                 activepage.find(".bannertitle").html(stackname);
@@ -140,6 +141,12 @@ function getOption(){
     }
     return null;
 }
+function checkEnd(postnum){
+    if(postnum == 0){
+        end = true;
+        $('.ui-page-active .scroll').html('<p>No more posts</p>');
+    }
+}
 function startNews(startnum, activepage, stackid) {
     if(!loading){
         if(end){
@@ -147,6 +154,7 @@ function startNews(startnum, activepage, stackid) {
         }
         loading = true;
         var postnum = 0;
+        //alert(startnum);
         $.getJSON('http://stacksity.com/php/feed.php', {id : stackid , start : startnum , session_id: id }, function(data) {
             if(null==data){
                 loading = false;
@@ -173,6 +181,7 @@ function startNews(startnum, activepage, stackid) {
                 loading = false;
                 bottom = false;
                 startnews = startnews + 10;
+                activepage.data("startnews", startnews);
                 checkEnd(postnum);
             }
         });
@@ -182,16 +191,19 @@ function refresh(){
     bottom = false;
     end = false;
     loading = false;
-    $('.ui-page-active .scroll').html('<p>Loading Posts</p>');
-    if($(".ui-page-active .extracontainer").scrollTop()==0){
-        $(".ui-page-active .feed").empty();
+    var activep = $.mobile.activePage;
+    activep.find('.scroll').html('<p>Loading Posts</p>');
+    if(activep.find(".extracontainer").scrollTop()==0){
+        activep.find(".feed").empty();
+        activep.data("startnews", 0);
         startnews = 0;
-        startNews(startnews, $.mobile.activePage, stackid);
+        startNews(startnews, activep, stackid);
     }else{
-        $('.ui-page-active .extracontainer').stop().animate({ scrollTop : 0 }, 1000, function(){
-            $(".ui-page-active .feed").empty();
+        activep.find(".extracontainer").stop().animate({ scrollTop : 0 }, 1000, function(){
+            activep.find(".feed").empty();
+            activep.data("startnews", 0);
             startnews = 0;
-            startNews(startnews, $.mobile.activePage, stackid);
+            startNews(startnews, activep, stackid);
         });
     }
 }
@@ -356,13 +368,6 @@ $( "#title-input" ).keyup(function() {
     var length = $( this ).val().length;
     $( "#title-count").html(100-length);
 });
-
-function checkEnd(postnum){
-    if(postnum == 0){
-        end = true;
-        $('.ui-page-active .scroll').html('<p>No more posts</p>');
-    }
-}
 $(document).on("click", "#private", function(e){
     e.preventDefault();
     $('#privatefield').val(1);
@@ -489,7 +494,7 @@ function stackTrace() {
 $(document).on('tap','.postlink',function(e){
     e.preventDefault();
     $(this).trigger('click');
-})
+});
 
 /*post stuff*/
 var preopt;

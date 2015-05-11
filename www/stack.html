@@ -29,7 +29,7 @@
                             $.event.simulate('tap', self, endEvent);
                         }
                     });
-                });
+                 });
             }
         };
         document.addEventListener("deviceready", onDeviceReady, false);
@@ -138,6 +138,8 @@
                             stackid = activepage.data("stack_id");
                             is_user = activepage.data("is_user");
                             stackname = activepage.data("stackname");
+                            startnews = activepage.data("startnews");
+                            alert(startnews+"dsadasdsa")
                         }
                     }
                 }else if(option == 7){
@@ -474,10 +476,10 @@
         }
     });
     searchPageRefresh();
-    $(".quarter").on('tap', function (e) {
-        e.preventDefault();
-        $(this).trigger('click');
-    });
+//    $(".quarter").on('tap', function (e) {
+//        e.preventDefault();
+//        $(this).trigger('click');
+//    });
 </script>
 </body>
 </html>
