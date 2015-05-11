@@ -182,7 +182,7 @@ function refresh(){
     bottom = false;
     end = false;
     loading = false;
-    $('.ui-page-active .scroll').html('<p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>');
+    $('.ui-page-active .scroll').html('<p>Loading Posts</p> <div class="loader">Loading...</div>');
     if($(".ui-page-active .extracontainer").scrollTop()==0){
         $(".ui-page-active .feed").empty();
         startnews = 0;

@@ -117,7 +117,7 @@
                     }else if(!postbox){
                         if(activepage.data("stack_id")==null&&!postbox){
                             if(explore){
-                                activepage.find('.scroll').html('<p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>');
+                                activepage.find('.scroll').html('<p>Loading Posts</p> <div class="loader">Loading...</div>');
                             }
                             var activestack = stackid;
                             bannerset(activepage, activestack);
@@ -128,7 +128,7 @@
 //                                        alert("bottom");
                                         if(!end&&!bottom&&!loading){
                                             bottom = true;
-                                            activepage.find('.scroll').html('<p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>');
+                                            activepage.find('.scroll').html('<p>Loading Posts</p> <div class="loader">Loading...</div>');
                                             startNews(startnews,activepage, activestack);
                                         }
                                     }
