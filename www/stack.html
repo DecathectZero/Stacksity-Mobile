@@ -139,7 +139,7 @@
                             is_user = activepage.data("is_user");
                             stackname = activepage.data("stackname");
                             startnews = activepage.data("startnews");
-                            alert(startnews+"dsadasdsa")
+//                            alert(startnews+"dsadasdsa");
                         }
                     }
                 }else if(option == 7){
@@ -217,9 +217,9 @@
 <div data-role="page" data-dom-cache="true" id="toppage">
     <div data-role="header" data-id="persistent" data-position="fixed" class="head" data-fullscreen="true" data-tap-toggle="false">
         <div class="row posting center">
-            <a class="col-xs-4" onclick="postOpen(1)" class="postlink">Link</a>
-            <a class="col-xs-4" onclick="postOpen(2)" class="postlink">Text</a>
-            <a class="col-xs-4 active" onclick="postOpen(3)" class="postlink">Image</a>
+            <a class="col-xs-4 postlink" onclick="postOpen(1)">Link</a>
+            <a class="col-xs-4 postlink" onclick="postOpen(2)">Text</a>
+            <a class="col-xs-4 postlink" onclick="postOpen(3)">Image</a>
         </div>
     </div>
     <div class="extracontainer">
@@ -244,9 +244,9 @@
 <div data-role="page" data-dom-cache="true" id="allpage">
     <div data-role="header" data-id="persistent" data-position="fixed" class="head" data-fullscreen="true" data-tap-toggle="false">
         <div class="row posting center">
-            <a class="col-xs-4" onclick="postOpen(1)" class="postlink">Link</a>
-            <a class="col-xs-4" onclick="postOpen(2)" class="postlink">Text</a>
-            <a class="col-xs-4 active" onclick="postOpen(3)" class="postlink">Image</a>
+            <a class="col-xs-4 postlink" onclick="postOpen(1)">Link</a>
+            <a class="col-xs-4 postlink" onclick="postOpen(2)">Text</a>
+            <a class="col-xs-4 postlink" onclick="postOpen(3)">Image</a>
         </div>
     </div>
     <div class="extracontainer">
@@ -272,9 +272,9 @@
 <div data-role="page" data-dom-cache="true" id="userpage">
     <div data-role="header" data-id="persistent" data-position="fixed" class="head" data-fullscreen="true" data-tap-toggle="false">
         <div class="row posting center">
-            <a class="col-xs-4" onclick="postOpen(1)" class="postlink">Link</a>
-            <a class="col-xs-4" onclick="postOpen(2)" class="postlink">Text</a>
-            <a class="col-xs-4 active" onclick="postOpen(3)" class="postlink">Image</a>
+            <a class="col-xs-4 postlink" onclick="postOpen(1)">Link</a>
+            <a class="col-xs-4 postlink" onclick="postOpen(2)">Text</a>
+            <a class="col-xs-4 postlink" onclick="postOpen(3)">Image</a>
         </div>
     </div>
     <div class="extracontainer">
@@ -299,9 +299,9 @@
 <div data-role="page" data-dom-cache="false" id="explorepage" class="ex">
     <div data-role="header" data-id="persistent" data-position="fixed" class="head" data-fullscreen="true" data-tap-toggle="false">
         <div class="row posting center">
-            <a class="col-xs-4" onclick="postOpen(1)" class="postlink">Link</a>
-            <a class="col-xs-4" onclick="postOpen(2)" class="postlink">Text</a>
-            <a class="col-xs-4 active" onclick="postOpen(3)" class="postlink">Image</a>
+            <a class="col-xs-4 postlink" onclick="postOpen(1)">Link</a>
+            <a class="col-xs-4 postlink" onclick="postOpen(2)">Text</a>
+            <a class="col-xs-4 postlink" onclick="postOpen(3)">Image</a>
         </div>
     </div>
     <div class="extracontainer">
@@ -324,22 +324,21 @@
 </div>
 
 <div data-role="page" id="postpage">
-    <div data-role="header">
-        <div class="center" style="padding: 0">
-            <label class="postlabel">
-                <div class="postbar" style="padding: 0">
-                    <a class="cancelpost" data-rel="back" data-role="button" data-corners="false" onclick="postbox = false">cancel</a>
-                    <p>posting to <span class="bold" id="posting"></span></p>
-                </div>
-            </label>
-        </div>
-    </div>
-    <div class="center post">
+    <div data-role="header" data-id="persistent" data-position="fixed" class="head" data-fullscreen="true" data-tap-toggle="false">
         <div class="row postrow posting">
             <div class="col-xs-4 postlink" onclick="linkpost()" id="postlink">Link</div>
             <div class="col-xs-4 postlink" onclick="textpost()" id="posttext">Text</div>
             <div class="col-xs-4 postlink" onclick="imagepostShow()" id="postimage">Image</div>
         </div>
+    </div>
+    <div class="center post">
+        <div class="topgap"></div>
+        <label class="postlabel">
+            <div class="postbar" style="padding: 0">
+                <a class="cancelpost" data-rel="back" data-role="button" data-corners="false" data-inline="true" onclick="postbox = false">cancel</a>
+                <p>posting to <span class="bold" id="posting"></span></p>
+            </div>
+        </label>
         <form class="postform toppost" id="toppost">
             <input type="hidden" id="posttype" name="type" value="0">
             <div class="postcon">
@@ -456,7 +455,7 @@
             $ul.listview( "refresh" );
 //        alert($input.val());
             $.ajax({
-                url: "http://stacksity.com/php/search.php",
+                url: "https://stacksity.com/php/search.php",
                 dataType: "json",
                 type: "GET",
                 crossDomain: true,

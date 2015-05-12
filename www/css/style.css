@@ -165,7 +165,7 @@ a:active{
 .center {
     /*border: 1px solid rgba(0,0,0,.1);*/
     min-width: 240px;
-    max-width: 720px;
+    /*max-width: 720px;*/
     padding: 16px 0;
     margin-right: auto;
     margin-left: auto;
@@ -622,6 +622,19 @@ a:active{
     cursor: pointer;
     margin-right: 10px;;
 }
+.logout{
+    width: 80px;
+    height: 30px;
+    outline: none;
+    border: none;
+    margin-top: 5px;
+    background-color: #1c5380;
+    display: inline-block;
+    float: none;
+}
+.logout:active{
+    background-color: #0074D9;
+}
 .follow{
     width: 80px;
     height: 30px;
@@ -702,16 +715,19 @@ a:active{
     height: 25px;
     margin: 0 0 5px 0;
 }
-.cbutton:active{
+.cbutton:active {
     border: 1px solid #999;
 }
 .comment-content{
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     min-height: 60px;
     float: left;
     margin-left: 5px;
     padding: 5px;
+    width: calc( 100% - 35px );
+    word-wrap: break-word;
 }
 .comment{
     -webkit-transition : border 500ms ease-out;

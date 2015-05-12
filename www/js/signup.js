@@ -14,7 +14,7 @@ $("#account").on('submit', function(e){
         $.ajax({
             type     : "POST",
             cache    : false,
-            url      : "http://stacksity.com/php/payment.php",
+            url      : "https://stacksity.com/php/payment.php",
             data     : $(this).serialize(),
             dataType : "html",
             crossDomain : true,

@@ -83,7 +83,7 @@
                     $.ajax({
                         type     : "POST",
                         cache    : false,
-                        url      : 'http://stacksity.com/login.php',
+                        url      : 'https://stacksity.com/login.php',
                         data     : $(this).serialize(),
                         dataType : "html",
                         crossDomain : true,
@@ -163,7 +163,7 @@
                         $.ajax({
                             type     : "POST",
                             cache    : false,
-                            url      : "http://stacksity.com/php/payment.php",
+                            url      : "https://stacksity.com/php/payment.php",
                             data     : $(this).serialize(),
                             dataType : "html",
                             crossDomain : true,
@@ -242,7 +242,7 @@
                     $.ajax({
                         type     : "POST",
                         cache    : false,
-                        url      : 'http://stacksity.com/php/passreset.php',
+                        url      : 'https://stacksity.com/php/passreset.php',
                         data     : $(this).serialize(),
                         success  : function(data) {
                             if(data == "3"){

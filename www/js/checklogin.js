@@ -7,7 +7,7 @@ function checklogin(){
     $.ajax({
         type     : "POST",
         cache    : false,
-        url      : 'http://stacksity.com/php/mobileCheckLogin.php',
+        url      : 'https://stacksity.com/php/mobileCheckLogin.php',
         data     : {session_id : id, hashcode : hashcode},
         dataType : "html",
         crossDomain : true,

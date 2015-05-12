@@ -13,7 +13,7 @@ $("#pass-reset").on('submit', function(e){
     $.ajax({
         type     : "POST",
         cache    : false,
-        url      : 'http://stacksity.com/php/passreset.php',
+        url      : 'https://stacksity.com/php/passreset.php',
         data     : $(this).serialize(),
         success  : function(data) {
             if(data == "3"){
