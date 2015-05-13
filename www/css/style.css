@@ -8,10 +8,9 @@ body, html{
     height: 100%;
     font-family: 'Raleway', sans-serif;
     font-weight: 300;
-}
-body{
     overflow: hidden;
     background: #e9eaed;
+    color: #e9eaed;
 }
 h4{
     font-weight: bold;
@@ -934,10 +933,10 @@ h1 {
 
 .footer { background: #1c5380; position: fixed; bottom: 0; width: 100%; text-align: center; z-index: 999 }
 .head{
-    position:fixed;
-    z-index:100;
-    top:0;
-    width:100%;
+    /*position:fixed;*/
+    /*z-index:100;*/
+    /*top:0;*/
+    /*width:100%;*/
     -webkit-box-shadow: 0 5px 25px 5px rgba(0,0,0,.2);
     -moz-box-shadow: 0 5px 25px 5px rgba(0,0,0,.2);
     box-shadow: 0 5px 25px 5px rgba(0,0,0,.2);
