@@ -66,9 +66,6 @@
     <script src="js/checklogin.js"></script>
     <script src="js/vote.js"></script>
     <script>
-//        $(document).on('pagebeforecreate',function(event,ui){
-//            $.mobile.activePage.find(".extracontainer").css("-webkit-overflow-scrolling","auto");
-//        });
         $(document).on('pagebeforeshow',function(event,ui){
             checklogin();
             var activepage = $.mobile.activePage;
