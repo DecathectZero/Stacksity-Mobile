@@ -58,7 +58,7 @@ a:active{
     padding: 0;
     overflow: hidden !important;
     overflow-y: scroll !important;
-    white-space: nowrap;
+    /*white-space: nowrap;*/
     -webkit-overflow-scrolling: auto;
     background-color: #e9eaed;
     -webkit-backface-visibility: hidden;
@@ -68,7 +68,7 @@ a:active{
 /*}*/
 .con{
     background-color: #e9eaed;
-    display: inline;
+    /*display: inline;*/
 }
 .hide{
     display: none;
