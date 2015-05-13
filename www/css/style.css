@@ -62,7 +62,7 @@ a:active{
     overflow: hidden !important;
     overflow-y: scroll !important;
     /*white-space: nowrap;*/
-    /*-webkit-overflow-scrolling: auto;*/
+    -webkit-overflow-scrolling: touch;
     background-color: #e9eaed;
     /*-webkit-backface-visibility: hidden;*/
     /*-webkit-perspective: 1000;*/
