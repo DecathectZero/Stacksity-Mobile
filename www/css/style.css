@@ -64,8 +64,8 @@ a:active{
     /*white-space: nowrap;*/
     /*-webkit-overflow-scrolling: auto;*/
     background-color: #e9eaed;
-    -webkit-backface-visibility: hidden;
-    -webkit-perspective: 1000;
+    /*-webkit-backface-visibility: hidden;*/
+    /*-webkit-perspective: 1000;*/
 }
 /*.row{*/
     /*max-width: 100%;*/
