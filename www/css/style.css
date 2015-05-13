@@ -48,6 +48,7 @@ a:active{
     -webkit-backface-visibility: hidden; /* Chrome and Safari */
     -moz-backface-visibility: hidden; /* Firefox */
     -webkit-perspective: 1000;
+    -webkit-transform: translate3d(0,0,0);
 }
 .extracontainer {
     width: 100%;
@@ -66,6 +67,11 @@ a:active{
     background-color: #e9eaed;
     /*-webkit-backface-visibility: hidden;*/
     /*-webkit-perspective: 1000;*/
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden; /* Chrome and Safari */
+    -moz-backface-visibility: hidden; /* Firefox */
+    -webkit-perspective: 1000;
+    -webkit-transform: translate3d(0,0,0);
 }
 /*.row{*/
     /*max-width: 100%;*/
