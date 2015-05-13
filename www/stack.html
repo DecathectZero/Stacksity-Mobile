@@ -69,7 +69,7 @@
         $(document).on('pagebeforeshow',function(event,ui){
             checklogin();
             var activepage = $.mobile.activePage;
-            ui.prevPage.find(".extracontainer").css("-webkit-overflow-scrolling","auto");
+//            ui.prevPage.find(".extracontainer").css("-webkit-overflow-scrolling","auto");
             if(changepage){
                 changepage = false;
             }else{
@@ -160,7 +160,7 @@
             }
             if(!postbox){
                 var activepage = $.mobile.activePage;
-                activepage.find(".extracontainer").css("-webkit-overflow-scrolling","touch");
+//                activepage.find(".extracontainer").css("-webkit-overflow-scrolling","touch");
                 if(isStackOption()){
                     if(postdata!=null){
                         parsePostData();
