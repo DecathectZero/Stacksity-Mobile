@@ -44,11 +44,7 @@ a:active{
     margin: 0;
     position: absolute;
 }
-.ui-page { backface-visibility: hidden;
-    -webkit-backface-visibility: hidden; /* Chrome and Safari */
-    -moz-backface-visibility: hidden; /* Firefox */
-    -webkit-perspective: 1000;
-    -webkit-transform: translate3d(0,0,0);
+.ui-page {
 }
 .extracontainer {
     width: 100%;
@@ -65,13 +61,6 @@ a:active{
     /*white-space: nowrap;*/
     -webkit-overflow-scrolling: touch;
     background-color: #e9eaed;
-    /*-webkit-backface-visibility: hidden;*/
-    /*-webkit-perspective: 1000;*/
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden; /* Chrome and Safari */
-    -moz-backface-visibility: hidden; /* Firefox */
-    -webkit-perspective: 1000;
-    -webkit-transform: translate3d(0,0,0);
 }
 /*.row{*/
     /*max-width: 100%;*/
