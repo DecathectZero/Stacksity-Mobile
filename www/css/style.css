@@ -60,6 +60,8 @@ a:active{
     overflow: hidden;
     overflow-y: scroll !important;
     -webkit-overflow-scrolling: touch;
+    background-color: #e9eaed;
+    -webkit-backface-visibility: hidden;
 }
 /*.row{*/
     /*max-width: 100%;*/
@@ -534,7 +536,7 @@ a:active{
     text-indent: -9999em;
     -webkit-animation-delay: 0.16s;
     animation-delay: 0.16s;
-    margin-top: -35px;
+    top: -35px;
 }
 .loader:before {
     left: -1.5em;
