@@ -69,7 +69,7 @@
         $(document).on('pagebeforeshow',function(event,ui){
             checklogin();
             var activepage = $.mobile.activePage;
-            ui.prevPage.find(".extracontainer").css("-webkit-overflow-scrolling","auto");
+//            ui.prevPage.find(".extracontainer").css("-webkit-overflow-scrolling","auto");
             if(changepage){
                 changepage = false;
             }else{
@@ -123,23 +123,22 @@
                             var activestack = stackid;
                             bannerset(activepage, activestack);
                             var contain = activepage.find(".extracontainer");
-//                            contain.bind("scrollstop", function() {
-//                                if(!postbox){
-//                                    if(contain.scrollTop() + $(window).height() > activepage.find(".con").height() - 200) {
-//                                        if(!end&&!bottom&&!loading){
-//                                            bottom = true;
-//                                            activepage.find('.scroll').html('<p>Loading Posts</p> ');
-//                                            startNews(startnews,activepage, activestack);
-//                                        }
-//                                    }
-//                                }
-//                            });
+                            contain.bind("scrollstop", function() {
+                                if(!postbox){
+                                    if(contain.scrollTop() + $(window).height() > activepage.find(".con").height() - 200) {
+                                        if(!end&&!bottom&&!loading){
+                                            bottom = true;
+                                            activepage.find('.scroll').html('<p>Loading Posts</p> ');
+                                            startNews(startnews,activepage, activestack);
+                                        }
+                                    }
+                                }
+                            });
                         }else{
                             stackid = activepage.data("stack_id");
                             is_user = activepage.data("is_user");
                             stackname = activepage.data("stackname");
                             startnews = activepage.data("startnews");
-//                            alert(startnews+"dsadasdsa");
                         }
                     }
                 }else if(option == 7){
