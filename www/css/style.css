@@ -58,7 +58,7 @@ a:active{
     padding: 0;
     overflow: hidden;
     overflow-y: scroll !important;
-    /*-webkit-overflow-scrolling: touch;*/
+    -webkit-overflow-scrolling: touch;
     background-color: #e9eaed;
     -webkit-backface-visibility: hidden;
 }
