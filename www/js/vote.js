@@ -26,8 +26,9 @@ $(document).on('click', '.vbutton', function(){
             url: "https://stacksity.com/php/stackup.php",
             data: dataString,
             cache: false,
-
+            crossDomain : true,
             success: function(data){
+                alert(data+"stackup");
             }
         });
     }else{
@@ -47,12 +48,14 @@ $(document).on('click', '.vbutton', function(){
         }
         $.ajax({
             type: "POST",
-            url: "https://stacksity.com/php/stackup.php",
+            url: "https://stacksity.com/php/stackdown.php",
             data: dataString,
             cache: false,
+            crossDomain : true,
 
-            success: function(html)
+            success: function(data)
             {
+                alert(data+"stackdown");
             }
         });
     }
