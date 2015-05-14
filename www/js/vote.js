@@ -23,7 +23,7 @@ $(document).on('click', '.vbutton', function(){
         }
         $.ajax({
             type: "POST",
-            url: "http:stacksity.com/php/stackup.php",
+            url: "https://stacksity.com/php/stackup.php",
             data: dataString,
             cache: false,
 
@@ -47,7 +47,7 @@ $(document).on('click', '.vbutton', function(){
         }
         $.ajax({
             type: "POST",
-            url: "http:stacksity.com/php/stackdown.php",
+            url: "https://stacksity.com/php/stackup.php",
             data: dataString,
             cache: false,
 
