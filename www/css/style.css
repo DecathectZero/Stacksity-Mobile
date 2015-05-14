@@ -56,8 +56,11 @@ a:active{
     padding: 0;
     overflow: hidden !important;
     overflow-y: scroll !important;
-    /*-webkit-overflow-scrolling: touch;*/
+    -webkit-overflow-scrolling: touch;
     background-color: #e9eaed;
+}
+.extracontainer > * {
+    -webkit-transform: translateZ(0px);
 }
 .con{
     /*-webkit-backface-visibility: hidden;*/
