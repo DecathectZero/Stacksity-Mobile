@@ -9,7 +9,6 @@ body, html{
     font-family: 'Raleway', sans-serif;
     font-weight: 300;
     background: #e9eaed;
-    -webkit-overflow-scrolling: touch;
 }
 h4{
     font-weight: bold;
@@ -43,8 +42,7 @@ a:active{
     position: absolute;
 }
 .ui-page{
-    -webkit-backface-visibility: hidden;
-    -webkit-transform: translate3d(0,0,0);
+    /*-webkit-backface-visibility: hidden;*/
 }
 .extracontainer {
     width: 100%;
@@ -57,12 +55,14 @@ a:active{
     margin: 0;
     padding: 0;
     overflow-y: scroll !important;
+    -webkit-overflow-scrolling: touch;
     background-color: #e9eaed;
     -webkit-transform: translate3d(0,0,0);
 }
 .con{
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translate3d(0,0,0);
     background-color: #e9eaed;
-    /*display: inline;*/
 }
 .hide{
     display: none;
