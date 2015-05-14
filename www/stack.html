@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="css/style.css">
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/iscroll-lite.js"></script>
     <script type="text/javascript">
         $.event.special.tap = {
             setup: function() {
@@ -117,6 +118,7 @@
                         activepage.find(".extracontainer").scrollTop(0);
                     }else if(!postbox){
                         if(activepage.data("stack_id")==null&&!postbox){
+                            var myScroll = new IScroll('.extracontainer');
                             if(explore){
                                 activepage.find('.scroll').html('<p>Loading Posts</p> ');
                             }
