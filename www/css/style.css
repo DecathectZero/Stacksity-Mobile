@@ -9,7 +9,6 @@ body, html{
     font-family: 'Raleway', sans-serif;
     font-weight: 300;
     background: #e9eaed;
-    -webkit-overflow-scrolling: touch;
 }
 h4{
     font-weight: bold;
@@ -33,7 +32,7 @@ a:active{
     color:#fff;
 }
 /*.ui-content{*/
-/*background: transparent;*/
+    /*background: transparent;*/
 /*}*/
 .ui-page-header-fixed { padding-top: 30px !important; }
 #container{
@@ -42,9 +41,9 @@ a:active{
     margin: 0;
     position: absolute;
 }
-.ui-page{
-    -webkit-backface-visibility: hidden;
-}
+/*.ui-page{*/
+    /*-webkit-backface-visibility: hidden;*/
+/*}*/
 .extracontainer {
     width: 100%;
     height: 100%;
@@ -55,12 +54,14 @@ a:active{
     left: 0;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    overflow: hidden !important;
     overflow-y: scroll !important;
+    -webkit-overflow-scrolling: touch;
     background-color: #e9eaed;
-    -webkit-transform: translate3d(0,0,0);
 }
 .con{
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translate3d(0,0,0);
     background-color: #e9eaed;
 }
 .hide{
@@ -291,7 +292,7 @@ a:active{
 }
 .postform{
     width: 100%
-background-color: #CCC;
+    background-color: #CCC;
 }
 .postcon{
     padding: 5px 12px 5px 12px;
@@ -960,8 +961,8 @@ h1 {
     background-color: #001f3f;
 }
 /*.quarter:hover, .quarter:focus{*/
-/*background-color: #001f3f;*/
-/*}*/
+     /*background-color: #001f3f;*/
+ /*}*/
 .follow{
     width: 80px;
     height: 30px;
@@ -973,17 +974,17 @@ h1 {
     float: none;
 }
 /*.follow:active{*/
-/*background-color: #fff;*/
-/*color: #4b82ea;*/
-/*border-bottom: 3px solid #3b72da;*/
+    /*background-color: #fff;*/
+    /*color: #4b82ea;*/
+    /*border-bottom: 3px solid #3b72da;*/
 /*}*/
 .followed{
     background-color: #fff;
     color: #4b82ea;
 }
 /*.followed:active{*/
-/*background-color: #5b92fa;*/
-/*color: #fff;*/
+    /*background-color: #5b92fa;*/
+    /*color: #fff;*/
 /*}*/
 .posthead{
     background-color: #fff;
