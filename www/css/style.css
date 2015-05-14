@@ -43,6 +43,7 @@ a:active{
 }
 .ui-page{
     -webkit-backface-visibility: hidden;
+    -webkit-overflow-scrolling: touch;
 }
 .extracontainer {
     width: 100%;
@@ -55,8 +56,8 @@ a:active{
     margin: 0;
     padding: 0;
     overflow-y: scroll !important;
-    -webkit-overflow-scrolling: touch;
     background-color: #e9eaed;
+    -webkit-transform: translate3d(0,0,0);
 }
 .con{
     -webkit-transform: translate3d(0,0,0);
