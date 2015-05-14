@@ -44,10 +44,9 @@ a:active{
     margin: 0;
     position: absolute;
 }
-/*.ui-mobile, .ui-mobile .ui-page, .ui-mobile [data-role="page"],*/
-/*.ui-mobile [data-role="dialog"], .ui-page, .ui-mobile .ui-page-active {*/
-    /**/
-/*}*/
+.ui-page{
+    -webkit-backface-visibility: hidden;
+}
 .extracontainer {
     width: 100%;
     height: 100%;
@@ -59,8 +58,9 @@ a:active{
     margin: 0;
     padding: 0;
     overflow-y: scroll !important;
-    -webkit-backface-visibility: hidden;
     -webkit-overflow-scrolling: touch;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translate3d(0,0,0);
     background-color: #e9eaed;
 }
 .con{
