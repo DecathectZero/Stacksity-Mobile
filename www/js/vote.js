@@ -1,7 +1,7 @@
 var id = window.localStorage.getItem('session_id');
 
 $(document).on('click', '.vbutton', function(){
-    var vid = $(this).closest('.item').attr("id");
+    var vid = $(this).closest('.item').data("post");
     var name = $(this).attr("name");
     var dataString = 'id='+ vid +"&session_id="+id;
     var parent = $(this);
@@ -28,7 +28,7 @@ $(document).on('click', '.vbutton', function(){
             cache: false,
             crossDomain : true,
             success: function(data){
-                alert(data+"stackup");
+                //alert(data+"stackup");
             }
         });
     }else{
@@ -55,7 +55,7 @@ $(document).on('click', '.vbutton', function(){
 
             success: function(data)
             {
-                alert(data+"stackdown");
+                //alert(data+"stackdown");
             }
         });
     }
