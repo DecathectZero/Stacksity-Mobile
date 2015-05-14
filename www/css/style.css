@@ -59,17 +59,9 @@ a:active{
     overflow-y: scroll !important;
     -webkit-overflow-scrolling: touch;
     background-color: #e9eaed;
-    -webkit-transform: translateZ(0px);
-    -webkit-transform: translate3d(0,0,0);
-    -webkit-perspective: 1000;
-    -webkit-backface-visibility: hidden;
+    transform: translateZ(0px);
 }
 .con{
-    -webkit-transform: translateZ(0px);
-    -webkit-transform: translate3d(0,0,0);
-    -webkit-perspective: 1000;
-    width: 100%;
-    -webkit-backface-visibility: hidden;
     background-color: #e9eaed;
 }
 .hide{
