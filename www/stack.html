@@ -171,20 +171,21 @@
 <body>
 <div id="container">
 <div class="footer">
+<div class="footer">
     <div class="center botmenu">
-        <div class="quarter" id="topstack" data-op="1">
+        <div class="quarter" id="topstack" onclick="refreshPage(1)">
             <div class="glyphicon glyphicon glyphicon-home"></div>
         </div>
-        <div class="quarter" id="allstack" data-op="2">
+        <div class="quarter" id="allstack" onclick="refreshPage(2)">
             <div class="glyphicon glyphicon glyphicon-th-list"></div>
         </div>
         <div class="quarter">
             <div class="glyphicon glyphicon glyphicon-bell"></div>
         </div>
-        <div class="quarter" id="searchstack" data-op="4">
+        <div class="quarter" id="searchstack" onclick="refreshPage(4)">
             <div class="glyphicon glyphicon glyphicon-search"></div>
         </div>
-        <div class="quarter" id="userstack" data-op="5">
+        <div class="quarter" id="userstack" onclick="refreshPage(5)">
             <div class="glyphicon glyphicon glyphicon-user"></div>
         </div>
     </div>
@@ -478,7 +479,7 @@
     searchPageRefresh();
     $(".quarter").on('tap', function (e) {
         e.preventDefault();
-        refreshPage($(this).data("op"));
+        $(this).trigger('click');
     });
 </script>
 </body>
