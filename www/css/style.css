@@ -9,6 +9,7 @@ body, html{
     font-family: 'Raleway', sans-serif;
     font-weight: 300;
     background: #e9eaed;
+    -webkit-overflow-scrolling: touch;
 }
 h4{
     font-weight: bold;
@@ -43,7 +44,7 @@ a:active{
 }
 .ui-page{
     -webkit-backface-visibility: hidden;
-    -webkit-overflow-scrolling: touch;
+    -webkit-transform: translate3d(0,0,0);
 }
 .extracontainer {
     width: 100%;
@@ -60,7 +61,6 @@ a:active{
     -webkit-transform: translate3d(0,0,0);
 }
 .con{
-    -webkit-transform: translate3d(0,0,0);
     background-color: #e9eaed;
     /*display: inline;*/
 }
