@@ -8,9 +8,6 @@ body, html{
     height: 100%;
     font-family: 'Raleway', sans-serif;
     font-weight: 300;
-}
-body{
-    /*overflow: hidden !important;*/
     background: #e9eaed;
 }
 h4{
