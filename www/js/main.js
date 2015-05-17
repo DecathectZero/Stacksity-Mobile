@@ -240,10 +240,11 @@ function refreshPage(opt) {
     }else{
         explore = false;
         var rev = false;
-        if(opt<option){
+        var trans = 'none';
+        if(option == 7){
+            trans = 'slide';
             rev = true;
         }
-        var trans = 'slide';
         if(option == 6){
             rev = true;
             trans = 'turn';
@@ -508,6 +509,7 @@ $(document).on('click','.toPost',function(){
     postid = $(this).data("postlink");
     preopt = option;
     option = 7;
+    init();
     changepage = true;
     $.mobile.changePage(
         "#post",
@@ -535,9 +537,143 @@ function getPost(postid)
             $("#postcon").slideDown();
         }
         if(element.comments>0){
-            //getComment(0, 0, $(".commentfeed"));
+            $("#commentfeed").empty();
+            getComment(0, 0, $("#commentfeed"));
         }else{
-            $('#commentfeed').append("<div class='nocomments'>No comments currently</div>");
+            $('#commentfeed').html("<div class='nocomments'>No comments currently</div>");
         }
     });
 }
+function commentVote(type, count){
+    if(type==2){
+        return '<div class="cvote"><div class="cbutton stackup stack-up" name="up"></div><p class="score">'+count+'</p><div class="cbutton stackdown" name="down"></div></div>'
+    }
+    if(type==0){
+        return '<div class="cvote"><div class="cbutton stackup" name="up"></div><p class="score">'+count+'</p><div class="cbutton stackdown stack-down" name="down"></div></div>'
+    }
+    return '<div class="cvote"><div class="cbutton stackup" name="up"></div><p class="score">'+count+'</p><div class="cbutton stackdown" name="down"></div></div>'
+}
+function commentHTML(element, depth){
+    var count = element.upstacks-element.downstacks;
+    var depthtext = '';
+    var del = '';
+    if(element.delete){
+        del = '<a class="reply deletecom" data-delete="'+element.comment_id+'">delete</a>';
+    }
+    var reply = del;
+    if(depth == 0){
+        depthtext = 'depth';
+    }
+    var vote = commentVote(element.vote, count);
+    if(depth<7){
+        reply = '<a class="reply" onclick="swapReply(this)">reply</a>'+del+'<form class="replycomment" style="display: none" data-depth="'+depth+'"><div class="postcon replycon">'+
+        '<input type="hidden" name="postid" value="'+postid+'">'+
+        '<input type="hidden" name="commentid" value="'+element.comment_id+'">'+
+        '<div id="textpost">'+
+        '<textarea name="text" class="expanding" id="text" placeholder="Write something here..." rows="2" required></textarea>'+
+        '</div></div>'+
+        '<div class="postsub"><label><span class="cancelreply" onclick="backReply(this)">Cancel</span></label>'+
+        '<button type="submit" class="postb replypost">Post</button>'+
+        '</div></form>';
+    }
+    return '<div class="child '+depthtext+'">'+
+    '<div class="comment" data-commentid="'+element.comment_id+'" data-depth="'+element.depth+'">'+
+    vote+
+    '<div class="comment-content">'+
+    '<p class="tagline"><a class="comment_link" href="/stack.php?id='+element.user_stack+'" class="">'+element.username+'</a> | <time>'+element.created+'</time>' +
+    ' | <b>#'+element.comment_id+'</b></p>'+
+    '<p class="commenttext">'+$("<textarea/>").html(element.content).text()+'</p>'+ reply +
+    '</div> </div> </div>';
+}
+function getComment(ids, depth, item)
+{
+    $.getJSON('https://stacksity.com/php/feedcomment.php', {post_id : postid , comment_id : ids, session_id: id}, function(data) {
+        $.each(data, function(index, element) {
+            //alert(commentHTML(element, depth));
+            item.append(commentHTML(element, depth));
+            if(depth<7){
+                if(depth==0){
+                    getComment(element.comment_id, depth+1, item.children(".child:last"));
+                }else {
+                    getComment(element.comment_id,depth+1, item.children(".child:last"));
+                }
+            }
+        });
+    });
+}
+function swapReply(el){
+    $(".replycomment").hide();
+    $(el).siblings('.replycomment').show();
+}
+function backReply(el){
+    $(el).closest('.replycomment').siblings('.reply').show();
+    $(el).closest('.replycomment').hide();
+}
+$(document).on('submit', '.replycomment', function(e){
+    e.preventDefault();
+    if(!posting){
+        posting = true;
+        $(this).children('.replypost').html('<div class="loader">Loading...</div>');
+        e.preventDefault();
+        var el = $(this);
+        $.ajax({
+            type     : "POST",
+            cache    : false,
+            url      : '/php/postcomment.php',
+            data     : el.serialize(),
+            success  : function(data) {
+                if(data.length<=1) {
+                    if(data!=3){
+                        alert("error :" + data);
+                    }
+                }else{
+                    var element = $.parseJSON(data);
+                    $(commentHTML(element, el.data('depth')+1)).hide().insertAfter(el.closest('.comment')).fadeIn("slow");
+                    el.children('.replypost').html('Post');
+                    el.find("input[type=text], textarea").val("");
+                    el.siblings('.reply').show();
+                    el.hide();
+                }
+                posting = false;
+            },
+            error: function(xhr, status, error) {
+                alert("error"+ xhr.responseText);
+                $(this).children('.replypost').html('Post');
+                $(this).siblings('.reply').show();
+                $(this).hide();
+                posting = false;
+            }
+        });
+    }else{
+        e.preventDefault();
+    }
+});
+var deletecom_id = 0;
+
+$(document).on('click', '.deletecom', function(e) {
+    deletecom_id = $(this).data('delete');
+    $('#commentdelete').modal({keyboard: true});
+    return false;
+});
+$('#deletecomment').click(function(e){
+    $.ajax({
+        type     : "POST",
+        cache    : false,
+        url      : '/php/deletecomment.php',
+        data     : {delid : deletecom_id},
+        success  : function(data) {
+            if(data==0){
+                var del = $('*[data-commentid="'+deletecom_id+'"]');
+                del.find('.deletecom').remove();
+                del.find('.commenttext').html('[deleted]');
+            }else{
+                alert(data);
+            }
+            $('#commentdelete').modal('hide');
+        },
+        error: function(xhr, status, error) {
+            alert("error"+ xhr.responseText);
+            $('#commentdelete').modal('hide');
+        }
+    });
+});

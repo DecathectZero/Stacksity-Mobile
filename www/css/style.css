@@ -165,7 +165,7 @@ a:active{
 .center {
     /*border: 1px solid rgba(0,0,0,.1);*/
     min-width: 240px;
-    /*max-width: 720px;*/
+    max-width: 680px;
     padding: 16px 0;
     margin-right: auto;
     margin-left: auto;
@@ -188,13 +188,14 @@ a:active{
     font-weight: bold;
 }
 .imagecon {
-    margin-top: 5px;
     width: 100%;
     float: left;
 }
 .imagewrap {
+    margin-top: 5px;
     overflow: hidden;
-    /*max-height: 200px;*/
+    background-color: #CCC;
+    /*min-height: 100px;*/
 }
 .videowrapper {
     position: relative;
@@ -713,7 +714,7 @@ a:active{
     display: block;
     width: 25px;
     height: 25px;
-    margin: 0 0 5px 0;
+    margin: 0
 }
 .cbutton:active {
     border: 1px solid #999;
@@ -750,6 +751,8 @@ a:active{
 }
 .score{
     font-weight: bold;
+    text-align: center;
+    margin: 0;
 }
 .tagline{
     margin-bottom: 3px;
@@ -937,6 +940,7 @@ h1 {
     /*z-index:100;*/
     /*top:0;*/
     /*width:100%;*/
+    background-color: #fff;
     -webkit-box-shadow: 0 5px 25px 5px rgba(0,0,0,.2);
     -moz-box-shadow: 0 5px 25px 5px rgba(0,0,0,.2);
     box-shadow: 0 5px 25px 5px rgba(0,0,0,.2);
@@ -995,7 +999,7 @@ h1 {
 }
 .posthead a{
     font-size: 20px !important;
-    line-height: 28px !important;
+    line-height: 26px !important;
 }
 .posthead a:hover{
     text-decoration: none;

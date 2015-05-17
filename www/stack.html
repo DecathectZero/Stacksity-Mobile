@@ -67,6 +67,14 @@
     <script src="js/vote.js"></script>
     <script>
         $(document).on('pagebeforeshow',function(event,ui){
+            if(option == 7){
+                $('#postcon').empty();
+                $('#commentfeed').html('<div class="nocomments">Loading Comments</div>');
+                $('#postcon').hide();
+                getPost(postid);
+            }
+        });
+        $(document).on('pagechange',function(event,ui){
             checklogin();
             var activepage = $.mobile.activePage;
 //            ui.prevPage.find(".extracontainer").css("-webkit-overflow-scrolling","auto");
@@ -141,10 +149,6 @@
                             startnews = activepage.data("startnews");
                         }
                     }
-                }else if(option == 7){
-                    $('#postcon').empty();
-                    $('#commentfeed').empty();
-                    $('#postcon').hide();
                 }
             }
         });
@@ -154,8 +158,6 @@
                     dontdelete = false;
                     ui.prevPage.remove();
                 }
-            }else if(option == 7){
-                getPost(postid);
             }
             if(!postbox){
 //                var activepage = $.mobile.activePage;
@@ -421,7 +423,7 @@
 </div>
 <div data-role="page" id="post">
     <div data-role="header" data-position="fixed" class="head posthead">
-        <a data-role="none" data-rel="back" class="glyphicon glyphicon-chevron-left postlink" onclick="option=preopt; changepage=true"></a>
+        <a data-role="none" data-rel="back" class="glyphicon glyphicon-chevron-left postlink" onclick="option=preopt; init(); changepage=true"></a>
     </div>
     <div class="extracontainer">
         <div class="topgap"></div>
