@@ -34,6 +34,10 @@
             $(document).one("mobileinit", function () {
                 $.mobile.pageContainer = $('#container');
                 $.mobile.defaultPageTransition = 'slide';
+                $("button").on('tap', function (e) {
+                    $(this).trigger('click');
+                    e.preventDefault();
+                });
             });
         </script>
         <title>Stacksity</title>
