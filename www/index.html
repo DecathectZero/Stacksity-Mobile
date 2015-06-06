@@ -30,140 +30,69 @@
         <link rel="stylesheet" href="css/jquerymobile.css">
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquerymobile.js"></script>
+        <script>
+            $(document).one("mobileinit", function () {
+                $.mobile.pageContainer = $('#container');
+                $.mobile.defaultPageTransition = 'slide';
+            });
+        </script>
         <title>Stacksity</title>
     </head>
     <body>
-        <div data-role="page" id="loginpage" class="login">
-            <div data-role="main">
-                <div class="container">
-                    <div class="intro">
-                        <h2>Welcome to</h2>
-                        <h1>STACK$ITY</h1>
-                    </div>
-                    <form class="signinform" id="login">
-                        <input type="hidden" name="checked" value="1">
-                        <p id="error-info" style="display: none" class="errorprompt"></p>
-                        <label for="inputEm" class="sr-only">Username/Email</label>
-                        <input  data-role="none" name="inputEm" type="text" id="inputEm" class="form-control" placeholder="Email/Username" required>
-                        <label for="inputPass" class="sr-only">Password</label>
-                        <input data-role="none" name="inputPass" type="password" id="inputPass" class="form-control" placeholder="Password" required>
-                        <button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-                        <a class="small" href="#passpage" data-transition="slide" data-direction="reverse">Forgot your password or username?</a>
-                    </form>
-                    <form class="signinform margintop">
-                        <a href="#signuppage" data-transition="slide"><button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button></a>
-                    </form>
-                </div>
-            </div>
-            <script>
-                function errorinfo(inner){
-                    $('#error-info').html(inner);
-                    $('#error-info').slideDown();
-                }
-                $("#login").on('submit', function(e){
-                    e.preventDefault();
-                    $.ajax({
-                        type     : "POST",
-                        cache    : false,
-                        url      : 'https://stacksity.com/login.php',
-                        data     : $(this).serialize(),
-                        dataType : "html",
-                        crossDomain : true,
-                        success  : function(data) {
-                            if(data=="1"){
-                                errorinfo("That username doesn't seem to exist D:");
-                            }else if(data=="2"){
-                                errorinfo("Password doesn't match username :/");
-                            }else if(data=="69"){
-                                errorinfo("Please fill in the fields");
-                            }else if(data.length>1){
-                                var element = JSON.parse(data);
-                                window.localStorage.setItem('session_id',element.session_id);
-                                window.localStorage.setItem('stack',0);
-                                window.localStorage.setItem('hashcode',element.hashcode);
-                                window.localStorage.setItem('ustack',element.stack_id);
-                                window.localStorage.setItem('username',element.username);
-                                document.location.href = 'stack.html';
-                            }else{
-                                errorinfo("Oops something went wrong with the server, error code: " + data);
-                            }
-                        },
-                        error: function(request) {
-                            if (request.status == 0) {
-                                alert("You're offline!");
-                            }else{
-                                alert("Error Connection");
-                            }
-                        }
-                    });
-                });
-            </script>
-        </div>
-        <div data-role="page" id="signuppage" class="signup">
-            <div data-role="main">
-                <div class="container">
-                    <div class="intro">
-                        <h1>Sign Up</h1>
-                    </div>
-                    <form class="signinform" id="account" role="form" data-toggle="validator">
-                        <div id="sinforeg" style="display: none">
-                            <p>Alright, you're good to go. You can now <b>Login</b>.<br> Welcome to Stacksity :D</p>
+        <div id="container">
+            <div data-role="page" id="loginpage" class="login">
+                <div data-role="main">
+                    <div class="container">
+                        <div class="intro">
+                            <h2>Welcome to</h2>
+                            <h1>STACK$ITY</h1>
                         </div>
-                        <div id="sinfo">
-                            <p id="serror-info" style="display: none" class="errorprompt"></p>
-                            <label for="inputName" class="sr-only">Full Name</label>
-                            <input data-role="none" name="name" type="text" id="inputName" class="form-control" placeholder="Full Name" required="">
-                            <label for="inputEmail" class="sr-only">Email address</label>
-                            <input data-role="none" name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" maxlength="254">
-                            <label for="inputName" class="sr-only">Stacksity Username</label>
-                            <input data-role="none" name="username" type="text" id="inputUsername" class="form-control margintop" placeholder="Stacksity Username" required="" maxlength="32">
-                            <label for="inputPassword" class="sr-only">Password</label>
-                            <input data-role="none" name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required="" maxlength="32">
-                            <button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
-                            <p class="small">By signing up, you agree to the Terms of Service</p>
-                        </div>
-                    </form>
-                    <form class="signinform margintop">
-                        <a data-rel="back" data-direction="reverse"><button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Log In</button></a>
-                    </form>
+                        <form class="signinform" id="login">
+                            <input type="hidden" name="checked" value="1">
+                            <p id="error-info" style="display: none" class="errorprompt"></p>
+                            <label for="inputEm" class="sr-only">Username/Email</label>
+                            <input  data-role="none" name="inputEm" type="text" id="inputEm" class="form-control" placeholder="Email/Username" required>
+                            <label for="inputPass" class="sr-only">Password</label>
+                            <input data-role="none" name="inputPass" type="password" id="inputPass" class="form-control" placeholder="Password" required>
+                            <button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+                            <a class="small" href="#passpage" data-transition="slide" data-direction="reverse">Forgot your password or username?</a>
+                        </form>
+                        <form class="signinform margintop">
+                            <a href="#signuppage" data-transition="slide"><button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button></a>
+                        </form>
+                    </div>
                 </div>
-            </div>
-            <script>
-                function success(){
-                    $("#sinfo").slideUp();
-                    $("#sinforeg").show();
-                }
-                function serrorinfo(inner){
-                    $('#serror-info').html(inner);
-                    $('#serror-info').slideDown();
-                }
-                $("#account").on('submit', function(e){
-                    e.preventDefault();
-                    if($('#inputPassword').val().length<7){
-                        serrorinfo("Please make your password longer than 6 characters");
-                    }else{
+                <script>
+                    function errorinfo(inner){
+                        $('#error-info').html(inner);
+                        $('#error-info').slideDown();
+                    }
+                    $("#login").on('submit', function(e){
+                        e.preventDefault();
                         $.ajax({
                             type     : "POST",
                             cache    : false,
-                            url      : "https://stacksity.com/php/payment.php",
+                            url      : 'https://stacksity.com/login.php',
                             data     : $(this).serialize(),
                             dataType : "html",
                             crossDomain : true,
                             success  : function(data) {
-                                if(data=="3"){
-                                    success();
+                                if(data=="1"){
+                                    errorinfo("That username doesn't seem to exist D:");
                                 }else if(data=="2"){
-                                    serrorinfo("This Username is already taken");
-                                }else if(data=="1"){
-                                    serrorinfo("This Email is already taken");
-                                }else if(data=='10'){
-                                    serrorinfo("No spaces in your username please");
-                                }else if(data=='11'){
-                                    serrorinfo("Usernames can't start with $");
-                                }else if(data=='12'){
-                                    serrorinfo("Usernames can't be only numbers");
+                                    errorinfo("Password doesn't match username :/");
+                                }else if(data=="69"){
+                                    errorinfo("Please fill in the fields");
+                                }else if(data.length>1){
+                                    var element = JSON.parse(data);
+                                    window.localStorage.setItem('session_id',element.session_id);
+                                    window.localStorage.setItem('stack',0);
+                                    window.localStorage.setItem('hashcode',element.hashcode);
+                                    window.localStorage.setItem('ustack',element.stack_id);
+                                    window.localStorage.setItem('username',element.username);
+                                    document.location.href = 'stack.html';
                                 }else{
-                                    serrorinfo("Oops something went wrong with the server, error code: "+data);
+                                    errorinfo("Oops something went wrong with the server, error code: " + data);
                                 }
                             },
                             error: function(request) {
@@ -174,81 +103,159 @@
                                 }
                             }
                         });
-
-                    }
-                });
-            </script>
-        </div>
-        <div data-role="page" id="passpage" class="password">
-            <div data-role="main">
-                <div class="container">
-                    <div class="intro">
-                        <h1>Password Reset</h1>
-                    </div>
-                    <div class="center signinform">
-                        <div id="pinforeg" style="display: none">
-                            <p>A password reset has been sent to your email</p>
+                    });
+                </script>
+            </div>
+            <div data-role="page" id="signuppage" class="signup">
+                <div data-role="main">
+                    <div class="container">
+                        <div class="intro">
+                            <h1>Sign Up</h1>
                         </div>
-                        <p id="perror-info" style="display: none" class="errorprompt"></p>
-                        <form id="pass-reset" class="form-horizontal">
-                            <div class="form-group">
-                                <div class="col-sm-12">
-                                    <input data-role="none" name="email" type="email" class="form-control" placeholder="Email address" required maxlength="254">
-                                </div>
+                        <form class="signinform" id="account" role="form" data-toggle="validator">
+                            <div id="sinforeg" style="display: none">
+                                <p>Alright, you're good to go. You can now <b>Login</b>.<br> Welcome to Stacksity :D</p>
                             </div>
-                            <div class="form-group">
-                                <div class="col-sm-12">
-                                    <button data-role="none" type="submit" id="revbutton" class="btn btn-lg btn-primary btn-block">Retrieve password</button>
-                                </div>
+                            <div id="sinfo">
+                                <p id="serror-info" style="display: none" class="errorprompt"></p>
+                                <label for="inputName" class="sr-only">Full Name</label>
+                                <input data-role="none" name="name" type="text" id="inputName" class="form-control" placeholder="Full Name" required="">
+                                <label for="inputEmail" class="sr-only">Email address</label>
+                                <input data-role="none" name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" maxlength="254">
+                                <label for="inputName" class="sr-only">Stacksity Username</label>
+                                <input data-role="none" name="username" type="text" id="inputUsername" class="form-control margintop" placeholder="Stacksity Username" required="" maxlength="32">
+                                <label for="inputPassword" class="sr-only">Password</label>
+                                <input data-role="none" name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required="" maxlength="32">
+                                <button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+                                <p class="small">By signing up, you agree to the Terms of Service</p>
                             </div>
                         </form>
+                        <form class="signinform margintop">
+                            <a data-rel="back" data-direction="reverse"><button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Log In</button></a>
+                        </form>
                     </div>
-                    <form class="signinform margintop">
-                        <a data-rel="back" data-direction="reverse"><button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Log In</button></a>
-                    </form>
                 </div>
-            </div>
-            <script>
-                function success(){
-                    $("#pass-reset").slideUp();
-                    $("#perror-info").hide();
-                    $("#pinforeg").show();
-                }
-                function perrorinfo(inner){
-                    $('#perror-info').html(inner);
-                    $('#perror-info').slideDown();
-                }
-                $("#pass-reset").on('submit', function(e){
-                    e.preventDefault();
-                    $('#revbutton').html("Give it a moment");
-                    $.ajax({
-                        type     : "POST",
-                        cache    : false,
-                        url      : 'https://stacksity.com/php/passreset.php',
-                        data     : $(this).serialize(),
-                        success  : function(data) {
-                            if(data == "3"){
-                                success();
-                            }else if(data == "2"){
-                                perrorinfo("That Email doesn't seem to exist here");
-                            }else{
-                                alert("error: "+data);
-                            }
-                            $('#revbutton').html("Retrieve password");
-                        },
-                        error: function(request) {
-                            $('#revbutton').html("Retrieve password");
-                            if (request.status == 0) {
-                                alert("You're offline!");
-                            }else{
-                                alert("Error Connection");
-                            }
+                <script>
+                    function success(){
+                        $("#sinfo").slideUp();
+                        $("#sinforeg").show();
+                    }
+                    function serrorinfo(inner){
+                        $('#serror-info').html(inner);
+                        $('#serror-info').slideDown();
+                    }
+                    $("#account").on('submit', function(e){
+                        e.preventDefault();
+                        if($('#inputPassword').val().length<7){
+                            serrorinfo("Please make your password longer than 6 characters");
+                        }else{
+                            $.ajax({
+                                type     : "POST",
+                                cache    : false,
+                                url      : "https://stacksity.com/php/payment.php",
+                                data     : $(this).serialize(),
+                                dataType : "html",
+                                crossDomain : true,
+                                success  : function(data) {
+                                    if(data=="3"){
+                                        success();
+                                    }else if(data=="2"){
+                                        serrorinfo("This Username is already taken");
+                                    }else if(data=="1"){
+                                        serrorinfo("This Email is already taken");
+                                    }else if(data=='10'){
+                                        serrorinfo("No spaces in your username please");
+                                    }else if(data=='11'){
+                                        serrorinfo("Usernames can't start with $");
+                                    }else if(data=='12'){
+                                        serrorinfo("Usernames can't be only numbers");
+                                    }else{
+                                        serrorinfo("Oops something went wrong with the server, error code: "+data);
+                                    }
+                                },
+                                error: function(request) {
+                                    if (request.status == 0) {
+                                        alert("You're offline!");
+                                    }else{
+                                        alert("Error Connection");
+                                    }
+                                }
+                            });
+
                         }
                     });
-                });
-            </script>
+                </script>
+            </div>
+            <div data-role="page" id="passpage" class="password">
+                <div data-role="main">
+                    <div class="container">
+                        <div class="intro">
+                            <h1>Password Reset</h1>
+                        </div>
+                        <div class="center signinform">
+                            <div id="pinforeg" style="display: none">
+                                <p>A password reset has been sent to your email</p>
+                            </div>
+                            <p id="perror-info" style="display: none" class="errorprompt"></p>
+                            <form id="pass-reset" class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <input data-role="none" name="email" type="email" class="form-control" placeholder="Email address" required maxlength="254">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button data-role="none" type="submit" id="revbutton" class="btn btn-lg btn-primary btn-block">Retrieve password</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <form class="signinform margintop">
+                            <a data-rel="back" data-direction="reverse"><button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Log In</button></a>
+                        </form>
+                    </div>
+                </div>
+                <script>
+                    function success(){
+                        $("#pass-reset").slideUp();
+                        $("#perror-info").hide();
+                        $("#pinforeg").show();
+                    }
+                    function perrorinfo(inner){
+                        $('#perror-info').html(inner);
+                        $('#perror-info').slideDown();
+                    }
+                    $("#pass-reset").on('submit', function(e){
+                        e.preventDefault();
+                        $('#revbutton').html("Give it a moment");
+                        $.ajax({
+                            type     : "POST",
+                            cache    : false,
+                            url      : 'https://stacksity.com/php/passreset.php',
+                            data     : $(this).serialize(),
+                            success  : function(data) {
+                                if(data == "3"){
+                                    success();
+                                }else if(data == "2"){
+                                    perrorinfo("That Email doesn't seem to exist here");
+                                }else{
+                                    alert("error: "+data);
+                                }
+                                $('#revbutton').html("Retrieve password");
+                            },
+                            error: function(request) {
+                                $('#revbutton').html("Retrieve password");
+                                if (request.status == 0) {
+                                    alert("You're offline!");
+                                }else{
+                                    alert("Error Connection");
+                                }
+                            }
+                        });
+                    });
+                </script>
+            </div>
         </div>
         <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
     </body>
 </html>
