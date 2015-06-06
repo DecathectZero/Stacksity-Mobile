@@ -30,14 +30,21 @@
         <link rel="stylesheet" href="css/jquerymobile.css">
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquerymobile.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
         <script>
+            document.addEventListener("deviceready", onDeviceReady, false);
+            // device APIs are available
+            //
+            function onDeviceReady() {
+                navigator.splashscreen.hide();
+                StatusBar.hide();
+            }
+            if (localStorage.getItem("session_id") != null) {
+                document.location.href = 'stack.html';
+            }
             $(document).one("mobileinit", function () {
                 $.mobile.pageContainer = $('#container');
                 $.mobile.defaultPageTransition = 'slide';
-                $("button").on('tap', function (e) {
-                    $(this).trigger('click');
-                    e.preventDefault();
-                });
             });
         </script>
         <title>Stacksity</title>
@@ -90,7 +97,6 @@
                                 }else if(data.length>1){
                                     var element = JSON.parse(data);
                                     window.localStorage.setItem('session_id',element.session_id);
-                                    window.localStorage.setItem('stack',0);
                                     window.localStorage.setItem('hashcode',element.hashcode);
                                     window.localStorage.setItem('ustack',element.stack_id);
                                     window.localStorage.setItem('username',element.username);
@@ -118,7 +124,7 @@
                         </div>
                         <form class="signinform" id="account" role="form" data-toggle="validator">
                             <div id="sinforeg" style="display: none">
-                                <p>Alright, you're good to go. You can now <b>Login</b>.<br> Welcome to Stacksity :D</p>
+                                <p>Alright, you're good to go<br> You can now <b>Login</b></p>
                             </div>
                             <div id="sinfo">
                                 <p id="serror-info" style="display: none" class="errorprompt"></p>
@@ -138,13 +144,13 @@
                     </div>
                 </div>
                 <script>
-                    function success(){
-                        $("#sinfo").slideUp();
-                        $("#sinforeg").show();
-                    }
                     function serrorinfo(inner){
                         $('#serror-info').html(inner);
                         $('#serror-info').slideDown();
+                    }
+                    function signupsuccess(){
+                        $("#sinfo").slideUp();
+                        $("#sinforeg").show();
                     }
                     $("#account").on('submit', function(e){
                         e.preventDefault();
@@ -160,7 +166,7 @@
                                 crossDomain : true,
                                 success  : function(data) {
                                     if(data=="3"){
-                                        success();
+                                        signupsuccess();
                                     }else if(data=="2"){
                                         serrorinfo("This Username is already taken");
                                     }else if(data=="1"){
@@ -259,6 +265,11 @@
                 </script>
             </div>
         </div>
-        <script type="text/javascript" src="cordova.js"></script>
+        <script>
+            $("button").on('tap', function (e) {
+                $(this).trigger('click');
+                e.preventDefault();
+            });
+        </script>
     </body>
 </html>

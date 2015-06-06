@@ -61,7 +61,7 @@ h1 {
     color: #fff;
     font-size: 3em;
     font-weight: normal;
-    margin: 0;
+    margin-bottom: 5px;
 }
 h2{
     font-family: Raleway;
@@ -167,7 +167,8 @@ a:hover {
     height: 40px;
     padding: 6px 12px;
     font-size: 14px;
-    line-height: 1.42857143;
+    line-height: 40px;
+    border-radius: 0;
     color: #555;
     margin-bottom: 10px;
     background-color: #fff;
