@@ -13,8 +13,6 @@ body {
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
     font-size:12px;
     margin:0px;
-    padding:0px;
-    background-color: #000;
 }
 #container {
     position: absolute;
@@ -22,11 +20,7 @@ body {
     height: 100%;
 }
 .ui-page {
-    background: transparent;
     -webkit-backface-visibility: hidden;
-}
-.ui-content{
-    background: transparent;
 }
 .login{
     background: url(../img/background.jpg) no-repeat center center fixed;

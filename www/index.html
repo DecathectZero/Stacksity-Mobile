@@ -55,7 +55,7 @@
                             <label for="inputPass" class="sr-only">Password</label>
                             <input data-role="none" name="inputPass" type="password" id="inputPass" class="form-control" placeholder="Password" required>
                             <button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-                            <a class="small" href="#passpage" data-transition="slide" data-direction="reverse">Forgot your password or username?</a>
+                            <!--<a class="small" href="#passpage" data-transition="slide" data-direction="reverse">Forgot your password or username?</a>-->
                         </form>
                         <form class="signinform margintop">
                             <a href="#signuppage" data-transition="slide"><button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button></a>
@@ -118,11 +118,9 @@
                             </div>
                             <div id="sinfo">
                                 <p id="serror-info" style="display: none" class="errorprompt"></p>
-                                <label for="inputName" class="sr-only">Full Name</label>
-                                <input data-role="none" name="name" type="text" id="inputName" class="form-control" placeholder="Full Name" required="">
                                 <label for="inputEmail" class="sr-only">Email address</label>
                                 <input data-role="none" name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" maxlength="254">
-                                <label for="inputName" class="sr-only">Stacksity Username</label>
+                                <label for="inputUsername" class="sr-only">Stacksity Username</label>
                                 <input data-role="none" name="username" type="text" id="inputUsername" class="form-control margintop" placeholder="Stacksity Username" required="" maxlength="32">
                                 <label for="inputPassword" class="sr-only">Password</label>
                                 <input data-role="none" name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required="" maxlength="32">
@@ -232,6 +230,7 @@
                             type     : "POST",
                             cache    : false,
                             url      : 'https://stacksity.com/php/passreset.php',
+                            crossDomain : true,
                             data     : $(this).serialize(),
                             success  : function(data) {
                                 if(data == "3"){
