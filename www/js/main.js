@@ -63,22 +63,22 @@ function bannerset(activepage, stackid){
                     activepage.find(".bannerdesc").html(element.stack_desc);
                 }else if(stackid<-1){
                     activepage.find(".bannerdesc").html(element.stack_desc);
-                }else{
+                }else {
                     var space = '';
-                    if(element.stack_desc!=""&&element.stack_desc!=null){
+                    if (element.stack_desc != "" && element.stack_desc != null) {
                         space = '<br>';
                     }
-                    activepage.find(".bannerdesc").html('<b>'+element.stack_desc+space+"<span class='followers'>"+element.followers+'</span> followers</b>');
-                    if(userstack!=stackid){
-                        if(element.following){
+                    activepage.find(".bannerdesc").html('<b>' + element.stack_desc + space + "<span class='followers'>" + element.followers + '</span> followers</b>');
+                    if (userstack != stackid) {
+                        if (element.following) {
                             activepage.find('.bannertext').append('<br> <button class="follow followed" value="1" data-role="none">Followed</button>')
-                        }else{
+                        } else {
                             activepage.find('.bannertext').append('<br> <button class="follow" value="0" data-role="none">Follow</button>')
                         }
-                    }else{
+                    } else {
                         activepage.find('.bannertext').append('<br> <button class="logout" onclick="logout()">Logout</button>')
                     }
-                    if(element.is_user=="1"){
+                    if (element.is_user == "1") {
                         activepage.find(".banner").addClass("userbanner");
                         is_user = 1;
                     }
@@ -161,7 +161,6 @@ function startNews(startnum, activepage, stackid) {
         }
         loading = true;
         var postnum = 0;
-        //alert(startnum);
         $.getJSON('https://stacksity.com/php/feed.php', {id : stackid , start : startnum , session_id: id }, function(data) {
             if(null==data){
                 loading = false;

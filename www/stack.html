@@ -104,15 +104,16 @@
                                 }
                                 activepage.find('.scroll').html('<p>Loading Posts</p> ');
                             }
-                            bannerset(activepage, activestack);
+                            bannerset(activepage, stackid);
                             var contain = activepage.find(".extracontainer");
                             contain.bind("scrollstop", function() {
                                 if(!postbox){
                                     if(contain.scrollTop() + $(window).height() > activepage.find(".con").height() - 200) {
+                                        //alert(stackid);
                                         if(!end&&!bottom&&!loading){
                                             bottom = true;
                                             activepage.find('.scroll').html('<p>Loading Posts</p> ');
-                                            startNews(startnews,activepage, activestack);
+                                            startNews(startnews,activepage, stackid);
                                         }
                                     }
                                 }
@@ -146,7 +147,6 @@
         });
     </script>
 <body>
-<div id="container">
 <div class="footer">
     <div class="center botmenu">
         <div class="quarter" id="topstack" data-op="1">
@@ -166,6 +166,7 @@
         </div>
     </div>
 </div>
+<div id="container">
 <div class="modal fade" id="delpost" style="display: none;" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
