@@ -149,9 +149,9 @@ function getOption(){
     return null;
 }
 function checkEnd(postnum){
-    if(postnum == 0){
+    if(postnum < 10){
         end = true;
-        $('.ui-page-active .scroll').html('<p>No more posts</p>');
+        $('.scroll').html('<p>No more posts</p>');
     }
 }
 function startNews(startnum, activepage, stackid) {
@@ -627,8 +627,8 @@ $(document).on('submit', '.replycomment', function(e){
         $.ajax({
             type     : "POST",
             cache    : false,
-            url      : '/php/postcomment.php',
-            data     : el.serialize(),
+            url      : 'https://stacksity.com/php/postcomment.php',
+            data     : el.serialize()+"&session_id="+id,
             success  : function(data) {
                 if(data.length<=1) {
                     if(data!=3){
@@ -649,6 +649,41 @@ $(document).on('submit', '.replycomment', function(e){
                 $(this).children('.replypost').html('Post');
                 $(this).siblings('.reply').show();
                 $(this).hide();
+                posting = false;
+            }
+        });
+    }else{
+        e.preventDefault();
+    }
+});
+$(document).on('submit', '#commentform',function(e){
+    e.preventDefault();
+    if(!posting){
+        posting = true;
+        $('.postb').html('<div class="loader">Loading...</div>');
+        e.preventDefault();
+        $.ajax({
+            type     : "POST",
+            cache    : false,
+            url      : 'https://stacksity.com/php/postcomment.php',
+            data     : $(this).serialize()+"&session_id="+id+"&postid="+postid,
+            success  : function(data) {
+                if(data.length<=1) {
+                    if(data!=3){
+                        alert("error :" + data);
+                    }
+                }else{
+                    var element = $.parseJSON(data);
+                    $(commentHTML(element, 0)).hide().prependTo('#commentfeed').fadeIn("slow");
+                    $('.postb').html('Post');
+                    $("#commentform").find("textarea").val("");
+                    $(".nocomments").remove();
+                }
+                posting = false;
+            },
+            error: function(xhr, status, error) {
+                alert("error"+ xhr.responseText);
+                $('.postb').html('Post');
                 posting = false;
             }
         });

@@ -35,6 +35,16 @@
                 $('#postcon').hide();
                 getPost(postid);
             }
+            if(postbox){
+                initPostBox();
+                if(postype==1){
+                    linkpost();
+                }else if(postype==2){
+                    textpost();
+                }else if(postype==3){
+                    imagepostShow();
+                }
+            }
         });
         $(document).on('pagechange',function(event,ui){
             checklogin();
@@ -59,16 +69,7 @@
                 }
                 init();
             }
-            if(postbox){
-                initPostBox();
-                if(postype==1){
-                    linkpost();
-                }else if(postype==2){
-                    textpost();
-                }else if(postype==3){
-                    imagepostShow();
-                }
-            }else{
+            if(!postbox){
                 if(isStackOption()){
                     loading = false;
                     end = false;
