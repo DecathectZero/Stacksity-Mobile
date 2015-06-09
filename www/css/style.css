@@ -192,7 +192,7 @@ a:active{
     float: left;
 }
 .imagewrap {
-    margin-top: 5px;
+    margin-top: 8px;
     overflow: hidden;
     background-color: #CCC;
     /*min-height: 100px;*/
@@ -202,6 +202,7 @@ a:active{
     padding-bottom: 56.25%; /* 16:9 */
     padding-top: 25px;
     height: 0;
+    margin-top: 5px;
 }
 .videowrapper iframe {
     position: absolute;
@@ -224,12 +225,9 @@ a:active{
 }
 .postinfo{
     font-size: 16px !important;
-    margin: 8px 0 !important;
+    margin: 3px 0 !important;
 }
 .ui-dialog  .ui-header .ui-btn-icon-notext	{ display:none;}
-.linkcon{
-    margin-top: 10px;
-}
 .textcon p{
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 14px;
@@ -487,6 +485,7 @@ background-color: #CCC;
     line-height: 50px;
     margin-right: 10px;
     margin-bottom: 5px;
+    margin-top: 10px;
 }
 .linkimage{
     vertical-align: middle;
@@ -695,8 +694,9 @@ background-color: #CCC;
 }
 .child{
     margin-left: 5px;
-    margin-right: 5px;
+    margin-right: 0;
     border: 1px solid #ddd;
+    border-right: none;
     padding-bottom: 5px;
     margin-top: -1px;
 }
@@ -948,8 +948,14 @@ h1 {
 .quarter{
     width: 20%;
     float: left;
-    padding: 12px 10px 5px 10px;
+    padding: 9px 10px 8px 10px;
     color: #fff;
+}
+.postback{
+    height: 100%;
+    display: block;
+    position: static;
+    padding-left: 5px;
 }
 .botmenu a{
     color: #fff;
@@ -995,7 +1001,7 @@ h1 {
 }
 .posthead a{
     font-size: 20px !important;
-    line-height: 26px !important;
+    line-height: 30px !important;
 }
 .posthead a:hover{
     text-decoration: none;

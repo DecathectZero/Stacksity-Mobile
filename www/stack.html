@@ -20,6 +20,14 @@
     <script src="js/vote.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script>
+        document.addEventListener("deviceready", onDeviceReady, false);
+        // device APIs are available
+        //
+        function onDeviceReady() {
+            StatusBar.overlaysWebView(false);
+            StatusBar.backgroundColorByHexString("#ffffff");
+            StatusBar.styleLightContent();
+        }
         $(document).on('pagebeforeshow',function(event,ui){
             if(option == 7){
                 $('#postcon').empty();
@@ -52,7 +60,6 @@
                 init();
             }
             if(postbox){
-                $('.footer').hide();
                 initPostBox();
                 if(postype==1){
                     linkpost();
@@ -62,7 +69,6 @@
                     imagepostShow();
                 }
             }else{
-                $('.footer').show();
                 if(isStackOption()){
                     loading = false;
                     end = false;
@@ -332,6 +338,10 @@
             </div>
         </form>
     </div>
+    <script>$( "#title-input" ).keyup(function() {
+        var length = $( this ).val().length;
+        $( "#title-count").html(100-length);
+    });</script>
 </div>
 
 <div data-role="page" data-dom-cache="true" id="searchpage">
@@ -379,7 +389,7 @@
 </div>
 <div data-role="page" id="post">
     <div data-role="header" data-position="fixed" class="head posthead">
-        <a data-role="none" data-rel="back" class="glyphicon glyphicon-chevron-left postlink" onclick="option=preopt; init(); changepage=true"></a>
+        <a data-role="none" data-rel="back" class="postlink postback" onclick="option=preopt; init(); changepage=true"><div class="glyphicon glyphicon-chevron-left"></div></a>
     </div>
     <div class="extracontainer">
         <div class="topgap"></div>

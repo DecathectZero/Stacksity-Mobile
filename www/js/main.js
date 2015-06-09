@@ -232,9 +232,10 @@ function searchPageRefresh(){
 }
 var changepage = false;
 function refreshPage(opt) {
-    //alert("click");
     if(option == opt){
-        if(isStackOption()){
+        if(postbox) {
+            $.mobile.back();
+        }else if(isStackOption()){
             refresh();
         }else if(option == 4){
             searchPageRefresh();
@@ -243,11 +244,13 @@ function refreshPage(opt) {
         explore = false;
         var rev = false;
         var trans = 'none';
-        if(option == 7){
+        if(postbox){
+            trans = 'slideup';
+            rev = true;
+        }if(option == 7){
             trans = 'slide';
             rev = true;
-        }
-        if(option == 6){
+        }else if(option == 6){
             rev = true;
             trans = 'turn';
         }
@@ -276,6 +279,7 @@ function refreshPage(opt) {
             );
         }
     }
+    postbox = false;
 }
 function linkToStack(goto){
     if(goto == userstack || goto == username){
@@ -522,6 +526,7 @@ $(document).on('click','.toPost',function(){
         }
     );
 });
+
 function getPost(postid)
 {
     $.getJSON('https://stacksity.com/php/postname.php', {id : postid, session_id:id}, function(element){
@@ -542,7 +547,7 @@ function getPost(postid)
         }
         if(element.comments>0){
             $("#commentfeed").empty();
-            getComment(0, 0, $("#commentfeed"));
+            getComment($("#commentfeed"));
         }else{
             $('#commentfeed').html("<div class='nocomments'>No comments currently</div>");
         }
@@ -589,20 +594,20 @@ function commentHTML(element, depth){
     '<p class="commenttext">'+$("<textarea/>").html(element.content).text()+'</p>'+ reply +
     '</div> </div> </div>';
 }
-function getComment(ids, depth, item)
+function getComment(item)
 {
-    $.getJSON('https://stacksity.com/php/feedcomment.php', {post_id : postid , comment_id : ids, session_id: id}, function(data) {
-        $.each(data, function(index, element) {
-            //alert(commentHTML(element, depth));
-            item.append(commentHTML(element, depth));
-            if(depth<7){
-                if(depth==0){
-                    getComment(element.comment_id, depth+1, item.children(".child:last"));
-                }else {
-                    getComment(element.comment_id,depth+1, item.children(".child:last"));
-                }
+    $.getJSON('https://stacksity.com/php/commentfeed.php', {post_id : postid, session_id: id}, function(data) {
+        showComment(data,item);
+    });
+}
+function showComment(data,item){
+    $.each(data, function(index, element) {
+        item.append(commentHTML(element, element.depth));
+        if(element.depth<7){
+            if(element.comments!=null) {
+                showComment(element.comments, item.children(".child:last"));
             }
-        });
+        }
     });
 }
 function swapReply(el){

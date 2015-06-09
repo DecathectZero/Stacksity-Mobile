@@ -91,7 +91,7 @@ function linkspost(element){
     getlink(element.post_id, element.link)+'<h4>' + element.title + '</h4></a>' +
     '<p class="postinfo">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id)+' | '+ element.created +'</p>' +
     '<div class="linkwrapper">' + getlink(0, element.link) +
-    '<div class="linkcon"></div><div class="linkcontainer"><img class="linkimage" src="'+ element.image +'"></div>' +
+    '<div class="linkcontainer"><img class="linkimage" src="'+ element.image +'"></div>' +
     '<p class="content">'+element.text+'</p></a>' +
     '</div><div class="vote login">'+
     vote +
