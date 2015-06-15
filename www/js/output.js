@@ -44,7 +44,7 @@ function privt(title, private){
 
 function stacknames(from, from_id, too, too_id){
     var stack_name = '<a class="stacklink" data-link="'+from_id+'">'+ from + '</a> ';
-    if(stackid == 0 || stackid == -1){
+    if(stackid < 1){
         if(from_id==too_id){
             stack_name += ' to <a class="stacklink" data-link="'+from_id+'">$self</a>';
         }else{
@@ -101,15 +101,22 @@ function videopost(element){
     '</div>' +
     '</div>';
 }
+function parseimg(img){
+    if(img=="../img/post/thumb.jpg"){
+        return "img/post/thumb.jpg";
+    }else{
+        return img;
+    }
+}
 function linkspost(element){
-    var count = element.upstacks-element.downstacks
+    var count = element.upstacks-element.downstacks;
     var vote = voting(element.vote, count);
     return '<div class="item lpost '+priv(element.private, element.nsfw)+'" data-post="'+element.post_id+'">' +
     '<div class="textcon margins">' +
     getlink(element.post_id, element.link)+'<h4>' + privt(element.title, element.private) + '</h4></a>' +
     '<p class="postinfo">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id)+' | '+ element.created +'</p>' +
     '<div class="linkwrapper">' + getlink(0, element.link) +
-    '<div class="linkcontainer"><img class="linkimage" src="'+ element.image +'"></div>' +
+    '<div class="linkcontainer"><img class="linkimage" src="'+ parseimg(element.image) +'"></div>' +
     '<p class="content">'+element.text+'</p></a>' +
     '</div><div class="vote login">'+
     vote +
