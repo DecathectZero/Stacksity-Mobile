@@ -21,8 +21,6 @@
     <script type="text/javascript" src="cordova.js"></script>
     <script>
         document.addEventListener("deviceready", onDeviceReady, false);
-        // device APIs are available
-        //
         function onDeviceReady() {
             StatusBar.overlaysWebView(false);
             StatusBar.backgroundColorByHexString("#ffffff");
@@ -153,14 +151,14 @@
         <div class="quarter" id="topstack" data-op="1">
             <div class="glyphicon glyphicon glyphicon-home"></div>
         </div>
-        <div class="quarter" id="allstack" data-op="2">
-            <div class="glyphicon glyphicon glyphicon-th-list"></div>
+        <div class="quarter" id="searchstack" data-op="4">
+            <div class="glyphicon glyphicon glyphicon-search"></div>
         </div>
         <div class="quarter">
             <div class="glyphicon glyphicon glyphicon-bell"></div>
         </div>
-        <div class="quarter" id="searchstack" data-op="4">
-            <div class="glyphicon glyphicon glyphicon-search"></div>
+        <div class="quarter" id="allstack" data-op="2">
+            <div class="glyphicon glyphicon glyphicon-th-list"></div>
         </div>
         <div class="quarter" id="userstack" data-op="5">
             <div class="glyphicon glyphicon glyphicon-user"></div>
@@ -191,6 +189,27 @@
                 <a id="deletecomment" class="btn btn-primary">Delete</a>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
             </div>
+        </div>
+    </div>
+</div>
+<div data-role="page" data-dom-cache="true" id="explorepage" class="ex">
+    <div data-role="header" data-id="persistent" data-position="fixed"  class="head" data-fullscreen="true" data-tap-toggle="false" id="explorehead">
+    </div>
+    <div class="extracontainer">
+        <div class="con">
+            <div class="topgap"></div>
+            <div class="banner center" style="display: none">
+                <div class="center banner-inner">
+                    <div class="bannertext">
+                    </div>
+                </div>
+            </div>
+            <div class="center feed">
+            </div>
+            <div class="scroll center">
+                <p>Loading Posts</p>
+            </div>
+            <div class="botgap"></div>
         </div>
     </div>
 </div>
@@ -248,28 +267,6 @@
             <a class="col-xs-4 postlink" onclick="postOpen(2)">Text</a>
             <a class="col-xs-4 postlink" onclick="postOpen(3)">Image</a>
         </div>
-    </div>
-    <div class="extracontainer">
-        <div class="con">
-            <div class="topgap"></div>
-            <div class="banner center" style="display: none">
-                <div class="center banner-inner">
-                    <div class="bannertext">
-                    </div>
-                </div>
-            </div>
-            <div class="center feed">
-            </div>
-            <div class="scroll center">
-                <p>Loading Posts</p>
-            </div>
-            <div class="botgap"></div>
-        </div>
-    </div>
-</div>
-
-<div data-role="page" data-dom-cache="false" id="explorepage" class="ex">
-    <div data-role="header" data-id="persistent" data-position="fixed"  class="head" data-fullscreen="true" data-tap-toggle="false" id="explorehead">
     </div>
     <div class="extracontainer">
         <div class="con">

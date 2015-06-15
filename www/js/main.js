@@ -33,6 +33,7 @@ function postOpen(type){
 }
 
 function bannerset(activepage, stackid){
+    $('.scroll').html('<p>Loading Stack...</p>');
     $.ajax({
         type     : "POST",
         cache    : false,
@@ -91,7 +92,7 @@ function bannerset(activepage, stackid){
         },
         error: function(request) {
             if(request.status == 0) {
-                alert("You're offline!");
+                $('.scroll').html('<p>You\'re offline :(</p>');
             }else{
                 alert("Error Connection");
             }
@@ -158,37 +159,52 @@ function startNews(startnum, activepage, stackid) {
     if(!loading){
         if(end){
             return;
-        }
+        }$('.scroll').html('<p>Loading Posts...(</p>');
         loading = true;
         var postnum = 0;
-        $.getJSON('https://stacksity.com/php/feed.php', {id : stackid , start : startnum , session_id: id }, function(data) {
-            if(null==data){
-                loading = false;
-                checkEnd(postnum);
-            }else{
-                //if(startnum>19){
-                //    var div = activepage.find(".extracontainer");
-                //    activepage.find('.item:lt('+data.length+')').remove();
-                //    div.scrollTop = div.scrollHeight;
-                //    alert(data.length);
-                //}
-                $.each(data, function(index, element) {
-                    if(element.posttype == 0){
-                        activepage.find('.feed').append(linkspost(element));
-                    }else if(element.posttype == 1){
-                        activepage.find('.feed').append(textspost(element));
-                    }else if(element.posttype == 2){
-                        activepage.find('.feed').append(imagepost(element));
-                    }else if(element.posttype == 3){
-                        activepage.find('.feed').append(videopost(element));
-                    }
-                    postnum++;
-                });
-                loading = false;
-                bottom = false;
-                startnews = startnews + 10;
-                activepage.data("startnews", startnews);
-                checkEnd(postnum);
+        $.ajax({
+            type     : "GET",
+            cache    : false,
+            url      : 'https://stacksity.com/php/feed.php',
+            crossDomain : true,
+            data     : {id : stackid , start : startnum , session_id: id },
+            dataType : "json",
+            success  : function(data) {
+                if(null==data){
+                    loading = false;
+                    checkEnd(postnum);
+                }else{
+                    //if(startnum>19){
+                    //    var div = activepage.find(".extracontainer");
+                    //    activepage.find('.item:lt('+data.length+')').remove();
+                    //    div.scrollTop = div.scrollHeight;
+                    //    alert(data.length);
+                    //}
+                    $.each(data, function(index, element) {
+                        if(element.posttype == 0){
+                            activepage.find('.feed').append(linkspost(element));
+                        }else if(element.posttype == 1){
+                            activepage.find('.feed').append(textspost(element));
+                        }else if(element.posttype == 2){
+                            activepage.find('.feed').append(imagepost(element));
+                        }else if(element.posttype == 3){
+                            activepage.find('.feed').append(videopost(element));
+                        }
+                        postnum++;
+                    });
+                    loading = false;
+                    bottom = false;
+                    startnews = startnews + 10;
+                    activepage.data("startnews", startnews);
+                    checkEnd(postnum);
+                }
+            },
+            error: function(request) {
+                if(request.status == 0) {
+                    $('.scroll').html('<p>You\'re offline :(</p>');
+                }else{
+                    alert("Error Connection");
+                }
             }
         });
     }
@@ -199,18 +215,22 @@ function refresh(){
     loading = false;
     var activep = $.mobile.activePage;
     activep.find('.scroll').html('<p>Loading Posts</p>');
-    if(activep.find(".extracontainer").scrollTop()==0){
-        activep.find(".feed").empty();
-        activep.data("startnews", 0);
-        startnews = 0;
-        startNews(startnews, activep, stackid);
+    if(activep.data("stack_id")==null&&!postbox){
+        bannerset(activep, stackid);
     }else{
-        activep.find(".extracontainer").stop().animate({ scrollTop : 0 }, 1000, function(){
+        if(activep.find(".extracontainer").scrollTop()==0){
             activep.find(".feed").empty();
             activep.data("startnews", 0);
             startnews = 0;
             startNews(startnews, activep, stackid);
-        });
+        }else{
+            activep.find(".extracontainer").stop().animate({ scrollTop : 0 }, 1000, function(){
+                activep.find(".feed").empty();
+                activep.data("startnews", 0);
+                startnews = 0;
+                startNews(startnews, activep, stackid);
+            });
+        }
     }
 }
 function searchPageRefresh(){
@@ -295,8 +315,9 @@ function linkToStack(goto){
                 stackid = goto;
                 dontdelete = true;
                 explore = true;
+                changepage = true;
                 $.mobile.changePage(
-                    window.location.href,
+                    "#explorepage",
                     {
                         allowSamePageTransition : true,
                         transition              : 'turn',
@@ -317,6 +338,7 @@ function linkToStack(goto){
                 $('*[data-url="explorepage"] .feed').empty();
                 stackid = goto;
                 explore = true;
+                changepage = true;
                 $.mobile.changePage(
                     "#explorepage",
                     {

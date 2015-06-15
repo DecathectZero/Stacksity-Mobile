@@ -219,9 +219,7 @@ a:active{
     width:100%
 }
 .margins{
-    margin-right: 2.5%;
-    margin-left: 2.5%;
-    width: 95%;
+    width: 100%;
 }
 .postinfo{
     font-size: 16px !important;
@@ -675,7 +673,7 @@ background-color: #CCC;
 .item {
     background: #fafbfe;
     text-align: left;
-    padding: 20px 0px;
+    padding: 20px 10px;
     margin-bottom: 15px;
     overflow: auto;
     background: #fff;

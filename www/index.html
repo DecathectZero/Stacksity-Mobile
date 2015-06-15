@@ -42,7 +42,7 @@
                 StatusBar.styleLightContent();
             }
             if (localStorage.getItem("session_id") != null) {
-                document.location.href = 'stack.html';
+                document.location.href = 'stack.html#toppage';
             }
             $(document).one("mobileinit", function () {
                 $.mobile.pageContainer = $('#container');
@@ -69,7 +69,7 @@
                             <label for="inputPass" class="sr-only">Password</label>
                             <input data-role="none" name="inputPass" type="password" id="inputPass" class="form-control" placeholder="Password" required>
                             <button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-                            <!--<a class="small" href="#passpage" data-transition="slide" data-direction="reverse">Forgot your password or username?</a>-->
+                            <a class="small" href="#passpage" data-transition="slide" data-direction="reverse">Forgot your password or username?</a>
                         </form>
                         <form class="signinform margintop">
                             <a href="#signuppage" data-transition="slide"><button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button></a>
@@ -103,7 +103,7 @@
                                     window.localStorage.setItem('hashcode',element.hashcode);
                                     window.localStorage.setItem('ustack',element.stack_id);
                                     window.localStorage.setItem('username',element.username);
-                                    document.location.href = 'stack.html';
+                                    document.location.href = 'stack.html#toppage';
                                 }else{
                                     errorinfo("Oops something went wrong with the server, error code: " + data);
                                 }
@@ -180,6 +180,8 @@
                                         serrorinfo("Usernames can't start with $");
                                     }else if(data=='12'){
                                         serrorinfo("Usernames can't be only numbers");
+                                    }else if(data=='13'){
+                                        serrorinfo("Usernames can't contain special characters");
                                     }else{
                                         serrorinfo("Oops something went wrong with the server, error code: "+data);
                                     }
