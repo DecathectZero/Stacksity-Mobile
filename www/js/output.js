@@ -16,13 +16,32 @@ function comments(element){
     }
     return '<div class="comwrapper"><div class="comwrap">'+del+'</div></div>';
 }
-function priv(priv){
-    if(priv == 1){
-        return "privatepost";
-    }else{
-        return "";
+function priv(priv, nsfw){
+    var classes = "";
+    if(priv == "1"){
+        classes = classes + "privatepost ";
     }
+    if(nsfw==1){
+        classes = classes + "nsfw";
+    }else if(nsfw==2){
+        classes = classes + "nsfw gore";
+    }else if(nsfw>2){
+        classes = classes + "nsfw boobs";
+    }
+    return classes;
 }
+
+function replaceAll(find, replace, str) {
+    return str.replace(new RegExp(find, 'g'), replace);
+}
+function privt(title, private){
+    var re = replaceAll("&amp;","&",title);
+    if(private=="1"){
+        re = '<span class="glyphicon glyphicon-lock" aria-hidden="true"></span> '+re;
+    }
+    return re;
+}
+
 function stacknames(from, from_id, too, too_id){
     var stack_name = '<a class="stacklink" data-link="'+from_id+'">'+ from + '</a> ';
     if(stackid == 0 || stackid == -1){
@@ -53,14 +72,13 @@ function imagepost(element){
     var count = element.upstacks-element.downstacks;
     var vote = voting(element.vote, count);
 
-    return '<div class="item ipost '+priv(element.private)+'" data-post="'+element.post_id+'">' +
+    return '<div class="item ipost '+priv(element.private, element.nsfw)+'" data-post="'+element.post_id+'">' +
     '<div class="textcon"><div class="linkwrapper"><div class="margins"> ' +
-    getlink(element.post_id, element.link)+'<h4>' + element.title + '</h4></a>' +
+    getlink(element.post_id, element.link)+'<h4>' +  privt(element.title, element.private)  + '</h4></a>' +
     '<p class="postinfo">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id)+' | '+ element.created +'</p></div>' +
     getlink(0, element.link) +
     '<div class="imagewrap">'+element.embed+'</div>' +
-    '</a>' +
-    '<div class="textfeed margins"><p class="content">'+element.text+'</p></div></div><div class="vote login">'+
+    '</a>' + '</div><div class="vote login">'+
     vote +
     '</div>'+comments(element)+
         /*'<p class="link">'+link.substring(0,100)+'</p>'+<a href="'+element.link+'">See More</a>*/
@@ -71,9 +89,9 @@ function videopost(element){
     var count = element.upstacks-element.downstacks;
     var vote = voting(element.vote, count);
 
-    return '<div class="item vpost '+priv(element.private)+'" data-post="'+element.post_id+'">' +
+    return '<div class="item vpost '+priv(element.private, element.nsfw)+'" data-post="'+element.post_id+'">' +
     '<div class="textcon"><div class="margins">' +
-    getlink(element.post_id, element.link)+'<h4>' + element.title + '</h4></a>' +
+    getlink(element.post_id, element.link)+'<h4>' + privt(element.title, element.private) + '</h4></a>' +
     '<p class="postinfo">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id)+' | '+ element.created +'</p></div>' +
         //'<a href="/'+element.link+'" target="_blank">' +
     '<div class="linkwrapper"><div class="videowrapper">'+element.embed+'</div>'+
@@ -86,9 +104,9 @@ function videopost(element){
 function linkspost(element){
     var count = element.upstacks-element.downstacks
     var vote = voting(element.vote, count);
-    return '<div class="item lpost '+priv(element.private)+'" data-post="'+element.post_id+'">' +
+    return '<div class="item lpost '+priv(element.private, element.nsfw)+'" data-post="'+element.post_id+'">' +
     '<div class="textcon margins">' +
-    getlink(element.post_id, element.link)+'<h4>' + element.title + '</h4></a>' +
+    getlink(element.post_id, element.link)+'<h4>' + privt(element.title, element.private) + '</h4></a>' +
     '<p class="postinfo">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id)+' | '+ element.created +'</p>' +
     '<div class="linkwrapper">' + getlink(0, element.link) +
     '<div class="linkcontainer"><img class="linkimage" src="'+ element.image +'"></div>' +
@@ -106,13 +124,13 @@ function textspost(element){
     if(option==7){
         link = '<h4>' + element.title + '</h4>';
     }else{
-        link =   getlink(element.post_id, element.link)+'<h4>' + element.title + '</h4></a>';
+        link = getlink(element.post_id, element.link)+'<h4>' + privt(element.title, element.private) + '</h4></a>';
     }
-    return '<div class="item tpost '+priv(element.private)+'" data-post="'+element.post_id+'">' +
+    return '<div class="item tpost '+priv(element.private, element.nsfw)+'" data-post="'+element.post_id+'">' +
     '<div class="textcon margins">' +
     link +
     '<p class="postinfo">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id)+' | '+ element.created +'</p>' +
-    '<p class="content">'+$("<textarea/>").html(element.text).text()+'</p><div class="vote login">'+
+    '<div class="content">'+$("<textarea/>").html(element.text).text()+'</div><div class="vote login">'+
     vote +
     '</div>'+comments(element)+
     '</div>' +

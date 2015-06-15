@@ -84,6 +84,7 @@
                         activepage.find(".extracontainer").scrollTop(0);
                     }else if(!postbox){
                         if(activepage.data("stack_id")==null&&!postbox){
+                            $('.scroll').html('<p>Loading Stack...</p>');
                             var activestack = stackid;
                             if(explore){
                                 if(activestack<0){

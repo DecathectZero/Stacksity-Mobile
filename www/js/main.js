@@ -33,7 +33,6 @@ function postOpen(type){
 }
 
 function bannerset(activepage, stackid){
-    $('.scroll').html('<p>Loading Stack...</p>');
     $.ajax({
         type     : "POST",
         cache    : false,
@@ -159,7 +158,7 @@ function startNews(startnum, activepage, stackid) {
     if(!loading){
         if(end){
             return;
-        }$('.scroll').html('<p>Loading Posts...(</p>');
+        }$('.scroll').html('<p>Loading Posts...</p>');
         loading = true;
         var postnum = 0;
         $.ajax({
@@ -168,12 +167,13 @@ function startNews(startnum, activepage, stackid) {
             url      : 'https://stacksity.com/php/feed.php',
             crossDomain : true,
             data     : {id : stackid , start : startnum , session_id: id },
-            dataType : "json",
+            //dataType : "html",
             success  : function(data) {
-                if(null==data){
+                if(null==data||data==''){
                     loading = false;
                     checkEnd(postnum);
                 }else{
+                    data = JSON.parse(data);
                     //if(startnum>19){
                     //    var div = activepage.find(".extracontainer");
                     //    activepage.find('.item:lt('+data.length+')').remove();
@@ -203,7 +203,7 @@ function startNews(startnum, activepage, stackid) {
                 if(request.status == 0) {
                     $('.scroll').html('<p>You\'re offline :(</p>');
                 }else{
-                    alert("Error Connection");
+                    alert("connection arror");
                 }
             }
         });
@@ -697,7 +697,7 @@ $(document).on('submit', '#commentform',function(e){
                 }else{
                     var element = $.parseJSON(data);
                     $(commentHTML(element, 0)).hide().prependTo('#commentfeed').fadeIn("slow");
-                    $('.postb').html('Post');
+                    $('.postb').html('comment');
                     $("#commentform").find("textarea").val("");
                     $(".nocomments").remove();
                 }
@@ -705,7 +705,7 @@ $(document).on('submit', '#commentform',function(e){
             },
             error: function(xhr, status, error) {
                 alert("error"+ xhr.responseText);
-                $('.postb').html('Post');
+                $('.postb').html('comment');
                 posting = false;
             }
         });

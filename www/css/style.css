@@ -195,6 +195,7 @@ a:active{
     margin-top: 8px;
     overflow: hidden;
     background-color: #CCC;
+    margin-bottom: 10px;
     /*min-height: 100px;*/
 }
 .videowrapper {
@@ -688,7 +689,22 @@ background-color: #CCC;
 .privatepost a:active{
     color: #FF4136 !important;
 }
-
+.nsfw{
+    background-image: url("../img/post/nsfw.png");
+    border: 2px #FF4136 solid !important;
+}
+.gore{
+    background-image: url("../img/post/gore.png");
+}
+.boobs{
+    background-image: url("../img/post/boobs.png");
+}
+.nsfw a{
+    color: crimson !important;
+}
+.nsfw a:hover{
+    color: #FF4136 !important;
+}
 .cvote{
     width: 25px;
     float: left;
