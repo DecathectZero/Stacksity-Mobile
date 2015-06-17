@@ -19,11 +19,8 @@ body {
     width: 100%;
     height: 100%;
 }
-.ui-page {
-    -webkit-backface-visibility: hidden;
-}
 .login{
-    background: url(../img/background.jpg) no-repeat center center fixed;
+    background: url(../img/background.jpeg) no-repeat center center fixed;
     background-size: cover;
 }
 .password{
@@ -97,7 +94,7 @@ a:hover {
     margin-right: auto;
     left: 0;
     right: 0;
-    bottom: 20px;
+    top: 10px;
     width: 100%;
     max-width:500px;
     padding: 0 10px;

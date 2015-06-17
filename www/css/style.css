@@ -865,6 +865,29 @@ background-color: #CCC;
     position: relative;
     z-index: 100;
 }
+.ui-mobile, .ui-mobile .ui-page, .ui-mobile [data-role="page"],
+.ui-mobile [data-role="dialog"], .ui-page, .ui-mobile .ui-page-active {
+    overflow: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.ui-header {
+    position:fixed;
+    z-index:10;
+    top:0;
+    width:100%;
+}
+
+.ui-content {
+    padding-top: 57px;
+    padding-bottom: 54px;
+    overflow: auto;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
 .notification{
     text-align: left;
     padding-right: 30px !important;

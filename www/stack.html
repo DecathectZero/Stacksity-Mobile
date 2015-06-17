@@ -5,7 +5,7 @@
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
     <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=no" />
     <link rel="stylesheet" href="css/jquerymobile.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <!--<link rel="stylesheet" href="css/bootstraptheme.css">-->
@@ -18,7 +18,14 @@
     <script src="js/output.js"></script>
     <script src="js/vote.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
-    <script>
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
         document.addEventListener("deviceready", onDeviceReady, false);
         function onDeviceReady() {
             StatusBar.overlaysWebView(false);
@@ -41,6 +48,20 @@
                 }else if(postype==3){
                     imagepostShow();
                 }
+            }else{
+                try {
+                    _gaq.push(['_setAccount', 'YOUR_GA_ID']);
+
+                    hash = location.hash;
+
+                    if (hash) {
+                        _gaq.push(['_trackPageview', hash.substr(1)]);
+                    } else {
+                        _gaq.push(['_trackPageview']);
+                    }
+                } catch(err) {
+
+                }
             }
         });
         $(document).on('pagechange',function(event,ui){
@@ -60,7 +81,7 @@
                     option = 4;
                 }else if(acrid=="post"){
                     option = 7;
-                }else if(activepage.hasClass("ex")){
+                }else if(acrid=="explorepage"){
                     option = 6;
                 }
                 init();
@@ -164,7 +185,6 @@
         </div>
     </div>
 </div>
-<div id="container">
 <div class="modal fade" id="delpost" style="display: none;" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -407,7 +427,6 @@
         </div>
         <div class="botgap"></div>
     </div>
-</div>
 </div>
 <script>
     init();
