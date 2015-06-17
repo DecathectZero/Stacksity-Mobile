@@ -556,8 +556,8 @@ $(document).on('tap','.postlink',function(e){
 /*post stuff*/
 var preopt;
 $(document).on('click','a',function(e){
-    e.preventDefault();
     if($(this).hasClass("toPost")){
+        e.preventDefault();
         postid = $(this).data("postlink");
         preopt = option;
         option = 7;
@@ -571,11 +571,16 @@ $(document).on('click','a',function(e){
             }
         );
     }else if($(this).hasClass("stacklink")){
+        e.preventDefault();
         var goto = $(this).data('link');
         linkToStack(goto);
     }else{
         var link = $(this).attr("href");
-        window.open(link, '_system');
+        if(link==null){
+
+        }else{
+            window.open(link, '_blank', 'location=yes,enableViewportScale=yes');
+        }
     }
 });
 
