@@ -48,13 +48,14 @@
     <script type="text/javascript" src="js/jquerymobile.js"></script>
     <script>
         $(document).one("mobileinit", function () {
-            //$.mobile.pageContainer = $('#container');
+            $.mobile.pageContainer = $('#container');
             $.mobile.defaultPageTransition = 'slide';
         });
     </script>
     <title>Stacksity</title>
 </head>
 <body>
+<div id="container">
 <div data-role="page" id="loginpage" class="login">
     <div data-role="main">
         <div class="container">
@@ -269,6 +270,7 @@
             });
         });
     </script>
+</div>
 </div>
 <script>
     $("button").on('tap', function (e) {

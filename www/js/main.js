@@ -579,6 +579,7 @@ $(document).on('click','a',function(e){
         if(link==null){
 
         }else{
+            e.preventDefault();
             window.open(link, '_blank', 'location=yes,enableViewportScale=yes');
         }
     }

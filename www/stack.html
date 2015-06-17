@@ -29,6 +29,10 @@
     <script src="js/output.js"></script>
     <script src="js/vote.js"></script>
     <script type="text/javascript">
+        $(document).one("mobileinit", function () {
+            $.mobile.pageContainer = $('#container');
+            $.mobile.defaultPageTransition = 'slide';
+        });
         var _gaq = _gaq || [];
 
         (function() {
@@ -215,6 +219,7 @@
         </div>
     </div>
 </div>
+<div id="container">
 <div data-role="page" data-dom-cache="true" id="explorepage" class="ex">
     <div data-role="header" data-id="persistent" data-position="fixed"  class="head" data-fullscreen="true" data-tap-toggle="false" id="explorehead">
     </div>
@@ -431,6 +436,7 @@
         </div>
         <div class="botgap"></div>
     </div>
+</div>
 </div>
 <script>
     init();
