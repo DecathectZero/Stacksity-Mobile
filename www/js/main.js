@@ -154,11 +154,37 @@ function checkEnd(postnum){
         $('.scroll').html('<p>No more posts</p>');
     }
 }
+function checklogin(){
+    var id = window.localStorage.getItem('session_id');
+    var hashcode = window.localStorage.getItem('hashcode');
+    $.ajax({
+        type     : "POST",
+        cache    : false,
+        url      : 'https://stacksity.com/php/mobileCheckLogin.php',
+        data     : {session_id : id, hashcode : hashcode},
+        dataType : "html",
+        crossDomain : true,
+        success  : function(data) {
+            if(data=="0"){
+                document.location.href = 'index.html';
+            }else{
+                if(data!="1"){
+                    window.localStorage.setItem('session_id', data);
+                }
+            }
+        },
+        error: function(xhr, status, error) {
+            //alert("error: "+xhr.responseText);
+        }
+    });
+}
 function startNews(startnum, activepage, stackid) {
     if(!loading){
         if(end){
             return;
-        }$('.scroll').html('<p>Loading Posts...</p>');
+        }
+        $('.scroll').html('<p>Loading Posts...</p>');
+        checklogin();
         loading = true;
         var postnum = 0;
         $.ajax({
@@ -167,7 +193,7 @@ function startNews(startnum, activepage, stackid) {
             url      : 'https://stacksity.com/php/feed.php',
             crossDomain : true,
             data     : {id : stackid , start : startnum , session_id: id },
-            //dataType : "html",
+            dataType : "html",
             success  : function(data) {
                 if(null==data||data==''){
                     loading = false;
@@ -350,11 +376,6 @@ function linkToStack(goto){
         }
     }
 }
-$(document).on('click', '.stacklink',function(){
-    //option = 0;
-    var goto = $(this).data('link');
-    linkToStack(goto);
-});
 /*name();
  function name(){if(stackid == 0){
  $("#posting").html(self);
@@ -534,18 +555,28 @@ $(document).on('tap','.postlink',function(e){
 
 /*post stuff*/
 var preopt;
-$(document).on('click','.toPost',function(){
-    postid = $(this).data("postlink");
-    preopt = option;
-    option = 7;
-    init();
-    changepage = true;
-    $.mobile.changePage(
-        "#post",
-        {
-            showLoadMsg             : false
-        }
-    );
+$(document).on('click','a',function(e){
+    e.preventDefault();
+    if($(this).hasClass("toPost")){
+        postid = $(this).data("postlink");
+        preopt = option;
+        option = 7;
+        init();
+        changepage = true;
+        $.mobile.changePage(
+            "#post",
+            {
+                transition: "slide",
+                showLoadMsg             : false
+            }
+        );
+    }else if($(this).hasClass("stacklink")){
+        var goto = $(this).data('link');
+        linkToStack(goto);
+    }else{
+        var link = $(this).attr("href");
+        window.open(link, '_system');
+    }
 });
 
 function getPost(postid)
@@ -600,9 +631,9 @@ function commentHTML(element, depth){
         '<input type="hidden" name="postid" value="'+postid+'">'+
         '<input type="hidden" name="commentid" value="'+element.comment_id+'">'+
         '<div id="textpost">'+
-        '<textarea name="text" class="expanding" id="text" placeholder="Write something here..." rows="2" required></textarea>'+
+        '<textarea name="text" class="expanding" placeholder="Write something here..." rows="2" required></textarea>'+
         '</div></div>'+
-        '<div class="postsub"><label><span class="cancelreply" onclick="backReply(this)">Cancel</span></label>'+
+        '<div class="postsub comsub"><label><span class="cancelreply" onclick="backReply(this)">Cancel</span></label>'+
         '<button type="submit" class="postb replypost">Post</button>'+
         '</div></form>';
     }
@@ -642,6 +673,7 @@ function backReply(el){
 $(document).on('submit', '.replycomment', function(e){
     e.preventDefault();
     if(!posting){
+        checklogin();
         posting = true;
         $(this).children('.replypost').html('<div class="loader">Loading...</div>');
         e.preventDefault();
@@ -681,6 +713,7 @@ $(document).on('submit', '.replycomment', function(e){
 $(document).on('submit', '#commentform',function(e){
     e.preventDefault();
     if(!posting){
+        checklogin();
         posting = true;
         $('.postb').html('<div class="loader">Loading...</div>');
         e.preventDefault();

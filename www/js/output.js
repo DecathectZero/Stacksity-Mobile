@@ -1,6 +1,6 @@
 function getlink(el, link){
     if(el==0||(option == 7)){
-        return '<a href = "'+link+'" style="text-decoration:none" onclick = "window.open(\''+link+'\' , \'_blank\', \'location=yes,enableViewportScale=yes\'); return false;">';
+        return '<a href = "'+link+'" style="text-decoration:none">';
     }
     return '<a data-postlink="'+el+'" class="toPost">';
 }
@@ -35,7 +35,7 @@ function replaceAll(find, replace, str) {
     return str.replace(new RegExp(find, 'g'), replace);
 }
 function privt(title, private){
-    var re = replaceAll("&amp;","&",title);
+    var re = title;
     if(private=="1"){
         re = '<span class="glyphicon glyphicon-lock" aria-hidden="true"></span> '+re;
     }

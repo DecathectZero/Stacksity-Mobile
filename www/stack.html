@@ -5,7 +5,7 @@
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
     <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
     <link rel="stylesheet" href="css/jquerymobile.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <!--<link rel="stylesheet" href="css/bootstraptheme.css">-->
@@ -16,7 +16,6 @@
     <script src="js/bootstrap.js"></script>
     <script src="js/autogrow.js"></script>
     <script src="js/output.js"></script>
-    <script src="js/checklogin.js"></script>
     <script src="js/vote.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script>
@@ -45,7 +44,6 @@
             }
         });
         $(document).on('pagechange',function(event,ui){
-            checklogin();
             var activepage = $.mobile.activePage;
 //            ui.prevPage.find(".extracontainer").css("-webkit-overflow-scrolling","auto");
             if(changepage){
@@ -288,7 +286,7 @@
     </div>
 </div>
 
-<div data-role="page" id="postpage">
+<div data-role="page" data-dom-cache="false" id="postpage">
     <div data-role="header" data-id="persistent" data-position="fixed" class="head" data-fullscreen="true" data-tap-toggle="false">
         <div class="row postrow posting center">
             <div class="col-xs-4 postlink" onclick="linkpost()" id="postlink">Link</div>
@@ -398,9 +396,9 @@
         <div id="comments" class="center">
             <form id="commentform">
                 <div class="postcon">
-                    <textarea name="text" class="expanding" placeholder="Write something here..." rows="2"></textarea>
+                    <textarea name="text" id="commenttext" placeholder="Write something here..." rows="2" data-role="none"></textarea>
                 </div>
-                <div class="postsub">
+                <div class="postsub" style="margin-bottom: 0">
                     <button type="submit" class="postb" data-corners="false">comment</button>
                 </div>
             </form>
@@ -413,6 +411,7 @@
 </div>
 <script>
     init();
+    $("#commenttext").expanding();
     $( "#autocomplete" ).on( "listviewbeforefilter", function ( e, data ) {
         var $ul = $( this ),
                 $input = $( data.input ),

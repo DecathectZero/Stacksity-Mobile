@@ -331,6 +331,10 @@ background-color: #CCC;
     margin-top: 0px;
     margin-bottom: 10px;
 }
+.comsub{
+    margin-bottom: 0;
+    padding-bottom: 5px;
+}
 .postsub label{
     margin-top: 3px;
     color: #666;
