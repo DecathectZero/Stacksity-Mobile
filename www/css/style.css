@@ -47,7 +47,7 @@ a:active{
 .extracontainer {
     width: 100%;
     height: 100%;
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
@@ -870,17 +870,11 @@ background-color: #CCC;
     overflow: hidden;
     -webkit-backface-visibility: hidden;
 }
-
-.ui-header {
-    position:fixed;
-    z-index:10;
-    top:0;
-    width:100%;
+.ui-mobile, .ui-mobile body {
+    height: 100%;
 }
 
 .ui-content {
-    padding-top: 57px;
-    padding-bottom: 54px;
     overflow: auto;
     position: absolute;
     top: 0;
