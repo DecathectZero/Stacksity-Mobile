@@ -28,27 +28,28 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <link rel="stylesheet" href="css/jquerymobile.css">
-        <script type="text/javascript" src="js/jquery.js"></script>
-        <script type="text/javascript" src="js/jquerymobile.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
         <script>
+            StatusBar.backgroundColorByHexString("#ffffff");
+            StatusBar.styleLightContent();
+            StatusBar.overlaysWebView(false);
             document.addEventListener("deviceready", onDeviceReady, false);
             // device APIs are available
             //
             function onDeviceReady() {
                 navigator.splashscreen.hide();
-                StatusBar.backgroundColorByHexString("#ffffff");
-                StatusBar.styleLightContent();
-                StatusBar.overlaysWebView(false);
             }
             if (localStorage.getItem("session_id") != null) {
                 document.location.href = 'stack.html#toppage';
             }
+        </script>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/jquerymobile.js"></script>
+        <script>
             $(document).one("mobileinit", function () {
                 //$.mobile.pageContainer = $('#container');
                 $.mobile.defaultPageTransition = 'slide';
             });
-
         </script>
         <title>Stacksity</title>
     </head>

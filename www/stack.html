@@ -10,6 +10,12 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <!--<link rel="stylesheet" href="css/bootstraptheme.css">-->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script type="text/javascript" src="cordova.js"></script>
+    <script>
+        StatusBar.overlaysWebView(false);
+        StatusBar.backgroundColorByHexString("#ffffff");
+        StatusBar.styleLightContent();
+    </script>
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/jquerymobile.js"></script>
     <script src="js/main.js"></script>
@@ -17,7 +23,6 @@
     <script src="js/autogrow.js"></script>
     <script src="js/output.js"></script>
     <script src="js/vote.js"></script>
-    <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript">
         var _gaq = _gaq || [];
 
@@ -26,12 +31,6 @@
             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
-        document.addEventListener("deviceready", onDeviceReady, false);
-        function onDeviceReady() {
-            StatusBar.overlaysWebView(false);
-            StatusBar.backgroundColorByHexString("#ffffff");
-            StatusBar.styleLightContent();
-        }
         $(document).on('pagebeforeshow',function(event,ui){
             if(option == 7){
                 $('#postcon').empty();
