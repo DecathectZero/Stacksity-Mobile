@@ -12,9 +12,14 @@
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <script type="text/javascript" src="cordova.js"></script>
     <script>
-        StatusBar.overlaysWebView(false);
-        StatusBar.backgroundColorByHexString("#ffffff");
-        StatusBar.styleLightContent();
+        document.addEventListener("deviceready", onDeviceReady, false);
+        // device APIs are available
+        //
+        function onDeviceReady() {
+            StatusBar.overlaysWebView(false);
+            StatusBar.backgroundColorByHexString("#ffffff");
+            StatusBar.styleLightContent();
+        }
     </script>
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/jquerymobile.js"></script>

@@ -195,7 +195,7 @@ function startNews(startnum, activepage, stackid) {
             data     : {id : stackid , start : startnum , session_id: id },
             dataType : "html",
             success  : function(data) {
-                if(null==data||data==''){
+                if(data==null||data==''){
                     loading = false;
                     checkEnd(postnum);
                 }else{
