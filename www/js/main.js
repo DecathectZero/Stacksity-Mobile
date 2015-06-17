@@ -100,7 +100,7 @@ function bannerset(activepage, stackid){
 }
 function logout(){
     localStorage.clear();
-    document.location.href = "index.html";
+    document.location.href = "login.html";
 }
 function initPostBox(){
     //alert(stackid);
