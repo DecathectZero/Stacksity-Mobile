@@ -32,13 +32,13 @@ function postOpen(type){
     }
 }
 
-function bannerset(activepage, stackid){
+function bannerset(activepage, stackids){
     $.ajax({
         type     : "POST",
         cache    : false,
         url      : 'https://stacksity.com/php/stacknameJSON.php',
         crossDomain : true,
-        data     : {stack:stackid, session_id:id},
+        data     : {stack:stackids, session_id:id},
         success  : function(data) {
             //alert(activepage.attr("id")+" "+stackid);
             if(data==1){
@@ -48,6 +48,7 @@ function bannerset(activepage, stackid){
                 var element = JSON.parse(data);
                 stackname = element.stackname;
                 is_user = 0;
+                //alert(element.stack);
                 stackid = element.stack;
                 activepage.data("stack_id", stackid);
                 activepage.data("is_user", is_user);
@@ -187,6 +188,7 @@ function startNews(startnum, activepage, stackid) {
         checklogin();
         loading = true;
         var postnum = 0;
+        //alert(startnum+" "+stackid);
         $.ajax({
             type     : "GET",
             cache    : false,
@@ -195,7 +197,7 @@ function startNews(startnum, activepage, stackid) {
             data     : {id : stackid , start : startnum , session_id: id },
             dataType : "html",
             success  : function(data) {
-                if(data==null||data==''){
+                if(data=="null"||data==''){
                     loading = false;
                     checkEnd(postnum);
                 }else{
@@ -601,13 +603,14 @@ function getPost(postid)
             }else if(element.posttype == 3){
                 $('#postcon').append(videopost(element));
             }
-            $("#postcon").slideDown();
-        }
-        if(element.comments>0){
-            $("#commentfeed").empty();
-            getComment($("#commentfeed"));
-        }else{
-            $('#commentfeed').html("<div class='nocomments'>No comments currently</div>");
+            $("#postcon").slideDown(function(){
+                if(element.comments>0){
+                    $("#commentfeed").empty();
+                    getComment($("#commentfeed"));
+                }else{
+                    $('#commentfeed').html("<div class='nocomments'>No comments currently</div>");
+                }
+            });
         }
     });
 }

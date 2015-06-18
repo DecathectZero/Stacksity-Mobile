@@ -129,7 +129,7 @@
                                     '<a class="col-xs-4 postlink" onclick="postOpen(3)">Image</a>'+
                                     '</div>')
                                 }
-                                activepage.find('.scroll').html('<p>Loading Posts</p> ');
+                                //activepage.find('.scroll').html('<p>Loading Posts</p> ');
                             }
                             bannerset(activepage, stackid);
                             var contain = activepage.find(".extracontainer");
@@ -140,7 +140,7 @@
                                         if(!end&&!bottom&&!loading){
                                             bottom = true;
                                             activepage.find('.scroll').html('<p>Loading Posts</p> ');
-                                            startNews(startnews,activepage, stackid);
+                                            startNews(startnews, activepage, stackid);
                                         }
                                     }
                                 }
