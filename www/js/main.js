@@ -49,20 +49,25 @@ function bannerset(activepage, stackids){
                 stackname = element.stackname;
                 is_user = 0;
                 //alert(element.stack);
+                stackids = element.stack;
                 stackid = element.stack;
-                activepage.data("stack_id", stackid);
+                var ban = activepage.find(".banner");
+                if(element.banner!=null){
+                    ban.css("background-image","url('"+element.banner+"')");
+                }
+                activepage.data("stack_id", stackids);
                 activepage.data("is_user", is_user);
                 activepage.data("startnews", 0);
                 activepage.data("stackname", stackname);
                 activepage.find(".bannertext").html('<h1 class="bannertitle"></h1><p class="bannerdesc"></p>');
                 activepage.find(".bannertitle").html(stackname);
-                if(stackid==0){
-                    activepage.find(".banner").addClass("topbanner");
+                if(stackids==0){
+                    ban.addClass("topbanner");
                     activepage.find(".bannerdesc").html(element.stack_desc);
-                }else if(stackid==-1){
-                    activepage.find(".banner").addClass("allbanner");
+                }else if(stackids==-1){
+                    ban.addClass("allbanner");
                     activepage.find(".bannerdesc").html(element.stack_desc);
-                }else if(stackid<-1){
+                }else if(stackids<-1){
                     activepage.find(".bannerdesc").html(element.stack_desc);
                 }else {
                     var space = '';
@@ -70,7 +75,7 @@ function bannerset(activepage, stackids){
                         space = '<br>';
                     }
                     activepage.find(".bannerdesc").html('<b>' + element.stack_desc + space + "<span class='followers'>" + element.followers + '</span> followers</b>');
-                    if (userstack != stackid) {
+                    if (userstack != stackids) {
                         if (element.following) {
                             activepage.find('.bannertext').append('<br> <button class="follow followed" value="1" data-role="none">Followed</button>')
                         } else {
@@ -80,13 +85,13 @@ function bannerset(activepage, stackids){
                         activepage.find('.bannertext').append('<br> <button class="logout" onclick="logout()">Logout</button>')
                     }
                     if (element.is_user == "1") {
-                        activepage.find(".banner").addClass("userbanner");
+                        ban.addClass("userbanner");
                         is_user = 1;
                     }
                 }
                 activepage.find(".banner").slideDown({complete:function(){
                     startnews = 0;
-                    startNews(startnews,activepage, stackid);
+                    startNews(startnews,activepage, stackids);
                 }});
             }
         },
@@ -164,6 +169,7 @@ function checklogin(){
         url      : 'https://stacksity.com/php/mobileCheckLogin.php',
         data     : {session_id : id, hashcode : hashcode},
         dataType : "html",
+        async:   false,
         crossDomain : true,
         success  : function(data) {
             if(data=="0"){
