@@ -7,12 +7,14 @@ function getlink(el, link){
 function comments(element){
     var del = '';
     if(element.delete){
-        del = '<a class="delete commentlink" data-delete="'+element.post_id+'">delete<span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>';
+        del = '<a class="delete commentlink" data-delete="'+element.post_id+'"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>';
+    }if(element.report==1){
+        del += '<a class="report commentlink"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a>';
     }
     if(option!=7){
-        del = '<a class="toPost" data-postlink="'+element.post_id+'">'+element.comments+' comments</a>'+del+'<span class="pid">Post#'+element.post_id+'</span>';
+        del = '<a class="toPost commentlink" data-postlink="'+element.post_id+'">'+element.comments+' comments</a>'+del+'<span class="pid">P#'+element.post_id+'</span>';
     }else{
-        del = del+'<span class="pid">Post#'+element.post_id+'</span>';
+        del += '<span class="pid">P#'+element.post_id+'</span>';
     }
     return '<div class="comwrapper"><div class="comwrap">'+del+'</div></div>';
 }

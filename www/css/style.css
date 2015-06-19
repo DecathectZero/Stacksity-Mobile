@@ -12,10 +12,9 @@ body, html{
 }
 h4{
     font-weight: bold;
-    line-height: 30px;
     display: inline;
     margin: 0;
-    font-size: 24px;
+    font-size: 20px;
     margin-bottom: 0;
 }
 a{
@@ -572,7 +571,7 @@ background-color: #CCC;
         box-shadow: 0 10px 0 0 #FFF;
     }
 }
-.commentlink, .toPost{
+.commentlink{
     font-weight: bold;
     margin-right: 10px;
     cursor: pointer;
@@ -1056,4 +1055,7 @@ h1 {
     height: 31px;
     text-align: center;
     line-height: 31px;
+}
+.comwrap a {
+    padding: 10px 0;
 }
