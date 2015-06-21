@@ -258,18 +258,25 @@ function refresh(){
     if(activep.data("stack_id")==null&&!postbox){
         bannerset(activep, stackid);
     }else{
-        if(activep.find(".extracontainer").scrollTop()==0){
+        var scrollpos = activep.find(".extracontainer").scrollTop();
+        if(scrollpos==0){
             activep.find(".feed").empty();
             activep.data("startnews", 0);
             startnews = 0;
             startNews(startnews, activep, stackid);
-        }else{
+        }else if(scrollpos<4000){
             activep.find(".extracontainer").stop().animate({ scrollTop : 0 }, 1000, function(){
                 activep.find(".feed").empty();
-                activep.data("startnews", 0);
                 startnews = 0;
                 startNews(startnews, activep, stackid);
+                activep.data("startnews", 0);
             });
+        }else{
+            //activep.find(".extracontainer").scrollTop(0);
+            activep.find(".feed").empty();
+            startnews = 0;
+            startNews(startnews, activep, stackid);
+            activep.data("startnews", 0);
         }
     }
 }
@@ -371,11 +378,11 @@ function linkToStack(goto){
         }else{
             if(op==4||(goto != stackid && goto != stackname)){
                 //alert(goto);
-                var banner = $('*[data-url="explorepage"] .banner');
-                $('*[data-url="explorepage"]').data("stack_id", null);
+                var banner = $('#explorepage .banner');
+                $('#explorepage').data("stack_id", null);
                 banner.hide();
                 banner.removeClass("userbanner");
-                $('*[data-url="explorepage"] .feed').empty();
+                $('#explorepage .feed').empty();
                 stackid = goto;
                 explore = true;
                 changepage = true;
@@ -462,6 +469,8 @@ $(document).on('submit', "#toppost", function(e){
                 postbox = false;
                 postdata = data;
                 $.mobile.back();
+                $('#pbutton').html('Post');
+                $('#private').html('Private');
             },
             error: function(request) {
                 if(request.status == 0) {
@@ -469,7 +478,7 @@ $(document).on('submit', "#toppost", function(e){
                 }else{
                     alert("Error Connection");
                 }
-                $('.postb').html('Post');
+                $('#pbutton').html('Post');
                 $('#private').html('Private');
                 posting = false;
             }
@@ -590,7 +599,7 @@ $(document).on('click','a',function(e){
         linkToStack(goto);
     }else{
         var link = $(this).attr("href");
-        if(link==null){
+        if(link==null||$(this).hasClass("ui-input-clear")){
 
         }else{
             e.preventDefault();
@@ -662,9 +671,9 @@ function commentHTML(element, depth){
     '<div class="comment" data-commentid="'+element.comment_id+'" data-depth="'+element.depth+'">'+
     vote+
     '<div class="comment-content">'+
-    '<p class="tagline"><a class="comment_link" href="/stack.php?id='+element.user_stack+'" class="">'+element.username+'</a> | <time>'+element.created+'</time>' +
+    '<p class="tagline"><a class="comment_link stacklink" data-link="'+element.user_stack+'" class="">'+element.username+'</a> | <time>'+element.created+'</time>' +
     ' | <b>#'+element.comment_id+'</b></p>'+
-    '<p class="commenttext">'+$("<textarea/>").html(element.content).text()+'</p>'+ reply +
+    '<div class="commenttext">'+element.content+'</div>'+ reply +
     '</div> </div> </div>';
 }
 function getComment(item)
@@ -774,12 +783,12 @@ $(document).on('click', '.deletecom', function(e) {
     $('#commentdelete').modal({keyboard: true});
     return false;
 });
-$('#deletecomment').click(function(e){
+function delcom(){
     $.ajax({
         type     : "POST",
         cache    : false,
-        url      : '/php/deletecomment.php',
-        data     : {delid : deletecom_id},
+        url      : 'https://stacksity.com/php/deletecomment.php',
+        data     : {delid : deletecom_id, session_id: id},
         success  : function(data) {
             if(data==0){
                 var del = $('*[data-commentid="'+deletecom_id+'"]');
@@ -795,4 +804,4 @@ $('#deletecomment').click(function(e){
             $('#commentdelete').modal('hide');
         }
     });
-});
+}

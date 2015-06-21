@@ -431,8 +431,8 @@ background-color: #CCC;
     background-size: 100%;
     background-repeat: no-repeat;
     cursor: pointer;
-    background-color: #fafbfe;
     float: left;
+    background-position-y:50%;
 }
 .vbutton:active{
     border: 1px solid #999;
@@ -447,21 +447,27 @@ background-color: #CCC;
     text-align: center;
     color: #000 !important;
 }
+.ui-btn{
+    margin: 0;
+    padding: 10px 0;
+}
 .stackup{
-    background-image: url("../img/post/StacksityUpstack.svg");
-    background-repeat: repeat;
+    background-image: url("../img/post/upstack.svg");
+    background-repeat: no-repeat;
     background-size: 100%;
 }
 .stackdown{
-    background-image: url("../img/post/StacksityDownstack.svg");
-    background-repeat: repeat;
+    background-image: url("../img/post/downstack.svg");
+    background-repeat: no-repeat;
     background-size: 100%;
 }
 .stack-up{
-    background-color: #980200;
+    /*background-color: #980200;*/
+    background-image: url("../img/post/upstacked.svg");
 }
 .stack-down{
-    background-color: #3C81A8;
+    background-image: url("../img/post/downstacked.svg");
+    /*background-color: #3C81A8;*/
 }
 .topgap{
     padding-top: 30px;
@@ -731,7 +737,8 @@ background-color: #CCC;
     display: block;
     width: 25px;
     height: 25px;
-    margin: 0
+    margin: 0;
+    background-position-y:50%;
 }
 .cbutton:active {
     border: 1px solid #999;
@@ -759,6 +766,9 @@ background-color: #CCC;
 .commenttext{
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     margin-bottom:0;
+}
+.commenttext p{
+    margin-bottom: 0;
 }
 .comment:active{
     border-left: 3px solid #FF4136;

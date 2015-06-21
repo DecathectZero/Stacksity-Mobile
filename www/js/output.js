@@ -9,7 +9,7 @@ function comments(element){
     if(element.delete){
         del = '<a class="delete commentlink" data-delete="'+element.post_id+'"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>';
     }if(element.report==1){
-        del += '<a class="report commentlink"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a>';
+        del += '<a class="report commentlink" data-delete="'+element.post_id+'"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a>';
     }
     if(option!=7){
         del = '<a class="toPost commentlink" data-postlink="'+element.post_id+'">'+element.comments+' comments</a>'+del+'<span class="pid">P#'+element.post_id+'</span>';
@@ -75,9 +75,9 @@ function imagepost(element){
     var vote = voting(element.vote, count);
 
     return '<div class="item ipost '+priv(element.private, element.nsfw)+'" data-post="'+element.post_id+'">' +
-    '<div class="textcon"><div class="linkwrapper"><div class="margins"> ' +
+    '<div class="textcon"><div class="linkwrapper">' +
     getlink(element.post_id, element.link)+'<h4>' +  privt(element.title, element.private)  + '</h4></a>' +
-    '<p class="postinfo">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id, element.flair, element.stackflair)+' | '+ element.created +'</p></div>' +
+    '<p class="postinfo">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id, element.flair, element.stackflair)+' | '+ element.created +'</p>' +
     getlink(0, element.link) +
     '<div class="imagewrap">'+element.embed+'</div>' +
     '</a>' + '</div><div class="vote login">'+
@@ -92,12 +92,12 @@ function videopost(element){
     var vote = voting(element.vote, count);
 
     return '<div class="item vpost '+priv(element.private, element.nsfw)+'" data-post="'+element.post_id+'">' +
-    '<div class="textcon"><div class="margins">' +
+    '<div class="textcon">' +
     getlink(element.post_id, element.link)+'<h4>' + privt(element.title, element.private) + '</h4></a>' +
-    '<p class="postinfo">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id, element.flair, element.stackflair)+' | '+ element.created +'</p></div>' +
+    '<p class="postinfo">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id, element.flair, element.stackflair)+' | '+ element.created +'</p>' +
         //'<a href="/'+element.link+'" target="_blank">' +
     '<div class="linkwrapper"><div class="videowrapper">'+element.embed+'</div>'+
-    '<div class="textfeed margins"><p class="content">'+element.text+'</p></div></div><div class="vote login">'+
+    '<div class="textfeed"><p class="content">'+element.text+'</p></div></div><div class="vote login">'+
     vote +
     '</div>'+comments(element)+
     '</div>' +
@@ -114,7 +114,7 @@ function linkspost(element){
     var count = element.upstacks-element.downstacks;
     var vote = voting(element.vote, count);
     return '<div class="item lpost '+priv(element.private, element.nsfw)+'" data-post="'+element.post_id+'">' +
-    '<div class="textcon margins">' +
+    '<div class="textcon">' +
     getlink(element.post_id, element.link)+'<h4>' + privt(element.title, element.private) + '</h4></a>' +
     '<p class="postinfo">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id, element.flair, element.stackflair)+' | '+ element.created +'</p>' +
     '<div class="linkwrapper">' + getlink(0, element.link) +
@@ -136,10 +136,10 @@ function textspost(element){
         link = getlink(element.post_id, element.link)+'<h4>' + privt(element.title, element.private) + '</h4></a>';
     }
     return '<div class="item tpost '+priv(element.private, element.nsfw)+'" data-post="'+element.post_id+'">' +
-    '<div class="textcon margins">' +
+    '<div class="textcon">' +
     link +
     '<p class="postinfo">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id, element.flair, element.stackflair)+' | '+ element.created +'</p>' +
-    '<div class="content">'+$("<textarea/>").html(element.text).text()+'</div><div class="vote login">'+
+    '<div class="content">'+element.text+'</div><div class="vote login">'+
     vote +
     '</div>'+comments(element)+
     '</div>' +
@@ -170,4 +170,31 @@ function del(){
         }
     });
     $('#delpost').modal('hide');
+}
+var report_id = 0;
+$(document).on('click', '.report', function(e) {
+    report_id = $(this).data('delete');
+    $('#repost').modal();
+    return false;
+});
+function report(){
+    $.ajax({
+        type     : "POST",
+        cache    : false,
+        url      : 'https://stacksity.com/php/reportpost.php',
+        data     : {relid : report_id, session_id: id},
+        success  : function(data) {
+            if(data==0){
+                $('*[data-post="'+report_id+'"]').fadeOut();
+                alert("Your report has been submitted and will be reviewed by the admins");
+            }else{
+                alert(data);
+            }
+            $('#repost').modal('hide')
+        },
+        error: function(xhr, status, error) {
+            alert("error"+ xhr.responseText);
+            $('#repost').modal('hide');
+        }
+    });
 }

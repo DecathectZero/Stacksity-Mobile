@@ -78,6 +78,7 @@
             if(changepage){
                 changepage = false;
             }else{
+                explore = false;
                 var acrid = activepage.attr("id");
                 if(acrid=="toppage"){
                     option = 1;
@@ -90,6 +91,7 @@
                 }else if(acrid=="post"){
                     option = 7;
                 }else if(acrid=="explorepage"){
+                    explore = true;
                     option = 6;
                 }
                 init();
@@ -99,17 +101,7 @@
                     loading = false;
                     end = false;
                     bottom = false;
-//                if(dontdelete){
-//                   dontdelete = false;
-//                }else{
-//                    ui.prevPage.remove();
-//                }
-//                if(option==2){
-//                    alert(stackid);
-//                }
-                    if(postdata!=null){
-                        activepage.find(".extracontainer").scrollTop(0);
-                    }else if(!postbox){
+                    if(!postbox){
                         if(activepage.data("stack_id")==null&&!postbox){
                             $('.scroll').html('<p>Loading Stack...</p>');
                             var activestack = stackid;
@@ -167,6 +159,7 @@
 //                activepage.find(".extracontainer").css("-webkit-overflow-scrolling","touch");
                 if(isStackOption()){
                     if(postdata!=null){
+                        $.mobile.activePage.find(".extracontainer").scrollTop(0);
                         parsePostData();
                     }
                 }
@@ -213,7 +206,20 @@
                 <p>Are you sure you want to delete this comment?</p>
             </div>
             <div class="modal-footer">
-                <a id="deletecomment" class="btn btn-primary">Delete</a>
+                <a id="deletecomment" onclick="delcom()" class="btn btn-primary">Delete</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="repost" style="display: none">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>Are you sure you want to report this post? Only report posts that have not been properly labeled NSFW or are blatantly illegal, an abuse of the report function will have automatic severe consequences</p>
+            </div>
+            <div class="modal-footer">
+                <a id="reportlink" onclick="report()" class="btn btn-primary">Report</a>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
             </div>
         </div>
@@ -360,7 +366,7 @@
             </div>
             <div class="postsub">
                 <input type="hidden" name="setprivate" value="0" id="privatefield">
-                <button type="submit" class="postb" data-role="none">Post</button>
+                <button type="submit" id="pbutton" class="postb" data-role="none">Post</button>
                 <button type="button" id="private" class="postb private" data-role="none">Private</button>
             </div>
         </form>
@@ -429,7 +435,7 @@
                     <textarea name="text" id="commenttext" placeholder="Write something here..." rows="2" data-role="none"></textarea>
                 </div>
                 <div class="postsub" style="margin-bottom: 0">
-                    <button type="submit" class="postb" data-corners="false">comment</button>
+                    <button type="submit" data-corners="false">comment</button>
                 </div>
             </form>
             <div id="commentfeed">
