@@ -43,8 +43,8 @@
         $(document).on('pagebeforeshow',function(event,ui){
             if(option == 7){
                 $('#postcon').empty();
-                $('#commentfeed').html('<div class="nocomments">Loading Comments</div>');
                 $('#postcon').hide();
+                $('#commentfeed').html('<div class="nocomments">Loading Comments</div>');
                 getPost(postid);
             }
             if(postbox){
@@ -388,32 +388,124 @@
                         <ul id="autocomplete" data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Search for stacks.." data-filter-theme="d"></ul>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <div class="stacklist">
-                        <h5>Followed Stacks</h5>
-                        <div class="stackls stackl" id="fs"></div>
+            </div>
+            <div class="stacklist">
+                <div class="stackl listlink" id="es">
+                    <a href="#" class="stacklink" data-link="-1">$allstack</a>
+                    <a href="#" class="stacklink" data-link="-3">$newstack</a>
+                </div>
+            </div>
+            <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default postlink" onclick="stack($(this))">Stacks</button>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default postlink" onclick="use($(this))">Users</button>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default postlink" onclick="ex($(this))">Explore</button>
+                </div>
+            </div>
+            <div class="fstack" style="display: none">
+                <div class="stacklist">
+                    <h5>Followed Stacks</h5>
+                    <div class="stackls stackl" id="fs"></div>
+                </div>
+            </div>
+            <div class="fusers" style="display: none">
+                <div class="stacklist">
+                    <h5>Followed Users</h5>
+                    <div class="stackls stackl" id="fu"></div>
+                </div>
+            </div>
+            <div class="rstack" style="display: none">
+                <div class="stacklist">
+                    <h5>Default Stacks</h5>
+                    <div class="stackl listlink">
+                        <a href="/$art">$art</a>
+                        <a href="/$cute">$cute</a>
+                        <a href="/$discuss">$discuss</a>
+                        <a href="/$fitness">$fitness</a>
+                        <a href="/$food">$food</a>
+                        <a href="/$foundout">$foundout</a>
+                        <a href="/$gaming">$gaming</a>
+                        <a href="/$interesting">$interesting</a>
+                        <a href="/$lol">$lol</a>
+                        <a href="/$movies">$movies</a>
+                        <a href="/$music">$music</a>
+                        <a href="/$news">$news</a>
+                        <a href="/$photography">$photography</a>
+                        <a href="/$questions">$questions</a>
+                        <a href="/$science">$science</a>
+                        <a href="/$writing">$writing</a>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <div class="stacklist">
-                        <h5>Followed Users</h5>
-                        <div class="stackls stackl" id="fu"></div>
+                <div class="stacklist">
+                    <h5>Cities</h5>
+                    <div class="stackl listlink">
+                        <a href="/$vancouver">$vancouver</a>
+                        <a href="/$toronto">$toronto</a>
+                        <a href="/$seattle">$seattle</a>
+                        <a href="/$montreal">$montreal</a>
+                        <a href="/$winnipeg">$winnipeg</a>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <div class="stacklist">
-                        <h5>Explore Stacks</h5>
-                        <div class="stackl" id="es">
-                            <a onclick="linkToStack(17)">$cute</a>
-                            <a onclick="linkToStack(14)">$lol</a>
-                            <a onclick="linkToStack(20)">$fitness</a>
-                            <a onclick="linkToStack(15)">$food</a>
-                            <a onclick="linkToStack(21)">$gaming</a>
-                            <a onclick="linkToStack(74)">$interesting</a>
-                            <a onclick="linkToStack(42)">$music</a>
-                            <a onclick="linkToStack(6)">$news</a>
-                            <a onclick="linkToStack(16)">$science</a>
-                        </div>
+                <div class="stacklist">
+                    <h5>University Stacks</h5>
+                    <div class="stackl listlink">
+                        <a href="/$university">$university</a>
+                        <a href="/$ubc">UBC ($ubc)</a>
+                        <a href="/$uchicago">UChicago ($uchicago)</a>
+                        <a href="/$uoft">UofT ($uoft)</a>
+                        <a href="/$uoft">UCLA ($ucla)</a>
+                    </div>
+                </div>
+                <div class="stacklist">
+                    <h5>Music</h5>
+                    <div class="stackl listlink" >
+                        <a href="/$music">$music</a>
+                        <a href="/$musicproduction">$musicproduction</a>
+                        <a href="/$electronicmusic">$electronicmusic</a>
+                        <a href="/$hiphop">$hiphop</a>
+                        <a href="/$metal">$metal</a>
+                        <a href="/$listentothis">$listentothis</a>
+                        <a href="/$jazz">$jazz</a>
+                        <a href="/$beats">$beats</a>
+                    </div>
+                </div>
+                <div class="stacklist">
+                    <h5>Tech</h5>
+                    <div class="stackl listlink" >
+                        <a href="/$technews">$technews</a>
+                        <a href="/$techtoys">$techtoys</a>
+                        <a href="/$programming">$programming</a>
+                        <a href="/$buildapc">$buildapc</a>
+                        <a href="/$apple">$apple</a>
+                        <a href="/$android">$android</a>
+                        <a href="/$microsoft">$microsoft</a>
+                    </div>
+                </div>
+                <div class="stacklist">
+                    <h5>Visual</h5>
+                    <div class="stackl listlink" >
+                        <a href="/$art">$art</a>
+                        <a href="/$design">$design</a>
+                        <a href="/$comics">$comics</a>
+                        <a href="/$critiquemyart">$critiquemyart</a>
+                        <a href="/$graffiti">$graffiti</a>
+                        <a href="/$typography">$typography</a>
+                    </div>
+                </div>
+                <div class="stacklist">
+                    <h5>Games</h5>
+                    <div class="stackl listlink">
+                        <a href="/$gaming">$gaming</a>
+                        <a href="/$ssb">$ssb</a>
+                        <a href="/$rpg">$rpg</a>
+                        <a href="/$leagueoflegends">$leagueoflegends</a>
+                        <a href="/$hearthstone">$hearthstone</a>
+                        <a href="/$counterstrike">$counterstrike</a>
+                        <a href="/$gamesonsale">$gamesonsale</a>
                     </div>
                 </div>
             </div>
@@ -435,7 +527,7 @@
                     <textarea name="text" id="commenttext" placeholder="Write something here..." rows="2" data-role="none"></textarea>
                 </div>
                 <div class="postsub" style="margin-bottom: 0">
-                    <button type="submit" data-corners="false">comment</button>
+                    <button type="submit" id="cbutton" data-corners="false">comment</button>
                 </div>
             </form>
             <div id="commentfeed">
@@ -478,7 +570,7 @@
             });
         }
     });
-    searchPageRefresh();
+    //searchPageRefresh();
     $(".quarter").on('tap', function (e) {
         e.preventDefault();
         refreshPage($(this).data("op"));

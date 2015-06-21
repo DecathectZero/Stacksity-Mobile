@@ -48,7 +48,7 @@ function bannerset(activepage, stackids){
             }else{
                 var element = JSON.parse(data);
                 stackname = element.stackname;
-                is_user = 0;
+                is_user = element.is_user;
                 //alert(element.stack);
                 stackids = element.stack;
                 stackid = element.stack;
@@ -115,7 +115,7 @@ function logout(){
 }
 function initPostBox(){
     //alert(stackid);
-    if(stackid == 0 || stackid == -1){
+    if(stackid < 1){
         $("#posting").html(username);
         $('#private').show();
     }else{
@@ -281,20 +281,43 @@ function refresh(){
     }
 }
 function searchPageRefresh(){
-    $(".stackls").empty();
-    getStacks($('#fs'),2);
-    getStacks($('#fu'),1);
-    function getStacks(el, type_id){
-        $.getJSON('https://stacksity.com/php/getstacks.php', {id : type_id, session_id:id}, function(data) {
-            $.each(data, function(index, element) {
-                if(type_id==2){
-                    el.append('<a onClick="linkToStack(\''+element.stackname+'\')">'+element.stackname+'</a>');
-                }else{
-                    el.append('<a onClick="linkToStack('+element.stack_id+')">'+element.stackname+'</a>');
-                }
-            });
+    //$(".stackls").empty();
+    //getStacks($('#fs'),2);
+    //getStacks($('#fu'),1)
+}
+function getStacks(el, type_id){
+    $.getJSON('https://stacksity.com/php/getstacks.php', {id : type_id, session_id:id}, function(data) {
+        $.each(data, function(index, element) {
+            if(type_id==2){
+                el.append('<a onClick="linkToStack(\''+element.stackname+'\')">'+element.stackname+'</a>');
+            }else{
+                el.append('<a onClick="linkToStack('+element.stack_id+')">'+element.stackname+'</a>');
+            }
         });
-    }
+    });
+}
+function stack(element){
+    element.parent().siblings().children().removeClass("active");
+    element.addClass("active");
+    getStacks($('#fs'),2);
+    $(".fstack").show();
+    $(".fusers").hide();
+    $(".rstack").hide();
+}
+function use(element){
+    element.parent().siblings().children().removeClass("active");
+    element.addClass("active");
+    getStacks($('#fu'),1);
+    $(".fstack").hide();
+    $(".fusers").show();
+    $(".rstack").hide();
+}
+function ex(element){
+    element.parent().siblings().children().removeClass("active");
+    element.addClass("active");
+    $(".fstack").hide();
+    $(".fusers").hide();
+    $(".rstack").show();
 }
 var changepage = false;
 function refreshPage(opt) {
@@ -458,7 +481,8 @@ $(document).on('submit', "#toppost", function(e){
         checklogin();
         var data = $(this).serialize()+"&stack="+stackid+"&user_value="+is_user+"&session_id="+id;
         posting = true;
-        $('.postb').html('<div class="loader">Loading...</div>');
+        $('#pbutton').html('<div class="loader">Loading...</div>');
+        $('#private').html('<div class="loader">Loading...</div>');
         $.ajax({
             type     : "POST",
             cache    : false,
@@ -508,7 +532,7 @@ function parsePostData(){
             $(videopost(element)).hide().prependTo('.ui-page-active .feed').fadeIn("slow");
         }
     }
-    $('.postb').html('Post');
+    $('#pbutton').html('Post');
     $('#private').html('Private');
     $('#privatefield').val(0);
     posting = false;
@@ -600,10 +624,17 @@ $(document).on('click','a',function(e){
     }else{
         var link = $(this).attr("href");
         if(link==null||$(this).hasClass("ui-input-clear")){
-
         }else{
             e.preventDefault();
-            window.open(link, '_blank', 'location=yes,enableViewportScale=yes');
+            if(link.charAt(0)=="/"){
+                if(link.charAt(1)=="u"){
+                    linkToStack(link.substring(3));
+                }else if(link.charAt(1)=="$"){
+                    linkToStack(link.substring(1));
+                }
+            }else{
+                window.open(link, '_blank', 'location=yes,enableViewportScale=yes');
+            }
         }
     }
 });
@@ -745,7 +776,7 @@ $(document).on('submit', '#commentform',function(e){
     if(!posting){
         checklogin();
         posting = true;
-        $('.postb').html('<div class="loader">Loading...</div>');
+        $('#cbutton').html('<div class="loader">Loading...</div>');
         e.preventDefault();
         $.ajax({
             type     : "POST",
@@ -760,7 +791,7 @@ $(document).on('submit', '#commentform',function(e){
                 }else{
                     var element = $.parseJSON(data);
                     $(commentHTML(element, 0)).hide().prependTo('#commentfeed').fadeIn("slow");
-                    $('.postb').html('comment');
+                    $('#cbutton').html('comment');
                     $("#commentform").find("textarea").val("");
                     $(".nocomments").remove();
                 }
@@ -768,7 +799,7 @@ $(document).on('submit', '#commentform',function(e){
             },
             error: function(xhr, status, error) {
                 alert("error"+ xhr.responseText);
-                $('.postb').html('comment');
+                $('#cbutton').html('comment');
                 posting = false;
             }
         });

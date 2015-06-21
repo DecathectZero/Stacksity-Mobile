@@ -245,10 +245,10 @@ a:active{
     padding: 0;
     overflow: hidden;
 }
-.postrow .active{
-    background-color: #266282;
-    color: #fff;
-}
+/*.postrow .active, .selected{*/
+    /*background-color: #266282;*/
+    /*color: #fff;*/
+/*}*/
 .posting{
     padding: 0;
     height: 30px;
@@ -431,7 +431,7 @@ background-color: #CCC;
     background-size: 100%;
     background-repeat: no-repeat;
     cursor: pointer;
-    float: left;
+    float: right;
     background-position-y:50%;
 }
 .vbutton:active{
@@ -443,7 +443,7 @@ background-color: #CCC;
     width: 30px;
     height: 40px;
     line-height: 40px;
-    float: left;
+    float: right;
     text-align: center;
     color: #000 !important;
 }
@@ -766,6 +766,9 @@ background-color: #CCC;
 .commenttext{
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     margin-bottom:0;
+}
+.btn{
+    border-radius: 0 !important;
 }
 .commenttext p{
     margin-bottom: 0;
