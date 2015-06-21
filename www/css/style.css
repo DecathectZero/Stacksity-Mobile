@@ -469,13 +469,13 @@ background-color: #CCC;
     background: transparent;
 }
 .banner {
-    padding-top: 20px;
+    padding:0px;
     background-color: #5eabed;
     background-size: 150%;
     background-position: center center;
 }
 .banner-inner{
-    padding: 16px 20px;
+    padding: 32px 20px;
     color: #fff;
     overflow: hidden;
 }

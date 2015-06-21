@@ -55,6 +55,10 @@ function bannerset(activepage, stackids){
                 var ban = activepage.find(".banner");
                 if(element.banner!=null){
                     ban.css("background-image","url('"+element.banner+"')");
+                    ban.children().css("background-color","rgba(0,0,0,0.4)");
+                }else{
+                    ban.css("background-image","none");
+                    ban.children().css("background-color","transparent");
                 }
                 activepage.data("stack_id", stackids);
                 activepage.data("is_user", is_user);
