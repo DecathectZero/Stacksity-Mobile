@@ -17,10 +17,10 @@
         //
         function onDeviceReady() {
             navigator.splashscreen.hide();
-            StatusBar.hide();
-//            StatusBar.overlaysWebView(false);
-//            StatusBar.backgroundColorByHexString("#ffffff");
-//            StatusBar.styleDefault();
+//            StatusBar.hide();
+            StatusBar.overlaysWebView(false);
+            StatusBar.backgroundColorByHexString("#ffffff");
+            StatusBar.styleDefault();
         }
     </script>
     <script type="text/javascript" src="js/jquery.js"></script>
@@ -402,7 +402,7 @@
             </div>
             <div class="btn-group btn-group-justified" role="group" aria-label="...">
                 <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-default postlink" onclick="stack($(this))">Stacks</button>
+                    <button type="button" class="btn btn-default postlink" id="loadstacks" onclick="stack($(this))">Stacks</button>
                 </div>
                 <div class="btn-group" role="group">
                     <button type="button" class="btn btn-default postlink" onclick="use($(this))">Users</button>
@@ -575,7 +575,7 @@
             });
         }
     });
-    stack();
+    stack($("#loadstacks"));
     $(".quarter").on('tap', function (e) {
         e.preventDefault();
         refreshPage($(this).data("op"));

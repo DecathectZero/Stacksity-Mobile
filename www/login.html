@@ -36,10 +36,10 @@
         //
         function onDeviceReady() {
             navigator.splashscreen.hide();
-            StatusBar.hide();
-//            StatusBar.backgroundColorByHexString("#ffffff");
-//            StatusBar.styleDefault();
-//            StatusBar.overlaysWebView(false);
+//            StatusBar.hide();
+            StatusBar.backgroundColorByHexString("#ffffff");
+            StatusBar.styleDefault();
+            StatusBar.overlaysWebView(false);
         }
         if (localStorage.getItem("session_id") != null) {
             document.location.href = 'stack.html#toppage';
