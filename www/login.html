@@ -38,7 +38,7 @@
             navigator.splashscreen.hide();
             StatusBar.backgroundColorByHexString("#ffffff");
             StatusBar.styleDefault();
-            StatusBar.overlaysWebView(false);
+            StatusBar.overlaysWebView(true);
         }
         if (localStorage.getItem("session_id") != null) {
             document.location.href = 'stack.html#toppage';

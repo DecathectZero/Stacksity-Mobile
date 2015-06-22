@@ -16,7 +16,7 @@
         // device APIs are available
         //
         function onDeviceReady() {
-            StatusBar.overlaysWebView(false);
+            StatusBar.overlaysWebView(true);
             StatusBar.backgroundColorByHexString("#ffffff");
             StatusBar.styleDefault();
         }
@@ -121,7 +121,7 @@
                                     '<a class="col-xs-4 postlink" onclick="postOpen(1)">Link</a>'+
                                     '<a class="col-xs-4 postlink" onclick="postOpen(2)">Text</a>'+
                                     '<a class="col-xs-4 postlink" onclick="postOpen(3)">Image</a>'+
-                                    '</div>')
+                                    '</div>');
 //                                    $("#exgap").show();
                                 }
                                 //activepage.find('.scroll').html('<p>Loading Posts</p> ');
@@ -251,12 +251,12 @@
     </div>
 </div>
 <div data-role="page" data-dom-cache="true" id="toppage">
-    <!--<div data-role="header" data-id="persistent" data-position="fixed" class="head" data-fullscreen="true" data-tap-toggle="false">-->
-        <!--<div class="headercaption">topstack</div>-->
-    <!--</div>-->
+    <div data-role="header" data-id="persistent" data-position="fixed" class="head" data-fullscreen="true" data-tap-toggle="false">
+        <div class="headercaption">topstack</div>
+    </div>
     <div class="extracontainer">
         <div class="con">
-            <!--<div class="topgap"></div>-->
+            <div class="topgap"></div>
             <div class="banner center" style="display: none">
                 <div class="center banner-inner">
                     <div class="bannertext">
@@ -274,12 +274,12 @@
 </div>
 
 <div data-role="page" data-dom-cache="true" id="allpage">
-    <!--<div data-role="header" data-id="persistent" data-position="fixed" class="head" data-fullscreen="true" data-tap-toggle="false">-->
-        <!--<div class="headercaption">userstack</div>-->
-    <!--</div>-->
+    <div data-role="header" data-id="persistent" data-position="fixed" class="head" data-fullscreen="true" data-tap-toggle="false">
+        <div class="headercaption">userstack</div>
+    </div>
     <div class="extracontainer">
         <div class="con">
-            <!--<div class="topgap"></div>-->
+            <div class="topgap"></div>
             <div class="banner center" style="display: none">
                 <div class="center banner-inner">
                     <div class="bannertext">
