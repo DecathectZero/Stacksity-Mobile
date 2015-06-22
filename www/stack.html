@@ -107,22 +107,22 @@
                             var activestack = stackid;
                             if(explore){
                                 if(activestack<0){
-//                                    var explorename;
-//                                    if(activestack=="-1"){
-//                                        explorename = "AllStack"
-//                                    }else if(activestack=="-3"){
-//                                        explorename = "NewStack"
-//                                    }
-                                    $("#explorehead").hide();
-                                    $("#exgap").hide();
-                                    //$("#explorehead").html('<div class="headercaption">'+explorename+'</div>')
+                                    var explorename;
+                                    if(activestack=="-1"){
+                                        explorename = "AllStack"
+                                    }else if(activestack=="-3"){
+                                        explorename = "NewStack"
+                                    }
+//                                    $("#explorehead").hide();
+//                                    $("#exgap").hide();
+                                    $("#explorehead").html('<div class="headercaption">'+explorename+'</div>')
                                 }else{
                                     $("#explorehead").html('<div class="row posting center">'+
                                     '<a class="col-xs-4 postlink" onclick="postOpen(1)">Link</a>'+
                                     '<a class="col-xs-4 postlink" onclick="postOpen(2)">Text</a>'+
                                     '<a class="col-xs-4 postlink" onclick="postOpen(3)">Image</a>'+
-                                    '</div>').show();
-                                    $("#exgap").show();
+                                    '</div>')
+//                                    $("#exgap").show();
                                 }
                                 //activepage.find('.scroll').html('<p>Loading Posts</p> ');
                             }
