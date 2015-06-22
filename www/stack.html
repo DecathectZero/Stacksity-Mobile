@@ -17,9 +17,10 @@
         //
         function onDeviceReady() {
             navigator.splashscreen.hide();
-            StatusBar.overlaysWebView(false);
-            StatusBar.backgroundColorByHexString("#ffffff");
-            StatusBar.styleDefault();
+            StatusBar.hide();
+//            StatusBar.overlaysWebView(false);
+//            StatusBar.backgroundColorByHexString("#ffffff");
+//            StatusBar.styleDefault();
         }
     </script>
     <script type="text/javascript" src="js/jquery.js"></script>
@@ -574,7 +575,7 @@
             });
         }
     });
-    //searchPageRefresh();
+    stack();
     $(".quarter").on('tap', function (e) {
         e.preventDefault();
         refreshPage($(this).data("op"));

@@ -33,9 +33,10 @@
             // device APIs are available
             //
             function onDeviceReady() {
-                StatusBar.backgroundColorByHexString("#ffffff");
-                StatusBar.styleDefault();
-                StatusBar.overlaysWebView(false);
+//                StatusBar.backgroundColorByHexString("#ffffff");
+//                StatusBar.styleDefault();
+//                StatusBar.overlaysWebView(false);
+                Statusbar.hide();
                 if (localStorage.getItem("session_id") != null) {
                     document.location.href = 'stack.html#toppage';
                 }else{

@@ -299,6 +299,7 @@ function getStacks(el, type_id){
 function stack(element){
     element.parent().siblings().children().removeClass("active");
     element.addClass("active");
+    $("#fs").empty();
     getStacks($('#fs'),2);
     $(".fstack").show();
     $(".fusers").hide();
@@ -307,6 +308,7 @@ function stack(element){
 function use(element){
     element.parent().siblings().children().removeClass("active");
     element.addClass("active");
+    $("#fu").empty();
     getStacks($('#fu'),1);
     $(".fstack").hide();
     $(".fusers").show();
