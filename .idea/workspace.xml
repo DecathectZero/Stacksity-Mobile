@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="cb4336dd-fff4-42e3-ab59-f72e1798b9e1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/config.xml" afterPath="$PROJECT_DIR$/www/config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/index.html" afterPath="$PROJECT_DIR$/www/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/login.html" afterPath="$PROJECT_DIR$/www/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/stack.html" afterPath="$PROJECT_DIR$/www/stack.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Stacksity-Mobile.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -109,8 +105,8 @@
       <file leaf-file-name="config.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/config.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.45005742" vertical-offset="67" max-vertical-offset="1343">
-              <caret line="27" column="63" selection-start-line="27" selection-start-column="63" selection-end-line="27" selection-end-column="63" />
+            <state vertical-scroll-proportion="0.5086108" vertical-offset="50" max-vertical-offset="1343">
+              <caret line="29" column="63" selection-start-line="29" selection-start-column="63" selection-end-line="29" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -156,10 +152,10 @@
         <option value="$PROJECT_DIR$/www/js/main.js" />
         <option value="$PROJECT_DIR$/www/js/output.js" />
         <option value="$PROJECT_DIR$/www/css/style.css" />
-        <option value="$PROJECT_DIR$/www/config.xml" />
         <option value="$PROJECT_DIR$/www/stack.html" />
         <option value="$PROJECT_DIR$/www/index.html" />
         <option value="$PROJECT_DIR$/www/login.html" />
+        <option value="$PROJECT_DIR$/www/config.xml" />
       </list>
     </option>
   </component>
@@ -906,8 +902,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/config.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45005742" vertical-offset="67" max-vertical-offset="1343">
-          <caret line="27" column="63" selection-start-line="27" selection-start-column="63" selection-end-line="27" selection-end-column="63" />
+        <state vertical-scroll-proportion="0.5086108" vertical-offset="50" max-vertical-offset="1343">
+          <caret line="29" column="63" selection-start-line="29" selection-start-column="63" selection-end-line="29" selection-end-column="63" />
           <folding />
         </state>
       </provider>

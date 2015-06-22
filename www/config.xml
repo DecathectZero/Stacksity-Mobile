@@ -25,9 +25,9 @@
     <preference name="DisallowOverscroll" value="true" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="webviewbounce" value="false"/>
-    <preference name="StatusBarOverlaysWebView" value="false"/>
     <preference name="StatusBarBackgroundColor" value="#FFFFFF"/>
     <preference name="StatusBarStyle" value="default" />
+    <preference name="StatusBarOverlaysWebView" value="false"/>
     <gap:plugin name="org.apache.cordova.camera" />
     <gap:plugin name="org.apache.cordova.media-capture" />
     <gap:plugin name="org.apache.cordova.console" />
