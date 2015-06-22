@@ -1006,7 +1006,6 @@ h1 {
     /*-moz-box-shadow: 0 5px 25px 5px rgba(0,0,0,.2);*/
     /*box-shadow: 0 5px 25px 5px rgba(0,0,0,.2);*/
     z-index: 1000;
-    padding-top: 20px;
 }
 .botmenu{
     padding: 0;
@@ -1084,4 +1083,10 @@ h1 {
 }
 .comwrap a {
     padding: 10px 0;
+}
+#cancelpost{
+    margin: .5em 0 !important;
+}
+.padding-top{
+    padding-top: 20px;
 }
