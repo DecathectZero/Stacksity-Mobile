@@ -228,7 +228,7 @@ function startNews(startnum, activepage, stackid) {
                         }else if(element.posttype == 2){
                             activepage.find('.feed').append(imagepost(element));
                         }else if(element.posttype == 3){
-                            activepage.find('.feed').append(videopost(element));
+                            activepage.find('.feed').append(videopostfeed(element));
                         }
                         postnum++;
                     });
