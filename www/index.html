@@ -37,10 +37,10 @@
                 StatusBar.styleDefault();
                 StatusBar.overlaysWebView(false);
 //                Statusbar.hide();
-                if (localStorage.getItem("session_id") != null) {
-                    document.location.href = 'stack.html#toppage';
-                }else{
+                if (localStorage.getItem("session_id") === null) {
                     document.location.href = 'login.html';
+                }else{
+                    document.location.href = 'stack.html#toppage';
                 }
             }
         </script>
