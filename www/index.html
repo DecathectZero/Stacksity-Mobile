@@ -28,20 +28,10 @@
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, target-densitydpi=medium-dpi, user-scalable=no" />
         <script type="text/javascript" src="cordova.js"></script>
         <script>
-
-            document.addEventListener("deviceready", onDeviceReady, false);
-//            // device APIs are available
-//            //
-            function onDeviceReady() {
-                StatusBar.backgroundColorByHexString("#ffffff");
-                StatusBar.styleDefault();
-                StatusBar.overlaysWebView(false);
-//                Statusbar.hide();
-                if (localStorage.getItem("session_id") === null) {
-                    document.location.href = 'login.html';
-                }else{
-                    document.location.href = 'stack.html#toppage';
-                }
+            if (localStorage.getItem("session_id") === null) {
+                document.location.href = 'login.html';
+            }else{
+                document.location.href = 'stack.html#toppage';
             }
         </script>
         <title>Stacksity</title>

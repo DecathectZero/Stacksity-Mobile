@@ -109,7 +109,6 @@ function bannerset(activepage, stackids){
     });
 }
 function logout(){
-    window.localStorage.clear();
     document.location.href = 'login.html';
 }
 function initPostBox(){
