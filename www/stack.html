@@ -103,6 +103,8 @@
                 }
                 init();
             }
+            console.log(explore);
+            console.log(option);
             if(!postbox){
                 if(isStackOption()){
                     loading = false;
@@ -422,13 +424,13 @@
             </div>
             <div class="btn-group btn-group-justified" role="group" aria-label="...">
                 <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-default postlink" id="loadstacks" onclick="stack($(this))">Stacks</button>
+                    <button type="button" class="btn btn-default postlink" onclick="stack()">Stacks</button>
                 </div>
                 <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-default postlink" onclick="use($(this))">Users</button>
+                    <button type="button" class="btn btn-default postlink" onclick="use()">Users</button>
                 </div>
                 <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-default postlink" onclick="ex($(this))">Explore</button>
+                    <button type="button" class="btn btn-default postlink" onclick="ex()">Explore</button>
                 </div>
             </div>
             <div class="fstack" style="display: none">
@@ -540,7 +542,7 @@
 </div>
 <div data-role="page" id="post">
     <div data-role="header" data-position="fixed" class="head posthead padding-top">
-        <a data-role="none" data-rel="back" class="postlink postback" onclick="option=preopt; init(); changepage=true"><div class="glyphicon glyphicon-chevron-left"></div></a>
+        <a data-role="none" data-rel="back" class="postlink postback"><div class="glyphicon glyphicon-chevron-left"></div></a>
     </div>
     <div class="extracontainer">
         <div class="topgap"></div>
@@ -599,7 +601,7 @@
         e.preventDefault();
         refreshPage($(this).data("op"));
     });
-    stack($("#loadstacks"));
+    stack();
 </script>
 </body>
 </html>

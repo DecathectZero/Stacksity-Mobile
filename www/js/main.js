@@ -301,27 +301,27 @@ function getStacks(el, type_id){
         });
     });
 }
-function stack(element){
-    element.parent().siblings().children().removeClass("active");
-    element.addClass("active");
+function stack(){
+    //element.parent().siblings().children().removeClass("active");
+    //element.addClass("active");
     $("#fs").empty();
     getStacks($('#fs'),2);
     $(".fstack").show();
     $(".fusers").hide();
     $(".rstack").hide();
 }
-function use(element){
-    element.parent().siblings().children().removeClass("active");
-    element.addClass("active");
+function use(){
+    //element.parent().siblings().children().removeClass("active");
+    //element.addClass("active");
     $("#fu").empty();
     getStacks($('#fu'),1);
     $(".fstack").hide();
     $(".fusers").show();
     $(".rstack").hide();
 }
-function ex(element){
-    element.parent().siblings().children().removeClass("active");
-    element.addClass("active");
+function ex(){
+    //element.parent().siblings().children().removeClass("active");
+    //element.addClass("active");
     $(".fstack").hide();
     $(".fusers").hide();
     $(".rstack").show();
@@ -339,10 +339,10 @@ function refreshPage(opt) {
     }else{
         explore = false;
         var rev = false;
-        var trans = 'slide';
-        if(opt<option){
-            rev=true;
-        }
+        var trans = 'none';
+        //if(opt<option){
+        //    rev=true;
+        //}
         if(postbox){
             trans = 'slideup';
             rev = true;
@@ -397,10 +397,17 @@ function linkToStack(goto){
                     }
                 );
             }else{
-                refresh();
+                //alert(option);
+                if(op==7){
+                    $.mobile.back();
+                }else{
+                    refresh();
+                }
             }
         }else{
-            if(op==4||(goto != stackid && goto != stackname)){
+            if(goto == stackid&&op==7){
+                $.mobile.back();
+            }else if(op==2||op==7||(goto != stackid && goto != stackname)){
                 //alert(goto);
                 var banner = $('#explorepage .banner');
                 $('#explorepage').data("stack_id", null);
@@ -530,7 +537,7 @@ function parsePostData(){
         }else if(element.posttype == 2){
             $(imagepost(element)).hide().prependTo('.ui-page-active .feed').fadeIn("slow");
         }else if(element.posttype == 3){
-            $(videopost(element)).hide().prependTo('.ui-page-active .feed').fadeIn("slow");
+            $(videopostfeed(element)).hide().prependTo('.ui-page-active .feed').fadeIn("slow");
         }
     }
     $('#pbutton').html('Post');
@@ -602,15 +609,11 @@ $(document).on('tap','.postlink',function(e){
 });
 
 /*post stuff*/
-var preopt;
 $(document).on('click','a',function(e){
     if($(this).hasClass("toPost")){
         e.preventDefault();
         postid = $(this).data("postlink");
-        preopt = option;
         option = 7;
-        init();
-        changepage = true;
         $.mobile.changePage(
             "#post",
             {
@@ -834,6 +837,69 @@ function delcom(){
         error: function(xhr, status, error) {
             alert("error"+ xhr.responseText);
             $('#commentdelete').modal('hide');
+        }
+    });
+}
+
+/*--notification system--*/
+var newcountNotif = 0;
+function notification(element, seen, stringText){
+    return '<li><div class="notification '+seen+'" onclick="document.location.href=\'/p/'+element.link+'\'" data-note="'+element.notification_id+'"><a href="https://stacksity.com/u/'+element.stack_id+'" class="username">'+element.username+'</a> '+stringText+'#'+element.link+'<br><span class="note-time">'+element.created+'</span></div></li>';
+}
+var cycle = false;
+set();
+function set(){
+    setInterval(function(){
+        if(cycle){
+
+        }else{
+            getNotification();
+        }
+    },30000);
+}
+function getNotification(){
+    $(".note-header").empty();
+    $(".note-header").after('<img class="note-loader" src="../img/post/ajax-loader.gif"/>');
+    $.getJSON('https://stacksity.com/php/getnotification.php', {timestamp: 0, session_id: id}, function(data){
+        if(null==data){
+            $(".note-header").after('<li id="no-note"><a>No Notifications to Show</a></li>');
+        }else{
+            $.each(data, function(index, element) {
+                var seen = '';
+                if(element.seen==0){
+                    seen = 'unseen';
+                    newcountNotif++;
+                }
+                var content ='';
+                if(element.note_type==0){
+                    content =  notification(element, seen, "posted to your stack");
+                }else if(element.note_type==1){
+                    content =  notification(element, seen, "commented on your post");
+                }else if(element.note_type==2){
+                    content =  notification(element, seen, "replied to your comment");
+                }else if(element.note_type==3){
+                    content =  notification(element, seen, "tagged you in a comment");
+                }else if(element.note_type==4){
+                    content =  notification(element, seen, "tagged you in a post");
+                }
+                $(".note-header").after(content);
+            });
+        }
+        if(newcountNotif!=0){
+        }
+    });
+}
+function markseen(){
+    //info = JSON.stringify(info);
+    $.ajax({
+        type     : "POST",
+        cache    : false,
+        url      : 'https://stacksity.com/php/markseen.php',
+        data     : {session_id:id},
+        success  : function(data) {
+        },
+        error: function(xhr, status, error) {
+            alert("error"+ xhr.responseText);
         }
     });
 }
