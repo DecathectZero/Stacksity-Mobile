@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb4336dd-fff4-42e3-ab59-f72e1798b9e1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/css/style.css" afterPath="$PROJECT_DIR$/www/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/stack.html" afterPath="$PROJECT_DIR$/www/stack.html" />
     </list>
     <ignored path="Stacksity-Mobile.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,11 +27,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="stack.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="stack.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/stack.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-28.884615" vertical-offset="9500" max-vertical-offset="10404">
-              <caret line="603" column="28" selection-start-line="603" selection-start-column="28" selection-end-line="603" selection-end-column="28" />
+            <state vertical-scroll-proportion="0.49720672" vertical-offset="6542" max-vertical-offset="10370">
+              <caret line="411" column="0" selection-start-line="411" selection-start-column="0" selection-end-line="414" selection-end-column="22" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -82,11 +82,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8671875" vertical-offset="17719" max-vertical-offset="18700">
-              <caret line="1088" column="22" selection-start-line="1088" selection-start-column="22" selection-end-line="1088" selection-end-column="22" />
+            <state vertical-scroll-proportion="-11.36" vertical-offset="17804" max-vertical-offset="18700">
+              <caret line="1064" column="18" selection-start-line="1064" selection-start-column="18" selection-end-line="1064" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -161,8 +161,8 @@
         <option value="$PROJECT_DIR$/www/index.html" />
         <option value="$PROJECT_DIR$/www/login.html" />
         <option value="$PROJECT_DIR$/www/config.xml" />
-        <option value="$PROJECT_DIR$/www/stack.html" />
         <option value="$PROJECT_DIR$/www/css/style.css" />
+        <option value="$PROJECT_DIR$/www/stack.html" />
       </list>
     </option>
   </component>
@@ -1073,10 +1073,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.36" vertical-offset="17804" max-vertical-offset="18700">
+          <caret line="1064" column="18" selection-start-line="1064" selection-start-column="18" selection-end-line="1064" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/stack.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-28.884615" vertical-offset="9500" max-vertical-offset="10404">
-          <caret line="603" column="28" selection-start-line="603" selection-start-column="28" selection-end-line="603" selection-end-column="28" />
+        <state vertical-scroll-proportion="0.49720672" vertical-offset="6542" max-vertical-offset="10370">
+          <caret line="411" column="0" selection-start-line="411" selection-start-column="0" selection-end-line="414" selection-end-column="22" />
           <folding>
             <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1093,14 +1101,6 @@
             <element signature="n#style#0;n#div#5;n#div#0;n#div#0;n#div#6;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#form#0;n#div#2;n#div#1;n#div#7;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8671875" vertical-offset="17719" max-vertical-offset="18700">
-          <caret line="1088" column="22" selection-start-line="1088" selection-start-column="22" selection-end-line="1088" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
