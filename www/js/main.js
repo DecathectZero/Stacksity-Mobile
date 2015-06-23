@@ -67,10 +67,10 @@ function bannerset(activepage, stackids){
                 activepage.find(".bannertext").html('<h1 class="bannertitle"></h1><p class="bannerdesc"></p>');
                 activepage.find(".bannertitle").html(stackname);
                 if(stackids==0){
-                    ban.addClass("topbanner");
+                    //ban.addClass("topbanner");
                     activepage.find(".bannerdesc").html(element.stack_desc);
                 }else if(stackids==-1){
-                    ban.addClass("allbanner");
+                    //ban.addClass("allbanner");
                     activepage.find(".bannerdesc").html(element.stack_desc);
                 }else if(stackids<-1){
                     activepage.find(".bannerdesc").html(element.stack_desc);
@@ -128,7 +128,7 @@ function initPostBox(){
     }
 }
 function isStackOption(){
-    return (option != 3 && option != 4 && option != 7);
+    return (option != 3 && option != 2 && option != 7);
 }
 function init(){
     var goto = 0;
@@ -136,11 +136,14 @@ function init(){
     if(option == 1){
         $('#topstack').addClass('active');
     }else if(option == 2){
-        $('#allstack').addClass('active');
-        goto = -2;
-    }else if(option == 4){
         $('#searchstack').addClass('active');
         goto = -10;
+    }else if(option == 3){
+        $('#notestack').addClass('active');
+        goto = -10;
+    }else if(option == 4){
+        $('#allstack').addClass('active');
+        goto = -2;
     }else if(option == 5){
         $('#userstack').addClass('active');
         goto = userstack;
@@ -151,9 +154,11 @@ function getOption(){
     if(option == 1){
         return "#toppage";
     }else if(option == 2){
-        return "#allpage";
-    }else if(option == 4){
         return "#searchpage";
+    }else if(option == 3){
+        return "#notepage";
+    }else if(option == 4){
+        return "#allpage";
     }else if(option == 5){
         return "#userpage";
     }
@@ -328,13 +333,16 @@ function refreshPage(opt) {
             $.mobile.back();
         }else if(isStackOption()){
             refresh();
-        }else if(option == 4){
-            searchPageRefresh();
+        }else if(option == 3){
+            noterefresh();
         }
     }else{
         explore = false;
         var rev = false;
-        var trans = 'none';
+        var trans = 'slide';
+        if(opt<option){
+            rev=true;
+        }
         if(postbox){
             trans = 'slideup';
             rev = true;
@@ -348,7 +356,7 @@ function refreshPage(opt) {
         option = opt;
         var goto = init();
         changepage = true;
-        if(goto>-10){
+        //if(goto>-10){
             //localStorage.setItem('stack', goto);
             stackid = goto;
             $.mobile.changePage(
@@ -359,16 +367,7 @@ function refreshPage(opt) {
                     reverse: rev
                 }
             );
-        }else if(goto == -10){
-            $.mobile.changePage(
-                "#searchpage",
-                {
-                    transition              : trans,
-                    showLoadMsg             : false,
-                    reverse: rev
-                }
-            );
-        }
+        //}
     }
     postbox = false;
 }
