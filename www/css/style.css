@@ -1088,5 +1088,8 @@ h1 {
     margin: .5em 0 !important;
 }
 .padding-top{
-    padding-top: 20px;
+    /*padding-top: 20px;*/
+}
+.con{
+    min-height: 101%;
 }
