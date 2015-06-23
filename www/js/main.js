@@ -16,8 +16,6 @@ var dontdelete = false;
 var loading = false;
 var postid = 0;
 
-alert(userstack+" "+username);
-
 function postOpen(type){
     if(!postbox){
         changepage = true;
