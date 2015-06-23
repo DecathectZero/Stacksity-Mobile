@@ -21,9 +21,9 @@
             StatusBar.overlaysWebView(false);
             StatusBar.backgroundColorByHexString("#ffffff");
             StatusBar.styleDefault();
-        }
-        if (localStorage.getItem("session_id") === null) {
-            document.location.href = 'login.html';
+            if (localStorage.getItem("session_id") === null) {
+                document.location.href = 'login.html';
+            }
         }
     </script>
     <script type="text/javascript" src="js/jquery.js"></script>
