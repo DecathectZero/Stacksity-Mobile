@@ -86,7 +86,7 @@ function bannerset(activepage, stackids){
                             activepage.find('.bannertext').append('<br> <button class="follow" value="0" data-role="none">Follow</button>')
                         }
                     } else {
-                        activepage.find('.bannertext').append('<br> <button class="logout" onclick="logout()">Logout</button>')
+                        activepage.find('.bannertext').append('<br> <button class="logout" onclick="logout();">Logout</button>')
                     }
                     if (element.is_user == "1") {
                         ban.addClass("userbanner");
@@ -109,8 +109,7 @@ function bannerset(activepage, stackids){
     });
 }
 function logout(){
-    localStorage.clear();
-    document.location.href = "login.html";
+    document.location.href = 'login.html';
 }
 function initPostBox(){
     //alert(stackid);
