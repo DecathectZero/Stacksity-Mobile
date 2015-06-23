@@ -41,9 +41,7 @@
             StatusBar.styleDefault();
             StatusBar.overlaysWebView(false);
         }
-        if (localStorage.getItem("session_id") != null) {
-            document.location.href = 'stack.html#toppage';
-        }
+        localStorage.clear();
     </script>
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/jquerymobile.js"></script>

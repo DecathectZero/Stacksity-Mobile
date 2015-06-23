@@ -110,7 +110,7 @@ function bannerset(activepage, stackids){
 }
 function logout(){
     localStorage.clear();
-    document.location.href = "index.html";
+    document.location.href = "login.html";
 }
 function initPostBox(){
     //alert(stackid);
@@ -647,6 +647,7 @@ function toPost(link){
     postid = link;
     option = 7;
     changepage = true;
+    init();
     $.mobile.changePage(
         "#post",
         {

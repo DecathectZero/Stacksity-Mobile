@@ -37,11 +37,11 @@
                 StatusBar.styleDefault();
                 StatusBar.overlaysWebView(false);
 //                Statusbar.hide();
-            }
-            if (localStorage.getItem("session_id") != null) {
-                document.location.href = 'stack.html#toppage';
-            }else{
-                document.location.href = 'login.html';
+                if (localStorage.getItem("session_id") != null) {
+                    document.location.href = 'stack.html#toppage';
+                }else{
+                    document.location.href = 'login.html';
+                }
             }
         </script>
         <title>Stacksity</title>
