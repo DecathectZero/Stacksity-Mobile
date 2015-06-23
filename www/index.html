@@ -29,19 +29,19 @@
         <script type="text/javascript" src="cordova.js"></script>
         <script>
 
-            document.addEventListener("deviceready", onDeviceReady, false);
-            // device APIs are available
-            //
-            function onDeviceReady() {
-                StatusBar.backgroundColorByHexString("#ffffff");
-                StatusBar.styleDefault();
-                StatusBar.overlaysWebView(false);
-//                Statusbar.hide();
-                if (localStorage.getItem("session_id") === null) {
-                    document.location.href = 'login.html';
-                }else{
-                    document.location.href = 'stack.html#toppage';
-                }
+//            document.addEventListener("deviceready", onDeviceReady, false);
+//            // device APIs are available
+//            //
+//            function onDeviceReady() {
+//                StatusBar.backgroundColorByHexString("#ffffff");
+//                StatusBar.styleDefault();
+//                StatusBar.overlaysWebView(false);
+////                Statusbar.hide();
+//            }
+            if (localStorage.getItem("session_id") === null) {
+                document.location.href = 'login.html';
+            }else{
+                document.location.href = 'stack.html#toppage';
             }
         </script>
         <title>Stacksity</title>
