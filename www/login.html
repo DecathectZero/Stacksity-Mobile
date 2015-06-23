@@ -41,7 +41,6 @@
             StatusBar.styleDefault();
             StatusBar.overlaysWebView(false);
         }
-        localStorage.clear();
         window.localStorage.clear();
 //        if (!(localStorage.getItem("session_id")=== null)){
 //            document.location.href = 'stack.html#toppage';
@@ -104,10 +103,10 @@
                         errorinfo("Please fill in the fields");
                     }else if(data.length>1){
                         var element = JSON.parse(data);
-                        localStorage.setItem('session_id',element.session_id);
-                        localStorage.setItem('hashcode',element.hashcode);
-                        localStorage.setItem('ustack',element.stack_id);
-                        localStorage.setItem('username',element.username);
+                        window.localStorage.setItem('session_id',element.session_id);
+                        window.localStorage.setItem('hashcode',element.hashcode);
+                        window.localStorage.setItem('ustack',element.stack_id);
+                        window.localStorage.setItem('username',element.username);
                         alert(localStorage.getItem('ustack')+" "+localStorage.getItem('username'));
                         document.location.href = 'stack.html#toppage';
                     }else{

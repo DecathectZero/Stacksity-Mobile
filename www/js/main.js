@@ -2,11 +2,11 @@ var posting = false;
 var end = false;
 var bottom = false;
 var startnews = 0;
-var id = localStorage.getItem('session_id');
+var id = window.localStorage.getItem('session_id');
 var stackid = 0;
 var stackname = null;
-var userstack = localStorage.getItem('ustack');
-var username = localStorage.getItem('username');
+var userstack = window.localStorage.getItem('ustack');
+var username = window.localStorage.getItem('username');
 var option = 1;
 var explore = false;
 var postbox = false;
@@ -111,6 +111,7 @@ function bannerset(activepage, stackids){
     });
 }
 function logout(){
+    window.localStorage.clear();
     document.location.href = 'login.html';
 }
 function initPostBox(){
@@ -171,8 +172,8 @@ function checkEnd(postnum){
     }
 }
 function checklogin(){
-    var id = window.localStorage.getItem('session_id');
-    var hashcode = window.localStorage.getItem('hashcode');
+    var id = localStorage.getItem('session_id');
+    var hashcode = localStorage.getItem('hashcode');
     $.ajax({
         type     : "POST",
         cache    : false,
