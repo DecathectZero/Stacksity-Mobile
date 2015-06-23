@@ -42,6 +42,7 @@
             StatusBar.overlaysWebView(false);
         }
         localStorage.clear();
+        window.localStorage.clear();
 //        if (!(localStorage.getItem("session_id")=== null)){
 //            document.location.href = 'stack.html#toppage';
 //        }
@@ -104,6 +105,7 @@
                     }else if(data.length>1){
                         var element = JSON.parse(data);
                         localStorage.setItem('session_id',element.session_id);
+                        alert(localStorage.getItem("session_id"));
                         localStorage.setItem('hashcode',element.hashcode);
                         localStorage.setItem('ustack',element.stack_id);
                         localStorage.setItem('username',element.username);
