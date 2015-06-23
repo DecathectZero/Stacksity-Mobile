@@ -246,10 +246,10 @@ a:active{
     padding: 0;
     overflow: hidden;
 }
-/*.postrow .active, .selected{*/
-    /*background-color: #266282;*/
-    /*color: #fff;*/
-/*}*/
+.postrow .active{
+    background-color: #266282;
+    color: #fff;
+}
 .posting{
     padding: 0;
     height: 30px;
@@ -469,11 +469,6 @@ background-color: #CCC;
 .stack-down{
     background-image: url("../img/post/downstacked.svg");
     /*background-color: #3C81A8;*/
-}
-.topgap{
-    padding-top: 50px;
-    width: 100%;
-    background: transparent;
 }
 #stacksearch{
     margin-top: 15px;
@@ -1090,6 +1085,11 @@ h1 {
 .padding-top{
     /*padding-top: 20px;*/
 }
+.topgap{
+    padding-top: 30px;
+    width: 100%;
+    background: transparent;
+}
 .con{
-    min-height: 101%;
+    min-height: 100%;
 }
