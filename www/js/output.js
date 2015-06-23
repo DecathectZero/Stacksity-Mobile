@@ -12,9 +12,9 @@ function comments(element){
         del += '<a class="report commentlink" data-delete="'+element.post_id+'"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a>';
     }
     if(option!=7){
-        del = '<a class="toPost commentlink" data-postlink="'+element.post_id+'">'+element.comments+' comments</a>'+del+'<span class="pid">P#'+element.post_id+'</span>';
+        del = '<a class="toPost commentlink" data-postlink="'+element.post_id+'">'+element.comments+' comments</a>'+del+'<a class="commentlink" href="https://stacksity.com/p/'+element.post_id+'"><span class="glyphicon glyphicon-link"></span></a><span class="pid">P#'+element.post_id+'</span>';
     }else{
-        del += '<span class="pid">P#'+element.post_id+'</span>';
+        del += '<a class="commentlink" href="https://stacksity.com/p/'+element.post_id+'"><span class="glyphicon glyphicon-link"></span></a><span class="pid">P#'+element.post_id+'</span>';
     }
     return '<div class="comwrapper"><div class="comwrap">'+del+'</div></div>';
 }

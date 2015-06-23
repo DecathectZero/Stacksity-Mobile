@@ -1,4 +1,3 @@
-var post = false;
 var posting = false;
 var end = false;
 var bottom = false;
@@ -334,7 +333,7 @@ function refreshPage(opt) {
         }else if(isStackOption()){
             refresh();
         }else if(option == 3){
-            noterefresh();
+            openNote();
         }
     }else{
         explore = false;
@@ -614,6 +613,7 @@ $(document).on('click','a',function(e){
         e.preventDefault();
         postid = $(this).data("postlink");
         option = 7;
+        changepage = true;
         $.mobile.changePage(
             "#post",
             {
@@ -642,6 +642,19 @@ $(document).on('click','a',function(e){
         }
     }
 });
+
+function toPost(link){
+    postid = link;
+    option = 7;
+    changepage = true;
+    $.mobile.changePage(
+        "#post",
+        {
+            transition: "slide",
+            showLoadMsg             : false
+        }
+    );
+}
 
 function getPost(postid)
 {
@@ -844,26 +857,32 @@ function delcom(){
 /*--notification system--*/
 var newcountNotif = 0;
 function notification(element, seen, stringText){
-    return '<li><div class="notification '+seen+'" onclick="document.location.href=\'/p/'+element.link+'\'" data-note="'+element.notification_id+'"><a href="https://stacksity.com/u/'+element.stack_id+'" class="username">'+element.username+'</a> '+stringText+'#'+element.link+'<br><span class="note-time">'+element.created+'</span></div></li>';
+    return '<div class="notification '+seen+' toPost" onclick="toPost('+element.link+')" data-note="'+element.notification_id+'"><a href="/u/'+element.stack_id+'" class="username">'+element.username+'</a> '+stringText+'#'+element.link+'<br><span class="note-time">'+element.created+'</span></div>';
 }
 var cycle = false;
-set();
+var mark = false;
 function set(){
     setInterval(function(){
         if(cycle){
-
+            cycle = false;
         }else{
-            getNotification();
+            if(option!=3){
+                getNotification();
+            }
         }
     },30000);
 }
+function openNote(){
+    cycle = true;
+    mark = true;
+    getNotification();
+}
 function getNotification(){
     $(".note-header").empty();
-    $(".note-header").after('<img class="note-loader" src="../img/post/ajax-loader.gif"/>');
+    $(".notescroll").html('<img class="note-loader" src="img/post/ajax-loader.gif" />');
+    checklogin();
     $.getJSON('https://stacksity.com/php/getnotification.php', {timestamp: 0, session_id: id}, function(data){
-        if(null==data){
-            $(".note-header").after('<li id="no-note"><a>No Notifications to Show</a></li>');
-        }else{
+        if(data!=null){
             $.each(data, function(index, element) {
                 var seen = '';
                 if(element.seen==0){
@@ -882,15 +901,22 @@ function getNotification(){
                 }else if(element.note_type==4){
                     content =  notification(element, seen, "tagged you in a post");
                 }
-                $(".note-header").after(content);
+                $(".note-header").prepend(content);
             });
         }
-        if(newcountNotif!=0){
+        if(mark){
+            mark=false;
+            markseen();
+        }else{
+            if(newcountNotif!=0){
+                $('#notestack').addClass('newnote');
+            }
         }
+        $(".notescroll").html('No More Notifications to Show');
     });
 }
 function markseen(){
-    //info = JSON.stringify(info);
+    $('#notestack').removeClass('newnote');
     $.ajax({
         type     : "POST",
         cache    : false,

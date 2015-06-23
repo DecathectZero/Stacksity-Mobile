@@ -79,6 +79,9 @@
 //            ui.prevPage.find(".extracontainer").css("-webkit-overflow-scrolling","auto");
             if(changepage){
                 changepage = false;
+                if(option==3){
+                    openNote();
+                }
             }else{
                 explore = false;
                 postbox=false;
@@ -313,7 +316,7 @@
     <div class="extracontainer">
         <div class="con">
             <div class="topgap"></div>
-            <div class="center feed">
+            <div class="center note-header">
             </div>
             <div class="notescroll center">
                 <p>Loading Notifications</p>
@@ -602,6 +605,7 @@
         refreshPage($(this).data("op"));
     });
     ex();
+    set();
 </script>
 </body>
 </html>

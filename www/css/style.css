@@ -406,7 +406,7 @@ background-color: #CCC;
     background-color: #4b82da;
     border-bottom: 3px solid #3b72da;
 }
-.scroll{
+.scroll, .notescroll{
     height: 40px;
     line-height: 40px;
     background-color: #0c4370;
@@ -882,9 +882,10 @@ background-color: #CCC;
     border-bottom: solid 1px rgba(100, 100, 100, .22);
     -webkit-border-top-left-radius: 3px;
     -webkit-border-top-right-radius: 3px;
-    padding: 8px 8px 6px 8px;
+    padding: 0;
     position: relative;
     z-index: 100;
+    margin-top: 10px;
 }
 .ui-mobile, .ui-mobile .ui-page, .ui-mobile [data-role="page"],
 .ui-mobile [data-role="dialog"], .ui-page, .ui-mobile .ui-page-active {
@@ -906,7 +907,10 @@ background-color: #CCC;
 }
 .notification{
     text-align: left;
-    padding-right: 30px !important;
+    padding: 10px;
+}
+.notification:not(:first-child) {
+    border-top: 1px solid #ccc;
 }
 .note-time{
     color: #555;
@@ -926,7 +930,7 @@ background-color: #CCC;
 .note-loader{
     display: block;
     margin: 0 auto;
-    padding: 10px 0px;
+    padding: 4px 0px;
 }
 #no-note{
     padding: 8px;
@@ -1092,4 +1096,7 @@ h1 {
 }
 .con{
     min-height: 100%;
+}
+.newnote{
+    background-color: #FF4136;
 }
