@@ -40,7 +40,7 @@
     <gap:plugin name="org.apache.cordova.splashscreen" />
     <gap:plugin name="org.apache.cordova.vibration" />
     <gap:plugin name="org.apache.cordova.statusbar" />
-    <gap:plugin name="com.telerik.plugins.wkwebview" />
+    <!--<gap:plugin name="com.telerik.plugins.wkwebview" />-->
     <preference name="StatusBarBackgroundColor" value="#FFFFFF"/>
     <preference name="StatusBarStyle" value="default" />
     <preference name="StatusBarOverlaysWebView" value="false"/>
