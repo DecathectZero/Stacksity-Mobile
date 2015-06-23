@@ -857,7 +857,7 @@ function delcom(){
 /*--notification system--*/
 var newcountNotif = 0;
 function notification(element, seen, stringText){
-    return '<div class="notification '+seen+' toPost" onclick="toPost('+element.link+')" data-note="'+element.notification_id+'"><a href="/u/'+element.stack_id+'" class="username">'+element.username+'</a> '+stringText+'#'+element.link+'<br><span class="note-time">'+element.created+'</span></div>';
+    return '<div class="notification '+seen+' toPost" onclick="toPost('+element.link+')" data-note="'+element.notification_id+'"><b>'+element.username+'</b> '+stringText+' P#'+element.link+'<br><span class="note-time">'+element.created+'</span></div>';
 }
 var cycle = false;
 var mark = false;

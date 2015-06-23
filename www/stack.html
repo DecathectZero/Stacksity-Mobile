@@ -15,6 +15,9 @@
         document.addEventListener("deviceready", onDeviceReady, false);
         // device APIs are available
         //
+        if (localStorage.getItem("session_id") == null) {
+            document.location.href = 'login.html';
+        }
         function onDeviceReady() {
             navigator.splashscreen.hide();
 //            StatusBar.hide();
@@ -314,7 +317,7 @@
         <div class="headercaption">Notifications</div>
     </div>
     <div class="extracontainer">
-        <div class="con">
+        <div class="con" style="min-height: 101%">
             <div class="topgap"></div>
             <div class="center note-header">
             </div>
