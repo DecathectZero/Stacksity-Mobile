@@ -110,7 +110,7 @@ function bannerset(activepage, stackids){
 }
 function logout(){
     localStorage.clear();
-    document.location.href = "login.html";
+    document.location.href = "index.html";
 }
 function initPostBox(){
     //alert(stackid);
@@ -881,6 +881,7 @@ function getNotification(){
     $(".note-header").empty();
     $(".notescroll").html('<img class="note-loader" src="img/post/ajax-loader.gif" />');
     checklogin();
+    newcountNotif = 0;
     $.getJSON('https://stacksity.com/php/getnotification.php', {timestamp: 0, session_id: id}, function(data){
         if(data!=null){
             $.each(data, function(index, element) {
