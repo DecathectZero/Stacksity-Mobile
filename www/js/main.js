@@ -16,6 +16,7 @@ var dontdelete = false;
 var loading = false;
 var postid = 0;
 
+//refers to when someone clicks on a post in a feed to view comments, checks to make sure a postbox isn't already open, since only one jqm page is available
 function postOpen(type){
     if(!postbox){
         changepage = true;
@@ -31,8 +32,11 @@ function postOpen(type){
     }
 }
 
+//this function instates a stack that hasn't been open and fills the jqm page with jq data and creates the visuals of the stack header
 function bannerset(activepage, stackids){
+    //checks login to double check if user is following or not
     checklogin();
+    //ajax function retrieves the stack information including banner, following, followers etc.
     $.ajax({
         type     : "POST",
         cache    : false,
@@ -108,9 +112,12 @@ function bannerset(activepage, stackids){
         }
     });
 }
+//self explanatory figure it out, login.html wipes all localdata
 function logout(){
     document.location.href = 'login.html';
 }
+
+//sets the parameters for the posting box, (can private post, either show username or stackname for "posting to")
 function initPostBox(){
     //alert(stackid);
     if(stackid < 1){
@@ -125,9 +132,13 @@ function initPostBox(){
         $("#posting").html(stackname);
     }
 }
+
+//returns if the menu tab is or is not an actual stack (i.e. explore is not a stack)
 function isStackOption(){
     return (option != 3 && option != 2 && option != 7);
 }
+
+//returns a variable goto as to which jqm page to open, first visual makes sure the old tab is not active anymore
 function init(){
     var goto = 0;
     $('.active').removeClass('active');
@@ -148,6 +159,8 @@ function init(){
     }
     return goto;
 }
+
+//returns a string of what id name each jqm page is for each option(menu item)
 function getOption(){
     if(option == 1){
         return "#toppage";
@@ -162,12 +175,8 @@ function getOption(){
     }
     return null;
 }
-function checkEnd(postnum){
-    if(postnum < 10){
-        end = true;
-        $('.scroll').html('<p>No more posts</p>');
-    }
-}
+
+//checks if the user is still logged in and if his php server session has expired, then it will renew unless an error occurs
 function checklogin(){
     var id = localStorage.getItem('session_id');
     var hashcode = localStorage.getItem('hashcode');
@@ -181,7 +190,8 @@ function checklogin(){
         crossDomain : true,
         success  : function(data) {
             if(data=="0"){
-                document.location.href = 'index.html';
+                //if an error occurs send the user back to the login page
+                document.location.href = 'login.html';
             }else{
                 if(data!="1"){
                     window.localStorage.setItem('session_id', data);
@@ -193,6 +203,14 @@ function checklogin(){
         }
     });
 }
+//checks if this is the very end of the stack newsfeed, since 10 posts are always returned unless there aren't anymore to show
+function checkEnd(postnum){
+    if(postnum < 10){
+        end = true;
+        $('.scroll').html('<p>No more posts</p>');
+    }
+}
+//retrieves the posts for a certain stack (probably one of the most important functions here, same as the site)
 function startNews(startnum, activepage, stackid) {
     if(!loading){
         if(end){
@@ -252,6 +270,8 @@ function startNews(startnum, activepage, stackid) {
         });
     }
 }
+
+//this refreshes a stack newsfeed, if the user is lower than a certain point he will be scrolled back to the top
 function refresh(){
     bottom = false;
     end = false;
@@ -288,6 +308,8 @@ function searchPageRefresh(){
     //getStacks($('#fs'),2);
     //getStacks($('#fu'),1)
 }
+
+//this retrieves a list of the stacks a user is following, distinguishes userstack/stacks (type_id=1 is retrieving userstack and type_id=2 is for actual stacks) alphabetical.
 function getStacks(el, type_id){
     $.getJSON('https://stacksity.com/php/getstacks.php', {id : type_id, session_id:id}, function(data) {
         $.each(data, function(index, element) {
@@ -299,6 +321,8 @@ function getStacks(el, type_id){
         });
     });
 }
+
+//the following three functions are for toggling between the "stacks, users, explore" tabs on the explore page
 function stack(){
     //element.parent().siblings().children().removeClass("active");
     //element.addClass("active");
@@ -324,6 +348,8 @@ function ex(){
     $(".fusers").hide();
     $(".rstack").show();
 }
+
+//refreshes the page and stuff
 var changepage = false;
 function refreshPage(opt) {
     if(option == opt){
