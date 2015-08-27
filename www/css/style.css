@@ -219,9 +219,6 @@ a:active{
     box-sizing: border-box;
     width:100%
 }
-.margins{
-    width: 100%;
-}
 .postinfo{
     font-size: 16px !important;
     margin: 3px 0 !important;
@@ -692,11 +689,16 @@ background-color: #CCC;
 .item {
     background: #fafbfe;
     text-align: left;
-    padding: 20px 10px;
+    padding: 20px 0px;
     margin-bottom: 15px;
     overflow: auto;
     background: #fff;
     border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+}
+.margins{
+    /*width: 100%;*/
+    padding-right:10px;
+    padding-left:10px;
 }
 .privatepost{
     background-image: url("../img/post/private.png");

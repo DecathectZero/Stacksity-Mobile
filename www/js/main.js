@@ -813,16 +813,12 @@ $(document).on("click", ".commentcollapse", function () {
         $(this).parent().parent().parent().parent().children(".child").show();
         this.innerHTML = "[–]";
         $(this).removeClass("collapsed");
-        $(this).parent().parent(".comment-content").removeClass("collapsedcss");
-        $(this).parent().parent().parent().parent(".child").removeClass("childcollapsed");
     } else {
         $(this).parent().parent().children(".commenttext, .editcon").hide();
         $(this).parent().parent().parent().children(".cvote").hide();
         $(this).parent().parent().parent().parent().children(".child").hide();
         this.innerHTML = "[+]";
         $(this).addClass("collapsed");
-        $(this).parent().parent(".comment-content").addClass("collapsedcss");
-        $(this).parent().parent().parent().parent(".child").addClass("childcollapsed");
     }
 });
 
