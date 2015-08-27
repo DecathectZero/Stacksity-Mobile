@@ -133,8 +133,17 @@ function initPostBox(){
     }
 }
 
+//var location = false;
+
 //returns if the menu tab is or is not an actual stack (i.e. explore is not a stack)
 function isStackOption(){
+    //if(option==4){
+    //    if(navigator.geolocation){
+    //        location = true;
+    //    }else{
+    //        //alert("please allow Stacksity to access your location for $near");
+    //    }
+    //}
     return (option != 3 && option != 2 && option != 7);
 }
 
@@ -152,7 +161,7 @@ function init(){
         goto = -10;
     }else if(option == 4){
         $('#allstack').addClass('active');
-        goto = -2;
+        goto = -4;
     }else if(option == 5){
         $('#userstack').addClass('active');
         goto = userstack;
@@ -211,10 +220,20 @@ function checkEnd(postnum){
     }
 }
 //retrieves the posts for a certain stack (probably one of the most important functions here, same as the site)
-function startNews(startnum, activepage, stackid) {
+function startNews(startnum, activepage, stackid, latpoint, longpoint) {
     if(!loading){
         if(end){
             return;
+        }
+        if(stackid==-4&&(latpoint!= 'undefined'&&longpoint!= 'undefined')){
+                navigator.geolocation.getCurrentPosition(function(pos){
+                    alert("geo");
+                    startNews(startnum, activepage, stackid, pos.coords.latitude, pos.coords.longitude);
+                },
+                function(error){
+                    $('.scroll').html('<p>Please turn on location</p>');
+                });
+                return;
         }
         $('.scroll').html('<p>Loading Posts...</p>');
         checklogin();
@@ -226,7 +245,7 @@ function startNews(startnum, activepage, stackid) {
             cache    : false,
             url      : 'https://stacksity.com/php/feed.php',
             crossDomain : true,
-            data     : {id : stackid , start : startnum , session_id: id },
+            data     : {id : stackid , start : startnum , session_id: id , latitude : latpoint, longitude : longpoint },
             dataType : "html",
             success  : function(data) {
                 //alert(data);
@@ -509,9 +528,17 @@ $(document).on("click", "#private", function(e){
 var postdata = null;
 $(document).on('submit', "#toppost", function(e){
     e.preventDefault();
+    navigator.geolocation.getCurrentPosition(function(position){
+            makepost("&lat="+position.coords.latitude+"&long="+position.coords.longitude);
+    },
+    function(error){
+        makepost("");
+    });
+});
+function makepost(info){
     if(!posting){
         checklogin();
-        var data = $(this).serialize()+"&stack="+stackid+"&user_value="+is_user+"&session_id="+id;
+        var data = $("#toppost").serialize()+"&stack="+stackid+"&user_value="+is_user+"&session_id="+id+info;
         posting = true;
         $('#pbutton').html('<div class="loader">Loading...</div>');
         $('#private').html('<div class="loader">Loading...</div>');
@@ -541,7 +568,7 @@ $(document).on('submit', "#toppost", function(e){
         });
     }
     return false;
-});
+}
 function parsePostData(){
     var data = postdata;
     if(data.length<=2) {

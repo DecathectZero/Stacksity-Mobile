@@ -885,7 +885,7 @@ background-color: #CCC;
     padding: 0;
     position: relative;
     z-index: 100;
-    margin-top: 10px;
+    margin-top: 1px;
 }
 .ui-mobile, .ui-mobile .ui-page, .ui-mobile [data-role="page"],
 .ui-mobile [data-role="dialog"], .ui-page, .ui-mobile .ui-page-active {
@@ -908,10 +908,11 @@ background-color: #CCC;
 .notification{
     text-align: left;
     padding: 10px;
-}
-.notification:not(:first-child) {
     border-top: 1px solid #ccc;
 }
+/*.notification:not(:first-child) {*/
+    /*border-top: 1px solid #ccc;*/
+/*}*/
 .note-time{
     color: #555;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -1086,11 +1087,13 @@ h1 {
 #cancelpost{
     margin: .5em 0 !important;
 }
+/*change this for iOS to work*/
 .padding-top{
-    /*padding-top: 20px;*/
+    padding-top: 20px;
 }
 .topgap{
-    padding-top: 30px;
+    /*change padding top between 30 and 50 for iOS*/
+    padding-top: 50px;
     width: 100%;
     background: transparent;
 }
