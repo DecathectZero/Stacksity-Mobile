@@ -468,7 +468,7 @@ background-color: #CCC;
     /*background-color: #3C81A8;*/
 }
 #stacksearch{
-    margin-top: 15px;
+    margin-top: 0;
 }
 .banner {
     padding:0px;
@@ -489,7 +489,7 @@ background-color: #CCC;
     overflow: hidden;
 }
 .nocomments{
-    margin-top: 5px;
+    margin-top: 7px;
     font-weight: bold;
     text-align: center;
 }
@@ -520,7 +520,7 @@ background-color: #CCC;
     margin-top: 10px;
 }
 #comments{
-    background-color: #DDD;
+    /*background-color: #DDD;*/
     padding-top: 0;
 }
 #commentform{
@@ -772,6 +772,9 @@ background-color: #CCC;
     padding: 6px;
     overflow: auto;
     border-left: 3px solid #fafbfe;
+}
+.commentsub {
+    padding-bottom: 5px;
 }
 .commenttext{
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;

@@ -772,11 +772,11 @@ function commentHTML(element, depth){
     }
     var vote = commentVote(element.vote, count);
     if(depth<7){
-        reply = '<a class="reply" onclick="swapReply(this)">reply</a>'+del+'<form class="replycomment" style="display: none" data-depth="'+depth+'"><div class="postcon replycon">'+
+        reply = '<a class="reply replybutton" onclick="swapReply(this)">reply</a>'+del+'<form class="replycomment" style="display: none" data-depth="'+depth+'"><div class="postcon replycon">'+
         '<input type="hidden" name="postid" value="'+postid+'">'+
         '<input type="hidden" name="commentid" value="'+element.comment_id+'">'+
         '<div id="textpost">'+
-        '<textarea name="text" class="expanding" id="text" placeholder="Write something here..." rows="2" required></textarea>'+
+        '<textarea name="text" class="expanding" id="text" placeholder="write something here..." rows="2" required></textarea>'+
         '</div></div>'+
         '<div class="postsub commentsub"><label class="commentl"><span class="cancelreply" onclick="backReply(this)">Cancel</span></label>'+
         '<button type="submit" class="postb replypost commentb">Post</button>'+
@@ -878,12 +878,23 @@ function showComment(data,item){
     });
 }
 function swapReply(el){
-    $(".replycomment").hide();
-    $(el).siblings('.replycomment').show();
+    if (el.innerHTML == "reply"){
+        $(".replycomment").hide();
+        $(el).siblings('.replycomment').show();
+        el.innerHTML = "cancel";
+    } else if (el.innerHTML == "cancel") {
+        $(".replycomment").siblings('.reply').show();
+        $(el).siblings('.replycomment').hide();
+        el.innerHTML = "reply";
+    }
+
 }
 function backReply(el){
     $(el).closest('.replycomment').siblings('.reply').show();
     $(el).closest('.replycomment').hide();
+    $(el).parent().parent().parent().parent().children('.replybutton').text("reply");
+
+
 }
 $(document).on('submit', '.replycomment', function(e){
     e.preventDefault();
