@@ -749,8 +749,17 @@ function commentHTML(element, depth){
     var count = element.upstacks-element.downstacks;
     var depthtext = '';
     var del = '';
+    var edit = '';
+    var edittime = '';
+    //alert(element.user_id+" | "+element.user);
+    if(element.edit!=null){
+        edittime = " | edited "+element.edit;
+    }
     if(element.delete){
-        del = '<a class="reply deletecom" data-delete="'+element.comment_id+'">delete</a>';
+        del = '<a class="reply editcom">edit</a><a class="reply deletecom" data-delete="'+element.comment_id+'">delete</a>';
+        edit = "<form class='editcon' style='display: none'><input name='postid' type='hidden' value='"+postid+"'>"+
+        "<input name='commentid' type='hidden' value='"+element.comment_id+"'><textarea name='text'>"+element.raw+"</textarea>"+
+        "<a class='reply canceledit'>cancel</a><a class='reply saveedit' onclick='$(this).parent().submit()'>save</a></form>";
     }
     var reply = del;
     if(depth == 0){
@@ -762,21 +771,95 @@ function commentHTML(element, depth){
         '<input type="hidden" name="postid" value="'+postid+'">'+
         '<input type="hidden" name="commentid" value="'+element.comment_id+'">'+
         '<div id="textpost">'+
-        '<textarea name="text" class="expanding" placeholder="Write something here..." rows="2" required></textarea>'+
+        '<textarea name="text" class="expanding" id="text" placeholder="Write something here..." rows="2" required></textarea>'+
         '</div></div>'+
-        '<div class="postsub comsub"><label><span class="cancelreply" onclick="backReply(this)">Cancel</span></label>'+
-        '<button type="submit" class="postb replypost">Post</button>'+
+        '<div class="postsub commentsub"><label class="commentl"><span class="cancelreply" onclick="backReply(this)">Cancel</span></label>'+
+        '<button type="submit" class="postb replypost commentb">Post</button>'+
         '</div></form>';
     }
     return '<div class="child '+depthtext+'">'+
     '<div class="comment" data-commentid="'+element.comment_id+'" data-depth="'+element.depth+'">'+
     vote+
     '<div class="comment-content">'+
-    '<p class="tagline"><a class="comment_link stacklink" data-link="'+element.user_stack+'" class="">'+element.username+'</a> | <time>'+element.created+'</time>' +
-    ' | <b>#'+element.comment_id+'</b></p>'+
-    '<div class="commenttext">'+element.content+'</div>'+ reply +
+    '<p class="tagline"><a class="commentcollapse">[–]</a> <a class="comment_link" href="/stack.php?id='+element.user_stack+'" class="">'+element.username+element.flair+'</a> | <time>'+element.created+'</time>' +
+    ' | #'+element.comment_id + "<span class='edittime'>" + edittime +'</span></p>'+
+    '<div class="commenttext"><div class="commentcontent">'+element.content +"</div>"+ reply +'</div>'+ edit +
     '</div> </div> </div>';
 }
+
+$(document).on("click", ".commentcollapse", function () {
+
+    // Set up collapse state variables to keep track of opened/closed comments
+    var collapsestate = 0;
+    var collapsecheck = $(this).attr('class');
+
+    // Checks if comments have already been collapsed
+    if (collapsecheck == "commentcollapse collapsed") {
+        collapsestate = 1;
+    } else {
+        collapsestate = 0;
+    }
+
+    // Depending on whether it's collapsed, expand/collapse the children comments and the comment
+    // itself except for the title line with username, etc.
+    if (collapsestate) {
+        $(this).parent().parent().children(".commenttext, .editcon").show();
+        $(this).parent().parent().parent().children(".cvote").show();
+        $(this).parent().parent().parent().parent().children(".child").show();
+        this.innerHTML = "[–]";
+        $(this).removeClass("collapsed");
+        $(this).parent().parent(".comment-content").removeClass("collapsedcss");
+        $(this).parent().parent().parent().parent(".child").removeClass("childcollapsed");
+    } else {
+        $(this).parent().parent().children(".commenttext, .editcon").hide();
+        $(this).parent().parent().parent().children(".cvote").hide();
+        $(this).parent().parent().parent().parent().children(".child").hide();
+        this.innerHTML = "[+]";
+        $(this).addClass("collapsed");
+        $(this).parent().parent(".comment-content").addClass("collapsedcss");
+        $(this).parent().parent().parent().parent(".child").addClass("childcollapsed");
+    }
+});
+
+$(document).on('click', '.editcom', function(e) {
+    $(this).parent().siblings().show();
+    $(this).parent().hide();
+});
+$(document).on('click', '.canceledit', function(e) {
+    $(this).parent().siblings().show();
+    $(this).parent().hide();
+});
+
+$(document).on('submit', '.editcon', function(e){
+    e.preventDefault();
+    if(!posting){
+        posting = true;
+        $(this).children('.saveedit').html('saving..');
+        var el = $(this);
+        $.ajax({
+            type     : "POST",
+            cache    : false,
+            url      : 'https://stacksity.com/php/editcomment.php',
+            data     : el.serialize()+"&session_id="+id,
+            success  : function(data) {
+                el.siblings(".commenttext").show();
+                el.siblings(".tagline").children(".edittime").html(" | edited now");
+                el.siblings().children(".commentcontent").html(data);
+                el.hide();
+                el.children('.saveedit').html('save');
+                posting = false;
+            },
+            error: function(xhr, status, error) {
+                alert("error"+ xhr.responseText);
+                el.children('.saveedit').html('save');
+                posting = false;
+            }
+        });
+    }else{
+        e.preventDefault();
+    }
+});
+
 function getComment(item)
 {
     $.getJSON('https://stacksity.com/php/commentfeed.php', {post_id : postid, session_id: id}, function(data) {

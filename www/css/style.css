@@ -303,7 +303,11 @@ background-color: #CCC;
     font-size: 10px;
     color: #888;
 }
-.postcon input, .postcon textarea{
+.collapsedcss {
+    padding-left: 25px;
+    min-height: 0;
+}
+.postcon input, .postcon textarea, .editcon textarea{
     font-family: arial;
     width: 100%;
     resize: none;
@@ -754,7 +758,7 @@ background-color: #CCC;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    min-height: 60px;
+    /*min-height: 60px;*/
     float: left;
     margin-left: 5px;
     padding: 5px;
