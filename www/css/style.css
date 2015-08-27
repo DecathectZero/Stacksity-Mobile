@@ -189,6 +189,12 @@ a:active{
 .imagecon {
     width: 100%;
     float: left;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .imagewrap {
     margin-top: 8px;
@@ -222,6 +228,12 @@ a:active{
 .postinfo{
     font-size: 16px !important;
     margin: 3px 0 !important;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .ui-dialog  .ui-header .ui-btn-icon-notext	{ display:none;}
 .textcon p{
@@ -324,7 +336,7 @@ background-color: #CCC;
 .postsub{
     width: 100%;
     padding: 0px 12px;
-    overflow: hidden;
+    /*overflow: hidden;*/
     margin-top: 0px;
     margin-bottom: 10px;
 }
@@ -373,7 +385,7 @@ background-color: #CCC;
     width: 100%;
     color: #ccc;
     background-color: #777;
-    margin: 0 !important;
+    margin: -1px 0 0 0 !important;
     padding: 5px 12px;
     font-weight: normal;
 }
@@ -410,6 +422,12 @@ background-color: #CCC;
     padding: 0 20px;
     margin-bottom: 20px;
     color: #fff;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .scroll p{
     display: inline;
@@ -422,6 +440,12 @@ background-color: #CCC;
     display: block;
     height: 40px;
     width: 100%;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .vbutton{
     width: 40px;
@@ -469,12 +493,24 @@ background-color: #CCC;
 }
 #stacksearch{
     margin-top: 0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .banner {
     padding:0px;
     background-color: #5eabed;
     background-size: cover;
     background-position: center center;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .play{
     height: 100%;
@@ -502,6 +538,12 @@ background-color: #CCC;
     margin-right: 10px;
     margin-bottom: 5px;
     margin-top: 10px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .linkimage{
     vertical-align: middle;
@@ -523,9 +565,10 @@ background-color: #CCC;
     /*background-color: #DDD;*/
     padding-top: 0;
 }
-#commentform{
-    padding: 10px 0;
+#t{
+    padding: 5px 0 10px;
     background-color: #CCC;
+    margin-bottom: 15px;
 }
 
 .loader:before,
@@ -605,6 +648,12 @@ background-color: #CCC;
 .comwrapper{
     margin-top: 5px;
     width: 100%;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .botgap{
     padding-top: 30px;
@@ -632,7 +681,13 @@ background-color: #CCC;
 }
 .reply{
     cursor: pointer;
-    margin-right: 10px;;
+    margin-right: 10px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .logout{
     width: 80px;
@@ -728,6 +783,12 @@ background-color: #CCC;
 .cvote{
     width: 25px;
     float: left;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .child{
     margin-left: 5px;
@@ -741,6 +802,7 @@ background-color: #CCC;
     background-color: #fafbfe;
     padding-top: 1px;
     padding-bottom: 10px;
+    margin-top: 10px;
 }
 .cbutton{
     display: block;
@@ -799,6 +861,12 @@ background-color: #CCC;
 }
 .tagline{
     margin-bottom: 3px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .depth{
     margin-top: 10px;
@@ -810,6 +878,12 @@ background-color: #CCC;
 .replycomment{
     background-color: #DDD;
     margin-top: 10px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .replycon{
     padding: 0;
@@ -828,6 +902,12 @@ background-color: #CCC;
     background-color: #fafbfe;
     padding: 10px;
     margin-top: 15px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .stacks{
     padding-top: 0;
@@ -915,6 +995,12 @@ background-color: #CCC;
     text-align: left;
     padding: 10px;
     border-top: 1px solid #ccc;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 /*.notification:not(:first-child) {*/
     /*border-top: 1px solid #ccc;*/
@@ -1086,6 +1172,12 @@ h1 {
     height: 31px;
     text-align: center;
     line-height: 31px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .comwrap a {
     padding: 10px 0;
@@ -1095,7 +1187,7 @@ h1 {
 }
 /*change this for iOS to work*/
 .padding-top{
-    padding-top: 20px;
+    padding-top: 21px;
 }
 .topgap{
     /*change padding top between 30 and 50 for iOS*/

@@ -125,9 +125,9 @@
                                 if(activestack<0){
                                     var explorename;
                                     if(activestack=="-1"){
-                                        explorename = "AllStack"
+                                        explorename = "Everything"
                                     }else if(activestack=="-3"){
-                                        explorename = "NewStack"
+                                        explorename = "Recent"
                                     }
 //                                    $("#explorehead").hide();
 //                                    $("#exgap").hide();
@@ -269,7 +269,7 @@
 </div>
 <div data-role="page" data-dom-cache="true" id="toppage">
     <div data-role="header" data-id="persistent" data-position="fixed" class="head padding-top" data-fullscreen="true" data-tap-toggle="false">
-        <div class="headercaption">best</div>
+        <div class="headercaption">Stacksity</div>
     </div>
     <div class="extracontainer">
         <div class="con">
@@ -425,8 +425,8 @@
             </div>
             <div class="stacklist">
                 <div class="stackl listlink" id="es">
-                    <a href="#" class="stacklink" data-link="-1">$allstack</a>
-                    <a href="#" class="stacklink" data-link="-3">$newstack</a>
+                    <a href="#" class="stacklink" data-link="-1">$everything</a>
+                    <a href="#" class="stacklink" data-link="-3">$recent</a>
                 </div>
             </div>
             <div class="btn-group btn-group-justified" role="group" aria-label="...">
