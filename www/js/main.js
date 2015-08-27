@@ -220,74 +220,79 @@ function checkEnd(postnum){
     }
 }
 //retrieves the posts for a certain stack (probably one of the most important functions here, same as the site)
-function startNews(startnum, activepage, stackid, latpoint, longpoint) {
+function startNews(startnum, activepage, stackid) {
     if(!loading){
         if(end){
             return;
         }
-        if(stackid==-4&&(latpoint!= 'undefined'&&longpoint!= 'undefined')){
+        if(stackid==-4){
                 navigator.geolocation.getCurrentPosition(function(pos){
                     //alert("geo");
-                    startNews(startnum, activepage, stackid, pos.coords.latitude, pos.coords.longitude);
+                    displayNews(startnum, activepage, stackid, pos.coords.latitude, pos.coords.longitude);
                 },
                 function(error){
-                    $('.scroll').html('<p>Please turn on location</p>');
+                    $('.scroll').html('<p>Please turn on location services</p>');
                 });
                 return;
+        }else{
+            $('.scroll').html('<p>Loading Posts...</p>');
+            displayNews(startnum, activepage, stackid);
         }
-        $('.scroll').html('<p>Loading Posts...</p>');
-        checklogin();
-        loading = true;
-        var postnum = 0;
-        //alert(startnum+" "+stackid);
-        $.ajax({
-            type     : "GET",
-            cache    : false,
-            url      : 'https://stacksity.com/php/feed.php',
-            crossDomain : true,
-            data     : {id : stackid , start : startnum , session_id: id , latitude : latpoint, longitude : longpoint },
-            dataType : "html",
-            success  : function(data) {
-                //alert(data);
-                if(data=="null"||data==''){
-                    loading = false;
-                    checkEnd(postnum);
-                }else{
-                    data = JSON.parse(data);
-                    //if(startnum>19){
-                    //    var div = activepage.find(".extracontainer");
-                    //    activepage.find('.item:lt('+data.length+')').remove();
-                    //    div.scrollTop = div.scrollHeight;
-                    //    alert(data.length);
-                    //}
-                    $.each(data, function(index, element) {
-                        if(element.posttype == 0){
-                            activepage.find('.feed').append(linkspost(element));
-                        }else if(element.posttype == 1){
-                            activepage.find('.feed').append(textspost(element));
-                        }else if(element.posttype == 2){
-                            activepage.find('.feed').append(imagepost(element));
-                        }else if(element.posttype == 3){
-                            activepage.find('.feed').append(videopostfeed(element));
-                        }
-                        postnum++;
-                    });
-                    loading = false;
-                    bottom = false;
-                    startnews = startnews + 10;
-                    activepage.data("startnews", startnews);
-                    checkEnd(postnum);
-                }
-            },
-            error: function(request) {
-                if(request.status == 0) {
-                    $('.scroll').html('<p>You\'re offline :(</p>');
-                }else{
-                    alert("connection arror");
-                }
-            }
-        });
     }
+}
+
+function displayNews(startnum, activepage, stackid, latpoint, longpoint){
+    checklogin();
+    loading = true;
+    var postnum = 0;
+    //alert(startnum+" "+stackid);
+    $.ajax({
+        type     : "GET",
+        cache    : false,
+        url      : 'https://stacksity.com/php/feed.php',
+        crossDomain : true,
+        data     : {id : stackid , start : startnum , session_id: id , latitude : latpoint, longitude : longpoint },
+        dataType : "html",
+        success  : function(data) {
+            //alert(data);
+            if(data=="null"||data==''){
+                loading = false;
+                checkEnd(postnum);
+            }else{
+                data = JSON.parse(data);
+                //if(startnum>19){
+                //    var div = activepage.find(".extracontainer");
+                //    activepage.find('.item:lt('+data.length+')').remove();
+                //    div.scrollTop = div.scrollHeight;
+                //    alert(data.length);
+                //}
+                $.each(data, function(index, element) {
+                    if(element.posttype == 0){
+                        activepage.find('.feed').append(linkspost(element));
+                    }else if(element.posttype == 1){
+                        activepage.find('.feed').append(textspost(element));
+                    }else if(element.posttype == 2){
+                        activepage.find('.feed').append(imagepost(element));
+                    }else if(element.posttype == 3){
+                        activepage.find('.feed').append(videopostfeed(element));
+                    }
+                    postnum++;
+                });
+                loading = false;
+                bottom = false;
+                startnews = startnews + 10;
+                activepage.data("startnews", startnews);
+                checkEnd(postnum);
+            }
+        },
+        error: function(request) {
+            if(request.status == 0) {
+                $('.scroll').html('<p>You\'re offline :(</p>');
+            }else{
+                alert("connection arror");
+            }
+        }
+    });
 }
 
 //this refreshes a stack newsfeed, if the user is lower than a certain point he will be scrolled back to the top
