@@ -108,11 +108,11 @@ function videopostfeed(element){
     var vote = voting(element.vote, count);
 
     return '<div class="item ipost '+priv(element.private, element.nsfw)+'" data-post="'+element.post_id+'">' +
-    '<div class="textcon"><div class="linkwrapper">' +
+    '<div class="textcon"><div class="linkwrapper"><div class="margins">' +
     getlink(element.post_id, element.link)+'<h4>' +  privt(element.title, element.private)  + '</h4></a>' +
-    '<p class="postinfo margins">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id, element.flair, element.stackflair)+' | '+ element.created +'</p>' +
+    '<p class="postinfo">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id, element.flair, element.stackflair)+' | '+ element.created +'</p>' +
     getlink(0, element.link) +
-    '<div class="imagewrap"><div class="play"></div> <img src="'+element.image+'" class="imagecon"></div>' +
+    '</div><div class="imagewrap"><div class="play"></div> <img src="'+element.image+'" class="imagecon"></div>' +
     '</a>' + '</div><div class="vote login margins">'+
     vote +
     '</div>'+comments(element)+

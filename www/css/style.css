@@ -748,6 +748,7 @@ background-color: #CCC;
     height: 25px;
     margin: 0;
     background-position-y:50%;
+    z-index: 999;
 }
 .cbutton:active {
     border: 1px solid #999;
