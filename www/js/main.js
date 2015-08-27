@@ -786,41 +786,41 @@ function commentHTML(element, depth){
     '<div class="comment" data-commentid="'+element.comment_id+'" data-depth="'+element.depth+'">'+
     vote+
     '<div class="comment-content">'+
-    '<p class="tagline"><a class="commentcollapse">[–]</a> <a class="comment_link" href="/stack.php?id='+element.user_stack+'" class="">'+element.username+element.flair+'</a> | <time>'+element.created+'</time>' +
+    '<p class="tagline"><a class="comment_link" href="/stack.php?id='+element.user_stack+'" class="">'+element.username+element.flair+'</a> | <time>'+element.created+'</time>' +
     ' | #'+element.comment_id + "<span class='edittime'>" + edittime +'</span></p>'+
     '<div class="commenttext"><div class="commentcontent">'+element.content +"</div>"+ reply +'</div>'+ edit +
     '</div> </div> </div>';
 }
 
-$(document).on("click", ".commentcollapse", function () {
-
-    // Set up collapse state variables to keep track of opened/closed comments
-    var collapsestate = 0;
-    var collapsecheck = $(this).attr('class');
-
-    // Checks if comments have already been collapsed
-    if (collapsecheck == "commentcollapse collapsed") {
-        collapsestate = 1;
-    } else {
-        collapsestate = 0;
-    }
-
-    // Depending on whether it's collapsed, expand/collapse the children comments and the comment
-    // itself except for the title line with username, etc.
-    if (collapsestate) {
-        $(this).parent().parent().children(".commenttext").show();
-        $(this).parent().parent().parent().children(".cvote").show();
-        $(this).parent().parent().parent().parent().children(".child").show();
-        this.innerHTML = "[–]";
-        $(this).removeClass("collapsed");
-    } else {
-        $(this).parent().parent().children(".commenttext, .editcon").hide();
-        $(this).parent().parent().parent().children(".cvote").hide();
-        $(this).parent().parent().parent().parent().children(".child").hide();
-        this.innerHTML = "[+]";
-        $(this).addClass("collapsed");
-    }
-});
+//$(document).on("click", ".commentcollapse", function () {
+//
+//    // Set up collapse state variables to keep track of opened/closed comments
+//    var collapsestate = 0;
+//    var collapsecheck = $(this).attr('class');
+//
+//    // Checks if comments have already been collapsed
+//    if (collapsecheck == "commentcollapse collapsed") {
+//        collapsestate = 1;
+//    } else {
+//        collapsestate = 0;
+//    }
+//
+//    // Depending on whether it's collapsed, expand/collapse the children comments and the comment
+//    // itself except for the title line with username, etc.
+//    if (collapsestate) {
+//        $(this).parent().parent().children(".commenttext").show();
+//        $(this).parent().parent().parent().children(".cvote").show();
+//        $(this).parent().parent().parent().parent().children(".child").show();
+//        this.innerHTML = "[–]";
+//        $(this).removeClass("collapsed");
+//    } else {
+//        $(this).parent().parent().children(".commenttext, .editcon").hide();
+//        $(this).parent().parent().parent().children(".cvote").hide();
+//        $(this).parent().parent().parent().parent().children(".child").hide();
+//        this.innerHTML = "[+]";
+//        $(this).addClass("collapsed");
+//    }
+//});
 
 $(document).on('click', '.editcom', function(e) {
     $(this).parent().siblings().show();
