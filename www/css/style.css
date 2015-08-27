@@ -299,18 +299,14 @@ background-color: #CCC;
     font-size: 16px;
     margin-bottom: 0px;
 }
-#title-count{
+#title-count {
     font-size: 10px;
     color: #888;
-}
-.collapsedcss {
-    padding-left: 25px;
-    min-height: 0;
 }
 .postcon input, .postcon textarea, .editcon textarea{
     font-family: arial;
     width: 100%;
-    resize: none;
+    resize: vertical;
     display: block;
     overflow: hidden;
     padding:5px 5px;

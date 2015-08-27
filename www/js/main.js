@@ -227,7 +227,7 @@ function startNews(startnum, activepage, stackid, latpoint, longpoint) {
         }
         if(stackid==-4&&(latpoint!= 'undefined'&&longpoint!= 'undefined')){
                 navigator.geolocation.getCurrentPosition(function(pos){
-                    alert("geo");
+                    //alert("geo");
                     startNews(startnum, activepage, stackid, pos.coords.latitude, pos.coords.longitude);
                 },
                 function(error){
@@ -803,7 +803,7 @@ $(document).on("click", ".commentcollapse", function () {
     // Depending on whether it's collapsed, expand/collapse the children comments and the comment
     // itself except for the title line with username, etc.
     if (collapsestate) {
-        $(this).parent().parent().children(".commenttext, .editcon").show();
+        $(this).parent().parent().children(".commenttext").show();
         $(this).parent().parent().parent().children(".cvote").show();
         $(this).parent().parent().parent().parent().children(".child").show();
         this.innerHTML = "[–]";
