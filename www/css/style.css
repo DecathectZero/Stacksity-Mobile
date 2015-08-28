@@ -22,6 +22,7 @@ a{
     display: inline;
     word-wrap: break-word;
     text-decoration: none;
+    cursor: pointer;
 }
 a:active{
     color: #38c;
@@ -811,6 +812,7 @@ background-color: #CCC;
     margin: 0;
     background-position-y:50%;
     z-index: 999;
+    cursor: pointer;
 }
 .cbutton:active {
     border: 1px solid #999;

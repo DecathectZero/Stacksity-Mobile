@@ -716,6 +716,7 @@ function toPost(link){
 
 function getPost(postid)
 {
+    //alert("get");
     $.getJSON('https://stacksity.com/php/postname.php', {id : postid, session_id:id}, function(element){
         if(null==element){
             alert("post not found");

@@ -47,6 +47,36 @@
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
         $(document).on('pagebeforeshow',function(event,ui){
+            var activepage = $.mobile.activePage;
+            if(changepage){
+                changepage = false;
+                if(option==3){
+                    openNote();
+                }
+            }else{
+                explore = false;
+                postbox=false;
+                var acrid = activepage.attr("id");
+                if(acrid=="toppage"){
+                    option = 1;
+                }else if(acrid=="searchpage"){
+                    option = 2;
+                }else if(acrid=="notepage"){
+                    option = 3;
+                }else if(acrid=="allpage"){
+                    option = 4;
+                }else if(acrid=="userpage"){
+                    option = 5;
+                }else if(acrid=="post"){
+                    option = 7;
+                }else if(acrid=="explorepage"){
+                    explore = true;
+                    option = 6;
+                }else if(acrid=="postpage"){
+                    postbox=true;
+                }
+                init();
+            }
             if(option == 7){
                 $('#postcon').empty();
                 $('#postcon').hide();
@@ -81,35 +111,6 @@
         $(document).on('pagechange',function(event,ui){
             var activepage = $.mobile.activePage;
 //            ui.prevPage.find(".extracontainer").css("-webkit-overflow-scrolling","auto");
-            if(changepage){
-                changepage = false;
-                if(option==3){
-                    openNote();
-                }
-            }else{
-                explore = false;
-                postbox=false;
-                var acrid = activepage.attr("id");
-                if(acrid=="toppage"){
-                    option = 1;
-                }else if(acrid=="searchpage"){
-                    option = 2;
-                }else if(acrid=="notepage"){
-                    option = 3;
-                }else if(acrid=="allpage"){
-                    option = 4;
-                }else if(acrid=="userpage"){
-                    option = 5;
-                }else if(acrid=="post"){
-                    option = 7;
-                }else if(acrid=="explorepage"){
-                    explore = true;
-                    option = 6;
-                }else if(acrid=="postpage"){
-                    postbox=true;
-                }
-                init();
-            }
             console.log(explore);
             console.log(option);
             if(!postbox){
