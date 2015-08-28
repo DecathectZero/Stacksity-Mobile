@@ -692,6 +692,13 @@ $(document).on('click','a',function(e){
                     linkToStack(link.substring(3));
                 }else if(link.charAt(1)=="$"){
                     linkToStack(link.substring(1));
+                }else if(link.charAt(1)=="p"){
+                    var midpoint = link.indexOf("&");
+                    if (midpoint === -1){
+                        toPost(link.substring(3));
+                    }else{
+                        toPost(link.substring(3,midpoint),link.substring(midpoint+1));
+                    }
                 }
             }else{
                 window.open(link, '_blank', 'location=yes,enableViewportScale=yes');
@@ -699,9 +706,26 @@ $(document).on('click','a',function(e){
         }
     }
 });
-
+var commentid = 0;
 function toPost(link){
     postid = link;
+    option = 7;
+    changepage = true;
+    init();
+    $.mobile.changePage(
+        "#post",
+        {
+            transition: "slide",
+            showLoadMsg             : false
+        }
+    );
+}
+
+function toPost(link, commentlink){
+    postid = link;
+    if(commentlink!=null){
+        commentid = commentlink;
+    }
     option = 7;
     changepage = true;
     init();
@@ -759,7 +783,7 @@ function commentHTML(element, depth){
     var edittime = '';
     //alert(element.user_id+" | "+element.user);
     if(element.edit!=null){
-        edittime = " | edited "+element.edit;
+        edittime = "edited "+element.edit;
     }
     if(element.delete){
         del = '<a class="reply editcom">edit</a><a class="reply deletecom" data-delete="'+element.comment_id+'">delete</a>';
@@ -788,7 +812,7 @@ function commentHTML(element, depth){
     vote+
     '<div class="comment-content">'+
     '<p class="tagline"><a class="comment_link" href="/stack.php?id='+element.user_stack+'" class="">'+element.username+element.flair+'</a> | <time>'+element.created+'</time>' +
-    ' | #'+element.comment_id + "<span class='edittime'>" + edittime +'</span></p>'+
+    ' | #'+element.comment_id + "<br><span class='edittime'>" + edittime +'</span></p>'+
     '<div class="commenttext"><div class="commentcontent">'+element.content +"</div>"+ reply +'</div>'+ edit +
     '</div> </div> </div>';
 }
@@ -866,6 +890,16 @@ function getComment(item)
 {
     $.getJSON('https://stacksity.com/php/commentfeed.php', {post_id : postid, session_id: id}, function(data) {
         showComment(data,item);
+        if(commentid != 0){
+            var comment = $(".comment[data-commentid="+commentid+"]");
+            commentid = 0;
+            if(comment.length!=0){
+                comment.children(".comment-content").css("background-color","#F0E68C");
+                $('html, body').animate({
+                    scrollTop: comment.offset().top
+                }, 1000);
+            }
+        }
     });
 }
 function showComment(data,item){
@@ -1006,7 +1040,7 @@ function delcom(){
 /*--notification system--*/
 var newcountNotif = 0;
 function notification(element, seen, stringText){
-    return '<div class="notification '+seen+' toPost" onclick="toPost('+element.link+')" data-note="'+element.notification_id+'"><b>'+element.username+'</b> '+stringText+' P#'+element.link+'<br><span class="note-time">'+element.created+'</span></div>';
+    return '<div class="notification '+seen+' toPost" onclick="toPost('+element.link+','+element.commentlink+')" data-note="'+element.notification_id+'"><b>'+element.username+'</b> '+stringText+' P#'+element.link+'<br><span class="note-time">'+element.created+'</span></div>';
 }
 var cycle = false;
 var mark = false;

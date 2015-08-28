@@ -838,7 +838,7 @@ background-color: #CCC;
     border-left: 3px solid #fafbfe;
 }
 .commentsub {
-    padding-bottom: 5px;
+    padding-bottom: 35px;
 }
 .commenttext{
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -1202,4 +1202,7 @@ h1 {
 }
 .newnote{
     background-color: #FF4136;
+}
+.edittime{
+    font-style: italic;
 }
