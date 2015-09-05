@@ -21,7 +21,9 @@
             StatusBar.overlaysWebView(false);
             StatusBar.backgroundColorByHexString("#ffffff");
             StatusBar.styleDefault();
+            alert(localStorage.getItem('ustack')+" "+localStorage.getItem('username'));
         }
+        alert(localStorage.getItem('ustack')+" "+localStorage.getItem('username'));
         if (localStorage.getItem("session_id") === null) {
             document.location.href = 'login.html';
         }
