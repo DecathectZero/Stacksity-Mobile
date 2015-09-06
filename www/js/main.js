@@ -77,6 +77,21 @@ function bannerset(activepage, stackids){
                     activepage.find(".bannerdesc").html(element.stack_desc);
                 }else if(stackids<-1){
                     activepage.find(".bannerdesc").html(element.stack_desc);
+                    if(stackids==-4){
+                        ban.after('<div class="center" style="padding: 0px 0 6px 0">'+
+                            '<div class="btn-group btn-group-justified" role="group" aria-label="...">'+
+                            '<div class="btn-group" role="group">'+
+                            '<button type="button" class="btn btn-default dist-btn" onclick="setDist(0.1, this)">Close</button>'+
+                            '</div>'+
+                            '<div class="btn-group" role="group">'+
+                            '<button type="button" class="btn btn-default dist-btn" onclick="setDist(5, this)" disabled>Near</button>'+
+                            '</div>'+
+                            '<div class="btn-group" role="group">'+
+                            '<button type="button" class="btn btn-default dist-btn" onclick="setDist(50, this)">Far</button>'+
+                            '</div>'+
+                            '</div>'+
+                            '</div>');
+                    }
                 }else {
                     var space = '';
                     if (element.stack_desc != "" && element.stack_desc != null) {
@@ -220,8 +235,23 @@ function checkEnd(postnum){
         $('.scroll').html('<p>No more posts</p>');
     }
 }
+
+//this function is called when someone fires a change distance button
+function setDist(distance, button){
+    $(".dist-btn").prop('disabled', false);
+    $(button).prop('disabled', true);
+    bottom = false;
+    startnews = 0;
+    loading = false;
+    end = false;
+    var activepage = $.mobile.activePage;
+    activepage.find('.feed').empty();
+    $('.scroll').html('<p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>');
+    startNews(startnews, activepage, -4, distance);
+}
+
 //retrieves the posts for a certain stack (probably one of the most important functions here, same as the site)
-function startNews(startnum, activepage, stackid) {
+function startNews(startnum, activepage, stackid, distance) {
     if(!loading){
         if(end){
             return;
@@ -229,7 +259,7 @@ function startNews(startnum, activepage, stackid) {
         if(stackid==-4){
                 navigator.geolocation.getCurrentPosition(function(pos){
                     //alert("geo");
-                    displayNews(startnum, activepage, stackid, pos.coords.latitude, pos.coords.longitude);
+                    displayNews(startnum, activepage, stackid, pos.coords.latitude, pos.coords.longitude, distance);
                 },
                 function(error){
                     $('.scroll').html('<p>Please turn on location services</p>');
@@ -242,7 +272,7 @@ function startNews(startnum, activepage, stackid) {
     }
 }
 
-function displayNews(startnum, activepage, stackid, latpoint, longpoint){
+function displayNews(startnum, activepage, stackid, latpoint, longpoint, distance){
     checklogin();
     loading = true;
     var postnum = 0;
@@ -252,7 +282,7 @@ function displayNews(startnum, activepage, stackid, latpoint, longpoint){
         cache    : false,
         url      : 'https://stacksity.com/php/feed.php',
         crossDomain : true,
-        data     : {id : stackid , start : startnum , session_id: id , latitude : latpoint, longitude : longpoint },
+        data     : {id : stackid , start : startnum , session_id: id , latitude : latpoint, longitude : longpoint, distance: distance},
         dataType : "html",
         success  : function(data) {
             //alert(data);
