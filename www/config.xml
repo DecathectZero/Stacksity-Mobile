@@ -39,7 +39,6 @@
     <gap:plugin name="org.apache.cordova.media" />
     <gap:plugin name="org.apache.cordova.splashscreen" />
     <gap:plugin name="org.apache.cordova.vibration" />
-    <gap:plugin name="com.adobe.plugins.pushplugin" />
     <gap:plugin name="org.apache.cordova.statusbar" />
     <gap:plugin name="com.telerik.plugins.wkwebview" />
     <preference name="StatusBarBackgroundColor" value="#FFFFFF"/>
