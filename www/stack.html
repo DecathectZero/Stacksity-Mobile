@@ -21,12 +21,16 @@
             StatusBar.overlaysWebView(false);
             StatusBar.backgroundColorByHexString("#ffffff");
             StatusBar.styleDefault();
-            alert(localStorage.getItem('ustack')+" "+localStorage.getItem('username'));
         }
-        alert(localStorage.getItem('ustack')+" "+localStorage.getItem('username'));
         if (localStorage.getItem("session_id") === null) {
             document.location.href = 'login.html';
         }
+        $(document).ready(function() {
+            function loadData() {
+                alert(localStorage.getItem('ustack')+" "+localStorage.getItem('username'));
+            }
+            loadData();
+        })
     </script>
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/jquerymobile.js"></script>
