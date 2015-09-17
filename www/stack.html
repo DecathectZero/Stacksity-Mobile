@@ -121,7 +121,7 @@
                     bottom = false;
                     if(!postbox){
                         if(activepage.data("stack_id")==null&&!postbox){
-                            $('.scroll').html('<p>Loading Stack...</p>');
+                            activepage.find('.scroll').html('<p>Loading Stack...</p>');
                             var activestack = stackid;
                             if(explore){
                                 if(activestack<0){
@@ -263,7 +263,7 @@
             <div class="center feed">
             </div>
             <div class="scroll center">
-                <p>Loading Posts</p>
+                <p>Loading Stack</p>
             </div>
             <div class="botgap"></div>
         </div>
@@ -285,7 +285,7 @@
             <div class="center feed">
             </div>
             <div class="scroll center">
-                <p>Loading Posts</p>
+                <p>Loading Stack</p>
             </div>
             <div class="botgap"></div>
         </div>
@@ -308,7 +308,7 @@
             <div class="center feed">
             </div>
             <div class="scroll center">
-                <p>Loading Posts</p>
+                <p>Loading Stack</p>
             </div>
             <div class="botgap"></div>
         </div>
@@ -352,7 +352,7 @@
             <div class="center feed">
             </div>
             <div class="scroll center">
-                <p>Loading Posts</p>
+                <p>Loading Stack</p>
             </div>
             <div class="botgap"></div>
         </div>

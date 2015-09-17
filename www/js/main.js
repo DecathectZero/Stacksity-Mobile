@@ -49,6 +49,7 @@ function bannerset(activepage, stackids){
                 alert("this stack doesn't exist");
                 refreshPage(1);
             }else{
+                activepage.find('.scroll').css('background-color','#0C4370');
                 var element = JSON.parse(data);
                 stackname = element.stackname;
                 is_user = element.is_user;
@@ -93,6 +94,24 @@ function bannerset(activepage, stackids){
                             '</div>');
                     }
                 }else {
+                    if(is_user==0){
+                        ban.after('<div class="center" style="padding: 0px 0 6px 0">'+
+                            '<div class="btn-group btn-group-justified" role="group" aria-label="...">'+
+                            '<div class="btn-group" role="group">'+
+                            '<button type="button" class="btn btn-default dist-btn" onclick="setDist(0, this)" disabled>All</button>'+
+                            '</div>'+
+                            '<div class="btn-group" role="group">'+
+                            '<button type="button" class="btn btn-default dist-btn" onclick="setDist(0.1, this)">Close</button>'+
+                            '</div>'+
+                            '<div class="btn-group" role="group">'+
+                            '<button type="button" class="btn btn-default dist-btn" onclick="setDist(5, this)">Near</button>'+
+                            '</div>'+
+                            '<div class="btn-group" role="group">'+
+                            '<button type="button" class="btn btn-default dist-btn" onclick="setDist(50, this)">Far</button>'+
+                            '</div>'+
+                            '</div>'+
+                            '</div>');
+                    }
                     var space = '';
                     if (element.stack_desc != "" && element.stack_desc != null) {
                         space = '<br>';
@@ -114,13 +133,18 @@ function bannerset(activepage, stackids){
                 }
                 activepage.find(".banner").slideDown({complete:function(){
                     startnews = 0;
-                    startNews(startnews,activepage, stackids);
+                    if(stackids == -4){
+                        startNews(startnews,activepage, stackids, 5);
+                    }else{
+                        startNews(startnews,activepage, stackids);
+                    }
                 }});
             }
         },
         error: function(request) {
             if(request.status == 0) {
-                $('.scroll').html('<p>You\'re offline :(</p>');
+                activepage.find('.scroll').html('<p>You\'re offline :(</p>');
+                activepage.find('.scroll').css('background-color','#FF851B');
             }else{
                 alert("Error Connection");
             }
@@ -229,12 +253,13 @@ function checklogin(){
     });
 }
 //checks if this is the very end of the stack newsfeed, since 10 posts are always returned unless there aren't anymore to show
-function checkEnd(postnum){
-    if(postnum < 10){
-        end = true;
-        $('.scroll').html('<p>No more posts</p>');
-    }
-}
+//function checkEnd(postnum){
+//    if(postnum < 10){
+//        end = true;
+//        $('.scroll').html('<p>No more posts</p>');
+//        $('.scroll').html('<p>You\'re offline :(</p>');
+//    }
+//}
 
 //this function is called when someone fires a change distance button
 function setDist(distance, button){
@@ -245,9 +270,13 @@ function setDist(distance, button){
     loading = false;
     end = false;
     var activepage = $.mobile.activePage;
+    activepage.find('.scroll').html('Loading...');
     activepage.find('.feed').empty();
-    $('.scroll').html('<p>Loading Posts</p> <div class="loader" style="top: -35px">Loading...</div>');
-    startNews(startnews, activepage, -4, distance);
+    if(distance==0){
+        startNews(startnews, activepage, stackid);
+    }else{
+        startNews(startnews, activepage, stackid, distance);
+    }
 }
 
 //retrieves the posts for a certain stack (probably one of the most important functions here, same as the site)
@@ -256,7 +285,7 @@ function startNews(startnum, activepage, stackid, distance) {
         if(end){
             return;
         }
-        if(stackid==-4){
+        if(distance !== undefined){
                 navigator.geolocation.getCurrentPosition(function(pos){
                     //alert("geo");
                     displayNews(startnum, activepage, stackid, pos.coords.latitude, pos.coords.longitude, distance);
@@ -266,7 +295,7 @@ function startNews(startnum, activepage, stackid, distance) {
                 });
                 return;
         }else{
-            $('.scroll').html('<p>Loading Posts...</p>');
+            activepage.find('.scroll').html('<p>Loading Posts...</p>');
             displayNews(startnum, activepage, stackid);
         }
     }
@@ -297,6 +326,9 @@ function displayNews(startnum, activepage, stackid, latpoint, longpoint, distanc
                 //    div.scrollTop = div.scrollHeight;
                 //    alert(data.length);
                 //}
+                if(startnum==0){
+                    activepage.find('.feed').empty();
+                }
                 $.each(data, function(index, element) {
                     if(element.posttype == 0){
                         activepage.find('.feed').append(linkspost(element));
@@ -313,12 +345,17 @@ function displayNews(startnum, activepage, stackid, latpoint, longpoint, distanc
                 bottom = false;
                 startnews = startnews + 10;
                 activepage.data("startnews", startnews);
-                checkEnd(postnum);
+                activepage.find('.scroll').css('background-color','#0C4370');
+                if(postnum < 10){
+                    end = true;
+                    activepage.find('.scroll').html('<p>No more posts</p>');
+                }
             }
         },
         error: function(request) {
             if(request.status == 0) {
-                $('.scroll').html('<p>You\'re offline :(</p>');
+                activepage.find('.scroll').html('<p>You\'re offline :(</p>');
+                activepage.find('.scroll').css('background-color','#FF851B');
             }else{
                 alert("connection arror");
             }
@@ -367,6 +404,11 @@ function searchPageRefresh(){
 //this retrieves a list of the stacks a user is following, distinguishes userstack/stacks (type_id=1 is retrieving userstack and type_id=2 is for actual stacks) alphabetical.
 function getStacks(el, type_id){
     $.getJSON('https://stacksity.com/php/getstacks.php', {id : type_id, session_id:id}, function(data) {
+        if(type_id==2){
+            $("#fs").empty();
+        }else{
+            $("#fu").empty();
+        }
         $.each(data, function(index, element) {
             if(type_id==2){
                 el.append('<a onClick="linkToStack(\''+element.stackname+'\')">'+element.stackname+'</a>');
@@ -381,7 +423,7 @@ function getStacks(el, type_id){
 function stack(){
     //element.parent().siblings().children().removeClass("active");
     //element.addClass("active");
-    $("#fs").empty();
+    //$("#fs").empty();
     getStacks($('#fs'),2);
     $(".fstack").show();
     $(".fusers").hide();
@@ -390,7 +432,7 @@ function stack(){
 function use(){
     //element.parent().siblings().children().removeClass("active");
     //element.addClass("active");
-    $("#fu").empty();
+    //$("#fu").empty();
     getStacks($('#fu'),1);
     $(".fstack").hide();
     $(".fusers").show();
