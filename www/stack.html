@@ -21,7 +21,7 @@
             StatusBar.overlaysWebView(false);
             StatusBar.backgroundColorByHexString("#ffffff");
             StatusBar.styleDefault();
-            alert(localStorage.getItem('ustack')+" "+localStorage.getItem('username'));
+            //alert(localStorage.getItem('ustack')+" "+localStorage.getItem('username'));
             if (localStorage.getItem("session_id") === null) {
                 document.location.href = 'login.html';
             }
@@ -149,11 +149,15 @@
                             contain.bind("scrollstop", function() {
                                 if(!postbox){
                                     if(contain.scrollTop() + $(window).height() > activepage.find(".con").height() - 200) {
-                                        //alert(stackid);
                                         if(!end&&!bottom&&!loading){
                                             bottom = true;
                                             activepage.find('.scroll').html('<p>Loading Posts</p> ');
-                                            startNews(startnews, activepage, stackid);
+                                            //alert(activepage.data("distance"));
+                                            if(activepage.data("distance")==0||activepage.data("distance")==undefined){
+                                                startNews(startnews, activepage, stackid);
+                                            }else{
+                                                startNews(startnews, activepage, stackid, activepage.data("distance"));
+                                            }
                                         }
                                     }
                                 }

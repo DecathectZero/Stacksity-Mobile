@@ -134,8 +134,10 @@ function bannerset(activepage, stackids){
                 activepage.find(".banner").slideDown({complete:function(){
                     startnews = 0;
                     if(stackids == -4){
+                        activepage.data("distance", 5);
                         startNews(startnews,activepage, stackids, 5);
                     }else{
+                        activepage.data("distance", 0);
                         startNews(startnews,activepage, stackids);
                     }
                 }});
@@ -272,6 +274,7 @@ function setDist(distance, button){
     var activepage = $.mobile.activePage;
     activepage.find('.scroll').html('Loading...');
     activepage.find('.feed').empty();
+    activepage.data("distance", distance);
     if(distance==0){
         startNews(startnews, activepage, stackid);
     }else{
@@ -305,7 +308,6 @@ function displayNews(startnum, activepage, stackid, latpoint, longpoint, distanc
     checklogin();
     loading = true;
     var postnum = 0;
-    //alert(startnum+" "+stackid);
     $.ajax({
         type     : "GET",
         cache    : false,
@@ -314,10 +316,10 @@ function displayNews(startnum, activepage, stackid, latpoint, longpoint, distanc
         data     : {id : stackid , start : startnum , session_id: id , latitude : latpoint, longitude : longpoint, distance: distance},
         dataType : "html",
         success  : function(data) {
-            //alert(data);
             if(data=="null"||data==''){
                 loading = false;
-                checkEnd(postnum);
+                end = true;
+                activepage.find('.scroll').html('<p>No more posts</p>');
             }else{
                 data = JSON.parse(data);
                 //if(startnum>19){
