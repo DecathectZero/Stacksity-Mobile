@@ -534,6 +534,7 @@ function linkToStack(goto){
                 //alert(goto);
                 var banner = $('#explorepage .banner');
                 $('#explorepage').data("stack_id", null);
+                $('#explorepage').find(".locbar").remove();
                 banner.hide();
                 banner.removeClass("userbanner");
                 $('#explorepage .feed').empty();
@@ -782,19 +783,19 @@ $(document).on('click','a',function(e){
     }
 });
 var commentid = 0;
-function toPost(link){
-    postid = link;
-    option = 7;
-    changepage = true;
-    init();
-    $.mobile.changePage(
-        "#post",
-        {
-            transition: "slide",
-            showLoadMsg             : false
-        }
-    );
-}
+//function toPost(link){
+//    postid = link;
+//    option = 7;
+//    changepage = true;
+//    init();
+//    $.mobile.changePage(
+//        "#post",
+//        {
+//            transition: "slide",
+//            showLoadMsg             : false
+//        }
+//    );
+//}
 
 function toPost(link, commentlink){
     postid = link;

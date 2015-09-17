@@ -124,7 +124,7 @@
                             activepage.find('.scroll').html('<p>Loading Stack...</p>');
                             var activestack = stackid;
                             if(explore){
-                                activepage.find(".locbar").remove();
+                                //activepage.find(".locbar").remove();
                                 if(activestack<0){
                                     var explorename;
                                     if(activestack=="-1"){
@@ -597,14 +597,24 @@
                 type: "GET",
                 crossDomain: true,
                 data: {
-                    term: $input.val()
+                    term: value
                 }
             }).then( function ( response ) {
 //            alert(JSON.stringify(response));
-                //html += "<li class='stacklink' data-link='"+value+"'>" + value + "</a></li>";
-                $.each( response, function ( i, val ) {
-                    html += "<li onclick='linkToStack("+val.id+")'>" + val.value + "</a></li>";
-                });
+                if(value.charAt(0)=="$"&&value.length>1){
+                    html += "<li onclick='linkToStack(\""+value+"\")'>" + value + "</li>";
+                    $.each( response, function ( i, val ) {
+                        if(val.value!=value) html += "<li onclick='linkToStack("+val.id+")'>" + val.value + "</li>";
+                    });
+                }else{
+                    if(response.length==0){
+                        html += "<li><span style='color:#f00'>" + value + "</span> doesn't exist" + "</li>";
+                    }else{
+                        $.each( response, function ( i, val ) {
+                            html += "<li onclick='linkToStack("+val.id+")'>" + val.value + "</li>";
+                        });
+                    }
+                }
                 $ul.html( html );
                 $ul.listview( "refresh" );
                 $ul.trigger( "updatelayout");
