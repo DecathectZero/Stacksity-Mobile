@@ -124,6 +124,7 @@
                             activepage.find('.scroll').html('<p>Loading Stack...</p>');
                             var activestack = stackid;
                             if(explore){
+                                activepage.find(".locbar").remove();
                                 if(activestack<0){
                                     var explorename;
                                     if(activestack=="-1"){
