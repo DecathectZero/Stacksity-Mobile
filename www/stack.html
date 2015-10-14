@@ -47,6 +47,13 @@
             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
+
+        var loader =
+                '<div class="spinner">'+
+                    '<div class="double-bounce1"></div>'+
+                    '<div class="double-bounce2"></div>'+
+                '</div>';
+
         $(document).on('pagebeforeshow',function(event,ui){
             var activepage = $.mobile.activePage;
             if(changepage){
@@ -81,7 +88,7 @@
             if(option == 7){
                 $('#postcon').empty();
                 $('#postcon').hide();
-                $('#commentfeed').html('<div class="nocomments">Loading Comments</div>');
+                $('#commentfeed').html(loader);
                 getPost(postid);
             }
             if(postbox){
@@ -307,6 +314,19 @@
             <div class="banner center" style="display: none">
                 <div class="center banner-inner">
                     <div class="bannertext">
+                    </div>
+                </div>
+            </div>
+            <div class="center locbar" style="padding: 0px 0 6px 0">
+                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default dist-btn" onclick="setDist(0.1, this)">Close</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default dist-btn" onclick="setDist(5, this)" disabled="">Near</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default dist-btn" onclick="setDist(50, this)">Far</button>
                     </div>
                 </div>
             </div>

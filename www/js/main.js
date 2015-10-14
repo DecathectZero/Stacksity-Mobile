@@ -78,21 +78,21 @@ function bannerset(activepage, stackids){
                     activepage.find(".bannerdesc").html(element.stack_desc);
                 }else if(stackids<-1){
                     activepage.find(".bannerdesc").html(element.stack_desc);
-                    if(stackids==-4){
-                        ban.after('<div class="center locbar" style="padding: 0px 0 6px 0">'+
-                            '<div class="btn-group btn-group-justified" role="group" aria-label="...">'+
-                            '<div class="btn-group" role="group">'+
-                            '<button type="button" class="btn btn-default dist-btn" onclick="setDist(0.1, this)">Close</button>'+
-                            '</div>'+
-                            '<div class="btn-group" role="group">'+
-                            '<button type="button" class="btn btn-default dist-btn" onclick="setDist(5, this)" disabled>Near</button>'+
-                            '</div>'+
-                            '<div class="btn-group" role="group">'+
-                            '<button type="button" class="btn btn-default dist-btn" onclick="setDist(50, this)">Far</button>'+
-                            '</div>'+
-                            '</div>'+
-                            '</div>');
-                    }
+                    //if(stackids==-4){
+                    //    ban.after('<div class="center locbar" style="padding: 0px 0 6px 0">'+
+                    //        '<div class="btn-group btn-group-justified" role="group" aria-label="...">'+
+                    //        '<div class="btn-group" role="group">'+
+                    //        '<button type="button" class="btn btn-default dist-btn" onclick="setDist(0.1, this)">Close</button>'+
+                    //        '</div>'+
+                    //        '<div class="btn-group" role="group">'+
+                    //        '<button type="button" class="btn btn-default dist-btn" onclick="setDist(5, this)" disabled>Near</button>'+
+                    //        '</div>'+
+                    //        '<div class="btn-group" role="group">'+
+                    //        '<button type="button" class="btn btn-default dist-btn" onclick="setDist(50, this)">Far</button>'+
+                    //        '</div>'+
+                    //        '</div>'+
+                    //        '</div>');
+                    //}
                 }else {
                     if(is_user==0){
                         ban.after('<div class="center locbar" style="padding: 0px 0 6px 0">'+
@@ -560,6 +560,7 @@ function linkToStack(goto){
  }
  }*/
 
+//Shows the post box for links
 function linkpost(){
     $('#imagepost').hide();
     $('#textpost').hide();
@@ -833,7 +834,6 @@ function getPost(postid)
             }
             $("#postcon").slideDown(function(){
                 if(element.comments>0){
-                    $("#commentfeed").empty();
                     getComment($("#commentfeed"));
                 }else{
                     $('#commentfeed').html("<div class='nocomments'>No comments currently</div>");
@@ -965,6 +965,7 @@ $(document).on('submit', '.editcon', function(e){
 function getComment(item)
 {
     $.getJSON('https://stacksity.com/php/commentfeed.php', {post_id : postid, session_id: id}, function(data) {
+        $("#commentfeed").children().slideUp();
         showComment(data,item);
         if(commentid != 0){
             var comment = $(".comment[data-commentid="+commentid+"]");
