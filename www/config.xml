@@ -36,7 +36,6 @@
     <gap:plugin name="pushbots-cordova-plugin" source="npm" />
     <gap:plugin name="cordova-plugin-camera" source="npm"/>
     <gap:plugin name="cordova-plugin-media-capture" source="npm"/>
-    <gap:plugin name="cordova-android" source="npm"/>
     <gap:plugin name="cordova-plugin-device" source="npm"/>
     <gap:plugin name="cordova-plugin-device-orientation" source="npm"/>
     <gap:plugin name="cordova-plugin-file" source="npm"/>
