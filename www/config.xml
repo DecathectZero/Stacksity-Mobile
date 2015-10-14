@@ -25,9 +25,7 @@
     <preference name="DisallowOverscroll" value="true" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="webviewbounce" value="false"/>
-
-    <gap:plugin name="com.phonegap.plugins.pushplugin"/>
-
+    
     <gap:plugin name="org.apache.cordova.camera" />
     <gap:plugin name="org.apache.cordova.media-capture" />
     <gap:plugin name="org.apache.cordova.device" />
@@ -44,8 +42,8 @@
 
     <gap:plugin name="com.telerik.plugins.wkwebview" />
 
-    <gap:plugin name="pushbots-cordova-plugin" source="npm" />
-    <access origin="*.pushbots.com" />
+    <gap:plugin name="com.pushbots.push" version="1.2.1" source="plugins.cordova.io" />
+
     <preference name="StatusBarBackgroundColor" value="#FFFFFF"/>
     <preference name="StatusBarStyle" value="default" />
     <preference name="StatusBarOverlaysWebView" value="false"/>
