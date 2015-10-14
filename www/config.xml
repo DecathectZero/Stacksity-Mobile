@@ -26,6 +26,7 @@
     <preference name="UIWebViewBounce" value="false" />
     <preference name="webviewbounce" value="false"/>
     
+    <gap:plugin name="pushbots-cordova-plugin" source="npm" />
     <gap:plugin name="org.apache.cordova.camera" />
     <gap:plugin name="org.apache.cordova.media-capture" />
     <gap:plugin name="org.apache.cordova.device" />
@@ -41,9 +42,7 @@
     <gap:plugin name="org.apache.cordova.statusbar" />
 
     <gap:plugin name="com.telerik.plugins.wkwebview" />
-
-    <gap:plugin name="com.pushbots.push" version="1.2.1" source="plugins.cordova.io" />
-    <gap:plugin name="pushbots-cordova-plugin" source="npm" />
+    
     <preference name="StatusBarBackgroundColor" value="#FFFFFF"/>
     <preference name="StatusBarStyle" value="default" />
     <preference name="StatusBarOverlaysWebView" value="false"/>
