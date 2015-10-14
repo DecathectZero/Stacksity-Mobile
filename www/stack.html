@@ -16,6 +16,13 @@
         // device APIs are available
         //
         function onDeviceReady() {
+            //Adds in notification
+            if(PushbotsPlugin.isiOS()){
+                PushbotsPlugin.initializeiOS("561ed24517795902148b4569");
+            }
+            if(PushbotsPlugin.isAndroid()){
+                PushbotsPlugin.initializeAndroid("561ed24517795902148b4569", "907553791348");
+            }
             navigator.splashscreen.hide();
 //            StatusBar.hide();
             StatusBar.overlaysWebView(false);

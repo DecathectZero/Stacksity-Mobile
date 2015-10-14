@@ -44,6 +44,8 @@
 
     <gap:plugin name="com.telerik.plugins.wkwebview" />
 
+    <gap:plugin name="pushbots-cordova-plugin" source="npm" />
+
     <preference name="StatusBarBackgroundColor" value="#FFFFFF"/>
     <preference name="StatusBarStyle" value="default" />
     <preference name="StatusBarOverlaysWebView" value="false"/>
