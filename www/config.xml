@@ -7,7 +7,7 @@
     <author email="support@stacksity.com" href="https://stacksity.com">
         Stacksity Team
     </author>
-    <preference name='phonegap-version' value='cli-5.1.1' />
+    <preference name='phonegap-version' value='cli-5.0' />
     <content src="index.html" />
     <preference name="permissions" value="none" />
     <preference name="orientation" value="portrait" />
