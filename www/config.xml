@@ -7,6 +7,7 @@
     <author email="support@stacksity.com" href="https://stacksity.com">
         Stacksity Team
     </author>
+    <preference name='phonegap-version' value='cli-5.1.1' />
     <content src="index.html" />
     <preference name="permissions" value="none" />
     <preference name="orientation" value="portrait" />
@@ -43,7 +44,7 @@
     <gap:plugin name="com.telerik.plugins.wkwebview" />
 
     <gap:plugin name="com.pushbots.push" version="1.2.1" source="plugins.cordova.io" />
-
+    <gap:plugin name="pushbots-cordova-plugin" source="npm" />
     <preference name="StatusBarBackgroundColor" value="#FFFFFF"/>
     <preference name="StatusBarStyle" value="default" />
     <preference name="StatusBarOverlaysWebView" value="false"/>
