@@ -7,6 +7,7 @@ var stackid = 0;
 var stackname = null;
 var userstack = localStorage.getItem('ustack');
 var username = localStorage.getItem('username');
+var user_id = localStorage.getItem('user_id');
 var option = 1;
 var explore = false;
 var postbox = false;
