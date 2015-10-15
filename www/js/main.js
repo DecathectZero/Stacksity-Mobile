@@ -230,6 +230,7 @@ function getOption(){
 //checks if the user is still logged in and if his php server session has expired, then it will renew unless an error occurs
 function checklogin(){
     var id = localStorage.getItem('session_id');
+    PushbotsPlugin.setAlias(localStorage.getItem('username'));
     var hashcode = localStorage.getItem('hashcode');
     $.ajax({
         type     : "POST",
