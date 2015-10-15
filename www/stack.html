@@ -17,6 +17,7 @@
         // device APIs are available
         //
         function onDeviceReady() {
+            Pushbots.clearBadgeCount();
             document.addEventListener("resume", onResume, false);
             navigator.splashscreen.hide();
 //            StatusBar.hide();
@@ -29,7 +30,7 @@
             }
         }
         function onResume(){
-            PushbotsPlugin.clearBadgeCount();
+            Pushbots.clearBadgeCount();
         } 
     </script>
     <script type="text/javascript" src="js/jquery.js"></script>
