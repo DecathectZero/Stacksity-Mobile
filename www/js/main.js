@@ -615,7 +615,7 @@ $(document).on('submit', "#toppost", function(e){
     },
     function(error){
         makepost("");
-    });
+    },{timeout: 10000, enableHighAccuracy: true});
 });
 function makepost(info){
     if(!posting){
