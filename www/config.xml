@@ -8,6 +8,7 @@
         Stacksity Team
     </author>
     <content src="index.html" />
+    <preference name="WKWebViewPluginEmbeddedServerPort" value="12344" />
     <preference name="permissions" value="none" />
     <preference name="orientation" value="portrait" />
     <preference name="target-device" value="universal" />
