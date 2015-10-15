@@ -29,9 +29,7 @@
             }
         }
         function onResume(){
-             if(PBNotificationIntent.notificationsArray != null){
-                PBNotificationIntent.notificationsArray = null;
-            }
+            PushbotsPlugin.clearBadgeCount();
         } 
     </script>
     <script type="text/javascript" src="js/jquery.js"></script>
