@@ -18,6 +18,8 @@
         //
         function onDeviceReady() {
             Pushbots.clearBadgeCount();
+            Pushbots.sharedInstance().debug(true);
+            Pushbots.debug(true);
             document.addEventListener("resume", onResume, false);
             navigator.splashscreen.hide();
 //            StatusBar.hide();
