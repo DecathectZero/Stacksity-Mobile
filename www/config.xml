@@ -26,7 +26,7 @@
     <preference name="UIWebViewBounce" value="false" />
     <preference name="webviewbounce" value="false"/>
     
-    <gap:plugin name="com.pushbots.push" version="1.2.3" source="plugins.cordova.io" />
+
     <gap:plugin name="org.apache.cordova.camera" />
     <gap:plugin name="org.apache.cordova.media-capture" />
     <gap:plugin name="org.apache.cordova.device" />
