@@ -295,7 +295,7 @@ function startNews(startnum, activepage, stackid, distance) {
                 },
                 function(error){
                     $('.scroll').html('<p>Please turn on location services</p>');
-                });
+                },{enableHighAccuracy: true });
                 return;
         }else{
             activepage.find('.scroll').html('<p>Loading Posts...</p>');
