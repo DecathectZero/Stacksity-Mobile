@@ -109,6 +109,14 @@
                         localStorage.setItem('ustack',element.stack_id);
                         localStorage.setItem('username',element.username);
                         localStorage.setItem('user_id',element.user_id);
+                        //Adds in notification
+                        if(PushbotsPlugin.isiOS()){
+                            PushbotsPlugin.initializeiOS("561ed24517795902148b4569");
+                        }
+                        if(PushbotsPlugin.isAndroid()){
+                            PushbotsPlugin.initializeAndroid("561ed24517795902148b4569", "907553791348");
+                        }
+                            PushbotsPlugin.setAlias(localStorage.getItem('user_id'));
                         //alert(localStorage.getItem('ustack')+" "+localStorage.getItem('username'));
                         document.location.href = 'stack.html#toppage';
                     }else{
