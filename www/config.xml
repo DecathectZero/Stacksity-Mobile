@@ -8,7 +8,6 @@
         Stacksity Team
     </author>
     <content src="index.html" />
-    <preference name="WKWebViewPluginEmbeddedServerPort" value="12344" />
     <preference name="permissions" value="none" />
     <preference name="orientation" value="portrait" />
     <preference name="target-device" value="universal" />
@@ -34,7 +33,6 @@
         <param name="ios-package" value="CDVDevice" />
     </feature>
     
-   
     <gap:plugin name="pushbots-cordova-plugin" source="npm" />
     <gap:plugin name="cordova-plugin-camera" source="npm"/>
     <gap:plugin name="cordova-plugin-media-capture" source="npm"/>
@@ -49,6 +47,7 @@
     <gap:plugin name="cordova-plugin-splashscreen" source="npm"/>
     <gap:plugin name="cordova-plugin-vibration" source="npm"/>
     <gap:plugin name="cordova-plugin-statusbar" source="npm"/>
+    <gap:plugin name="cordova-plugin-network-information" source="npm"/>
     <gap:plugin name="com.telerik.plugins.wkwebview" />
     
     <preference name="StatusBarBackgroundColor" value="#FFFFFF"/>
