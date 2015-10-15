@@ -156,7 +156,6 @@ function bannerset(activepage, stackids){
 }
 //self explanatory figure it out, login.html wipes all localdata
 function logout(){
-    Pushbots.sharedInstance().unRegister();
     localStorage.clear();
     document.location.href = 'login.html';
 }
