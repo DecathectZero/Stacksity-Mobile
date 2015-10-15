@@ -1216,7 +1216,7 @@ h1 {
     width: 40px;
     height: 40px;
     position: relative;
-    margin: 0 auto;
+    margin: 10px auto 0 auto;
 }
 
 .double-bounce1, .double-bounce2 {

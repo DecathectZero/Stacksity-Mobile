@@ -966,20 +966,20 @@ $(document).on('submit', '.editcon', function(e){
 
 function getComment(item)
 {
-    $.getJSON('https://stacksity.com/php/commentfeed.php', {post_id : postid, session_id: id}, function(data) {
-        $("#commentfeed").children().slideUp();
-        showComment(data,item);
-        if(commentid != 0){
-            var comment = $(".comment[data-commentid="+commentid+"]");
-            commentid = 0;
-            if(comment.length!=0){
-                comment.children(".comment-content").css("background-color","#F0E68C");
-                $('html, body').animate({
-                    scrollTop: comment.offset().top
-                }, 1000);
-            }
-        }
-    });
+    //$.getJSON('https://stacksity.com/php/commentfeed.php', {post_id : postid, session_id: id}, function(data) {
+    //    $("#commentfeed").children().slideUp();
+    //    showComment(data,item);
+    //    if(commentid != 0){
+    //        var comment = $(".comment[data-commentid="+commentid+"]");
+    //        commentid = 0;
+    //        if(comment.length!=0){
+    //            comment.children(".comment-content").css("background-color","#F0E68C");
+    //            $('html, body').animate({
+    //                scrollTop: comment.offset().top
+    //            }, 1000);
+    //        }
+    //    }
+    //});
 }
 function showComment(data,item){
     $.each(data, function(index, element) {
