@@ -612,6 +612,9 @@ $(document).on("click", "#private", function(e){
 var postdata = null;
 $(document).on('submit', "#toppost", function(e){
     e.preventDefault();
+    $('#pbutton').hide();
+    $('#private').hide();
+    $("#spinnerpost").show();
     navigator.geolocation.getCurrentPosition(function(position){
             makepost("&lat="+position.coords.latitude+"&long="+position.coords.longitude);
     },
@@ -619,13 +622,13 @@ $(document).on('submit', "#toppost", function(e){
         makepost("");
     },{timeout: 10000, enableHighAccuracy: true});
 });
+
+//This function makes an actual post
 function makepost(info){
     if(!posting){
         checklogin();
         var data = $("#toppost").serialize()+"&stack="+stackid+"&user_value="+is_user+"&session_id="+id+info;
         posting = true;
-        $('#pbutton').html('<div class="loader">Loading...</div>');
-        $('#private').html('<div class="loader">Loading...</div>');
         $.ajax({
             type     : "POST",
             cache    : false,
@@ -636,8 +639,6 @@ function makepost(info){
                 postbox = false;
                 postdata = data;
                 $.mobile.back();
-                $('#pbutton').html('Post');
-                $('#private').html('Private');
             },
             error: function(request) {
                 if(request.status == 0) {
@@ -645,8 +646,9 @@ function makepost(info){
                 }else{
                     alert("Error Connection");
                 }
-                $('#pbutton').html('Post');
-                $('#private').html('Private');
+                $('#pbutton').show();
+                $('#private').show();
+                $("#spinnerpost").hide();
                 posting = false;
             }
         });
@@ -675,8 +677,9 @@ function parsePostData(){
             $(videopostfeed(element)).hide().prependTo('.ui-page-active .feed').fadeIn("slow");
         }
     }
-    $('#pbutton').html('Post');
-    $('#private').html('Private');
+    $('#pbutton').show();
+    $('#private').show();
+    $("#spinnerpost").hide();
     $('#privatefield').val(0);
     posting = false;
     postdata = null;
@@ -966,20 +969,20 @@ $(document).on('submit', '.editcon', function(e){
 
 function getComment(item)
 {
-    //$.getJSON('https://stacksity.com/php/commentfeed.php', {post_id : postid, session_id: id}, function(data) {
-    //    $("#commentfeed").children().slideUp();
-    //    showComment(data,item);
-    //    if(commentid != 0){
-    //        var comment = $(".comment[data-commentid="+commentid+"]");
-    //        commentid = 0;
-    //        if(comment.length!=0){
-    //            comment.children(".comment-content").css("background-color","#F0E68C");
-    //            $('html, body').animate({
-    //                scrollTop: comment.offset().top
-    //            }, 1000);
-    //        }
-    //    }
-    //});
+    $.getJSON('https://stacksity.com/php/commentfeed.php', {post_id : postid, session_id: id}, function(data) {
+        $("#commentfeed").children().slideUp();
+        showComment(data,item);
+        if(commentid != 0){
+            var comment = $(".comment[data-commentid="+commentid+"]");
+            commentid = 0;
+            if(comment.length!=0){
+                comment.children(".comment-content").css("background-color","#F0E68C");
+                $('html, body').animate({
+                    scrollTop: comment.offset().top
+                }, 1000);
+            }
+        }
+    });
 }
 function showComment(data,item){
     $.each(data, function(index, element) {

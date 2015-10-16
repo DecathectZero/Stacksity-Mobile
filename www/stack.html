@@ -433,14 +433,18 @@
                     <div class="background-image"><img src="" id="imagePostPreview" class="img-responsive"></div>
                 </div>
             </div>
-            <div class="postsub">
+            <div class="postsub postsubgroup">
                 <input type="hidden" name="setprivate" value="0" id="privatefield">
+                <div id="spinnerpost">
+                    <div class="double-bounce1"></div>
+                    <div class="double-bounce2"></div>
+                </div>
                 <button type="submit" id="pbutton" class="postb" data-role="none">Post</button>
                 <button type="button" id="private" class="postb private" data-role="none">Private</button>
             </div>
         </form>
-        <div class="botgap"></div>
     </div>
+    <div class="botgap"></div>
     <script>$( "#title-input" ).keyup(function() {
         var length = $( this ).val().length;
         $( "#title-count").html(100-length);
