@@ -1210,11 +1210,11 @@ h1 {
 }
 /*change this for iOS to work*/
 .padding-top{
-    padding-top: 1px;
+    padding-top: 21px;
 }
 .topgap{
     /*change padding top between 30 and 50 for iOS*/
-    padding-top: 30px;
+    padding-top: 50px;
     width: 100%;
     background: transparent;
 }

@@ -864,7 +864,7 @@ function commentHTML(element, depth){
     var edittime = '';
     //alert(element.user_id+" | "+element.user);
     if(element.edit!=null){
-        edittime = " | <span class='edittime'> edited "+element.edit+'</span>';
+        edittime = "<span class='edittime'> edited "+element.edit+'</span>';
     }
     if(element.delete){
         del = '<a class="reply editcom">edit</a><a class="reply deletecom" data-delete="'+element.comment_id+'">delete</a>';
