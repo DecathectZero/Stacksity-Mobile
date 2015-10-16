@@ -387,6 +387,14 @@ background-color: #CCC;
 .postbar{
     max-width: 720px;
 }
+.commentb{
+    background-color: #fff;
+    color: #333;
+}
+.commentb:active{
+    background-color: #EEE;
+    border-bottom: 3px solid #CCC;
+}
 .postlabel{
     width: 100%;
     color: #ccc;
@@ -410,7 +418,7 @@ background-color: #CCC;
     line-height: 32px;
     display: inline;
 }
-#textpost{
+.textpost{
     margin-bottom: 5px;
 }
 #private{
@@ -595,7 +603,7 @@ background-color: #CCC;
     text-indent: -9999em;
     -webkit-animation-delay: 0.16s;
     animation-delay: 0.16s;
-    top: -35px;
+    top: -10px;
 }
 .loader:before {
     left: -1.5em;
@@ -614,20 +622,20 @@ background-color: #CCC;
     0%,
     80%,
     100% {
-        box-shadow: 0 10px 0 -1.3em #ffffff;
+        box-shadow: 0 10px 0 -1.3em #333;
     }
     40% {
-        box-shadow: 0 10px 0 0 #FFF;
+        box-shadow: 0 10px 0 0 #333;
     }
 }
 @keyframes load7 {
     0%,
     80%,
     100% {
-        box-shadow: 0 10px 0 -1.3em #ffffff;
+        box-shadow: 0 10px 0 -1.3em #333;
     }
     40% {
-        box-shadow: 0 10px 0 0 #FFF;
+        box-shadow: 0 10px 0 0 #333;
     }
 }
 .commentlink{
@@ -820,6 +828,14 @@ background-color: #CCC;
     cursor: pointer;
 }
 .cbutton:active {
+    border: 1px solid #999;
+}
+#cbutton{
+    display: block;
+    height: 40px;
+    cursor: pointer;
+}
+#cbutton:active {
     border: 1px solid #999;
 }
 .comment-content{

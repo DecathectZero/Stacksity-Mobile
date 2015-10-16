@@ -625,7 +625,7 @@ $(document).on('submit', "#toppost", function(e){
 
 //This function makes an actual post
 function makepost(info){
-    if(!posting){
+    if(!posting && ($("$input-title").val().trim().length > 0)){
         checklogin();
         var data = $("#toppost").serialize()+"&stack="+stackid+"&user_value="+is_user+"&session_id="+id+info;
         posting = true;
@@ -864,7 +864,7 @@ function commentHTML(element, depth){
     var edittime = '';
     //alert(element.user_id+" | "+element.user);
     if(element.edit!=null){
-        edittime = "edited "+element.edit;
+        edittime = " | <span class='edittime'> edited "+element.edit+'</span>';
     }
     if(element.delete){
         del = '<a class="reply editcom">edit</a><a class="reply deletecom" data-delete="'+element.comment_id+'">delete</a>';
@@ -881,7 +881,7 @@ function commentHTML(element, depth){
         reply = '<a class="reply replybutton" onclick="swapReply(this)">reply</a>'+del+'<form class="replycomment" style="display: none" data-depth="'+depth+'"><div class="postcon replycon">'+
         '<input type="hidden" name="postid" value="'+postid+'">'+
         '<input type="hidden" name="commentid" value="'+element.comment_id+'">'+
-        '<div id="textpost">'+
+        '<div class="textpost">'+
         '<textarea name="text" class="expanding" id="text" placeholder="write something here..." rows="2" required></textarea>'+
         '</div></div>'+
         '<div class="postsub commentsub"><label class="commentl"><span class="cancelreply" onclick="backReply(this)">Cancel</span></label>'+
@@ -893,7 +893,8 @@ function commentHTML(element, depth){
     vote+
     '<div class="comment-content">'+
     '<p class="tagline"><a class="comment_link" href="/stack.php?id='+element.user_stack+'" class="">'+element.username+element.flair+'</a> | <time>'+element.created+'</time>' +
-    ' | #'+element.comment_id + "<br><span class='edittime'>" + edittime +'</span></p>'+
+    //' | #'+element.comment_id +
+    "<br>" + edittime +'</p>'+
     '<div class="commenttext"><div class="commentcontent">'+element.content +"</div>"+ reply +'</div>'+ edit +
     '</div> </div> </div>';
 }
@@ -1015,10 +1016,11 @@ function backReply(el){
 }
 $(document).on('submit', '.replycomment', function(e){
     e.preventDefault();
-    if(!posting){
+    //checks that the reply comment is not blank
+    if(!posting && ($(this).children(".postcon").children(".textpost").children().val().trim().length > 0)){
         checklogin();
         posting = true;
-        $(this).children('.replypost').html('<div class="loader">Loading...</div>');
+        $(this).children(".postsub").children('.replypost').html('<div class="loader">Loading...</div>');
         e.preventDefault();
         var el = $(this);
         $.ajax({
@@ -1055,7 +1057,7 @@ $(document).on('submit', '.replycomment', function(e){
 });
 $(document).on('submit', '#commentform',function(e){
     e.preventDefault();
-    if(!posting){
+    if(!posting && ($(this).children(".postcon").children("#commenttext").val().trim().length > 0)){
         checklogin();
         posting = true;
         $('#cbutton').html('<div class="loader">Loading...</div>');
