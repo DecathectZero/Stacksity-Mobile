@@ -16,6 +16,7 @@
         
         // device APIs are available
         //
+        var option = 1;
         function onDeviceReady() {
             PushbotsPlugin.setAlias(localStorage.getItem('user_id'));
             PushbotsPlugin.resetBadge();
@@ -33,6 +34,9 @@
         function onResume(){
             PushbotsPlugin.resetBadge();
             getNotification();
+            if(option==3){
+                markseen();
+            }
         }
         //self explanatory figure it out, login.html wipes all localdata
         function logout(){
@@ -73,9 +77,9 @@
             var activepage = $.mobile.activePage;
             if(changepage){
                 changepage = false;
-                if(option==3){
-                    openNote();
-                }
+//                if(option==3){
+//                    openNote();
+//                }
             }else{
                 explore = false;
                 postbox=false;

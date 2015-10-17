@@ -8,7 +8,6 @@ var stackname = null;
 var userstack = localStorage.getItem('ustack');
 var username = localStorage.getItem('username');
 var user_id = localStorage.getItem('user_id');
-var option = 1;
 var explore = false;
 var postbox = false;
 var postype = 1;
@@ -452,10 +451,9 @@ function refreshPage(opt) {
             $.mobile.back();
         }else if(isStackOption()){
             refresh();
+        }else if(option == 3){
+            openNote();
         }
-        //else if(option == 3){
-        //    openNote();
-        //}
     }else{
         explore = false;
         var rev = false;
