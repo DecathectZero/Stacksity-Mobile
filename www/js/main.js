@@ -625,7 +625,7 @@ $(document).on('submit', "#toppost", function(e){
 
 //This function makes an actual post
 function makepost(info){
-    if(!posting && ($("$input-title").val().trim().length > 0)){
+    if(!posting && ($("#title-input").val().trim().length > 0)){
         checklogin();
         var data = $("#toppost").serialize()+"&stack="+stackid+"&user_value="+is_user+"&session_id="+id+info;
         posting = true;
@@ -971,7 +971,7 @@ $(document).on('submit', '.editcon', function(e){
 function getComment(item)
 {
     $.getJSON('https://stacksity.com/php/commentfeed.php', {post_id : postid, session_id: id}, function(data) {
-        $("#commentfeed").children().slideUp();
+        $("#commentfeed").empty();
         showComment(data,item);
         if(commentid != 0){
             var comment = $(".comment[data-commentid="+commentid+"]");
