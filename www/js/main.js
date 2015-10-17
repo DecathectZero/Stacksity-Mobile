@@ -827,8 +827,7 @@ function getPost(postid)
         if(null==element){
             //alert("post not found");
             //$.mobile.back();
-            $("#comments").slideUp();
-            $("#postcon").append("<div class='item'><div class='margins'><h1>This post doesn't seem to exist :(</h1><p>It's either deleted, private, or nonexistent</p><img src='../www/img/notfound.png' class='fullimage'></div></div>").slideDown();
+            $("#postcon").append("<div class='item'><div class='margins'><h1>This post doesn't seem to exist :(</h1><p>It's either deleted, private, or nonexistent</p><img src='../www/img/notfound.png' class='fullimage'></div></div>").slideDown(function(){$("#comments").slideUp()});
         }else{
             if(element.posttype == 0){
                 $('#postcon').append(linkspost(element));
