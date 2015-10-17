@@ -17,14 +17,6 @@
         // device APIs are available
         //
         function onDeviceReady() {
-            //Adds in notification
-            if(PushbotsPlugin.isiOS()){
-                PushbotsPlugin.initializeiOS("561ed24517795902148b4569");
-            }
-            if(PushbotsPlugin.isAndroid()){
-                PushbotsPlugin.initializeAndroid("561ed24517795902148b4569", "907553791348");
-            }
-            alert(localStorage.getItem('user_id'));
             PushbotsPlugin.setAlias(localStorage.getItem('user_id'));
             PushbotsPlugin.resetBadge();
             document.addEventListener("resume", onResume, false);
@@ -43,7 +35,8 @@
         }
         //self explanatory figure it out, login.html wipes all localdata
         function logout(){
-            PushbotsPlugin.unregister();
+            PushbotsPlugin.setAlias("0");
+            //PushbotsPlugin.unregister();
             localStorage.clear();
             document.location.href = 'login.html';
         }

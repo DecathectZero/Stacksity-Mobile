@@ -29,6 +29,7 @@
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     <link rel="stylesheet" href="css/jquerymobile.css">
     <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
     <script>
 
         document.addEventListener("deviceready", onDeviceReady, false);
@@ -40,13 +41,14 @@
             StatusBar.backgroundColorByHexString("#ffffff");
             StatusBar.styleDefault();
             StatusBar.overlaysWebView(false);
+            $("#loginloader").hide();
+            $("#loginform").show();
         }
         localStorage.clear();
 //        if (!(localStorage.getItem("session_id")=== null)){
 //            document.location.href = 'stack.html#toppage';
 //        }
     </script>
-    <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/jquerymobile.js"></script>
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <script>
@@ -66,19 +68,25 @@
                 <h2>Welcome to</h2>
                 <h1>STACK$ITY</h1>
             </div>
-            <form class="signinform" id="login">
-                <input type="hidden" name="checked" value="1">
-                <p id="error-info" style="display: none" class="errorprompt"></p>
-                <label for="inputEm" class="sr-only">Username/Email</label>
-                <input  data-role="none" name="inputEm" type="text" id="inputEm" class="form-control" placeholder="Email/Username" required>
-                <label for="inputPass" class="sr-only">Password</label>
-                <input data-role="none" name="inputPass" type="password" id="inputPass" class="form-control" placeholder="Password" required>
-                <button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-                <a class="small" href="#passpage" data-transition="slide" data-direction="reverse">Forgot your password or username?</a>
-            </form>
-            <form class="signinform margintop">
-                <a href="#signuppage" data-transition="slide"><button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button></a>
-            </form>
+            <div id="loginloader">
+                <div class="double-bounce1"></div>
+                <div class="double-bounce2"></div>
+            </div>
+            <div id="loginform">
+                <form class="signinform" id="login">
+                    <input type="hidden" name="checked" value="1">
+                    <p id="error-info" style="display: none" class="errorprompt"></p>
+                    <label for="inputEm" class="sr-only">Username/Email</label>
+                    <input  data-role="none" name="inputEm" type="text" id="inputEm" class="form-control" placeholder="Email/Username" required>
+                    <label for="inputPass" class="sr-only">Password</label>
+                    <input data-role="none" name="inputPass" type="password" id="inputPass" class="form-control" placeholder="Password" required>
+                    <button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+                    <a class="small" href="#passpage" data-transition="slide" data-direction="reverse">Forgot your password or username?</a>
+                </form>
+                <form class="signinform margintop">
+                    <a href="#signuppage" data-transition="slide"><button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button></a>
+                </form>
+            </div>
         </div>
     </div>
     <script>
@@ -110,6 +118,14 @@
                         localStorage.setItem('username',element.username);
                         localStorage.setItem('user_id',element.user_id);
                         //alert(localStorage.getItem('ustack')+" "+localStorage.getItem('username'));
+                        //Adds in notification
+                        if(PushbotsPlugin.isiOS()){
+                            PushbotsPlugin.initializeiOS("561ed24517795902148b4569");
+                        }
+                        if(PushbotsPlugin.isAndroid()){
+                            PushbotsPlugin.initializeAndroid("561ed24517795902148b4569", "907553791348");
+                        }
+                        PushbotsPlugin.setAlias(localStorage.getItem('user_id'));
                         document.location.href = 'stack.html#toppage';
                     }else{
                         errorinfo("Oops something went wrong with the server, error code: " + data);
