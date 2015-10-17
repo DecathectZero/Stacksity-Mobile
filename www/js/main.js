@@ -154,12 +154,6 @@ function bannerset(activepage, stackids){
         }
     });
 }
-//self explanatory figure it out, login.html wipes all localdata
-function logout(){
-    Pushbots.unRegister();
-    localStorage.clear();
-    document.location.href = 'login.html';
-}
 
 //sets the parameters for the posting box, (can private post, either show username or stackname for "posting to")
 function initPostBox(){
