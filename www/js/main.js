@@ -452,9 +452,10 @@ function refreshPage(opt) {
             $.mobile.back();
         }else if(isStackOption()){
             refresh();
-        }else if(option == 3){
-            openNote();
         }
+        //else if(option == 3){
+        //    openNote();
+        //}
     }else{
         explore = false;
         var rev = false;
