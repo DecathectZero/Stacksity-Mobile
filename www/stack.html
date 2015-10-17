@@ -24,7 +24,8 @@
             if(PushbotsPlugin.isAndroid()){
                 PushbotsPlugin.initializeAndroid("561ed24517795902148b4569", "907553791348");
             }
-            PushbotsPlugin.setAlias(localStorage.getItem('user_id').toString());
+            alert(localStorage.getItem('user_id'));
+            PushbotsPlugin.setAlias(localStorage.getItem('user_id'));
             PushbotsPlugin.resetBadge();
             document.addEventListener("resume", onResume, false);
             navigator.splashscreen.hide();
