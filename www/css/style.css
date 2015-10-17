@@ -762,7 +762,24 @@ background-color: #CCC;
     margin-bottom: 15px;
     overflow: auto;
     background: #fff;
-    border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+    /*border-color: #e5e6e9 #dfe0e4 #d0d1d5;*/
+    -webkit-transition : border 500ms ease-out;
+    -moz-transition : border 500ms ease-out;
+    -o-transition : border 500ms ease-out;
+    transition : border 500ms ease-out;
+    border-top: 3px solid #fafbfe;
+}
+.lpost:hover{
+    border-top: 3px solid #FF4136;
+}
+.ipost:hover{
+    border-top: 3px solid #FF851B;
+}
+.vpost:hover{
+    border-top: 3px solid #85144b;
+}
+.tpost:hover{
+    border-top: 3px solid #39CCCC;
 }
 .margins{
     /*width: 100%;*/
@@ -1177,16 +1194,21 @@ h1 {
 /*}*/
 .posthead{
     background-color: #fff;
-}
-.posthead a{
+    position: fixed;
+    top: 0;
+    height: 30px;
+    width: 100%;
     font-size: 20px !important;
     line-height: 30px !important;
 }
-.posthead a:hover{
+.posthead:hover{
     text-decoration: none;
 }
-.posthead a:active{
+.posthead:active{
     color: #0088bb;
+}
+.fullimage{
+    width: 100%;
 }
 .ui-bar-a {
     border: none;
@@ -1216,7 +1238,7 @@ h1 {
     /*change padding top between 30 and 50 for iOS*/
     padding-top: 30px;
     width: 100%;
-    background: #fff;
+    background: transparent;
 }
 .con{
     min-height: 100%;
@@ -1279,4 +1301,21 @@ h1 {
           transform: scale(1.0);
           -webkit-transform: scale(1.0);
       }
+}
+
+/*comment collapse stuff*/
+.commentcollapse{
+    color: #AAA;
+    font-size: 16px;
+    cursor: pointer;
+}
+.commentcollapse:hover, .commentcollapse:active, .commentcollapse:focus{
+    color: #CCC;
+}
+.collapsedcss {
+    padding-left: 25px;
+    min-height: 0;
+}
+.childcollapsed {
+    padding-bottom: 0;
 }

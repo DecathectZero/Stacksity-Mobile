@@ -825,8 +825,10 @@ function getPost(postid)
     //alert("get");
     $.getJSON('https://stacksity.com/php/postname.php', {id : postid, session_id:id}, function(element){
         if(null==element){
-            alert("post not found");
-            $.mobile.back();
+            //alert("post not found");
+            //$.mobile.back();
+            $("#comments").slideUp();
+            $("#postcon").append("<div class='item'><div class='margins'><h1>This post doesn't seem to exist :(</h1><p>It's either deleted, private, or nonexistent</p><img src='../www/img/notfound.png' class='fullimage'></div></div>").slideDown();
         }else{
             if(element.posttype == 0){
                 $('#postcon').append(linkspost(element));
@@ -892,12 +894,37 @@ function commentHTML(element, depth){
     '<div class="comment" data-commentid="'+element.comment_id+'" data-depth="'+element.depth+'">'+
     vote+
     '<div class="comment-content">'+
-    '<p class="tagline"><a class="comment_link" href="/stack.php?id='+element.user_stack+'" class="">'+element.username+element.flair+'</a> | <time>'+element.created+'</time>' +
+    '<p class="tagline"><span class="commentcollapse glyphicon glyphicon-minus-sign"></span> <a class="comment_link" href="/stack.php?id='+element.user_stack+'" class="">'+element.username+element.flair+'</a> | <time>'+element.created+'</time>' +
     //' | #'+element.comment_id +
     "<br>" + edittime +'</p>'+
     '<div class="commenttext"><div class="commentcontent">'+element.content +"</div>"+ reply +'</div>'+ edit +
     '</div> </div> </div>';
 }
+
+$(document).on("click", ".commentcollapse", function (event) {
+    event.preventDefault();
+
+    // Set up collapse state variables to keep track of opened/closed comments
+    // Depending on whether it's collapsed, expand/collapse the children comments and the comment
+    // itself except for the title line with username, etc.
+    if ($(this).hasClass("glyphicon-plus-sign")) {
+        $(this).parent().siblings(".commenttext").slideDown();
+        $(this).parent().parent().siblings(".cvote").show();
+        $(this).parent().parent().parent().siblings(".child").show();
+        $(this).removeClass("glyphicon-plus-sign");
+        $(this).addClass("glyphicon-minus-sign");
+        $(this).parent().parent(".comment-content").removeClass("collapsedcss");
+        $(this).parent().parent().parent().parent(".child").removeClass("childcollapsed");
+    } else {
+        $(this).parent().parent().parent().siblings(".child").slideUp();
+        $(this).parent().siblings(".commenttext, .editcon").slideUp();
+        $(this).parent().parent().siblings(".cvote").hide();
+        $(this).addClass("glyphicon-plus-sign");
+        $(this).removeClass("glyphicon-minus-sign");
+        $(this).parent().parent(".comment-content").addClass("collapsedcss");
+        $(this).parent().parent().parent().parent(".child").addClass("childcollapsed");
+    }
+});
 
 //$(document).on("click", ".commentcollapse", function () {
 //
