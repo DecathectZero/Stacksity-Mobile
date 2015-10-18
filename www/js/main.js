@@ -897,7 +897,7 @@ function commentHTML(element, depth){
     '</div> </div> </div>';
 }
 
-$(document).on("taphold", ".comment-content", function (event) {
+$(document).on("dblclick", ".comment-content", function (event) {
     event.preventDefault();
 
     // Set up collapse state variables to keep track of opened/closed comments
