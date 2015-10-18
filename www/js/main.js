@@ -46,7 +46,7 @@ function bannerset(activepage, stackids){
         success  : function(data) {
             //alert(activepage.attr("id")+" "+stackid);
             if(data==1){
-                alert("this stack doesn't exist");
+                alert("This stack doesn't exist");
                 refreshPage(1);
             }else{
                 activepage.find('.scroll').css('background-color','#0C4370');
@@ -444,7 +444,11 @@ function ex(){
 }
 
 //refreshes the page and stuff
+
+//Changepage represents when the app knowingly changes a page and what that page will be
+//IE Changepage would be false when someone presses the back button on Android
 var changepage = false;
+
 function refreshPage(opt) {
     if(option == opt){
         if(postbox) {

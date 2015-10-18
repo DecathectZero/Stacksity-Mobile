@@ -81,10 +81,12 @@
                     if($('#notestack').hasClass('newnote')){
                         markseen();
                     }
+                }else if(option==7){
+                    explore = false;
                 }
             }else{
                 explore = false;
-                postbox=false;
+                postbox = false;
                 var acrid = activepage.attr("id");
                 if(acrid=="toppage"){
                     option = 1;
@@ -281,348 +283,349 @@
     </div>
 </div>
 <div id="container">
-<div data-role="page" data-dom-cache="true" id="explorepage" class="ex">
-    <div data-role="header" data-id="persistent" data-position="fixed"  class="head padding-top" data-fullscreen="true" data-tap-toggle="false" id="explorehead">
-        <div class="headercaption">&nbsp;</div>
-    </div>
-    <div class="extracontainer">
-        <div class="con">
-            <div class="topgap" id="exgap"></div>
-            <div class="banner center" style="display: none">
-                <div class="center banner-inner">
-                    <div class="bannertext">
+    <div data-role="page" data-dom-cache="true" id="explorepage" class="ex">
+        <div data-role="header" data-id="persistent" data-position="fixed"  class="head padding-top" data-fullscreen="true" data-tap-toggle="false" id="explorehead">
+            <div class="headercaption">&nbsp;</div>
+        </div>
+        <div class="extracontainer">
+            <div class="con">
+                <div class="topgap" id="exgap"></div>
+                <div class="banner center" style="display: none">
+                    <div class="center banner-inner">
+                        <div class="bannertext">
+                        </div>
                     </div>
                 </div>
+                <div class="center feed">
+                </div>
+                <div class="scroll center">
+                    <p>Loading Stack</p>
+                </div>
+                <div class="botgap"></div>
             </div>
-            <div class="center feed">
-            </div>
-            <div class="scroll center">
-                <p>Loading Stack</p>
-            </div>
-            <div class="botgap"></div>
         </div>
     </div>
-</div>
-<div data-role="page" data-dom-cache="true" id="toppage">
-    <div data-role="header" data-id="persistent" data-position="fixed" class="head padding-top" data-fullscreen="true" data-tap-toggle="false">
-        <div class="headercaption">Stacksity</div>
+
+    <div data-role="page" data-dom-cache="true" id="toppage">
+        <div data-role="header" data-id="persistent" data-position="fixed" class="head padding-top" data-fullscreen="true" data-tap-toggle="false">
+            <div class="headercaption">Stacksity</div>
+        </div>
+        <div class="extracontainer">
+            <div class="con">
+                <div class="topgap"></div>
+                <div class="banner center" style="display: none">
+                    <div class="center banner-inner">
+                        <div class="bannertext">
+                        </div>
+                    </div>
+                </div>
+                <div class="center feed">
+                </div>
+                <div class="scroll center">
+                    <p>Loading Stack</p>
+                </div>
+                <div class="botgap"></div>
+            </div>
+        </div>
     </div>
-    <div class="extracontainer">
-        <div class="con">
+
+    <div data-role="page" data-dom-cache="true" id="allpage">
+        <div data-role="header" data-id="persistent" data-position="fixed" class="head padding-top" data-fullscreen="true" data-tap-toggle="false">
+            <div class="headercaption">near</div>
+        </div>
+        <div class="extracontainer">
+            <div class="con">
+                <div class="topgap"></div>
+                <div class="banner center" style="display: none">
+                    <div class="center banner-inner">
+                        <div class="bannertext">
+                        </div>
+                    </div>
+                </div>
+                <div class="center locbar" style="padding: 0px 0 6px 0">
+                    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dist-btn" onclick="setDist(0.1, this)">Close</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dist-btn" onclick="setDist(5, this)" disabled="">Near</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dist-btn" onclick="setDist(50, this)">Far</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="center feed">
+                </div>
+                <div class="scroll center">
+                    <p>Loading Stack</p>
+                </div>
+                <div class="botgap"></div>
+            </div>
+        </div>
+    </div>
+
+    <div data-role="page" data-dom-cache="true" id="notepage">
+        <div data-role="header" data-id="persistent" data-position="fixed" class="head padding-top" data-fullscreen="true" data-tap-toggle="false">
+            <div class="headercaption">Notifications</div>
+        </div>
+        <div class="extracontainer">
+            <div class="con" style="min-height: 101%">
+                <div class="topgap"></div>
+                <div class="center note-header">
+                </div>
+                <div class="notescroll center">
+                    <p>Loading Notifications</p>
+                </div>
+                <div class="botgap"></div>
+            </div>
+        </div>
+    </div>
+
+    <div data-role="page" data-dom-cache="true" id="userpage">
+        <div data-role="header" data-id="persistent" data-position="fixed" class="head padding-top" data-fullscreen="true" data-tap-toggle="false">
+            <div class="row posting center">
+                <a class="col-xs-4 postlink" onclick="postOpen(1)">Link</a>
+                <a class="col-xs-4 postlink" onclick="postOpen(2)">Text</a>
+                <a class="col-xs-4 postlink" onclick="postOpen(3)">Image</a>
+            </div>
+        </div>
+        <div class="extracontainer">
+            <div class="con">
+                <div class="topgap"></div>
+                <div class="banner center" style="display: none">
+                    <div class="center banner-inner">
+                        <div class="bannertext">
+                        </div>
+                    </div>
+                </div>
+                <div class="center feed">
+                </div>
+                <div class="scroll center">
+                    <p>Loading Stack</p>
+                </div>
+                <div class="botgap"></div>
+            </div>
+        </div>
+    </div>
+
+    <div data-role="page" data-dom-cache="false" id="postpage">
+        <div data-role="header" data-id="persistent" data-position="fixed" class="head padding-top" data-fullscreen="true" data-tap-toggle="false">
+            <div class="row postrow posting center">
+                <div class="col-xs-4 postlink" onclick="linkpost()" id="postlink">Link</div>
+                <div class="col-xs-4 postlink" onclick="textpost()" id="posttext">Text</div>
+                <div class="col-xs-4 postlink" onclick="imagepostShow()" id="postimage">Image</div>
+            </div>
+        </div>
+        <div class="center post">
             <div class="topgap"></div>
-            <div class="banner center" style="display: none">
-                <div class="center banner-inner">
-                    <div class="bannertext">
-                    </div>
+            <label class="postlabel">
+                <div class="postbar" style="padding: 0">
+                    <a class="cancelpost" data-rel="back" data-role="button" data-corners="false" data-inline="true" onclick="postbox = false" id="cancelpost">cancel</a>
+                    <p>posting to <span class="bold" id="posting"></span></p>
                 </div>
-            </div>
-            <div class="center feed">
-            </div>
-            <div class="scroll center">
-                <p>Loading Stack</p>
-            </div>
-            <div class="botgap"></div>
-        </div>
-    </div>
-</div>
-
-<div data-role="page" data-dom-cache="true" id="allpage">
-    <div data-role="header" data-id="persistent" data-position="fixed" class="head padding-top" data-fullscreen="true" data-tap-toggle="false">
-        <div class="headercaption">near</div>
-    </div>
-    <div class="extracontainer">
-        <div class="con">
-            <div class="topgap"></div>
-            <div class="banner center" style="display: none">
-                <div class="center banner-inner">
-                    <div class="bannertext">
-                    </div>
-                </div>
-            </div>
-            <div class="center locbar" style="padding: 0px 0 6px 0">
-                <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default dist-btn" onclick="setDist(0.1, this)">Close</button>
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default dist-btn" onclick="setDist(5, this)" disabled="">Near</button>
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default dist-btn" onclick="setDist(50, this)">Far</button>
-                    </div>
-                </div>
-            </div>
-            <div class="center feed">
-            </div>
-            <div class="scroll center">
-                <p>Loading Stack</p>
-            </div>
-            <div class="botgap"></div>
-        </div>
-    </div>
-</div>
-
-<div data-role="page" data-dom-cache="true" id="notepage">
-    <div data-role="header" data-id="persistent" data-position="fixed" class="head padding-top" data-fullscreen="true" data-tap-toggle="false">
-        <div class="headercaption">Notifications</div>
-    </div>
-    <div class="extracontainer">
-        <div class="con" style="min-height: 101%">
-            <div class="topgap"></div>
-            <div class="center note-header">
-            </div>
-            <div class="notescroll center">
-                <p>Loading Notifications</p>
-            </div>
-            <div class="botgap"></div>
-        </div>
-    </div>
-</div>
-
-<div data-role="page" data-dom-cache="true" id="userpage">
-    <div data-role="header" data-id="persistent" data-position="fixed" class="head padding-top" data-fullscreen="true" data-tap-toggle="false">
-        <div class="row posting center">
-            <a class="col-xs-4 postlink" onclick="postOpen(1)">Link</a>
-            <a class="col-xs-4 postlink" onclick="postOpen(2)">Text</a>
-            <a class="col-xs-4 postlink" onclick="postOpen(3)">Image</a>
-        </div>
-    </div>
-    <div class="extracontainer">
-        <div class="con">
-            <div class="topgap"></div>
-            <div class="banner center" style="display: none">
-                <div class="center banner-inner">
-                    <div class="bannertext">
-                    </div>
-                </div>
-            </div>
-            <div class="center feed">
-            </div>
-            <div class="scroll center">
-                <p>Loading Stack</p>
-            </div>
-            <div class="botgap"></div>
-        </div>
-    </div>
-</div>
-
-<div data-role="page" data-dom-cache="false" id="postpage">
-    <div data-role="header" data-id="persistent" data-position="fixed" class="head padding-top" data-fullscreen="true" data-tap-toggle="false">
-        <div class="row postrow posting center">
-            <div class="col-xs-4 postlink" onclick="linkpost()" id="postlink">Link</div>
-            <div class="col-xs-4 postlink" onclick="textpost()" id="posttext">Text</div>
-            <div class="col-xs-4 postlink" onclick="imagepostShow()" id="postimage">Image</div>
-        </div>
-    </div>
-    <div class="center post">
-        <div class="topgap"></div>
-        <label class="postlabel">
-            <div class="postbar" style="padding: 0">
-                <a class="cancelpost" data-rel="back" data-role="button" data-corners="false" data-inline="true" onclick="postbox = false" id="cancelpost">cancel</a>
-                <p>posting to <span class="bold" id="posting"></span></p>
-            </div>
-        </label>
-        <form class="postform toppost" id="toppost">
-            <input type="hidden" id="posttype" name="type" value="0">
-            <div class="postcon">
-                <p>title <span id="title-count">100</span></p>
-                <input name="title" type="text" id="title-input" class="texts" placeholder="post title" maxlength="100" required="" data-role="none">
-                <div id="linkpost" style="display: none;">
-                    <p>link <span id="link-alert"></span></p>
-                    <input name="link" type="url" id="link" class="texts" placeholder="submit a link here" maxlength="500" required="" data-role="none">
-                </div>
-                <div id="textpost" style="display: none;">
-                    <p>text</p>
-                    <textarea name="text" class="expanding" id="text" placeholder="write something here..." rows="2" maxlength="6500" data-role="none"></textarea>
-                </div>
-                <div id="imagepost">
-                    <p>image</p>
-                    <div class="input-group">
-                        <span class="input-group-btn">
-                            <span class="btn btn-primary btn-file" id="uploadimage">
-                             <span class="glyphicon glyphicon-camera" ></span> Photo
-                            <input type="file" accept="image/x-png, image/gif, image/jpeg" onchange="upload(this.files[0])" data-role="none">
-                            </span>
-                        </span>
-                        <input type="text" id="imageid" class="form-control" readonly="" data-role="none">
-                    </div>
-                    <div class="background-image"><img src="" id="imagePostPreview" class="img-responsive"></div>
-                </div>
-            </div>
-            <div class="postsub postsubgroup">
-                <input type="hidden" name="setprivate" value="0" id="privatefield">
-                <div id="spinnerpost">
-                    <div class="double-bounce1"></div>
-                    <div class="double-bounce2"></div>
-                </div>
-                <button type="submit" id="pbutton" class="postb" data-role="none">Post</button>
-                <button type="button" id="private" class="postb private" data-role="none">Private</button>
-            </div>
-        </form>
-    </div>
-    <div class="botgap"></div>
-    <script>$( "#title-input" ).keyup(function() {
-        var length = $( this ).val().length;
-        $( "#title-count").html(100-length);
-    });</script>
-</div>
-
-<div data-role="page" data-dom-cache="true" id="searchpage">
-    <div class="extracontainer">
-        <div class="center stacks">
-            <div class="padding-top">
-                <div id="stacksearch" class="stacklist">
-                    <h1>Search for Stacks</h1>
-                    <ul id="autocomplete" data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Search for stacks.." data-filter-theme="d"></ul>
-                </div>
-            </div>
-            <div class="stacklist">
-                <div class="stackl listlink" id="es">
-                    <a href="#" class="stacklink" data-link="-1">$everything</a>
-                    <a href="#" class="stacklink" data-link="-3">$recent</a>
-                </div>
-            </div>
-            <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-default postlink" onclick="stack()">Stacks</button>
-                </div>
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-default postlink" onclick="use()">Users</button>
-                </div>
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-default postlink" onclick="ex()">Explore</button>
-                </div>
-            </div>
-            <div class="fstack" style="display: none">
-                <div class="stacklist">
-                    <h5>Followed Stacks</h5>
-                    <div class="stackls stackl" id="fs"></div>
-                </div>
-            </div>
-            <div class="fusers" style="display: none">
-                <div class="stacklist">
-                    <h5>Followed Users</h5>
-                    <div class="stackls stackl" id="fu"></div>
-                </div>
-            </div>
-            <div class="rstack" style="display: none">
-                <div class="stacklist">
-                    <h5>Default Stacks</h5>
-                    <div class="stackl listlink">
-                        <a href="/$art">$art</a>
-                        <a href="/$cute">$cute</a>
-                        <a href="/$discuss">$discuss</a>
-                        <a href="/$fitness">$fitness</a>
-                        <a href="/$food">$food</a>
-                        <a href="/$foundout">$foundout</a>
-                        <a href="/$gaming">$gaming</a>
-                        <a href="/$interesting">$interesting</a>
-                        <a href="/$lol">$lol</a>
-                        <a href="/$movies">$movies</a>
-                        <a href="/$music">$music</a>
-                        <a href="/$news">$news</a>
-                        <a href="/$photography">$photography</a>
-                        <a href="/$questions">$questions</a>
-                        <a href="/$science">$science</a>
-                        <a href="/$writing">$writing</a>
-                    </div>
-                </div>
-                <div class="stacklist">
-                    <h5>Cities</h5>
-                    <div class="stackl listlink">
-                        <a href="/$vancouver">$vancouver</a>
-                        <a href="/$toronto">$toronto</a>
-                        <a href="/$seattle">$seattle</a>
-                        <a href="/$montreal">$montreal</a>
-                        <a href="/$winnipeg">$winnipeg</a>
-                    </div>
-                </div>
-                <div class="stacklist">
-                    <h5>University Stacks</h5>
-                    <div class="stackl listlink">
-                        <a href="/$university">$university</a>
-                        <a href="/$ubc">UBC ($ubc)</a>
-                        <a href="/$uchicago">UChicago ($uchicago)</a>
-                        <a href="/$uoft">UofT ($uoft)</a>
-                        <a href="/$uoft">UCLA ($ucla)</a>
-                    </div>
-                </div>
-                <div class="stacklist">
-                    <h5>Music</h5>
-                    <div class="stackl listlink" >
-                        <a href="/$music">$music</a>
-                        <a href="/$musicproduction">$musicproduction</a>
-                        <a href="/$electronicmusic">$electronicmusic</a>
-                        <a href="/$hiphop">$hiphop</a>
-                        <a href="/$metal">$metal</a>
-                        <a href="/$listentothis">$listentothis</a>
-                        <a href="/$jazz">$jazz</a>
-                        <a href="/$beats">$beats</a>
-                    </div>
-                </div>
-                <div class="stacklist">
-                    <h5>Tech</h5>
-                    <div class="stackl listlink" >
-                        <a href="/$technews">$technews</a>
-                        <a href="/$techtoys">$techtoys</a>
-                        <a href="/$programming">$programming</a>
-                        <a href="/$buildapc">$buildapc</a>
-                        <a href="/$apple">$apple</a>
-                        <a href="/$android">$android</a>
-                        <a href="/$microsoft">$microsoft</a>
-                    </div>
-                </div>
-                <div class="stacklist">
-                    <h5>Visual</h5>
-                    <div class="stackl listlink" >
-                        <a href="/$art">$art</a>
-                        <a href="/$design">$design</a>
-                        <a href="/$comics">$comics</a>
-                        <a href="/$critiquemyart">$critiquemyart</a>
-                        <a href="/$graffiti">$graffiti</a>
-                        <a href="/$typography">$typography</a>
-                    </div>
-                </div>
-                <div class="stacklist">
-                    <h5>Games</h5>
-                    <div class="stackl listlink">
-                        <a href="/$gaming">$gaming</a>
-                        <a href="/$ssb">$ssb</a>
-                        <a href="/$rpg">$rpg</a>
-                        <a href="/$leagueoflegends">$leagueoflegends</a>
-                        <a href="/$hearthstone">$hearthstone</a>
-                        <a href="/$counterstrike">$counterstrike</a>
-                        <a href="/$gamesonsale">$gamesonsale</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="botgap"></div>
-    </div>
-</div>
-<div data-role="page" id="post">
-    <div data-role="header" class="head padding-top">
-        <a data-role="none" data-rel="back" class="postlink postback posthead"><div class="glyphicon glyphicon-chevron-left"></div></a>
-    </div>
-    <div class="extracontainer">
-        <div class="topgap"></div>
-        <div id="postcon" class="center" >
-        </div>
-        <div id="comments" class="center">
-            <form id="commentform">
+            </label>
+            <form class="postform toppost" id="toppost">
+                <input type="hidden" id="posttype" name="type" value="0">
                 <div class="postcon">
-                    <textarea name="text" id="commenttext" placeholder="write something here..." rows="2" data-role="none"></textarea>
+                    <p>title <span id="title-count">100</span></p>
+                    <input name="title" type="text" id="title-input" class="texts" placeholder="post title" maxlength="100" required="" data-role="none">
+                    <div id="linkpost" style="display: none;">
+                        <p>link <span id="link-alert"></span></p>
+                        <input name="link" type="url" id="link" class="texts" placeholder="submit a link here" maxlength="500" required="" data-role="none">
+                    </div>
+                    <div id="textpost" style="display: none;">
+                        <p>text</p>
+                        <textarea name="text" class="expanding" id="text" placeholder="write something here..." rows="2" maxlength="6500" data-role="none"></textarea>
+                    </div>
+                    <div id="imagepost">
+                        <p>image</p>
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <span class="btn btn-primary btn-file" id="uploadimage">
+                                 <span class="glyphicon glyphicon-camera" ></span> Photo
+                                <input type="file" accept="image/x-png, image/gif, image/jpeg" onchange="upload(this.files[0])" data-role="none">
+                                </span>
+                            </span>
+                            <input type="text" id="imageid" class="form-control" readonly="" data-role="none">
+                        </div>
+                        <div class="background-image"><img src="" id="imagePostPreview" class="img-responsive"></div>
+                    </div>
                 </div>
-                <div class="postsub" style="margin-bottom: 0">
-                    <button type="submit" id="cbutton" data-corners="false">comment</button>
+                <div class="postsub postsubgroup">
+                    <input type="hidden" name="setprivate" value="0" id="privatefield">
+                    <div id="spinnerpost">
+                        <div class="double-bounce1"></div>
+                        <div class="double-bounce2"></div>
+                    </div>
+                    <button type="submit" id="pbutton" class="postb" data-role="none">Post</button>
+                    <button type="button" id="private" class="postb private" data-role="none">Private</button>
                 </div>
             </form>
-            <div id="commentfeed">
-            </div>
         </div>
         <div class="botgap"></div>
+        <script>$( "#title-input" ).keyup(function() {
+            var length = $( this ).val().length;
+            $( "#title-count").html(100-length);
+        });</script>
     </div>
-</div>
+
+    <div data-role="page" data-dom-cache="true" id="searchpage">
+        <div class="extracontainer">
+            <div class="center stacks">
+                <div class="padding-top">
+                    <div id="stacksearch" class="stacklist">
+                        <h1>Search for Stacks</h1>
+                        <ul id="autocomplete" data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Search for stacks.." data-filter-theme="d"></ul>
+                    </div>
+                </div>
+                <div class="stacklist">
+                    <div class="stackl listlink" id="es">
+                        <a href="#" class="stacklink" data-link="-1">$everything</a>
+                        <a href="#" class="stacklink" data-link="-3">$recent</a>
+                    </div>
+                </div>
+                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default postlink" onclick="stack()">Stacks</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default postlink" onclick="use()">Users</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default postlink" onclick="ex()">Explore</button>
+                    </div>
+                </div>
+                <div class="fstack" style="display: none">
+                    <div class="stacklist">
+                        <h5>Followed Stacks</h5>
+                        <div class="stackls stackl" id="fs"></div>
+                    </div>
+                </div>
+                <div class="fusers" style="display: none">
+                    <div class="stacklist">
+                        <h5>Followed Users</h5>
+                        <div class="stackls stackl" id="fu"></div>
+                    </div>
+                </div>
+                <div class="rstack" style="display: none">
+                    <div class="stacklist">
+                        <h5>Default Stacks</h5>
+                        <div class="stackl listlink">
+                            <a href="/$art">$art</a>
+                            <a href="/$cute">$cute</a>
+                            <a href="/$discuss">$discuss</a>
+                            <a href="/$fitness">$fitness</a>
+                            <a href="/$food">$food</a>
+                            <a href="/$foundout">$foundout</a>
+                            <a href="/$gaming">$gaming</a>
+                            <a href="/$interesting">$interesting</a>
+                            <a href="/$lol">$lol</a>
+                            <a href="/$movies">$movies</a>
+                            <a href="/$music">$music</a>
+                            <a href="/$news">$news</a>
+                            <a href="/$photography">$photography</a>
+                            <a href="/$questions">$questions</a>
+                            <a href="/$science">$science</a>
+                            <a href="/$writing">$writing</a>
+                        </div>
+                    </div>
+                    <div class="stacklist">
+                        <h5>Cities</h5>
+                        <div class="stackl listlink">
+                            <a href="/$vancouver">$vancouver</a>
+                            <a href="/$toronto">$toronto</a>
+                            <a href="/$seattle">$seattle</a>
+                            <a href="/$montreal">$montreal</a>
+                            <a href="/$winnipeg">$winnipeg</a>
+                        </div>
+                    </div>
+                    <div class="stacklist">
+                        <h5>University Stacks</h5>
+                        <div class="stackl listlink">
+                            <a href="/$university">$university</a>
+                            <a href="/$ubc">UBC ($ubc)</a>
+                            <a href="/$uchicago">UChicago ($uchicago)</a>
+                            <a href="/$uoft">UofT ($uoft)</a>
+                            <a href="/$uoft">UCLA ($ucla)</a>
+                        </div>
+                    </div>
+                    <div class="stacklist">
+                        <h5>Music</h5>
+                        <div class="stackl listlink" >
+                            <a href="/$music">$music</a>
+                            <a href="/$musicproduction">$musicproduction</a>
+                            <a href="/$electronicmusic">$electronicmusic</a>
+                            <a href="/$hiphop">$hiphop</a>
+                            <a href="/$metal">$metal</a>
+                            <a href="/$listentothis">$listentothis</a>
+                            <a href="/$jazz">$jazz</a>
+                            <a href="/$beats">$beats</a>
+                        </div>
+                    </div>
+                    <div class="stacklist">
+                        <h5>Tech</h5>
+                        <div class="stackl listlink" >
+                            <a href="/$technews">$technews</a>
+                            <a href="/$techtoys">$techtoys</a>
+                            <a href="/$programming">$programming</a>
+                            <a href="/$buildapc">$buildapc</a>
+                            <a href="/$apple">$apple</a>
+                            <a href="/$android">$android</a>
+                            <a href="/$microsoft">$microsoft</a>
+                        </div>
+                    </div>
+                    <div class="stacklist">
+                        <h5>Visual</h5>
+                        <div class="stackl listlink" >
+                            <a href="/$art">$art</a>
+                            <a href="/$design">$design</a>
+                            <a href="/$comics">$comics</a>
+                            <a href="/$critiquemyart">$critiquemyart</a>
+                            <a href="/$graffiti">$graffiti</a>
+                            <a href="/$typography">$typography</a>
+                        </div>
+                    </div>
+                    <div class="stacklist">
+                        <h5>Games</h5>
+                        <div class="stackl listlink">
+                            <a href="/$gaming">$gaming</a>
+                            <a href="/$ssb">$ssb</a>
+                            <a href="/$rpg">$rpg</a>
+                            <a href="/$leagueoflegends">$leagueoflegends</a>
+                            <a href="/$hearthstone">$hearthstone</a>
+                            <a href="/$counterstrike">$counterstrike</a>
+                            <a href="/$gamesonsale">$gamesonsale</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="botgap"></div>
+        </div>
+    </div>
+    <div data-role="page" id="post">
+        <div data-role="header" class="head padding-top">
+            <a data-role="none" data-rel="back" class="postlink postback posthead"><div class="glyphicon glyphicon-chevron-left"></div></a>
+        </div>
+        <div class="extracontainer">
+            <div class="topgap"></div>
+            <div id="postcon" class="center" >
+            </div>
+            <div id="comments" class="center">
+                <form id="commentform">
+                    <div class="postcon">
+                        <textarea name="text" id="commenttext" placeholder="write something here..." rows="2" data-role="none"></textarea>
+                    </div>
+                    <div class="postsub" style="margin-bottom: 0">
+                        <button type="submit" id="cbutton" data-corners="false">comment</button>
+                    </div>
+                </form>
+                <div id="commentfeed">
+                </div>
+            </div>
+            <div class="botgap"></div>
+        </div>
+    </div>
 </div>
 <script>
     init();
