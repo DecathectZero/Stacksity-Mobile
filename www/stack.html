@@ -66,7 +66,7 @@
             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
-
+        //This the HTML DOM structure for the loader with two circles inside each other
         var loader =
                 '<div class="spinner">'+
                     '<div class="double-bounce1"></div>'+
@@ -77,9 +77,11 @@
             var activepage = $.mobile.activePage;
             if(changepage){
                 changepage = false;
-//                if(option==3){
-//                    openNote();
-//                }
+                if(option==3){
+                    if($('#notestack').hasClass('newnote')){
+                        markseen();
+                    }
+                }
             }else{
                 explore = false;
                 postbox=false;
@@ -599,9 +601,9 @@
     </div>
 </div>
 <div data-role="page" id="post">
-    <a class="head posthead padding-top postlink postback" data-rel="back" data-role="none" >
-        <div class="glyphicon glyphicon-chevron-left"></div>
-    </a>
+    <div data-role="header" class="head padding-top">
+        <a data-role="none" data-rel="back" class="postlink postback posthead"><div class="glyphicon glyphicon-chevron-left"></div></a>
+    </div>
     <div class="extracontainer">
         <div class="topgap"></div>
         <div id="postcon" class="center" >
@@ -625,6 +627,7 @@
 <script>
     init();
     $("#commenttext").expanding();
+    $("#text").expanding();
     $( "#autocomplete" ).on( "listviewbeforefilter", function ( e, data ) {
         var $ul = $( this ),
                 $input = $( data.input ),

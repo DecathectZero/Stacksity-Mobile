@@ -30,25 +30,6 @@
     <link rel="stylesheet" href="css/jquerymobile.css">
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/jquery.js"></script>
-    <script>
-
-        document.addEventListener("deviceready", onDeviceReady, false);
-        // device APIs are available
-        //
-        function onDeviceReady() {
-            navigator.splashscreen.hide();
-//            StatusBar.hide();
-            StatusBar.backgroundColorByHexString("#ffffff");
-            StatusBar.styleDefault();
-            StatusBar.overlaysWebView(false);
-            $("#loginloader").hide();
-            $("#loginform").show();
-        }
-        localStorage.clear();
-//        if (!(localStorage.getItem("session_id")=== null)){
-//            document.location.href = 'stack.html#toppage';
-//        }
-    </script>
     <script type="text/javascript" src="js/jquerymobile.js"></script>
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <script>
@@ -298,6 +279,25 @@
         $(this).trigger('click');
         e.preventDefault();
     });
+</script>
+<script>
+
+    document.addEventListener("deviceready", onDeviceReady, false);
+    // device APIs are available
+    //
+    function onDeviceReady() {
+        navigator.splashscreen.hide();
+//            StatusBar.hide();
+        StatusBar.backgroundColorByHexString("#ffffff");
+        StatusBar.styleDefault();
+        StatusBar.overlaysWebView(false);
+        $("#loginloader").hide();
+        $("#loginform").show();
+    }
+    localStorage.clear();
+    //        if (!(localStorage.getItem("session_id")=== null)){
+    //            document.location.href = 'stack.html#toppage';
+    //        }
 </script>
 </body>
 </html>

@@ -886,35 +886,33 @@ function commentHTML(element, depth){
     '<div class="comment" data-commentid="'+element.comment_id+'" data-depth="'+element.depth+'">'+
     vote+
     '<div class="comment-content">'+
-    '<p class="tagline"><span class="commentcollapse glyphicon glyphicon-minus-sign"></span> <a class="comment_link" href="/stack.php?id='+element.user_stack+'" class="">'+element.username+element.flair+'</a> | <time>'+element.created+'</time>' +
+    '<p class="tagline"><a class="comment_link" href="/u/'+element.user_stack+'" class="">'+element.username+element.flair+'</a> | <time>'+element.created+'</time>' +
     //' | #'+element.comment_id +
     "<br>" + edittime +'</p>'+
     '<div class="commenttext"><div class="commentcontent">'+element.content +"</div>"+ reply +'</div>'+ edit +
     '</div> </div> </div>';
 }
 
-$(document).on("click", ".commentcollapse", function (event) {
+$(document).on("taphold", ".comment-content", function (event) {
     event.preventDefault();
 
     // Set up collapse state variables to keep track of opened/closed comments
     // Depending on whether it's collapsed, expand/collapse the children comments and the comment
     // itself except for the title line with username, etc.
-    if ($(this).hasClass("glyphicon-plus-sign")) {
-        $(this).parent().siblings(".commenttext").slideDown();
-        $(this).parent().parent().siblings(".cvote").show();
-        $(this).parent().parent().parent().siblings(".child").show();
-        $(this).removeClass("glyphicon-plus-sign");
-        $(this).addClass("glyphicon-minus-sign");
-        $(this).parent().parent(".comment-content").removeClass("collapsedcss");
-        $(this).parent().parent().parent().parent(".child").removeClass("childcollapsed");
+    if ($(this).hasClass("collapsedcss")) {
+        $(this).children(".commenttext").slideDown();
+        $(this).siblings(".cvote").show();
+        $(this).parent().siblings(".child").show();
+        //$(this).removeClass("collapse");
+        //$(this).addClass("glyphicon-minus-sign");
+        $(this).removeClass("collapsedcss");
+        $(this).parent().parent(".child").removeClass("childcollapsed");
     } else {
-        $(this).parent().parent().parent().siblings(".child").slideUp();
-        $(this).parent().siblings(".commenttext, .editcon").slideUp();
-        $(this).parent().parent().siblings(".cvote").hide();
-        $(this).addClass("glyphicon-plus-sign");
-        $(this).removeClass("glyphicon-minus-sign");
-        $(this).parent().parent(".comment-content").addClass("collapsedcss");
-        $(this).parent().parent().parent().parent(".child").addClass("childcollapsed");
+        $(this).parent().siblings(".child").slideUp();
+        $(this).children(".commenttext, .editcon").slideUp();
+        $(this).siblings(".cvote").hide();
+        $(this).addClass("collapsedcss");
+        $(this).parent().parent(".child").addClass("childcollapsed");
     }
 });
 
@@ -1146,7 +1144,6 @@ function notification(element, seen, stringText){
     return '<div class="notification '+seen+' toPost" onclick="toPost('+element.link+','+element.commentlink+')" data-note="'+element.notification_id+'"><b>'+element.username+'</b> '+stringText+' P#'+element.link+'<br><span class="note-time">'+element.created+'</span></div>';
 }
 var cycle = false;
-var mark = false;
 function set(){
     setInterval(function(){
         if(cycle){
@@ -1158,11 +1155,12 @@ function set(){
         }
     },30000);
 }
+//This function is for when the notification page refreshes
 function openNote(){
     cycle = true;
-    mark = true;
     getNotification();
 }
+//This function retrieves the notifications from the server
 function getNotification(){
     $(".note-header").empty();
     $(".notescroll").html('<img class="note-loader" src="img/post/ajax-loader.gif" />');
@@ -1191,8 +1189,7 @@ function getNotification(){
                 $(".note-header").prepend(content);
             });
         }
-        if(mark){
-            mark=false;
+        if(option == 3){
             markseen();
         }else{
             if(newcountNotif!=0){
@@ -1216,3 +1213,6 @@ function markseen(){
         }
     });
 }
+$( document ).ready(function() {
+    getNotification();
+});
