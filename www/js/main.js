@@ -897,7 +897,27 @@ function commentHTML(element, depth){
     '</div> </div> </div>';
 }
 
-$(document).on("dblclick", ".comment-content", function (event) {
+(function($) {
+    $.fn.doubleTap = function(doubleTapCallback) {
+        return this.each(function(){
+            var elm = this;
+            var lastTap = 0;
+            $(elm).bind('vmousedown', function (e) {
+                var now = (new Date()).valueOf();
+                var diff = (now - lastTap);
+                lastTap = now ;
+                if (diff < 250) {
+                    if($.isFunction( doubleTapCallback ))
+                    {
+                        doubleTapCallback.call(elm);
+                    }
+                }
+            });
+        });
+    }
+})(jQuery);
+
+$(document).on("doubleTap", ".comment-content", function (event) {
     event.preventDefault();
 
     // Set up collapse state variables to keep track of opened/closed comments

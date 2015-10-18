@@ -55,13 +55,13 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.31328037">
-              <caret line="901" column="0" selection-start-line="901" selection-start-column="0" selection-end-line="901" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.66061294">
+              <caret line="919" column="25" selection-start-line="919" selection-start-column="25" selection-end-line="919" selection-end-column="25" />
               <folding>
-                <marker date="1445202435848" expanded="true" signature="3384:3402" placeholder="..." />
-                <marker date="1445202435848" expanded="true" signature="3384:3404" placeholder="..." />
-                <marker date="1445202435848" expanded="true" signature="4479:4499" placeholder="..." />
-                <marker date="1445202435848" expanded="true" signature="31737:31750" placeholder="..." />
+                <marker date="1445206042843" expanded="true" signature="3384:3402" placeholder="..." />
+                <marker date="1445206042843" expanded="true" signature="3384:3404" placeholder="..." />
+                <marker date="1445206042843" expanded="true" signature="4479:4499" placeholder="..." />
+                <marker date="1445206042843" expanded="true" signature="31737:31750" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -858,13 +858,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.31328037">
-          <caret line="901" column="0" selection-start-line="901" selection-start-column="0" selection-end-line="901" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.66061294">
+          <caret line="919" column="25" selection-start-line="919" selection-start-column="25" selection-end-line="919" selection-end-column="25" />
           <folding>
-            <marker date="1445202435848" expanded="true" signature="3384:3402" placeholder="..." />
-            <marker date="1445202435848" expanded="true" signature="3384:3404" placeholder="..." />
-            <marker date="1445202435848" expanded="true" signature="4479:4499" placeholder="..." />
-            <marker date="1445202435848" expanded="true" signature="31737:31750" placeholder="..." />
+            <marker date="1445206042843" expanded="true" signature="3384:3402" placeholder="..." />
+            <marker date="1445206042843" expanded="true" signature="3384:3404" placeholder="..." />
+            <marker date="1445206042843" expanded="true" signature="4479:4499" placeholder="..." />
+            <marker date="1445206042843" expanded="true" signature="31737:31750" placeholder="..." />
           </folding>
         </state>
       </provider>
