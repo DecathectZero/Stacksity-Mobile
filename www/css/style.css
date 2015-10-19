@@ -1124,7 +1124,6 @@ background-color: #CCC;
 h1 {
     font-size: 24px;
     margin: 5px 0;
-    font-weight: bold;
 }
 
 .footer { background: #1c5380; position: fixed; bottom: 0; width: 100%; text-align: center; z-index: 999 }
@@ -1319,4 +1318,15 @@ h1 {
 }
 .childcollapsed {
     padding-bottom: 0;
+}
+.textpostcon{
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: normal;
+}
+.commentcontent ul, .textpostcon ul{
+    padding: 0;
+    list-style: disc inside none;
+}
+.commentcontent img, .textpostcon img{
+    max-width: 100%;
 }

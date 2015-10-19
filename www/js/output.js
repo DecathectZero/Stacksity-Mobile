@@ -156,7 +156,7 @@ function textspost(element){
     '">' +
     link +
     '<p class="postinfo">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id, element.flair, element.stackflair)+' | '+ element.created +'</p>' +
-    '<div class="content">'+element.text+'</div><div class="vote login">'+
+    '<div class="content textpostcon">'+element.text+'</div><div class="vote login">'+
     vote +
     '</div>'+comments(element)+
     '</div>' +
