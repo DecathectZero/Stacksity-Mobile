@@ -26,7 +26,7 @@
             StatusBar.overlaysWebView(false);
             StatusBar.backgroundColorByHexString("#ffffff");
             StatusBar.styleDefault();
-            alert(localStorage.d);
+            alert(localStorage.getItem('d'));
             if (localStorage.getItem("session_id") === null) {
                 document.location.href = 'login.html';
             }

@@ -293,7 +293,7 @@
         StatusBar.overlaysWebView(false);
         $("#loginloader").hide();
         $("#loginform").show();
-        localStorage.d = "asdf";
+        localStorage.setItem("d", "asdf");
         alert(localStorage.getItem('d'));
     }
     localStorage.clear();
