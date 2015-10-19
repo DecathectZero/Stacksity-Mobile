@@ -25,7 +25,6 @@
     <preference name="DisallowOverscroll" value="true" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="webviewbounce" value="false"/>
-    <preference name="DisableLocalStorageSyncWithUIWebView" value="true"/>
     
     <gap:plugin name="pushbots-cordova-plugin" source="npm" />
     <gap:plugin name="cordova-plugin-whitelist" source="npm" />
