@@ -469,7 +469,9 @@ function refreshPage(opt) {
         if(postbox) {
             $.mobile.back();
         }else if(isStackOption()){
-            refresh();
+            if(option != 4){
+                refresh();
+            }
         }else if(option == 3){
             openNote();
         }
