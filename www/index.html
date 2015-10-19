@@ -1,43 +1,900 @@
 <!DOCTYPE html>
-<!--
-    Copyright (c) 2012-2014 Adobe Systems Incorporated. All rights reserved.
-
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="msapplication-tap-highlight" content="no" />
-        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, target-densitydpi=medium-dpi, user-scalable=no" />
-        <script type="text/javascript" src="cordova.js"></script>
-        <script>
-//            alert(localStorage.getItem('ustack')+" "+localStorage.getItem('username'));
-            if (localStorage.getItem("session_id") === null) {
-                document.location.href = 'login.html';
-            }else{
-                document.location.href = 'stack.html#toppage';
-            }
-        </script>
-        <title>Stacksity</title>
-    </head>
-    <body style="background-color: #1c5380">
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, target-densitydpi=medium-dpi, user-scalable=no" />
+    <link rel="stylesheet" href="css/jquerymobile.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <!--<link rel="stylesheet" href="css/bootstraptheme.css">-->
 
-    </body>
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquerymobile.js"></script>
+    <script type="text/javascript">
+        var mobile = false;
+        var login = (localStorage.getItem("session_id") !== null);
+        var posting = false;
+        var end = false;
+        var bottom = false;
+        var startnews = 0;
+        var id = localStorage.getItem('session_id');
+        var stackid = 0;
+        var stackname = null;
+        var userstack = localStorage.getItem('ustack');
+        var username = localStorage.getItem('username');
+        var user_id = localStorage.getItem('user_id');
+        var explore = false;
+        var postbox = false;
+        var postype = 1;
+        var is_user = 0;
+        var dontdelete = false;
+        var loading = false;
+        var postid = 0;
+    </script>
+<body>
+<div class="footer" style="display: none">
+    <div class="center botmenu">
+        <div class="quarter" id="topstack" data-op="1">
+            <div class="glyphicon glyphicon-home"></div>
+        </div>
+        <div class="quarter" id="searchstack" data-op="2">
+            <div class="glyphicon glyphicon-search"></div>
+        </div>
+        <div class="quarter" id="notestack" data-op="3">
+            <div class="glyphicon glyphicon-bell"></div>
+        </div>
+        <div class="quarter" id="allstack" data-op="4">
+            <div class="glyphicon glyphicon-globe"></div>
+        </div>
+        <div class="quarter" id="userstack" data-op="5">
+            <div class="glyphicon glyphicon-user"></div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="delpost" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>Are you sure you want to delete this post?</p>
+            </div>
+            <div class="modal-footer">
+                <a data-role="none" id="deletelink" onclick="del()" class="btn btn-primary ">Delete</a>
+                <button data-role="none" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="commentdelete" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>Are you sure you want to delete this comment?</p>
+            </div>
+            <div class="modal-footer">
+                <a id="deletecomment" onclick="delcom()" class="btn btn-primary">Delete</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="repost" style="display: none">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>Are you sure you want to report this post? Only report posts that have not been properly labeled NSFW or are blatantly illegal, an abuse of the report function will have automatic severe consequences</p>
+            </div>
+            <div class="modal-footer">
+                <a id="reportlink" onclick="report()" class="btn btn-primary">Report</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="container">
+    <div data-role="page" id="loginpage" class="login">
+        <div data-role="main">
+            <div class="container">
+                <div class="intro padding-top">
+                    <h2>Welcome to</h2>
+                    <h1 style="font-size: 3em">STACK$ITY</h1>
+                </div>
+                <div id="loginloader">
+                    <div class="double-bounce1"></div>
+                    <div class="double-bounce2"></div>
+                </div>
+                <div id="loginform">
+                    <form class="signinform" id="login">
+                        <input type="hidden" name="checked" value="1">
+                        <p id="error-info" style="display: none" class="errorprompt"></p>
+                        <label for="inputEm" class="sr-only">Username/Email</label>
+                        <input  data-role="none" name="inputEm" type="text" id="inputEm" class="form-control" placeholder="Email/Username" required>
+                        <label for="inputPass" class="sr-only">Password</label>
+                        <input data-role="none" name="inputPass" type="password" id="inputPass" class="form-control" placeholder="Password" required>
+                        <button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+                        <a class="small" href="#passpage" data-transition="slide">Forgot your password or username?</a>
+                    </form>
+                    <form class="signinform margintop">
+                        <a href="#signuppage" data-transition="slide"><button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button></a>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script>
+            function errorinfo(inner){
+                $('#error-info').html(inner);
+                $('#error-info').slideDown();
+            }
+            $("#login").on('submit', function(e){
+                e.preventDefault();
+                $.ajax({
+                    type     : "POST",
+                    cache    : false,
+                    url      : 'https://stacksity.com/login.php',
+                    data     : $(this).serialize(),
+                    dataType : "html",
+                    crossDomain : true,
+                    success  : function(data) {
+                        if(data<="2"){
+                            errorinfo("Password or Username incorrect");
+                        }else if(data=="69"){
+                            errorinfo("Please fill in the fields");
+                        }else if(data.length>1){
+                            var element = JSON.parse(data);
+                            localStorage.setItem('session_id',element.session_id);
+                            localStorage.setItem('hashcode',element.hashcode);
+                            localStorage.setItem('ustack',element.stack_id);
+                            localStorage.setItem('username',element.username);
+                            localStorage.setItem('user_id',element.user_id);
+                            id = localStorage.getItem('session_id');
+                            userstack = localStorage.getItem('ustack');
+                            username = localStorage.getItem('username');
+                            user_id = localStorage.getItem('user_id');
+
+                            //alert(localStorage.getItem('ustack')+" "+localStorage.getItem('username'));
+                            //Adds in notification
+                            if(mobile){
+                                if(PushbotsPlugin.isiOS()){
+                                    PushbotsPlugin.initializeiOS("561ed24517795902148b4569");
+                                }
+                                if(PushbotsPlugin.isAndroid()){
+                                    PushbotsPlugin.initializeAndroid("561ed24517795902148b4569", "907553791348");
+                                }
+                                PushbotsPlugin.setAlias(localStorage.getItem('user_id'));
+                            }
+                            login = true;
+                            start();
+                        }else{
+                            errorinfo("Oops something went wrong with the server, error code: " + data);
+                        }
+                    },
+                    error: function(request) {
+                        if (request.status == 0) {
+                            alert("You're offline!");
+                        }else{
+                            alert("Error Connection");
+                        }
+                    }
+                });
+            });
+        </script>
+    </div>
+    <div data-role="page" id="signuppage" class="signup">
+        <div data-role="main">
+            <div class="container">
+                <div class="intro padding-top">
+                    <h1>Sign Up</h1>
+                </div>
+                <form class="signinform" id="account" role="form" data-toggle="validator">
+                    <div id="sinforeg" style="display: none">
+                        <p>Alright, you're good to go<br> You can now <b>Login</b></p>
+                    </div>
+                    <div id="sinfo">
+                        <p id="serror-info" style="display: none" class="errorprompt"></p>
+                        <label for="inputEmail" class="sr-only">Email address</label>
+                        <input data-role="none" name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" maxlength="254">
+                        <label for="inputUsername" class="sr-only">Stacksity Username</label>
+                        <input data-role="none" name="username" type="text" id="inputUsername" class="form-control margintop" placeholder="Stacksity Username" required="" maxlength="32">
+                        <label for="inputPassword" class="sr-only">Password</label>
+                        <input data-role="none" name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required="" maxlength="32">
+                        <button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+                        <p class="small">By signing up, you agree to the Terms of Service</p>
+                    </div>
+                </form>
+                <form class="signinform margintop">
+                    <a data-rel="back" data-direction="reverse"><button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Log In</button></a>
+                </form>
+            </div>
+        </div>
+        <script>
+            function serrorinfo(inner){
+                $('#serror-info').html(inner);
+                $('#serror-info').slideDown();
+            }
+            function signupsuccess(){
+                $("#sinfo").slideUp();
+                $("#sinforeg").show();
+            }
+            $("#account").on('submit', function(e){
+                e.preventDefault();
+                var formdata = $(this).serialize();
+                var emptyfield = false;
+                $("#account:input").each(function() {
+                    if ( $(this).val() === '' )
+                        emptyfield = true;
+                });
+                if(emptyfield){
+                    serrorinfo("Please fill in all fields");
+                }else if($('#inputPassword').val().length<7){
+                    serrorinfo("Please make your password longer than 6 characters");
+                }else{
+                    $.ajax({
+                        type     : "POST",
+                        cache    : false,
+                        url      : "https://stacksity.com/php/payment.php",
+                        data     : formdata,
+                        dataType : "html",
+                        crossDomain : true,
+                        success  : function(data) {
+                            if(data=="3"){
+                                signupsuccess();
+                            }else if(data=="2"){
+                                serrorinfo("This Username is already taken");
+                            }else if(data=="1"){
+                                serrorinfo("This Email is already taken");
+                            }else if(data=='10'){
+                                serrorinfo("No spaces in your username please");
+                            }else if(data=='11'){
+                                serrorinfo("Usernames can't start with $");
+                            }else if(data=='12'){
+                                serrorinfo("Usernames can't be only numbers");
+                            }else if(data=='13'){
+                                serrorinfo("Usernames can't contain special characters");
+                            }else{
+                                serrorinfo("Oops something went wrong with the server, error code: "+data);
+                            }
+                        },
+                        error: function(request) {
+                            if (request.status == 0) {
+                                alert("You're offline!");
+                            }else{
+                                alert("Error Connection");
+                            }
+                        }
+                    });
+
+                }
+            });
+        </script>
+    </div>
+    <div data-role="page" id="passpage" class="password">
+        <div data-role="main">
+            <div class="container">
+                <div class="intro padding-top">
+                    <h1>Password Reset</h1>
+                </div>
+                <div class="signinform">
+                    <div id="pinforeg" style="display: none">
+                        <p>A password reset has been sent to your email</p>
+                    </div>
+                    <p id="perror-info" style="display: none" class="errorprompt"></p>
+                    <form id="pass-reset" class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <input data-role="none" name="email" type="email" class="form-control" placeholder="Email address" required maxlength="254">
+                            </div>
+                            <div class="col-sm-12">
+                                <button data-role="none" type="submit" id="revbutton" class="btn btn-lg btn-primary btn-block">Retrieve password</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <form class="signinform margintop">
+                    <a data-rel="back"><button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Log In</button></a>
+                </form>
+            </div>
+        </div>
+        <script>
+            function success(){
+                $("#pass-reset").slideUp();
+                $("#perror-info").hide();
+                $("#pinforeg").show();
+            }
+            function perrorinfo(inner){
+                $('#perror-info').html(inner);
+                $('#perror-info').slideDown();
+            }
+            $("#pass-reset").on('submit', function(e){
+                e.preventDefault();
+                $('#revbutton').html("Give it a moment");
+                $.ajax({
+                    type     : "POST",
+                    cache    : false,
+                    url      : 'https://stacksity.com/php/passreset.php',
+                    crossDomain : true,
+                    data     : $(this).serialize(),
+                    success  : function(data) {
+                        if(data == "3"){
+                            success();
+                        }else if(data == "2"){
+                            perrorinfo("That Email doesn't seem to exist here");
+                        }else{
+                            alert("error: "+data);
+                        }
+                        $('#revbutton').html("Retrieve password");
+                    },
+                    error: function(request) {
+                        $('#revbutton').html("Retrieve password");
+                        if (request.status == 0) {
+                            alert("You're offline!");
+                        }else{
+                            alert("Error Connection");
+                        }
+                    }
+                });
+            });
+        </script>
+    </div>
+    <div data-role="page" data-dom-cache="true" id="explorepage" class="ex">
+        <div data-role="header" data-id="persistent" data-position="fixed"  class="head padding-top" data-fullscreen="true" data-tap-toggle="false" id="explorehead">
+            <div class="headercaption">&nbsp;</div>
+        </div>
+        <div class="extracontainer">
+            <div class="con">
+                <div class="topgap" id="exgap"></div>
+                <div class="banner center" style="display: none">
+                    <div class="center banner-inner">
+                        <div class="bannertext">
+                        </div>
+                    </div>
+                </div>
+                <div class="center feed">
+                </div>
+                <div class="scroll center">
+                    <p>Loading Stack</p>
+                </div>
+                <div class="botgap"></div>
+            </div>
+        </div>
+    </div>
+
+    <div data-role="page" data-dom-cache="true" id="toppage">
+        <div data-role="header" data-id="persistent" data-position="fixed" class="head padding-top" data-fullscreen="true" data-tap-toggle="false">
+            <div class="headercaption">Stacksity</div>
+        </div>
+        <div class="extracontainer">
+            <div class="con">
+                <div class="topgap"></div>
+                <div class="banner center" style="display: none">
+                    <div class="center banner-inner">
+                        <div class="bannertext">
+                        </div>
+                    </div>
+                </div>
+                <div class="center feed">
+                </div>
+                <div class="scroll center">
+                    <p>Loading Stack</p>
+                </div>
+                <div class="botgap"></div>
+            </div>
+        </div>
+    </div>
+
+    <div data-role="page" data-dom-cache="true" id="allpage">
+        <div data-role="header" data-id="persistent" data-position="fixed" class="head padding-top" data-fullscreen="true" data-tap-toggle="false">
+            <div class="headercaption">near</div>
+        </div>
+        <div class="extracontainer">
+            <div class="con">
+                <div class="topgap"></div>
+                <div class="banner center" style="display: none">
+                    <div class="center banner-inner">
+                        <div class="bannertext">
+                        </div>
+                    </div>
+                </div>
+                <div class="center locbar" style="padding: 0px 0 6px 0">
+                    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dist-btn" onclick="setDist(0.1, this)">Close</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dist-btn" onclick="setDist(5, this)" disabled="">Near</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dist-btn" onclick="setDist(50, this)">Far</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="center feed">
+                </div>
+                <div class="scroll center">
+                    <p>Loading Stack</p>
+                </div>
+                <div class="botgap"></div>
+            </div>
+        </div>
+    </div>
+
+    <div data-role="page" data-dom-cache="true" id="notepage">
+        <div data-role="header" data-id="persistent" data-position="fixed" class="head padding-top" data-fullscreen="true" data-tap-toggle="false">
+            <div class="headercaption">Notifications</div>
+        </div>
+        <div class="extracontainer">
+            <div class="con" style="min-height: 101%">
+                <div class="topgap"></div>
+                <div class="center note-header">
+                </div>
+                <div class="notescroll center">
+                    <p>Loading Notifications</p>
+                </div>
+                <div class="botgap"></div>
+            </div>
+        </div>
+    </div>
+
+    <div data-role="page" data-dom-cache="true" id="userpage">
+        <div data-role="header" data-id="persistent" data-position="fixed" class="head padding-top" data-fullscreen="true" data-tap-toggle="false">
+            <div class="row posting center">
+                <a class="col-xs-4 postlink" onclick="postOpen(1)">Link</a>
+                <a class="col-xs-4 postlink" onclick="postOpen(2)">Text</a>
+                <a class="col-xs-4 postlink" onclick="postOpen(3)">Image</a>
+            </div>
+        </div>
+        <div class="extracontainer">
+            <div class="con">
+                <div class="topgap"></div>
+                <div class="banner center" style="display: none">
+                    <div class="center banner-inner">
+                        <div class="bannertext">
+                        </div>
+                    </div>
+                </div>
+                <div class="center feed">
+                </div>
+                <div class="scroll center">
+                    <p>Loading Stack</p>
+                </div>
+                <div class="botgap"></div>
+            </div>
+        </div>
+    </div>
+
+    <div data-role="page" data-dom-cache="false" id="postpage">
+        <div data-role="header" data-id="persistent" data-position="fixed" class="head padding-top" data-fullscreen="true" data-tap-toggle="false">
+            <div class="row postrow posting center">
+                <div class="col-xs-4 postlink" onclick="linkpost()" id="postlink">Link</div>
+                <div class="col-xs-4 postlink" onclick="textpost()" id="posttext">Text</div>
+                <div class="col-xs-4 postlink" onclick="imagepostShow()" id="postimage">Image</div>
+            </div>
+        </div>
+        <div class="center post">
+            <div class="topgap"></div>
+            <label class="postlabel">
+                <div class="postbar" style="padding: 0">
+                    <a class="cancelpost" data-rel="back" data-role="button" data-corners="false" data-inline="true" onclick="postbox = false" id="cancelpost">cancel</a>
+                    <p>posting to <span class="bold" id="posting"></span></p>
+                </div>
+            </label>
+            <form class="postform toppost" id="toppost">
+                <input type="hidden" id="posttype" name="type" value="0">
+                <div class="postcon">
+                    <p>title <span id="title-count">100</span></p>
+                    <input name="title" type="text" id="title-input" class="texts" placeholder="post title" maxlength="100" required="" data-role="none">
+                    <div id="linkpost" style="display: none;">
+                        <p>link <span id="link-alert"></span></p>
+                        <input name="link" type="url" id="link" class="texts" placeholder="submit a link here" maxlength="500" required="" data-role="none">
+                    </div>
+                    <div id="textpost" style="display: none;">
+                        <p>text</p>
+                        <textarea name="text" class="expanding" id="text" placeholder="write something here..." rows="2" maxlength="6500" data-role="none"></textarea>
+                    </div>
+                    <div id="imagepost">
+                        <p>image</p>
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <span class="btn btn-primary btn-file" id="uploadimage">
+                                 <span class="glyphicon glyphicon-camera" ></span> Photo
+                                <input type="file" accept="image/x-png, image/gif, image/jpeg" onchange="upload(this.files[0])" data-role="none">
+                                </span>
+                            </span>
+                            <input type="text" id="imageid" class="form-control" readonly="" data-role="none">
+                        </div>
+                        <div class="background-image"><img src="" id="imagePostPreview" class="img-responsive"></div>
+                    </div>
+                </div>
+                <div class="postsub postsubgroup">
+                    <input type="hidden" name="setprivate" value="0" id="privatefield">
+                    <div id="spinnerpost">
+                        <div class="double-bounce1"></div>
+                        <div class="double-bounce2"></div>
+                    </div>
+                    <button type="submit" id="pbutton" class="postb" data-role="none">Post</button>
+                    <button type="button" id="private" class="postb private" data-role="none">Private</button>
+                </div>
+            </form>
+        </div>
+        <div class="botgap"></div>
+        <script>$( "#title-input" ).keyup(function() {
+            var length = $( this ).val().length;
+            $( "#title-count").html(100-length);
+        });</script>
+    </div>
+
+    <div data-role="page" data-dom-cache="true" id="searchpage">
+        <div class="extracontainer">
+            <div class="center stacks">
+                <div class="padding-top">
+                    <div id="stacksearch" class="stacklist">
+                        <h1>Search for Stacks</h1>
+                        <ul id="autocomplete" data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Search for stacks.." data-filter-theme="d"></ul>
+                    </div>
+                </div>
+                <div class="stacklist">
+                    <div class="stackl listlink" id="es">
+                        <a href="#" class="stacklink" data-link="-1">$everything</a>
+                        <a href="#" class="stacklink" data-link="-3">$recent</a>
+                    </div>
+                </div>
+                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default postlink" onclick="stack()">Stacks</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default postlink" onclick="use()">Users</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default postlink" onclick="ex()">Explore</button>
+                    </div>
+                </div>
+                <div class="fstack" style="display: none">
+                    <div class="stacklist">
+                        <h5>Followed Stacks</h5>
+                        <div class="stackls stackl" id="fs"></div>
+                    </div>
+                </div>
+                <div class="fusers" style="display: none">
+                    <div class="stacklist">
+                        <h5>Followed Users</h5>
+                        <div class="stackls stackl" id="fu"></div>
+                    </div>
+                </div>
+                <div class="rstack" style="display: none">
+                </div>
+            </div>
+            <div class="botgap"></div>
+        </div>
+    </div>
+    <div data-role="page" id="post">
+        <div data-role="header" data-id="persistent" data-position="fixed" class="head" data-fullscreen="true" data-tap-toggle="false">
+            <a data-role="none" data-rel="back" class="postlink postback posthead padding-top"><div class="glyphicon glyphicon-chevron-left"></div></a>
+        </div>
+        <div class="extracontainer">
+            <div class="topgap"></div>
+            <div id="postcon" class="center" >
+            </div>
+            <div id="comments" class="center">
+                <form id="commentform">
+                    <div class="postcon">
+                        <textarea name="text" id="commenttext" placeholder="write something here..." rows="2" data-role="none"></textarea>
+                    </div>
+                    <div class="postsub" style="margin-bottom: 0">
+                        <button type="submit" id="cbutton" data-corners="false">comment</button>
+                    </div>
+                </form>
+                <div id="commentfeed">
+                </div>
+            </div>
+            <div class="botgap"></div>
+        </div>
+    </div>
+</div>
+<script>
+    if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/)) {
+        mobile = true;
+        document.addEventListener("deviceready", onDeviceReady, false);
+    } else {
+        $( document ).ready(onDeviceReady());
+    }
+
+    // device APIs are available
+    //
+    var option = 1;
+    function start(){
+        $.mobile.navigate("#toppage");
+        $(".footer").show();
+        init();
+        ex();
+        getNotification();
+        set();
+    }
+    function loginResetPage(){
+        localStorage.clear();
+        location.reload();
+    }
+    function startlogin(){
+        login = false;
+        option = 1;
+        $.mobile.navigate("#loginpage");
+        $("#loginloader").hide();
+        $("#loginform").show();
+    }
+
+    function onDeviceReady() {
+        if(mobile){
+            navigator.splashscreen.hide();
+            document.addEventListener("resume", onResume, false);
+            StatusBar.overlaysWebView(false);
+            StatusBar.backgroundColorByHexString("#ffffff");
+            StatusBar.styleDefault();
+        }
+        if(login){
+            start();
+            //PushbotsPlugin.resetBadge();s
+        }else{
+            startlogin();
+        }
+    }
+    function onResume(){
+        if(login){
+            PushbotsPlugin.resetBadge();
+            getNotification();
+            if(option==3){
+                markseen();
+            }
+        }
+    }
+    //self explanatory figure it out, login.html wipes all localdata
+    function logout(){
+        if(mobile){
+            PushbotsPlugin.setAlias("0");
+        }
+        //PushbotsPlugin.unregister();
+        loginResetPage();
+    }
+</script>
+<script src="js/main.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/autogrow.js"></script>
+<script src="js/output.js"></script>
+<script src="js/vote.js"></script>
+<script type="text/javascript">
+    $(document).one("mobileinit", function () {
+        $.mobile.pageContainer = $('#container');
+        $.mobile.defaultPageTransition = 'slide';
+        $.mobile.defaultPageTransition = 'slide';
+    });
+    var _gaq = _gaq || [];
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    //This the HTML DOM structure for the loader with two circles inside each other
+    var loader =
+            '<div class="spinner">'+
+            '<div class="double-bounce1"></div>'+
+            '<div class="double-bounce2"></div>'+
+            '</div>';
+
+    //this function should be ran when logged in and before a page shows
+    function pageBefore(){
+        var activepage = $.mobile.activePage;
+        if(changepage){
+            changepage = false;
+            if(option==3){
+                if($('#notestack').hasClass('newnote')){
+                    markseen();
+                }
+            }else if(option==7){
+                explore = false;
+            }
+        }else{
+            explore = false;
+            postbox = false;
+            var acrid = activepage.attr("id");
+            if(acrid=="toppage"){
+                option = 1;
+            }else if(acrid=="searchpage"){
+                option = 2;
+            }else if(acrid=="notepage"){
+                option = 3;
+            }else if(acrid=="allpage"){
+                option = 4;
+            }else if(acrid=="userpage"){
+                option = 5;
+            }else if(acrid=="post"){
+                option = 7;
+            }else if(acrid=="explorepage"){
+                explore = true;
+                option = 6;
+            }else if(acrid=="postpage"){
+                postbox=true;
+            }else{
+                loginResetPage();
+            }
+            init();
+        }
+        if(option == 7){
+            $('#comments').show();
+            $('#postcon').empty();
+            $('#postcon').hide();
+            $('#commentfeed').html(loader);
+            getPost(postid);
+        }
+        if(postbox){
+            initPostBox();
+            if(postype==1){
+                linkpost();
+            }else if(postype==2){
+                textpost();
+            }else if(postype==3){
+                imagepostShow();
+            }
+        }else{
+            try {
+                _gaq.push(['_setAccount', 'UA-46439393-3']);
+
+                hash = location.hash;
+
+                if (hash) {
+                    _gaq.push(['_trackPageview', hash.substr(1)]);
+                } else {
+                    _gaq.push(['_trackPageview']);
+                }
+            } catch(err) {
+
+            }
+        }
+    }
+
+    //this function should be ran when logged in and during when a page shows
+    function pageDuring(){
+        var activepage = $.mobile.activePage;
+        if(!postbox){
+            if(isStackOption()){
+                loading = false;
+                end = false;
+                bottom = false;
+                if(!postbox){
+                    if(activepage.data("stack_id")==null&&!postbox){
+                        activepage.find('.scroll').html('<p>Loading Stack...</p>');
+                        var activestack = stackid;
+                        if(explore){
+                            //activepage.find(".locbar").remove();
+                            if(activestack<0){
+                                var explorename;
+                                if(activestack=="-1"){
+                                    explorename = "Everything"
+                                }else if(activestack=="-3"){
+                                    explorename = "Recent"
+                                }
+//                                    $("#explorehead").hide();
+//                                    $("#exgap").hide();
+                                $("#explorehead").html('<div class="headercaption">'+explorename+'</div>')
+                            }else{
+                                $("#explorehead").html('<div class="row posting center">'+
+                                        '<a class="col-xs-4 postlink" onclick="postOpen(1)">Link</a>'+
+                                        '<a class="col-xs-4 postlink" onclick="postOpen(2)">Text</a>'+
+                                        '<a class="col-xs-4 postlink" onclick="postOpen(3)">Image</a>'+
+                                        '</div>');
+//                                    $("#exgap").show();
+                            }
+                            //activepage.find('.scroll').html('<p>Loading Posts</p> ');
+                        }
+                        bannerset(activepage, stackid);
+                        var contain = activepage.find(".extracontainer");
+                        contain.bind("scrollstop", function() {
+                            if(!postbox){
+                                if(contain.scrollTop() + $(window).height() > activepage.find(".con").height() - 200) {
+                                    if(!end&&!bottom&&!loading){
+                                        bottom = true;
+                                        activepage.find('.scroll').html('<p>Loading Posts</p> ');
+                                        //alert(activepage.data("distance"));
+                                        if(activepage.data("distance")==0||activepage.data("distance")==undefined){
+                                            startNews(startnews, activepage, stackid);
+                                        }else{
+                                            startNews(startnews, activepage, stackid, activepage.data("distance"));
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    }else{
+                        stackid = activepage.data("stack_id");
+                        is_user = activepage.data("is_user");
+                        stackname = activepage.data("stackname");
+                        startnews = activepage.data("startnews");
+                    }
+                }
+            }
+        }
+    }
+
+    $(document).on('pagebeforeshow',function(event,ui){
+        if(login){
+            pageBefore();
+        }
+    });
+    $(document).on('pagechange',function(event,ui){
+        if(login){
+            pageDuring();
+        }
+    });
+    $(document).on('pageshow',function(event,ui){
+        if(login){
+            if(explore){
+                if(dontdelete){
+                    dontdelete = false;
+                    ui.prevPage.remove();
+                }
+            }
+            if(!postbox){
+//                var activepage = $.mobile.activePage;
+//                activepage.find(".extracontainer").css("-webkit-overflow-scrolling","touch");
+                if(isStackOption()){
+                    if(postdata!=null){
+                        $.mobile.activePage.find(".extracontainer").scrollTop(0);
+                        parsePostData();
+                    }
+                }
+            }
+        }
+    });
+
+    $("#commenttext").expanding();
+    $("#text").expanding();
+    $( "#autocomplete" ).on( "listviewbeforefilter", function ( e, data ) {
+        var $ul = $( this ),
+                $input = $( data.input ),
+                value = $input.val(),
+                html = "";
+        $ul.html( "" );
+        if ( value && value.length > 0) {
+            $ul.html( "<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>" );
+            $ul.listview( "refresh" );
+//        alert($input.val());
+            $.ajax({
+                url: "https://stacksity.com/php/search.php",
+                dataType: "json",
+                type: "GET",
+                crossDomain: true,
+                data: {
+                    term: value
+                }
+            }).then( function ( response ) {
+//            alert(JSON.stringify(response));
+                if(value.charAt(0)=="$"&&value.length>1){
+                    html += "<li onclick='linkToStack(\""+value+"\")'>" + value + "</li>";
+                    $.each( response, function ( i, val ) {
+                        if(val.value!=value) html += "<li onclick='linkToStack("+val.id+")'>" + val.value + "</li>";
+                    });
+                }else{
+                    if(response.length==0){
+                        html += "<li><span style='color:#f00'>" + value + "</span> doesn't exist" + "</li>";
+                    }else{
+                        $.each( response, function ( i, val ) {
+                            html += "<li onclick='linkToStack("+val.id+")'>" + val.value + "</li>";
+                        });
+                    }
+                }
+                $ul.html( html );
+                $ul.listview( "refresh" );
+                $ul.trigger( "updatelayout");
+            });
+        }
+    });
+    $(".quarter").on('tap', function (e) {
+        e.preventDefault();
+        refreshPage($(this).data("op"));
+    });
+</script>
+</body>
 </html>

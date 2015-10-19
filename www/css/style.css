@@ -1126,7 +1126,7 @@ h1 {
     margin: 5px 0;
 }
 
-.footer { background: #1c5380; position: fixed; bottom: 0; width: 100%; text-align: center; z-index: 999 }
+.footer { background: #1c5380; position: fixed; bottom: 0; width: 100%; text-align: center; z-index: 999; display: none}
 .head{
     /*position:fixed;*/
     /*z-index:100;*/

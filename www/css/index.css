@@ -1,25 +1,4 @@
-@font-face {
-    font-family: 'Raleway';
-    src: url("../fonts/Raleway-Light.ttf");
-}
-
-* {
-    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
-}
-body {
-    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
-    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
-    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
-    font-size:12px;
-    margin:0px;
-}
-#container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
-.login{
+#loginpage{
     background: url(../img/background.jpeg) no-repeat center center fixed;
     background-size: cover;
 }
@@ -42,7 +21,6 @@ body {
     margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
                                    /* offset horizontal: half of text area width */
 }
-
 /* Landscape layout (with min-width) */
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
     .app {
@@ -69,16 +47,11 @@ h2{
 small, .small {
     font-size: 85%;
 }
-a {
-    color: #428bca;
-    text-decoration: none;
-    background: 0 0;
-}
-a:hover {
-    text-decoration: underline;
-}
-* {
+#loginpage,#signuppage, #passpage{
     -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+a:hover{
+    text-decoration: none;
 }
 * {
     -webkit-box-sizing: border-box;
@@ -146,19 +119,6 @@ a:hover {
     text-align: center !important;
     display: block;
 }
-.listlink a {
-    background: #CDE;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    -webkit-transition: background-color 0.2s ease-in;
-    -moz-transition: background-color 0.2s ease-in;
-    -o-transition: background-color 0.2s ease-in;
-    transition: background-color 0.2s ease-in;
-    display: inline-block;
-    margin-bottom: 5px;
-    padding: 5px;
-}
 .form-control {
     display: block;
     width: 100%;
@@ -166,7 +126,6 @@ a:hover {
     font-size: 14px;
     border-radius: 0;
     color: #555;
-    margin-bottom: 12px;
     background-color: #fff;
     background-image: none;
     border: 1px solid #ccc;

@@ -41,7 +41,7 @@
     <gap:plugin name="cordova-plugin-vibration" source="npm"/>
     <gap:plugin name="cordova-plugin-statusbar" source="npm"/>
 
-    <!--<gap:plugin name="com.telerik.plugins.wkwebview" />-->
+    <gap:plugin name="com.telerik.plugins.wkwebview" />
     
     <preference name="StatusBarBackgroundColor" value="#FFFFFF"/>
     <preference name="StatusBarStyle" value="default" />

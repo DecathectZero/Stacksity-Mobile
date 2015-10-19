@@ -1,21 +1,3 @@
-var posting = false;
-var end = false;
-var bottom = false;
-var startnews = 0;
-var id = localStorage.getItem('session_id');
-var stackid = 0;
-var stackname = null;
-var userstack = localStorage.getItem('ustack');
-var username = localStorage.getItem('username');
-var user_id = localStorage.getItem('user_id');
-var explore = false;
-var postbox = false;
-var postype = 1;
-var is_user = 0;
-var dontdelete = false;
-var loading = false;
-var postid = 0;
-
 //refers to when someone clicks on a post in a feed to view comments, checks to make sure a postbox isn't already open, since only one jqm page is available
 function postOpen(type){
     if(!postbox){
@@ -64,10 +46,6 @@ function bannerset(activepage, stackids){
                     ban.css("background-image","none");
                     ban.children().css("background-color","transparent");
                 }
-                activepage.data("stack_id", stackids);
-                activepage.data("is_user", is_user);
-                activepage.data("startnews", 0);
-                activepage.data("stackname", stackname);
                 activepage.find(".bannertext").html('<h1 class="bannertitle"></h1><p class="bannerdesc"></p>');
                 activepage.find(".bannertitle").html(stackname);
                 if(stackids==0){
@@ -132,6 +110,10 @@ function bannerset(activepage, stackids){
                     }
                 }
                 activepage.find(".banner").slideDown({complete:function(){
+                    activepage.data("stack_id", stackids);
+                    activepage.data("is_user", is_user);
+                    activepage.data("startnews", 0);
+                    activepage.data("stackname", stackname);
                     startnews = 0;
                     if(stackids == -4){
                         activepage.data("distance", 5);
@@ -237,7 +219,7 @@ function checklogin(){
         success  : function(data) {
             if(data=="0"){
                 //if an error occurs send the user back to the login page
-                document.location.href = 'login.html';
+                loginResetPage();
             }else{
                 if(data!="1"){
                     window.localStorage.setItem('session_id', data);
@@ -762,42 +744,44 @@ $(document).on('tap','.postlink',function(e){
 
 /*post stuff*/
 $(document).on('click','a',function(e){
-    if($(this).hasClass("toPost")){
-        e.preventDefault();
-        postid = $(this).data("postlink");
-        option = 7;
-        changepage = true;
-        $.mobile.changePage(
-            "#post",
-            {
-                transition: "slide",
-                showLoadMsg             : false
-            }
-        );
-    }else if($(this).hasClass("stacklink")){
-        e.preventDefault();
-        var goto = $(this).data('link');
-        linkToStack(goto);
-    }else{
-        var link = $(this).attr("href");
-        if(link==null||$(this).hasClass("ui-input-clear")){
-        }else{
+    if(login){
+        if($(this).hasClass("toPost")){
             e.preventDefault();
-            if(link.charAt(0)=="/"){
-                if(link.charAt(1)=="u"){
-                    linkToStack(link.substring(3));
-                }else if(link.charAt(1)=="$"){
-                    linkToStack(link.substring(1));
-                }else if(link.charAt(1)=="p"){
-                    var midpoint = link.indexOf("&");
-                    if (midpoint === -1){
-                        toPost(link.substring(3));
-                    }else{
-                        toPost(link.substring(3,midpoint),link.substring(midpoint+1));
-                    }
+            postid = $(this).data("postlink");
+            option = 7;
+            changepage = true;
+            $.mobile.changePage(
+                "#post",
+                {
+                    transition: "slide",
+                    showLoadMsg             : false
                 }
+            );
+        }else if($(this).hasClass("stacklink")){
+            e.preventDefault();
+            var goto = $(this).data('link');
+            linkToStack(goto);
+        }else{
+            var link = $(this).attr("href");
+            if(link==null||$(this).hasClass("ui-input-clear")){
             }else{
-                window.open(link, '_blank', 'location=yes,enableViewportScale=yes');
+                e.preventDefault();
+                if(link.charAt(0)=="/"){
+                    if(link.charAt(1)=="u"){
+                        linkToStack(link.substring(3));
+                    }else if(link.charAt(1)=="$"){
+                        linkToStack(link.substring(1));
+                    }else if(link.charAt(1)=="p"){
+                        var midpoint = link.indexOf("&");
+                        if (midpoint === -1){
+                            toPost(link.substring(3));
+                        }else{
+                            toPost(link.substring(3,midpoint),link.substring(midpoint+1));
+                        }
+                    }
+                }else{
+                    window.open(link, '_blank', 'location=yes,enableViewportScale=yes');
+                }
             }
         }
     }
@@ -1194,8 +1178,10 @@ function notification(element, seen, stringText){
     return '<div class="notification '+seen+' toPost" onclick="toPost('+element.link+','+element.commentlink+')" data-note="'+element.notification_id+'"><b>'+element.username+'</b> '+stringText+' P#'+element.link+'<br><span class="note-time">'+element.created+'</span></div>';
 }
 var cycle = false;
+var interval = null;
+
 function set(){
-    setInterval(function(){
+    interval = setInterval(function(){
         if(cycle){
             cycle = false;
         }else{
@@ -1263,6 +1249,3 @@ function markseen(){
         }
     });
 }
-$( document ).ready(function() {
-    getNotification();
-});
