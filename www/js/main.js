@@ -438,6 +438,21 @@ function use(){
 function ex(){
     //element.parent().siblings().children().removeClass("active");
     //element.addClass("active");
+    $.ajax({
+        type     : "GET",
+        cache    : false,
+        url      : 'https://stacksity.com/php/mobile/stacknews.php',
+        crossDomain : true,
+        dataType : "html",
+        success  : function(data) {
+            $(".rstack").html(data);
+        },
+        error: function(request) {
+            if(request.status == 0) {
+                alert('You\'re offline :(');
+            }
+        }
+    });
     $(".fstack").hide();
     $(".fusers").hide();
     $(".rstack").show();
