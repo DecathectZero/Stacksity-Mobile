@@ -478,7 +478,7 @@ function refreshPage(opt) {
     }else{
         explore = false;
         var rev = false;
-        var trans = 'none';
+        var trans = 'slide';
         //if(opt<option){
         //    rev=true;
         //}
