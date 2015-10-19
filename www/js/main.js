@@ -237,6 +237,7 @@ function checklogin(){
         success  : function(data) {
             if(data=="0"){
                 //if an error occurs send the user back to the login page
+                alert("nosession");
                 document.location.href = 'login.html';
             }else{
                 if(data!="1"){

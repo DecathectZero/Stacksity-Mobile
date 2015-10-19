@@ -18,6 +18,7 @@
         //
         var option = 1;
         function onDeviceReady() {
+            alert(localStorage.getItem("asdf"));
             PushbotsPlugin.setAlias(localStorage.getItem('user_id'));
             PushbotsPlugin.resetBadge();
             document.addEventListener("resume", onResume, false);
@@ -26,7 +27,6 @@
             StatusBar.overlaysWebView(false);
             StatusBar.backgroundColorByHexString("#ffffff");
             StatusBar.styleDefault();
-            alert(localStorage.getItem('ustack')+" "+localStorage.getItem('username'));
             if (localStorage.getItem("session_id") === null) {
                 document.location.href = 'login.html';
             }
