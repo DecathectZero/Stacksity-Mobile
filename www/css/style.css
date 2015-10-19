@@ -1195,13 +1195,13 @@ h1 {
 /*}*/
 .posthead{
     background-color: #fff;
-    position: fixed;
     top: 0;
     height: 30px;
     width: 100%;
     font-size: 20px !important;
     line-height: 30px !important;
     margin-top: 0px !important;
+    display: table;
 }
 .posthead:hover{
     text-decoration: none;

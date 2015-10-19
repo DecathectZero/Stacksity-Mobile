@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb4336dd-fff4-42e3-ab59-f72e1798b9e1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/main.js" afterPath="$PROJECT_DIR$/www/js/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/config.xml" afterPath="$PROJECT_DIR$/www/config.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/login.html" afterPath="$PROJECT_DIR$/www/login.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/stack.html" afterPath="$PROJECT_DIR$/www/stack.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/css/style.css" afterPath="$PROJECT_DIR$/www/css/style.css" />
     </list>
     <ignored path="Stacksity-Mobile.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,8 +30,8 @@
       <file leaf-file-name="stack.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/stack.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.018182">
-              <caret line="28" column="42" selection-start-line="28" selection-start-column="42" selection-end-line="28" selection-end-column="42" />
+            <state vertical-scroll-proportion="-3.709091">
+              <caret line="27" column="37" selection-start-line="27" selection-start-column="37" selection-end-line="27" selection-end-column="37" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -46,7 +49,7 @@
                 <element signature="n#style#0;n#div#4;n#div#0;n#div#0;n#div#6;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#5;n#div#0;n#div#0;n#div#6;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#form#0;n#div#2;n#div#1;n#div#7;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1445243187980" expanded="true" signature="26503:26513" placeholder="..." />
+                <marker date="1445243813610" expanded="true" signature="26457:26467" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -88,8 +91,8 @@
       <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-25.192308">
-              <caret line="295" column="41" selection-start-line="295" selection-start-column="41" selection-end-line="295" selection-end-column="41" />
+            <state vertical-scroll-proportion="-11.072727">
+              <caret line="294" column="31" selection-start-line="294" selection-start-column="31" selection-end-line="294" selection-end-column="31" />
               <folding>
                 <element signature="n#style#0;n#p#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -97,10 +100,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="config.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/config.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="0.8139282">
               <caret line="44" column="4" selection-start-line="44" selection-start-column="4" selection-end-line="44" selection-end-column="4" />
               <folding />
             </state>
@@ -110,8 +113,8 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="1140" column="1" selection-start-line="1140" selection-start-column="1" selection-end-line="1140" selection-end-column="1" />
+            <state vertical-scroll-proportion="-7.2413793">
+              <caret line="1236" column="17" selection-start-line="1236" selection-start-column="17" selection-end-line="1236" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -137,11 +140,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.61044616">
-              <caret line="249" column="7" selection-start-line="249" selection-start-column="7" selection-end-line="249" selection-end-column="7" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="247" column="48" selection-start-line="247" selection-start-column="48" selection-end-line="247" selection-end-column="48" />
               <folding>
                 <marker date="1445243343968" expanded="true" signature="4479:4499" placeholder="..." />
                 <marker date="1445243343968" expanded="true" signature="32194:32207" placeholder="..." />
@@ -173,12 +176,12 @@
         <option value="$PROJECT_DIR$/www/logging.html" />
         <option value="$PROJECT_DIR$/www/css/index.css" />
         <option value="$PROJECT_DIR$/www/js/output.js" />
-        <option value="$PROJECT_DIR$/www/css/style.css" />
-        <option value="$PROJECT_DIR$/www/config.xml" />
         <option value="$PROJECT_DIR$/www/index.html" />
+        <option value="$PROJECT_DIR$/www/js/main.js" />
         <option value="$PROJECT_DIR$/www/stack.html" />
         <option value="$PROJECT_DIR$/www/login.html" />
-        <option value="$PROJECT_DIR$/www/js/main.js" />
+        <option value="$PROJECT_DIR$/www/css/style.css" />
+        <option value="$PROJECT_DIR$/www/config.xml" />
       </list>
     </option>
   </component>
@@ -795,14 +798,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1140" column="1" selection-start-line="1140" selection-start-column="1" selection-end-line="1140" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/spec.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -838,10 +833,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="247" column="48" selection-start-line="247" selection-start-column="48" selection-end-line="247" selection-end-column="48" />
+          <folding>
+            <marker date="1445243343968" expanded="true" signature="4479:4499" placeholder="..." />
+            <marker date="1445243343968" expanded="true" signature="32194:32207" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/stack.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.018182">
-          <caret line="28" column="42" selection-start-line="28" selection-start-column="42" selection-end-line="28" selection-end-column="42" />
+        <state vertical-scroll-proportion="-3.709091">
+          <caret line="27" column="37" selection-start-line="27" selection-start-column="37" selection-end-line="27" selection-end-column="37" />
           <folding>
             <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -859,37 +865,34 @@
             <element signature="n#style#0;n#div#4;n#div#0;n#div#0;n#div#6;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#5;n#div#0;n#div#0;n#div#6;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#form#0;n#div#2;n#div#1;n#div#7;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1445243187980" expanded="true" signature="26503:26513" placeholder="..." />
+            <marker date="1445243813610" expanded="true" signature="26457:26467" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-25.192308">
-          <caret line="295" column="41" selection-start-line="295" selection-start-column="41" selection-end-line="295" selection-end-column="41" />
+        <state vertical-scroll-proportion="-11.072727">
+          <caret line="294" column="31" selection-start-line="294" selection-start-column="31" selection-end-line="294" selection-end-column="31" />
           <folding>
             <element signature="n#style#0;n#p#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/config.xml">
+    <entry file="file://$PROJECT_DIR$/www/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="44" column="4" selection-start-line="44" selection-start-column="4" selection-end-line="44" selection-end-column="4" />
+        <state vertical-scroll-proportion="-7.2413793">
+          <caret line="1236" column="17" selection-start-line="1236" selection-start-column="17" selection-end-line="1236" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/main.js">
+    <entry file="file://$PROJECT_DIR$/www/config.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.61044616">
-          <caret line="249" column="7" selection-start-line="249" selection-start-column="7" selection-end-line="249" selection-end-column="7" />
-          <folding>
-            <marker date="1445243343968" expanded="true" signature="4479:4499" placeholder="..." />
-            <marker date="1445243343968" expanded="true" signature="32194:32207" placeholder="..." />
-          </folding>
+        <state vertical-scroll-proportion="0.8139282">
+          <caret line="44" column="4" selection-start-line="44" selection-start-column="4" selection-end-line="44" selection-end-column="4" />
+          <folding />
         </state>
       </provider>
     </entry>
