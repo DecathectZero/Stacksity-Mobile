@@ -224,31 +224,32 @@ function getOption(){
 
 //checks if the user is still logged in and if his php server session has expired, then it will renew unless an error occurs
 function checklogin(){
-    var id = localStorage.getItem('session_id');
-    var hashcode = localStorage.getItem('hashcode');
-    $.ajax({
-        type     : "POST",
-        cache    : false,
-        url      : 'https://stacksity.com/php/mobileCheckLogin.php',
-        data     : {session_id : id, hashcode : hashcode},
-        dataType : "html",
-        async:   false,
-        crossDomain : true,
-        success  : function(data) {
-            if(data=="0"){
-                //if an error occurs send the user back to the login page
-                alert("nosession");
-                document.location.href = 'login.html';
-            }else{
-                if(data!="1"){
-                    window.localStorage.setItem('session_id', data);
+    if(ready){
+        var id = localStorage.getItem('session_id');
+        var hashcode = localStorage.getItem('hashcode');
+        $.ajax({
+            type     : "POST",
+            cache    : false,
+            url      : 'https://stacksity.com/php/mobileCheckLogin.php',
+            data     : {session_id : id, hashcode : hashcode},
+            dataType : "html",
+            async:   false,
+            crossDomain : true,
+            success  : function(data) {
+                if(data=="0"){
+                    //if an error occurs send the user back to the login page
+                    document.location.href = 'login.html';
+                }else{
+                    if(data!="1"){
+                        window.localStorage.setItem('session_id', data);
+                    }
                 }
+            },
+            error: function(xhr, status, error) {
+                //alert("error: "+xhr.responseText);
             }
-        },
-        error: function(xhr, status, error) {
-            //alert("error: "+xhr.responseText);
-        }
-    });
+        });
+    }
 }
 //checks if this is the very end of the stack newsfeed, since 10 posts are always returned unless there aren't anymore to show
 //function checkEnd(postnum){

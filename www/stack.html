@@ -17,7 +17,9 @@
         // device APIs are available
         //
         var option = 1;
+        var ready = false;
         function onDeviceReady() {
+            ready = true;
             alert(localStorage.getItem("asdf"));
             PushbotsPlugin.setAlias(localStorage.getItem('user_id'));
             PushbotsPlugin.resetBadge();
