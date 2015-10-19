@@ -107,7 +107,6 @@
                             PushbotsPlugin.initializeAndroid("561ed24517795902148b4569", "907553791348");
                         }
                         PushbotsPlugin.setAlias(localStorage.getItem('user_id'));
-//                        alert(localStorage.getItem('ustack')+" "+localStorage.getItem('username'));
                         document.location.href = 'stack.html#toppage';
                     }else{
                         errorinfo("Oops something went wrong with the server, error code: " + data);
@@ -294,7 +293,8 @@
         StatusBar.overlaysWebView(false);
         $("#loginloader").hide();
         $("#loginform").show();
-        localStorage.setItem("asdf",1);
+        localStorage.d = "asdf";
+        alert(localStorage.getItem('d'));
     }
     localStorage.clear();
     //        if (!(localStorage.getItem("session_id")=== null)){

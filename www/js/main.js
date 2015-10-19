@@ -238,7 +238,7 @@ function checklogin(){
             success  : function(data) {
                 if(data=="0"){
                     //if an error occurs send the user back to the login page
-                    document.location.href = 'login.html';
+                    //document.location.href = 'login.html';
                 }else{
                     if(data!="1"){
                         window.localStorage.setItem('session_id', data);
