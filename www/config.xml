@@ -11,7 +11,7 @@
     <preference name="permissions" value="none" />
     <preference name="orientation" value="portrait" />
     <preference name="target-device" value="universal" />
-    <preference name="fullscreen" value="true" />
+    <preference name="fullscreen" value="false" />
     <preference name="prerendered-icon" value="true" />
     <preference name="stay-in-webview" value="false" />
     <preference name="ios-statusbarstyle" value="black-opaque" />
@@ -25,6 +25,7 @@
     <preference name="DisallowOverscroll" value="true" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="webviewbounce" value="false"/>
+    <preference name="android-windowSoftInputMode" value="stateVisible|adjustResize" />
     
     <gap:plugin name="pushbots-cordova-plugin" source="npm" />
     <gap:plugin name="cordova-plugin-whitelist" source="npm" />
@@ -42,7 +43,7 @@
     <gap:plugin name="cordova-plugin-statusbar" source="npm"/>
 
     <gap:plugin name="com.telerik.plugins.wkwebview" />
-    
+
     <preference name="StatusBarBackgroundColor" value="#FFFFFF"/>
     <preference name="StatusBarStyle" value="default" />
     <preference name="StatusBarOverlaysWebView" value="false"/>

@@ -898,9 +898,6 @@ background-color: #CCC;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     margin-bottom:0;
 }
-.btn{
-    border-radius: 0 !important;
-}
 .commenttext p{
     margin-bottom: 0;
 }
@@ -989,7 +986,7 @@ background-color: #CCC;
     padding: 5px;
 }
 .btn{
-    border-radius: 0;
+    border-radius: 0 !important;
     padding: 10px;
     font-weight: bold;
     border: none;
@@ -1026,6 +1023,17 @@ background-color: #CCC;
 
 .modal-dialog {
     text-align: left;
+}
+.sideaction, .sidecancel{
+    width: 50%;
+    margin: 0px !important;
+    float: left;
+}
+.sideaction{
+    background-color: #FF4136 !important;
+}
+.sideaction:hover{
+    background-color: #ac2925 !important;
 }
 .comment_link{
     font-weight: bold;

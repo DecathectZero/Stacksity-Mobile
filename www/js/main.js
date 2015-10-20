@@ -780,7 +780,11 @@ $(document).on('click','a',function(e){
                         }
                     }
                 }else{
-                    window.open(link, '_blank', 'location=yes,enableViewportScale=yes');
+                    if(mobile && device.platform == "Android"){
+                        window.open(link, '_system');
+                    }else{
+                        window.open(link, '_blank', 'location=yes,enableViewportScale=yes');
+                    }
                 }
             }
         }
