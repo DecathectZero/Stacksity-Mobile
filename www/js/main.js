@@ -884,7 +884,7 @@ function commentHTML(element, depth){
         '<div class="textpost">'+
         '<textarea name="text" class="expanding" id="text" placeholder="write something here..." rows="2" required></textarea>'+
         '</div></div>'+
-        '<div class="postsub commentsub"><label class="commentl"><span class="cancelreply" onclick="backReply(this)">Cancel</span></label>'+
+        '<div class="postsub commentsub">'+
         '<button type="submit" class="postb replypost commentb">Post</button>'+
         '</div></form>';
     }
@@ -892,10 +892,10 @@ function commentHTML(element, depth){
     '<div class="comment" data-commentid="'+element.comment_id+'" data-depth="'+element.depth+'">'+
     vote+
     '<div class="comment-content">'+
-    '<p class="tagline"><a class="comment_link" href="/u/'+element.user_stack+'" class="">'+element.username+element.flair+'</a> | <time>'+element.created+'</time>' +
+    '<p class="tagline"><a class="stacklink" data-link="'+element.user_stack+'" class="">'+element.username+element.flair+'</a> | <time>'+element.created+'</time>' +
     //' | #'+element.comment_id +
     "<br>" + edittime +'</p>'+
-    '<div class="commenttext"><div class="commentcontent">'+element.content +"</div>"+ reply +'</div>'+ edit +
+    '<div class="commenttext"><div class="commentcontent">'+element.content +"</div><div class='commentoptions'>"+ reply +'</div></div>'+ edit +
     '</div> </div> </div>';
 }
 
@@ -981,8 +981,8 @@ $(document).on("dblclick", ".comment-content", function (event) {
 //});
 
 $(document).on('click', '.editcom', function(e) {
-    $(this).parent().siblings().show();
-    $(this).parent().hide();
+    $(this).parent().parent().siblings().show();
+    $(this).parent().parent().hide();
 });
 $(document).on('click', '.canceledit', function(e) {
     $(this).parent().siblings().show();
@@ -1061,7 +1061,7 @@ function swapReply(el){
 function backReply(el){
     $(el).closest('.replycomment').siblings('.reply').show();
     $(el).closest('.replycomment').hide();
-    $(el).parent().parent().parent().parent().children('.replybutton').text("reply");
+    $(el).parent().parent().parent().sibilings('.replybutton').text("reply");
 
 
 }

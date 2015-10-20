@@ -291,9 +291,8 @@ a:active{
     -o-transition: background-color 0.2s ease-in;
     transition: background-color 0.2s ease-in;
 }
-.listlink a:active, .listlink a:focus{
+.listlink a:hover, .listlink a:focus{
     background: #BCD;
-    color: #fff;
     background-color: #5eabed;
 }
 .postform{
@@ -411,12 +410,10 @@ background-color: #CCC;
 }
 .postlabel p{
     float: right;
-    height: 32px;
-    margin-top: 8px;
+    margin-top: 2px;
     margin-right: 12px;
-    vertical-align: middle;
-    line-height: 32px;
     display: inline;
+    text-align: right;
 }
 .textpost{
     margin-bottom: 5px;
@@ -660,7 +657,7 @@ background-color: #CCC;
     display: table;
 }
 .comwrapper{
-    margin-top: 5px;
+    margin-top: 10px;
     width: 100%;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -693,15 +690,34 @@ background-color: #CCC;
     display: inline;
     margin: 0;
 }
-.reply{
+.commentoptions{
+    margin-top: 5px;
+}
+.reply, .stacklink, .commentlink{
     cursor: pointer;
-    margin-right: 10px;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    padding: 1px 3px;
+}
+.reply{
+    font-size: 16px;
+    background-color: #EEE;
+    color: #777 !important;
+    padding: 3px 5px;
+    margin-right: 5px;
+}
+.commentlink{
+    padding: 3px 5px !important;
+}
+.stacklink:hover, .reply:hover, .commentlink:hover{
+    color: #fff !important;
+    background-color: #7CACD6;
+    border-radius: 2px;
+
 }
 .logout{
     width: 80px;
@@ -908,6 +924,9 @@ background-color: #CCC;
     -ms-user-select: none;
     user-select: none;
 }
+.tagline>.stacklink{
+    font-weight: bold;
+}
 .depth{
     margin-top: 10px;
     border-color: #AAA;
@@ -973,6 +992,19 @@ background-color: #CCC;
     border-radius: 0;
     padding: 10px;
     font-weight: bold;
+    border: none;
+}
+.locbar .btn{
+    background-color: #428BCA;
+    text-shadow: none;
+    color: #fff;
+}
+.locbar .btn:hover{
+    background-color: #fff;
+    color: #333;
+}
+.btn-default[disabled]{
+    background-color: #7CACD6;
 }
 .modal-footer .btn{
     padding: 5px 10px;

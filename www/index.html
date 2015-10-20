@@ -36,6 +36,7 @@
         var dontdelete = false;
         var loading = false;
         var postid = 0;
+        var option = 1;
     </script>
 <body>
 <div class="footer" style="display: none">
@@ -97,12 +98,35 @@
     </div>
 </div>
 <div id="container">
+    <div data-role="page" data-dom-cache="true" id="explorepage" class="ex">
+        <div data-role="header" data-id="persistent" data-position="fixed"  class="head padding-top" data-fullscreen="true" data-tap-toggle="false" id="explorehead">
+            <div class="headercaption">&nbsp;</div>
+        </div>
+        <div class="extracontainer">
+            <div class="con">
+                <div class="topgap" id="exgap"></div>
+                <div class="banner center" style="display: none">
+                    <div class="center banner-inner">
+                        <div class="bannertext">
+                        </div>
+                    </div>
+                </div>
+                <div class="center feed">
+                </div>
+                <div class="scroll center">
+                    <p>Loading Stack</p>
+                </div>
+                <div class="botgap"></div>
+            </div>
+        </div>
+    </div>
+
     <div data-role="page" id="loginpage" class="login">
         <div data-role="main">
             <div class="container">
                 <div class="intro padding-top">
                     <h2>Welcome to</h2>
-                    <h1 style="font-size: 3em">STACK$ITY</h1>
+                    <h1 style="font-size: 4em">STACK$ITY</h1>
                 </div>
                 <div id="loginloader">
                     <div class="double-bounce1"></div>
@@ -340,28 +364,6 @@
             });
         </script>
     </div>
-    <div data-role="page" data-dom-cache="true" id="explorepage" class="ex">
-        <div data-role="header" data-id="persistent" data-position="fixed"  class="head padding-top" data-fullscreen="true" data-tap-toggle="false" id="explorehead">
-            <div class="headercaption">&nbsp;</div>
-        </div>
-        <div class="extracontainer">
-            <div class="con">
-                <div class="topgap" id="exgap"></div>
-                <div class="banner center" style="display: none">
-                    <div class="center banner-inner">
-                        <div class="bannertext">
-                        </div>
-                    </div>
-                </div>
-                <div class="center feed">
-                </div>
-                <div class="scroll center">
-                    <p>Loading Stack</p>
-                </div>
-                <div class="botgap"></div>
-            </div>
-        </div>
-    </div>
 
     <div data-role="page" data-dom-cache="true" id="toppage">
         <div data-role="header" data-id="persistent" data-position="fixed" class="head padding-top" data-fullscreen="true" data-tap-toggle="false">
@@ -402,13 +404,13 @@
                 <div class="center locbar" style="padding: 0px 0 6px 0">
                     <div class="btn-group btn-group-justified" role="group" aria-label="...">
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default dist-btn" onclick="setDist(0.1, this)">Close</button>
+                            <button type="button" class="btn btn-default dist-btn" onclick="setDist(0.1, this)" data-role="none">Close</button>
                         </div>
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default dist-btn" onclick="setDist(5, this)" disabled="">Near</button>
+                            <button type="button" class="btn btn-default dist-btn" onclick="setDist(5, this)" data-role="none" disabled="">Near</button>
                         </div>
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default dist-btn" onclick="setDist(50, this)">Far</button>
+                            <button type="button" class="btn btn-default dist-btn" data-role="none" onclick="setDist(50, this)">Far</button>
                         </div>
                     </div>
                 </div>
@@ -479,7 +481,7 @@
             <label class="postlabel">
                 <div class="postbar" style="padding: 0">
                     <a class="cancelpost" data-rel="back" data-role="button" data-corners="false" data-inline="true" onclick="postbox = false" id="cancelpost">cancel</a>
-                    <p>posting to <span class="bold" id="posting"></span></p>
+                    <p>posting to<br><span class="bold" id="posting"></span></p>
                 </div>
             </label>
             <form class="postform toppost" id="toppost">
@@ -595,17 +597,19 @@
         </div>
     </div>
 </div>
-<script>
+<script src="js/main.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/autogrow.js"></script>
+<script src="js/output.js"></script>
+<script src="js/vote.js"></script>
+<script type="text/javascript">
+
     if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/)) {
         mobile = true;
         document.addEventListener("deviceready", onDeviceReady, false);
     } else {
         $( document ).ready(onDeviceReady());
     }
-
-    // device APIs are available
-    //
-    var option = 1;
     function start(){
         $.mobile.navigate("#toppage");
         $(".footer").show();
@@ -628,6 +632,9 @@
 
     function onDeviceReady() {
         if(mobile){
+            if(device.platform == 'iOS' && device.version >= 8){
+                $("head").append("<style>.topgap{padding-top: 50px}.padding-top{padding-top: 21px}</style>");
+            }
             navigator.splashscreen.hide();
             document.addEventListener("resume", onResume, false);
             StatusBar.overlaysWebView(false);
@@ -658,13 +665,7 @@
         //PushbotsPlugin.unregister();
         loginResetPage();
     }
-</script>
-<script src="js/main.js"></script>
-<script src="js/bootstrap.js"></script>
-<script src="js/autogrow.js"></script>
-<script src="js/output.js"></script>
-<script src="js/vote.js"></script>
-<script type="text/javascript">
+
     $(document).one("mobileinit", function () {
         $.mobile.pageContainer = $('#container');
         $.mobile.defaultPageTransition = 'slide';
