@@ -632,6 +632,7 @@
 
     function onDeviceReady() {
         if(mobile){
+            alert(device.platform + " | " + device.version);
             if(device.platform == 'iOS' && device.version >= 8){
                 $("head").append("<style>.topgap{padding-top: 50px}.padding-top{padding-top: 21px}</style>");
             }
