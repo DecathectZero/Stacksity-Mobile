@@ -84,16 +84,6 @@ a:active{
     margin-right: auto;
     margin-left: auto;
 }
-.signinform{
-    max-width: 350px;
-    margin: 0 auto;
-    background-color: rgba(255,255,255, 0.7);
-    padding: 15px;
-}
-.signinform h2{
-    font-size: 20px;
-    margin-top: 0px;
-}
 
 .sr-only {
     position: absolute;
