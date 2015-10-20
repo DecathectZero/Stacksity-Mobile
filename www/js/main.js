@@ -888,9 +888,8 @@ function commentHTML(element, depth){
         '<div class="textpost">'+
         '<textarea name="text" class="expanding" id="text" placeholder="write something here..." rows="2" required></textarea>'+
         '</div></div>'+
-        '<div class="postsub commentsub">'+
         '<button type="submit" class="postb replypost commentb">Post</button>'+
-        '</div></form>';
+        '</form>';
     }
     return '<div class="child '+depthtext+'">'+
     '<div class="comment" data-commentid="'+element.comment_id+'" data-depth="'+element.depth+'">'+
@@ -1006,7 +1005,7 @@ $(document).on('submit', '.editcon', function(e){
             data     : el.serialize()+"&session_id="+id,
             success  : function(data) {
                 el.siblings(".commenttext").show();
-                el.siblings(".tagline").children(".edittime").html(" | edited now");
+                el.siblings(".tagline").children(".edittime").html("edited now");
                 el.siblings().children(".commentcontent").html(data);
                 el.hide();
                 el.children('.saveedit').html('save');
@@ -1075,7 +1074,7 @@ $(document).on('submit', '.replycomment', function(e){
     if(!posting && ($(this).children(".postcon").children(".textpost").children().val().trim().length > 0)){
         checklogin();
         posting = true;
-        $(this).children(".postsub").children('.replypost').html('<div class="loader">Loading...</div>');
+        $(this).children('.replypost').html('<div class="loader">Loading...</div>');
         e.preventDefault();
         var el = $(this);
         $.ajax({
@@ -1093,7 +1092,7 @@ $(document).on('submit', '.replycomment', function(e){
                     $(commentHTML(element, el.data('depth')+1)).hide().insertAfter(el.closest('.comment')).fadeIn("slow");
                     el.children('.replypost').html('Post');
                     el.find("input[type=text], textarea").val("");
-                    el.siblings('.reply').show();
+                    el.siblings('.replybutton').trigger( "click" );
                     el.hide();
                 }
                 posting = false;
@@ -1101,7 +1100,7 @@ $(document).on('submit', '.replycomment', function(e){
             error: function(xhr, status, error) {
                 alert("error"+ xhr.responseText);
                 $(this).children('.replypost').html('Post');
-                $(this).siblings('.reply').show();
+                $(this).siblings('.replybutton').trigger( "click" );
                 $(this).hide();
                 posting = false;
             }

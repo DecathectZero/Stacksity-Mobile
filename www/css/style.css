@@ -996,10 +996,10 @@ background-color: #CCC;
     text-shadow: none;
     color: #fff;
 }
-.locbar .btn:hover{
-    background-color: #fff;
-    color: #333;
-}
+/*.locbar .btn:hover{*/
+    /*background-color: #fff;*/
+    /*color: #333;*/
+/*}*/
 .btn-default[disabled]{
     background-color: #7CACD6;
 }
