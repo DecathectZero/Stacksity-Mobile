@@ -495,8 +495,6 @@ function refreshPage(opt) {
 function linkToStack(goto){
     if(goto == userstack || goto == username){
         refreshPage(5);
-    }else if(goto == "-2"){
-        refreshPage(2);
     }else{
         $('.active').removeClass('active');
         //localStorage.setItem('stack', goto);

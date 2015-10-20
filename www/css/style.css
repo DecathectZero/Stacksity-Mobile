@@ -992,16 +992,12 @@ background-color: #CCC;
     border: none;
 }
 .locbar .btn{
-    background-color: #428BCA;
+    background-color: #428BCA !important;
     text-shadow: none;
     color: #fff;
 }
-/*.locbar .btn:hover{*/
-    /*background-color: #fff;*/
-    /*color: #333;*/
-/*}*/
-.btn-default[disabled]{
-    background-color: #7CACD6;
+.btn-default[disabled], .locbar .btn:hover, .locbar .btn:focus, .locbar .btn:active{
+    background-color: #7CACD6 !important;
 }
 .modal-footer .btn{
     padding: 5px 10px;
