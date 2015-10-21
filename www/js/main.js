@@ -768,8 +768,8 @@ $(document).on('tap','a',function(e){
             linkToStack(goto);
         }else if($(this).hasClass("sharelink")){
             e.preventDefault();
-            var goto = $(this).data('link');
-            window.plugins.socialsharing.share(null, null, null, ('https://stacksity.com/p/' + goto));
+            var goto = "https://stacksity.com/p/" + $(this).data('link');
+            window.plugins.socialsharing.share('Message and link', null, null, goto);
         }else{
             var link = $(this).attr("href");
             if(link==null||$(this).hasClass("ui-input-clear")){
