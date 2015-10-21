@@ -741,7 +741,7 @@ $(document).on('tap','.postlink',function(e){
 });
 
 /*post stuff*/
-$(document).on('click','a',function(e){
+$(document).on('tap','a',function(e){
     if(login){
         if($(this).hasClass("toPost")){
             e.preventDefault();
@@ -759,6 +759,10 @@ $(document).on('click','a',function(e){
             e.preventDefault();
             var goto = $(this).data('link');
             linkToStack(goto);
+        }else if($(this).hasClass("sharelink")){
+            e.preventDefault();
+            var goto = $(this).data('link');
+            window.plugins.socialsharing.share("", null, null, "https://stacksity.com/p/" + goto);
         }else{
             var link = $(this).attr("href");
             if(link==null||$(this).hasClass("ui-input-clear")){
