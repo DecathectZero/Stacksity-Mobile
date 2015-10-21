@@ -769,7 +769,7 @@ $(document).on('tap','a',function(e){
         }else if($(this).hasClass("sharelink")){
             e.preventDefault();
             var goto = "https://stacksity.com/p/" + $(this).data('link');
-            window.plugins.socialsharing.share('Message and link', null, null, goto);
+            window.plugins.socialsharing.share('', null, null, goto);
         }else{
             var link = $(this).attr("href");
             if(link==null||$(this).hasClass("ui-input-clear")){
@@ -1041,8 +1041,8 @@ function getComment(item)
             commentid = 0;
             if(comment.length!=0){
                 comment.children(".comment-content").css("background-color","#F0E68C");
-                $('html, body').animate({
-                    scrollTop: comment.offset().top
+                $('#post .extracontainer').animate({
+                    scrollTop: (comment.offset().top - 40)
                 }, 1000);
             }
         }
