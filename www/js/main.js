@@ -360,7 +360,7 @@ function refresh(){
         bannerset(activep, stackid);
     }else{
         var scrollpos = activep.find(".extracontainer").scrollTop();
-        if(scrollpos==0){
+        if(scrollpos<100){
             activep.find(".feed").empty();
             activep.data("startnews", 0);
             startnews = 0;
@@ -1042,7 +1042,7 @@ function getComment(item)
             if(comment.length!=0){
                 comment.children(".comment-content").css("background-color","#F0E68C");
                 $('#post .extracontainer').animate({
-                    scrollTop: (comment.offset().top - 40)
+                    scrollTop: (comment.offset().top - 50)
                 }, 1000);
             }
         }

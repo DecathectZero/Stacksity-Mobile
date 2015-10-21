@@ -461,7 +461,7 @@ background-color: #CCC;
     border: 1px solid #999;
 }
 .count{
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: raleway !important;
     margin-bottom: 0 !important;
     width: 30px;
     height: 40px;
@@ -469,6 +469,7 @@ background-color: #CCC;
     float: right;
     text-align: center;
     color: #000 !important;
+    font-size: 20px !important;
 }
 .ui-btn{
     margin: 0;
@@ -478,11 +479,13 @@ background-color: #CCC;
     background-image: url("../img/post/upstack.svg");
     background-repeat: no-repeat;
     background-size: 100%;
+    background-position: center
 }
 .stackdown{
     background-image: url("../img/post/downstack.svg");
     background-repeat: no-repeat;
     background-size: 100%;
+    background-position: center
 }
 .stack-up{
     /*background-color: #980200;*/
