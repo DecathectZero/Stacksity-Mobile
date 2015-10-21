@@ -13,7 +13,7 @@ function comments(element){
     }
     if(option!=7){
         del = '<a class="toPost commentlink" data-postlink="'+element.post_id+'">'+element.comments+' comments</a>'+del+
-            '<a class="commentlink sharelink" data-link=' + element.post_id + '"><span class="glyphicon glyphicon-link"></span></a><span class="pid">P#'+element.post_id+'</span></a>';
+            '<a class="commentlink sharelink" data-link="' + element.post_id + '"><span class="glyphicon glyphicon-link"></span></a><span class="pid">P#'+element.post_id+'</span></a>';
     }else{
         del += '<a class="commentlink sharelink" data-link="' + element.post_id + '"><span class="glyphicon glyphicon-link"></span></a><span class="pid">P#'+element.post_id+'</span></a>';
     }

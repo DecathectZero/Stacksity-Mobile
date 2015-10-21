@@ -768,9 +768,8 @@ $(document).on('tap','a',function(e){
             linkToStack(goto);
         }else if($(this).hasClass("sharelink")){
             e.preventDefault();
-            var goto = "https://stacksity.com/p/" + String($(this).data('link'));
-            alert(goto);
-            window.plugins.socialsharing.share(null, null, null, 'http://www.x-services.nl');
+            var goto = "https://stacksity.com/p/" + $(this).data('link');
+            window.plugins.socialsharing.share('Message and link', null, null, goto);
         }else{
             var link = $(this).attr("href");
             if(link==null||$(this).hasClass("ui-input-clear")){
