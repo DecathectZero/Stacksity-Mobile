@@ -768,7 +768,7 @@ $(document).on('tap','a',function(e){
             linkToStack(goto);
         }else if($(this).hasClass("sharelink")){
             e.preventDefault();
-            var goto = "https://stacksity.com/p/" + $(this).data('link');
+            var goto = "https://stacksity.com/p/" + String($(this).data('link'));
             window.plugins.socialsharing.share('Message and link', null, null, goto);
         }else{
             var link = $(this).attr("href");
