@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb4336dd-fff4-42e3-ab59-f72e1798b9e1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/res/icons/bada/icon-128.png" afterPath="$PROJECT_DIR$/www/res/icons/bada/icon-128.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/res/icons/tizen/icon-128.png" afterPath="$PROJECT_DIR$/www/res/icons/tizen/icon-128.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/res/icons/bada-wac/icon-48-type5.png" afterPath="$PROJECT_DIR$/www/res/icons/bada-wac/icon-48-type5.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/res/icons/bada-wac/icon-50-type3.png" afterPath="$PROJECT_DIR$/www/res/icons/bada-wac/icon-50-type3.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/res/icons/bada-wac/icon-80-type4.png" afterPath="$PROJECT_DIR$/www/res/icons/bada-wac/icon-80-type4.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/output.js" afterPath="$PROJECT_DIR$/www/js/output.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Stacksity-Mobile.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -62,11 +59,11 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-46.551723">
-              <caret line="286" column="1" selection-start-line="286" selection-start-column="1" selection-end-line="286" selection-end-column="1" />
+            <state vertical-scroll-proportion="-59.344826">
+              <caret line="771" column="48" selection-start-line="771" selection-start-column="48" selection-end-line="771" selection-end-column="48" />
               <folding>
-                <marker date="1445395925037" expanded="true" signature="3961:3981" placeholder="..." />
-                <marker date="1445395925037" expanded="true" signature="32323:32336" placeholder="..." />
+                <marker date="1445400622068" expanded="true" signature="3961:3981" placeholder="..." />
+                <marker date="1445400622068" expanded="true" signature="32323:32336" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -105,21 +102,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="config.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/config.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.13105726">
-              <caret line="35" column="57" selection-start-line="35" selection-start-column="57" selection-end-line="35" selection-end-column="57" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="28" column="4" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="4" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="output.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="output.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/output.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
+            <state vertical-scroll-proportion="0.14977974">
+              <caret line="17" column="185" selection-start-line="17" selection-start-column="185" selection-end-line="17" selection-end-column="185" />
               <folding />
             </state>
           </provider>
@@ -172,9 +169,9 @@
         <option value="$PROJECT_DIR$/www/css/style.css" />
         <option value="$PROJECT_DIR$/www/css/index.css" />
         <option value="$PROJECT_DIR$/www/config.xml" />
-        <option value="$PROJECT_DIR$/www/js/output.js" />
-        <option value="$PROJECT_DIR$/www/js/main.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/www/js/main.js" />
+        <option value="$PROJECT_DIR$/www/js/output.js" />
       </list>
     </option>
   </component>
@@ -834,25 +831,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/output.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-46.551723">
-          <caret line="286" column="1" selection-start-line="286" selection-start-column="1" selection-end-line="286" selection-end-column="1" />
-          <folding>
-            <marker date="1445395925037" expanded="true" signature="3961:3981" placeholder="..." />
-            <marker date="1445395925037" expanded="true" signature="32323:32336" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.6296296">
@@ -863,8 +841,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/config.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13105726">
-          <caret line="35" column="57" selection-start-line="35" selection-start-column="57" selection-end-line="35" selection-end-column="57" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="28" column="4" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-59.344826">
+          <caret line="771" column="48" selection-start-line="771" selection-start-column="48" selection-end-line="771" selection-end-column="48" />
+          <folding>
+            <marker date="1445400622068" expanded="true" signature="3961:3981" placeholder="..." />
+            <marker date="1445400622068" expanded="true" signature="32323:32336" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/output.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.14977974">
+          <caret line="17" column="185" selection-start-line="17" selection-start-column="185" selection-end-line="17" selection-end-column="185" />
           <folding />
         </state>
       </provider>
