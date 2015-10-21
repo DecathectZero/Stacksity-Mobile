@@ -37,6 +37,7 @@
         var loading = false;
         var postid = 0;
         var option = 1;
+        var submitform = false;
     </script>
 <body>
 <div class="footer" style="display: none">
@@ -156,55 +157,60 @@
             }
             $("#login").on('submit', function(e){
                 e.preventDefault();
-                $.ajax({
-                    type     : "POST",
-                    cache    : false,
-                    url      : 'https://stacksity.com/login.php',
-                    data     : $(this).serialize(),
-                    dataType : "html",
-                    crossDomain : true,
-                    success  : function(data) {
-                        if(data<="2"){
-                            errorinfo("Password or Username incorrect");
-                        }else if(data=="69"){
-                            errorinfo("Please fill in the fields");
-                        }else if(data.length>1){
-                            var element = JSON.parse(data);
-                            localStorage.setItem('session_id',element.session_id);
-                            localStorage.setItem('hashcode',element.hashcode);
-                            localStorage.setItem('ustack',element.stack_id);
-                            localStorage.setItem('username',element.username);
-                            localStorage.setItem('user_id',element.user_id);
-                            id = localStorage.getItem('session_id');
-                            userstack = localStorage.getItem('ustack');
-                            username = localStorage.getItem('username');
-                            user_id = localStorage.getItem('user_id');
+                if(!submitform){
+                    submitform = true;
+                    $.ajax({
+                        type     : "POST",
+                        cache    : false,
+                        url      : 'https://stacksity.com/login.php',
+                        data     : $(this).serialize(),
+                        dataType : "html",
+                        crossDomain : true,
+                        success  : function(data) {
+                            submitform = false;
+                            if(data<="2"){
+                                errorinfo("Password or Username incorrect");
+                            }else if(data=="69"){
+                                errorinfo("Please fill in the fields");
+                            }else if(data.length>1){
+                                var element = JSON.parse(data);
+                                localStorage.setItem('session_id',element.session_id);
+                                localStorage.setItem('hashcode',element.hashcode);
+                                localStorage.setItem('ustack',element.stack_id);
+                                localStorage.setItem('username',element.username);
+                                localStorage.setItem('user_id',element.user_id);
+                                id = localStorage.getItem('session_id');
+                                userstack = localStorage.getItem('ustack');
+                                username = localStorage.getItem('username');
+                                user_id = localStorage.getItem('user_id');
 
-                            //alert(localStorage.getItem('ustack')+" "+localStorage.getItem('username'));
-                            //Adds in notification
-                            if(mobile){
-                                if(PushbotsPlugin.isiOS()){
-                                    PushbotsPlugin.initializeiOS("561ed24517795902148b4569");
+                                //alert(localStorage.getItem('ustack')+" "+localStorage.getItem('username'));
+                                //Adds in notification
+                                if(mobile){
+                                    if(PushbotsPlugin.isiOS()){
+                                        PushbotsPlugin.initializeiOS("561ed24517795902148b4569");
+                                    }
+                                    if(PushbotsPlugin.isAndroid()){
+                                        PushbotsPlugin.initializeAndroid("561ed24517795902148b4569", "907553791348");
+                                    }
+                                    PushbotsPlugin.setAlias(localStorage.getItem('user_id'));
                                 }
-                                if(PushbotsPlugin.isAndroid()){
-                                    PushbotsPlugin.initializeAndroid("561ed24517795902148b4569", "907553791348");
-                                }
-                                PushbotsPlugin.setAlias(localStorage.getItem('user_id'));
+                                login = true;
+                                start();
+                            }else{
+                                errorinfo("Oops something went wrong with the server, error code: " + data);
                             }
-                            login = true;
-                            start();
-                        }else{
-                            errorinfo("Oops something went wrong with the server, error code: " + data);
+                        },
+                        error: function(request) {
+                            submitform = false;
+                            if (request.status == 0) {
+                                alert("You're offline!");
+                            }else{
+                                alert("Error Connection");
+                            }
                         }
-                    },
-                    error: function(request) {
-                        if (request.status == 0) {
-                            alert("You're offline!");
-                        }else{
-                            alert("Error Connection");
-                        }
-                    }
-                });
+                    });
+                }
             });
         </script>
     </div>
@@ -245,53 +251,60 @@
                 $("#sinforeg").show();
             }
             $("#account").on('submit', function(e){
-                e.preventDefault();
-                var formdata = $(this).serialize();
-                var emptyfield = false;
-                $("#account:input").each(function() {
-                    if ( $(this).val() === '' )
-                        emptyfield = true;
-                });
-                if(emptyfield){
-                    serrorinfo("Please fill in all fields");
-                }else if($('#inputPassword').val().length<7){
-                    serrorinfo("Please make your password longer than 6 characters");
-                }else{
-                    $.ajax({
-                        type     : "POST",
-                        cache    : false,
-                        url      : "https://stacksity.com/php/payment.php",
-                        data     : formdata,
-                        dataType : "html",
-                        crossDomain : true,
-                        success  : function(data) {
-                            if(data=="3"){
-                                signupsuccess();
-                            }else if(data=="2"){
-                                serrorinfo("This Username is already taken");
-                            }else if(data=="1"){
-                                serrorinfo("This Email is already taken");
-                            }else if(data=='10'){
-                                serrorinfo("No spaces in your username please");
-                            }else if(data=='11'){
-                                serrorinfo("Usernames can't start with $");
-                            }else if(data=='12'){
-                                serrorinfo("Usernames can't be only numbers");
-                            }else if(data=='13'){
-                                serrorinfo("Usernames can't contain special characters");
-                            }else{
-                                serrorinfo("Oops something went wrong with the server, error code: "+data);
-                            }
-                        },
-                        error: function(request) {
-                            if (request.status == 0) {
-                                alert("You're offline!");
-                            }else{
-                                alert("Error Connection");
-                            }
-                        }
+                if(!submitform) {
+                    submitform = true;
+                    e.preventDefault();
+                    var formdata = $(this).serialize();
+                    var emptyfield = false;
+                    $("#account:input").each(function() {
+                        if ( $(this).val() === '' )
+                            emptyfield = true;
                     });
+                    if(emptyfield){
+                        serrorinfo("Please fill in all fields");
+                        submitform = false;
+                    }else if($('#inputPassword').val().length<7){
+                        serrorinfo("Please make your password longer than 6 characters");
+                        submitform = false;
+                    }else{
+                        $.ajax({
+                            type     : "POST",
+                            cache    : false,
+                            url      : "https://stacksity.com/php/payment.php",
+                            data     : formdata,
+                            dataType : "html",
+                            crossDomain : true,
+                            success  : function(data) {
+                                submitform = false;
+                                if(data=="3"){
+                                    signupsuccess();
+                                }else if(data=="2"){
+                                    serrorinfo("This Username is already taken");
+                                }else if(data=="1"){
+                                    serrorinfo("This Email is already taken");
+                                }else if(data=='10'){
+                                    serrorinfo("No spaces in your username please");
+                                }else if(data=='11'){
+                                    serrorinfo("Usernames can't start with $");
+                                }else if(data=='12'){
+                                    serrorinfo("Usernames can't be only numbers");
+                                }else if(data=='13'){
+                                    serrorinfo("Usernames can't contain special characters");
+                                }else{
+                                    serrorinfo("Oops something went wrong with the server, error code: "+data);
+                                }
+                            },
+                            error: function(request) {
+                                submitform = false;
+                                if (request.status == 0) {
+                                    alert("You're offline!");
+                                }else{
+                                    alert("Error Connection");
+                                }
+                            }
+                        });
 
+                    }
                 }
             });
         </script>
