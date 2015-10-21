@@ -46,16 +46,21 @@ function bannerset(activepage, stackids){
                     ban.css("background-image","none");
                     ban.children().css("background-color","transparent");
                 }
-                activepage.find(".bannertext").html('<h1 class="bannertitle"></h1><p class="bannerdesc"></p>');
-                activepage.find(".bannertitle").html(stackname);
+                var $bannertext = activepage.find(".bannertext");
+                $bannertext.html('<h1 class="bannertitle"></h1><p class="bannerdesc"></p>');
+                
+                var $bannertitle = activepage.find(".bannertitle");
+                var $bannerdesc = activepage.find(".bannerdesc");
+                
+                $bannertitle.html(stackname);
                 if(stackids==0){
                     //ban.addClass("topbanner");
-                    activepage.find(".bannerdesc").html(element.stack_desc);
+                    $bannerdesc.html(element.stack_desc);
                 }else if(stackids==-1){
                     //ban.addClass("allbanner");
-                    activepage.find(".bannerdesc").html(element.stack_desc);
+                    $bannerdesc.html(element.stack_desc);
                 }else if(stackids<-1){
-                    activepage.find(".bannerdesc").html(element.stack_desc);
+                    $bannerdesc.html(element.stack_desc);
                     //if(stackids==-4){
                     //    ban.after('<div class="center locbar" style="padding: 0px 0 6px 0">'+
                     //        '<div class="btn-group btn-group-justified" role="group" aria-label="...">'+
@@ -94,22 +99,22 @@ function bannerset(activepage, stackids){
                     if (element.stack_desc != "" && element.stack_desc != null) {
                         space = '<br>';
                     }
-                    activepage.find(".bannerdesc").html('<b>' + element.stack_desc + space + "<span class='followers'>" + element.followers + '</span> followers</b>');
+                    $bannerdesc.html('<b>' + element.stack_desc + space + "<span class='followers'>" + element.followers + '</span> followers</b>');
                     if (userstack != stackids) {
                         if (element.following) {
-                            activepage.find('.bannertext').append('<br> <button class="follow followed" value="1" data-role="none">Followed</button>')
+                            $bannertext.append('<br> <button class="follow followed" value="1" data-role="none">Followed</button>')
                         } else {
-                            activepage.find('.bannertext').append('<br> <button class="follow" value="0" data-role="none">Follow</button>')
+                            $bannertext.append('<br> <button class="follow" value="0" data-role="none">Follow</button>')
                         }
                     } else {
-                        activepage.find('.bannertext').append('<br> <button class="logout" onclick="logout();">Logout</button>')
+                        $bannertext.append('<br> <button class="logout" onclick="logout();">Logout</button>')
                     }
                     if (element.is_user == "1") {
                         ban.addClass("userbanner");
                         is_user = 1;
                     }
                 }
-                activepage.find(".banner").slideDown({complete:function(){
+                ban.slideDown({complete:function(){
                     activepage.data("stack_id", stackids);
                     activepage.data("is_user", is_user);
                     activepage.data("startnews", 0);
@@ -308,18 +313,20 @@ function displayNews(startnum, activepage, stackid, latpoint, longpoint, distanc
                 if(startnum==0){
                     activepage.find('.feed').empty();
                 }
+                var postlist = "";
                 $.each(data, function(index, element) {
                     if(element.posttype == 0){
-                        activepage.find('.feed').append(linkspost(element));
+                        postlist += (linkspost(element));
                     }else if(element.posttype == 1){
-                        activepage.find('.feed').append(textspost(element));
+                        postlist += (textspost(element));
                     }else if(element.posttype == 2){
-                        activepage.find('.feed').append(imagepost(element));
+                        postlist += (imagepost(element));
                     }else if(element.posttype == 3){
-                        activepage.find('.feed').append(videopostfeed(element));
+                        postlist += (videopostfeed(element));
                     }
                     postnum++;
                 });
+                activepage.find('.feed').append(postlist);
                 loading = false;
                 bottom = false;
                 startnews = startnews + 10;
