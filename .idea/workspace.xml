@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="cb4336dd-fff4-42e3-ab59-f72e1798b9e1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/output.js" afterPath="$PROJECT_DIR$/www/js/output.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Stacksity-Mobile.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -115,8 +114,8 @@
       <file leaf-file-name="output.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/output.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.14977974">
-              <caret line="17" column="185" selection-start-line="17" selection-start-column="185" selection-end-line="17" selection-end-column="185" />
+            <state vertical-scroll-proportion="0.2246696">
+              <caret line="15" column="34" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -860,8 +859,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/output.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14977974">
-          <caret line="17" column="185" selection-start-line="17" selection-start-column="185" selection-end-line="17" selection-end-column="185" />
+        <state vertical-scroll-proportion="0.2246696">
+          <caret line="15" column="34" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
           <folding />
         </state>
       </provider>
