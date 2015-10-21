@@ -2,7 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb4336dd-fff4-42e3-ab59-f72e1798b9e1" name="Default" comment="">
+      <change type="DELETED" beforePath="C:\Users\Tyler\Documents\GitHub\Stacksity-Mobile\www\res\icons\android\icon-36-ldpi.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Tyler\Documents\GitHub\Stacksity-Mobile\www\res\icons\android\icon-48-mdpi.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Tyler\Documents\GitHub\Stacksity-Mobile\www\res\icons\android\icon-72-hdpi.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Tyler\Documents\GitHub\Stacksity-Mobile\www\res\icons\android\icon-96-xhdpi.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Tyler\Documents\GitHub\Stacksity-Mobile\www\res\icons\bada-wac\icon-48-type5.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Tyler\Documents\GitHub\Stacksity-Mobile\www\res\icons\bada-wac\icon-50-type3.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Tyler\Documents\GitHub\Stacksity-Mobile\www\res\icons\bada-wac\icon-80-type4.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Tyler\Documents\GitHub\Stacksity-Mobile\www\res\icons\bada\icon-128.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Tyler\Documents\GitHub\Stacksity-Mobile\www\res\icons\blackberry\icon-80.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Tyler\Documents\GitHub\Stacksity-Mobile\www\res\icons\ios\Icon-60.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Tyler\Documents\GitHub\Stacksity-Mobile\www\res\icons\ios\Icon-Small-50.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Tyler\Documents\GitHub\Stacksity-Mobile\www\res\icons\ios\Icon-Small-50@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Tyler\Documents\GitHub\Stacksity-Mobile\www\res\icons\ios\Thumbs.db" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Tyler\Documents\GitHub\Stacksity-Mobile\www\res\icons\ios\iTunesArtwork.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Tyler\Documents\GitHub\Stacksity-Mobile\www\res\icons\ios\iTunesArtwork@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Tyler\Documents\GitHub\Stacksity-Mobile\www\res\icons\ios\icon-57-2x.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Tyler\Documents\GitHub\Stacksity-Mobile\www\res\icons\ios\icon-57.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Tyler\Documents\GitHub\Stacksity-Mobile\www\res\icons\ios\icon-72-2x.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Tyler\Documents\GitHub\Stacksity-Mobile\www\res\icons\ios\icon-72.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Tyler\Documents\GitHub\Stacksity-Mobile\www\res\icons\tizen\icon-128.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Tyler\Documents\GitHub\Stacksity-Mobile\www\res\icons\webos\icon-64.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Tyler\Documents\GitHub\Stacksity-Mobile\www\res\icons\windows-phone\icon-173-tile.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Tyler\Documents\GitHub\Stacksity-Mobile\www\res\icons\windows-phone\icon-48.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Tyler\Documents\GitHub\Stacksity-Mobile\www\res\icons\windows-phone\icon-62-tile.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/main.js" afterPath="$PROJECT_DIR$/www/js/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Stacksity-Mobile.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,7 +52,7 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="-0.0">
               <caret line="782" column="33" selection-start-line="782" selection-start-column="33" selection-end-line="782" selection-end-column="33" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -58,12 +83,22 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.39135382">
-              <caret line="771" column="51" selection-start-line="771" selection-start-column="51" selection-end-line="771" selection-end-column="51" />
+            <state vertical-scroll-proportion="0.75881684">
+              <caret line="790" column="22" selection-start-line="790" selection-start-column="22" selection-end-line="790" selection-end-column="22" />
               <folding>
-                <marker date="1445405764591" expanded="true" signature="3961:3981" placeholder="..." />
-                <marker date="1445405764591" expanded="true" signature="32325:32338" placeholder="..." />
+                <marker date="1445406054749" expanded="true" signature="3961:3981" placeholder="..." />
+                <marker date="1445406054749" expanded="true" signature="32332:32345" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/config.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="28" column="4" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="4" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -96,16 +131,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="1" column="19" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/config.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="28" column="4" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -304,7 +329,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="icons" />
+              <option name="myItemId" value="screen" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -326,7 +351,33 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="icons" />
+              <option name="myItemId" value="screen" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ios" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Stacksity-Mobile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Stacksity-Mobile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="screen" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -506,14 +557,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/www/config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="65" selection-start-line="19" selection-start-column="65" selection-end-line="19" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/output.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -609,21 +652,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/res/icons/ios/icon-57-2x.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/res/icons/ios/icon-57.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/res/icons/ios/Icon-72.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/img/post/upstack.svg">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -636,31 +664,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/res/icons/android/icon-36-ldpi.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/res/icons/android/icon-48-mdpi.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/res/icons/android/icon-72-hdpi.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/res/icons/android/icon-96-xhdpi.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/res/icons/ios/icon-72-2x.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/res/screen/android/screen-hdpi-landscape.png">
@@ -838,14 +841,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="4" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/output.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -854,13 +849,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/res/screen/ios/screen-ipad-landscape.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="28" column="4" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39135382">
-          <caret line="771" column="51" selection-start-line="771" selection-start-column="51" selection-end-line="771" selection-end-column="51" />
+        <state vertical-scroll-proportion="0.75881684">
+          <caret line="790" column="22" selection-start-line="790" selection-start-column="22" selection-end-line="790" selection-end-column="22" />
           <folding>
-            <marker date="1445405764591" expanded="true" signature="3961:3981" placeholder="..." />
-            <marker date="1445405764591" expanded="true" signature="32325:32338" placeholder="..." />
+            <marker date="1445406054749" expanded="true" signature="3961:3981" placeholder="..." />
+            <marker date="1445406054749" expanded="true" signature="32332:32345" placeholder="..." />
           </folding>
         </state>
       </provider>

@@ -769,7 +769,7 @@ $(document).on('tap','a',function(e){
         }else if($(this).hasClass("sharelink")){
             e.preventDefault();
             var goto = $(this).data('link');
-            window.plugins.socialsharing.share(null, null, null, "https://stacksity.com/p/" + goto);
+            window.plugins.socialsharing.share('Message and link', null, null, 'http://www.x-services.nl');
         }else{
             var link = $(this).attr("href");
             if(link==null||$(this).hasClass("ui-input-clear")){
