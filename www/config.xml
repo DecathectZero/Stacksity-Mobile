@@ -33,7 +33,6 @@
     <gap:plugin name="cordova-plugin-media-capture" source="npm"/>
     <gap:plugin name="cordova-plugin-device" source="npm"/>
     <gap:plugin name="cordova-plugin-device-orientation" source="npm"/>
-    <gap:plugin name="cordova-plugin-file" source="npm"/>
     <gap:plugin name="cordova-plugin-geolocation" source="npm"/>
     <gap:plugin name="cordova-plugin-inappbrowser" source="npm"/>
     <gap:plugin name="cordova-plugin-media" source="npm"/>
