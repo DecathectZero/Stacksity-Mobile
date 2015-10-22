@@ -711,15 +711,15 @@ $(document).on('click', '.follow', function(){
 });
 
 /* Drag'n drop stuff */
-function imgurupload(fileURL) {
+function imgurupload(imageURL) {
     /* Is the file an image? */
         //if (!file || !file.type.match(/image.*/)) return;
         /* It is! */
         //document.body.className = "uploading";
         /* Lets build a FormData object*/
-        //alert(fileURL);
+        //alert(imageURL);
         //var fd = new FormData(); // I wrote about it: https://hacks.mozilla.org/2011/01/how-to-develop-a-html5-image-uploader/
-        //fd.append("image", fileURL); // Append the file
+        //fd.append("image", imageURL); // Append the file
         //var xhr = new XMLHttpRequest(); // Create the XHR (Cross-Domain XHR FTW!!!) Thank you sooooo much imgur.com
         //xhr.open("POST", "https://api.imgur.com/3/image.json"); // Boooom!
         //xhr.onload = function() {
@@ -739,13 +739,20 @@ function imgurupload(fileURL) {
         ///* And now, we send the formdata */
         //xhr.send(fd);
 
-        alert(fileURL);
-        var ft = new FileTransfer();
-        var options = new FileUploadOptions();
-        options.mimeType="image/jpeg";
-        options.chunkedMode = false;
-        options.headers = {Authorization:'Client-ID 2caf3e86e092d76',Connection: "close"};
-        ft.upload(fileURL, encodeURI("https://api.imgur.com/3/image.json"), function(){
+    alert(imageURL);
+    var ft = new FileTransfer();
+    var options = new FileUploadOptions();
+    options.mimeType="image/jpeg";
+    options.chunkedMode = false;
+    options.headers = {Authorization:'Client-ID 2caf3e86e092d76',Connection: "close"};
+    options.fileName=imageURL.substr(imageURI.lastIndexOf('/')+1);
+
+    var params = {};
+    params.fullpath =imageURL;
+    params.name = options.fileName;
+
+
+    ft.upload(imageURL, encodeURI("https://api.imgur.com/3/image.json"), function(){
             var link = JSON.parse(xhr.responseText).data.link;
             $('#link').val(link);
             $("#imageupload").hide();
