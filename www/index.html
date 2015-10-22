@@ -632,86 +632,66 @@
 <script type="text/javascript">
     var pictureSource = null;
     var destinationType = null;
-    var Upload = {
-        // The callback function that will be invoked with either link or error
-        callback_func: null,
-        // file is from a <input> tag or from Drag'n Drop
-        upload: function(file, callback_func) {
-            $("#imagespinner").show();
-            // Set up the callback first
-            Upload.callback_func = callback_func;
-            // Checking if the file selected
-            if (!file || file.length<1) {
-                Upload.callback_func(null, "Invalid File");
-            }
-
-            // It is!
-            // Let's build a FormData object
-            var fd = new FormData();
-            fd.append("image", file); // Append the file
-
-            // Create the XHR (Cross-Domain XHR FTW!!!)
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "https://api.imgur.com/3/image.json"); // Boooom!
-
-            xhr.onload = function() {
-                var link = JSON.parse(xhr.responseText).data.link;
-                $('#link').val(link);
-                $("#imageupload").hide();
-                //$('#imageid').val(file.name);
-                $('#imagePostPreview').attr('src', link);
-                $('.background-image').slideDown();
-                document.body.className = "uploaded";
-            };
-            xhr.setRequestHeader('Authorization', 'Client-ID 2caf3e86e092d76');
-
-            // And now, we send the formdata
-            xhr.send(fd);
-        },
-
-        // Image Retreival Functions
-        // Gets the photo from the Library
-        // callback_function set up :-
-        // function callback_func(img_url, message)
-        //
-        getPhotoFromLibrary: function(callback_func) {
-            Upload.callback_func = callback_func;
-            // Set up the necessary sources
-            pictureSource = navigator.camera.PictureSourceType;
-            destinationType = navigator.camera.DestinationType;
-
-            navigator.camera.getPicture(Upload.onPhotoDataSuccess, Upload.onFail, {
-                quality: 50,
-                destinationType: destinationType.DATA_URL,
-                sourceType: pictureSource.PHOTOLIBRARY
-            });
-        },
-
-        getPhotoFromCamera: function(callback_func) {
-            Upload.callback_func = callback_func;
-            // Set up the necessary sources
-            pictureSource = navigator.camera.PictureSourceType;
-            destinationType = navigator.camera.DestinationType;
-
-            navigator.camera.getPicture(Upload.onPhotoDataSuccess, Upload.onFail, {
-                quality: 50,
-                destinationType: destinationType.DATA_URL,
-                sourceType: pictureSource.CAMERA
-            });
-        },
-
-        onFail: function(message) {
-            if(Upload.callback_func) {
-                Upload.callback_func("", message);
-            }
-        },
-
-        onPhotoDataSuccess: function(imageData) {
-            if(Upload.callback_func) {
-                Upload.callback_func(imageData, "Success");
-            }
+    function upload(file) {
+        $("#imagespinner").show();
+        // Checking if the file selected
+        if (!file || file.length<1) {
+            Upload.callback_func(null, "Invalid File");
         }
-    };
+
+        // It is!
+        // Let's build a FormData object
+        var fd = new FormData();
+        fd.append("image", file); // Append the file
+
+        // Create the XHR (Cross-Domain XHR FTW!!!)
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "https://api.imgur.com/3/image.json"); // Boooom!
+
+        xhr.onload = function() {
+            var link = JSON.parse(xhr.responseText).data.link;
+            $('#link').val(link);
+            $("#imageupload").hide();
+            //$('#imageid').val(file.name);
+            $('#imagePostPreview').attr('src', link);
+            $('.background-image').slideDown();
+            document.body.className = "uploaded";
+        };
+        xhr.setRequestHeader('Authorization', 'Client-ID 2caf3e86e092d76');
+
+        // And now, we send the formdata
+        xhr.send(fd);
+    }
+    function getPhotoFromLibrary(){
+        // Set up the necessary sources
+        pictureSource = navigator.camera.PictureSourceType;
+        destinationType = navigator.camera.DestinationType;
+
+        navigator.camera.getPicture(onPhotoDataSuccess, onFail, {
+            quality: 50,
+            destinationType: destinationType.DATA_URL,
+            sourceType: pictureSource.PHOTOLIBRARY
+        });
+    }
+
+    function getPhotoFromCamera() {
+        // Set up the necessary sources
+        pictureSource = navigator.camera.PictureSourceType;
+        destinationType = navigator.camera.DestinationType;
+
+        navigator.camera.getPicture(onPhotoDataSuccess, onFail, {
+            quality: 50,
+            destinationType: destinationType.DATA_URL,
+            sourceType: pictureSource.CAMERA
+        });
+    }
+
+    function onFail(message) {
+    }
+
+    function onPhotoDataSuccess(imageData) {
+        upload(imageData, "Success");
+    }
 
     if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/)) {
         mobile = true;
