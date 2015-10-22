@@ -60,11 +60,11 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.38908246">
-              <caret line="746" column="23" selection-start-line="746" selection-start-column="23" selection-end-line="746" selection-end-column="66" />
+            <state vertical-scroll-proportion="0.7444832">
+              <caret line="755" column="21" selection-start-line="754" selection-start-column="32" selection-end-line="755" selection-end-column="21" />
               <folding>
-                <marker date="1445483935437" expanded="true" signature="3929:3949" placeholder="..." />
-                <marker date="1445483935437" expanded="true" signature="33542:33555" placeholder="..." />
+                <marker date="1445484118229" expanded="true" signature="3929:3949" placeholder="..." />
+                <marker date="1445484118229" expanded="true" signature="33572:33585" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -605,7 +605,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/www/js/main.js</url>
-          <line>810</line>
+          <line>811</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
@@ -957,11 +957,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38908246">
-          <caret line="746" column="23" selection-start-line="746" selection-start-column="23" selection-end-line="746" selection-end-column="66" />
+        <state vertical-scroll-proportion="0.7444832">
+          <caret line="755" column="21" selection-start-line="754" selection-start-column="32" selection-end-line="755" selection-end-column="21" />
           <folding>
-            <marker date="1445483935437" expanded="true" signature="3929:3949" placeholder="..." />
-            <marker date="1445483935437" expanded="true" signature="33542:33555" placeholder="..." />
+            <marker date="1445484118229" expanded="true" signature="3929:3949" placeholder="..." />
+            <marker date="1445484118229" expanded="true" signature="33572:33585" placeholder="..." />
           </folding>
         </state>
       </provider>

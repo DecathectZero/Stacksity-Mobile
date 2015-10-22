@@ -753,6 +753,7 @@ function imgurupload(imageURL) {
 
 
     ft.upload(imageURL, encodeURI("https://api.imgur.com/3/image.json"), function(r){
+            alert("success");
             alert(r.response);
             var link = JSON.parse(r.response).data.link;
             $('#link').val(link);
