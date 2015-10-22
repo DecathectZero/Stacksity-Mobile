@@ -630,11 +630,11 @@
 <script src="js/output.js"></script>
 <script src="js/vote.js"></script>
 <script type="text/javascript">
-    function pictureSuccess(imageURI) {
+    function pictureSuccess(filelink) {
         alert("1");
         $("#imagespinner").show();
         alert("2");
-        imgurupload(imageURL);
+        imgurupload(filelink);
     }
 
     if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/)) {
