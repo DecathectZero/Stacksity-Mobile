@@ -717,44 +717,46 @@ function imgurupload(fileURL) {
         /* It is! */
         //document.body.className = "uploading";
         /* Lets build a FormData object*/
-        alert(fileURL);
-        var fd = new FormData(); // I wrote about it: https://hacks.mozilla.org/2011/01/how-to-develop-a-html5-image-uploader/
-        fd.append("image", fileURL); // Append the file
-        var xhr = new XMLHttpRequest(); // Create the XHR (Cross-Domain XHR FTW!!!) Thank you sooooo much imgur.com
-        xhr.open("POST", "https://api.imgur.com/3/image.json"); // Boooom!
-        xhr.onload = function() {
-            // Big win!
-            var link = JSON.parse(xhr.responseText).data.link;
-            $('#link').val(link);
-            $("imageupload").hide();
-            //$('#imageid').val(file.name);
-            $('#imagePostPreview').attr('src', link);
-            $('.background-image').slideDown();
-            //document.body.className = "uploaded";
-        };
-
-        xhr.setRequestHeader('Authorization', 'Client-ID 2caf3e86e092d76'); // Get your own key http://api.imgur.com/
-
-        // Ok, I don't handle the errors. An exercise for the reader.
-        /* And now, we send the formdata */
-        xhr.send(fd);
-
         //alert(fileURL);
-        //var ft = new FileTransfer();
-        //var headers = {'Authorization':'Client-ID 2caf3e86e092d76'};
-        //var options = new FileUploadOptions();
-        //options. = headers;
-        //ft.upload(fileURL, encodeURI("https://api.imgur.com/3/image.json"), function(){
+        //var fd = new FormData(); // I wrote about it: https://hacks.mozilla.org/2011/01/how-to-develop-a-html5-image-uploader/
+        //fd.append("image", fileURL); // Append the file
+        //var xhr = new XMLHttpRequest(); // Create the XHR (Cross-Domain XHR FTW!!!) Thank you sooooo much imgur.com
+        //xhr.open("POST", "https://api.imgur.com/3/image.json"); // Boooom!
+        //xhr.onload = function() {
+        //    // Big win!
         //    var link = JSON.parse(xhr.responseText).data.link;
         //    $('#link').val(link);
-        //    $("imageupload").hide();
+        //    $("#imageupload").hide();
         //    //$('#imageid').val(file.name);
         //    $('#imagePostPreview').attr('src', link);
         //    $('.background-image').slideDown();
         //    //document.body.className = "uploaded";
-        //}, function(){
-        //    alert("SOMEHTING WESADSAIHFSA DWRONG");
-        //}, options);
+        //};
+        //
+        //xhr.setRequestHeader('Authorization', 'Client-ID 2caf3e86e092d76'); // Get your own key http://api.imgur.com/
+        //
+        //// Ok, I don't handle the errors. An exercise for the reader.
+        ///* And now, we send the formdata */
+        //xhr.send(fd);
+
+        alert(fileURL);
+        var ft = new FileTransfer();
+        var headers = {'Authorization':'Client-ID 2caf3e86e092d76'};
+        var options = new FileUploadOptions();
+        options. = headers;
+        ft.upload(fileURL, encodeURI("https://api.imgur.com/3/image.json"), function(){
+            var link = JSON.parse(xhr.responseText).data.link;
+            $('#link').val(link);
+            $("#imageupload").hide();
+            //$('#imageid').val(file.name);
+            $('#imagePostPreview').attr('src', link);
+            $('.background-image').slideDown();
+            //document.body.className = "uploaded";
+        },function(error) {
+            alert("An error has occurred: Code = " + error.code);
+            alert("upload error source " + error.source);
+            alert("upload error target " + error.target);
+        }, options);
 }
 function stackTrace() {
     var err = new Error();
