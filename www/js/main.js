@@ -712,7 +712,7 @@ $(document).on('click', '.follow', function(){
 /* Drag'n drop stuff */
 function upload(file) {
     /* Is the file an image? */
-    navigator.camera.getPicture(function(file){
+    if(device.platform == 'iOS' && parseInt(device.version.charAt(0)) >= 8 ){
         if (!file || !file.type.match(/image.*/)) return;
     /* It is! */
     document.body.className = "uploading";
@@ -738,8 +738,10 @@ function upload(file) {
     /* And now, we send the formdata */
     xhr.send(fd);
         
-    }, function(){alert("Sorry, photo upload failed");}, { quality: 100 });
     
+    }else{
+        alert("Sorry not supported on ios9 yet");
+    }   
 }
 function stackTrace() {
     var err = new Error();
