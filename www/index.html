@@ -522,10 +522,10 @@
                         <p>image</p>
                         <div class="btn-group btn-group-justified" role="group" aria-label="...">
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-default" onclick="upload(navigator.camera.PictureSourceType.CAMERA)"><span class="glyphicon glyphicon-camera"></span> Camera</button>
+                                <button type="button" class="btn btn-default" onclick="navigator.camera.getPicture(pictureSuccess, function(){alert('Could not retrieve image')},{quality: 100})"><span class="glyphicon glyphicon-camera"></span> Camera</button>
                             </div>
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-default" onclick="upload(navigator.camera.PictureSourceType.PHOTOLIBRARY)"><span class="glyphicon glyphicon-picture"></span> Library</button>
+                                <button type="button" class="btn btn-default" onclick="navigator.camera.getPicture(pictureSuccess, function(){alert('Could not retrieve image')},{quality: 100, sourceType: Camera.PictureSourceType.PHOTOLIBRARY })"><span class="glyphicon glyphicon-picture"></span> Library</button>
                             </div>
                         </div>
                         <div class="background-image">
@@ -626,6 +626,10 @@
 <script src="js/output.js"></script>
 <script src="js/vote.js"></script>
 <script type="text/javascript">
+    function pictureSuccess(imageData) {
+         var image = "data:image/jpeg;base64," + imageData;
+        upload(image);
+    }
 
     if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/)) {
         mobile = true;
