@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cb4336dd-fff4-42e3-ab59-f72e1798b9e1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/index.html" afterPath="$PROJECT_DIR$/www/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/main.js" afterPath="$PROJECT_DIR$/www/js/main.js" />
     </list>
     <ignored path="Stacksity-Mobile.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,11 +25,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3113426">
-              <caret line="527" column="212" selection-start-line="527" selection-start-column="212" selection-end-line="527" selection-end-column="212" />
+            <state vertical-scroll-proportion="-3.3454545">
+              <caret line="522" column="97" selection-start-line="522" selection-start-column="97" selection-end-line="522" selection-end-column="97" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -51,20 +52,20 @@
                 <element signature="n#style#0;n#div#4;n#div#0;n#div#0;n#div#9;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#5;n#div#0;n#div#0;n#div#9;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#form#0;n#div#2;n#div#1;n#div#10;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1445483075871" expanded="true" signature="42853:42863" placeholder="..." />
+                <marker date="1445483223781" expanded="true" signature="42853:42863" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.413794">
-              <caret line="756" column="57" selection-start-line="754" selection-start-column="11" selection-end-line="756" selection-end-column="57" />
+            <state vertical-scroll-proportion="0.38988763">
+              <caret line="745" column="8" selection-start-line="745" selection-start-column="8" selection-end-line="745" selection-end-column="8" />
               <folding>
-                <marker date="1445482842190" expanded="true" signature="3929:3949" placeholder="..." />
-                <marker date="1445482842190" expanded="true" signature="33285:33298" placeholder="..." />
+                <marker date="1445483332979" expanded="true" signature="3929:3949" placeholder="..." />
+                <marker date="1445483332979" expanded="true" signature="33379:33392" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -179,8 +180,8 @@
         <option value="$PROJECT_DIR$/www/css/index.css" />
         <option value="$PROJECT_DIR$/www/css/style.css" />
         <option value="$PROJECT_DIR$/www/config.xml" />
-        <option value="$PROJECT_DIR$/www/js/main.js" />
         <option value="$PROJECT_DIR$/www/index.html" />
+        <option value="$PROJECT_DIR$/www/js/main.js" />
       </list>
     </option>
   </component>
@@ -605,7 +606,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/www/js/main.js</url>
-          <line>800</line>
+          <line>802</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
@@ -911,11 +912,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/img/post/private.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/img/post/downstack.svg">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -924,21 +920,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.413794">
-          <caret line="756" column="57" selection-start-line="754" selection-start-column="11" selection-end-line="756" selection-end-column="57" />
-          <folding>
-            <marker date="1445482842190" expanded="true" signature="3929:3949" placeholder="..." />
-            <marker date="1445482842190" expanded="true" signature="33285:33298" placeholder="..." />
-          </folding>
-        </state>
+    <entry file="file://$PROJECT_DIR$/www/img/post/private.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3113426">
-          <caret line="527" column="212" selection-start-line="527" selection-start-column="212" selection-end-line="527" selection-end-column="212" />
+        <state vertical-scroll-proportion="-3.3454545">
+          <caret line="522" column="97" selection-start-line="522" selection-start-column="97" selection-end-line="522" selection-end-column="97" />
           <folding>
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -961,7 +951,18 @@
             <element signature="n#style#0;n#div#4;n#div#0;n#div#0;n#div#9;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#5;n#div#0;n#div#0;n#div#9;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#form#0;n#div#2;n#div#1;n#div#10;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1445483075871" expanded="true" signature="42853:42863" placeholder="..." />
+            <marker date="1445483223781" expanded="true" signature="42853:42863" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.38988763">
+          <caret line="745" column="8" selection-start-line="745" selection-start-column="8" selection-end-line="745" selection-end-column="8" />
+          <folding>
+            <marker date="1445483332979" expanded="true" signature="3929:3949" placeholder="..." />
+            <marker date="1445483332979" expanded="true" signature="33379:33392" placeholder="..." />
           </folding>
         </state>
       </provider>
