@@ -522,10 +522,10 @@
                         <p>image</p>
                         <div class="btn-group btn-group-justified" role="group" aria-label="...">
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-default" onclick="navigator.camera.getPicture(pictureSuccess, function(){},{destinationType: window.Camera.DestinationType.FILE_URI, quality: 50})"><span class="glyphicon glyphicon-camera"></span> Camera</button>
+                                <button type="button" class="btn btn-default" onclick="Upload.getPhotoFromCamera()"><span class="glyphicon glyphicon-camera"></span> Camera</button>
                             </div>
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-default" onclick="navigator.camera.getPicture(pictureSuccess, function(){},{destinationType: window.Camera.DestinationType.FILE_URI, quality: 50, sourceType: Camera.PictureSourceType.PHOTOLIBRARY })"><span class="glyphicon glyphicon-picture"></span> Library</button>
+                                <button type="button" class="btn btn-default" onclick="Upload.getPhotoFromLibrary()"><span class="glyphicon glyphicon-picture"></span> Library</button>
                             </div>
                         </div>
                         <div class="spinner" id="imagespinner" style="display: none">
@@ -630,37 +630,88 @@
 <script src="js/output.js"></script>
 <script src="js/vote.js"></script>
 <script type="text/javascript">
-    function pictureSuccess(imageURL) {
-        alert("1");
-        $("#imagespinner").show();
-        alert("2");
-        var fileinput = document.input.File;
-        alert(imageURL);
-        var img = fileinput.files[0].getAsDataURL(imageURL);
-        /* Lets build a FormData object*/
-        var fd = new FormData(); // I wrote about it: https://hacks.mozilla.org/2011/01/how-to-develop-a-html5-image-uploader/
-        fd.append("image", img); // Append the file
-        var xhr = new XMLHttpRequest(); // Create the XHR (Cross-Domain XHR FTW!!!) Thank you sooooo much imgur.com
-        xhr.open("POST", "https://api.imgur.com/3/image.json"); // Boooom!
-        xhr.onload = function() {
-            // Big win!
+    var pictureSource = null;
+    var destinationType = null;
+    var Upload = {
+        // The callback function that will be invoked with either link or error
+        callback_func: null,
+        // file is from a <input> tag or from Drag'n Drop
+        upload: function(file, callback_func) {
+            $("#imagespinner").show();
+            // Set up the callback first
+            Upload.callback_func = callback_func;
+            // Checking if the file selected
+            if (!file || file.length<1) {
+                Upload.callback_func(null, "Invalid File");
+            }
 
-            alert("asdsadsa");
-            var link = JSON.parse(xhr.responseText).data.link;
-            $('#link').val(link);
-            $("#imageupload").hide();
-            //$('#imageid').val(file.name);
-            $('#imagePostPreview').attr('src', link);
-            $('.background-image').slideDown();
-            document.body.className = "uploaded";
-        };
+            // It is!
+            // Let's build a FormData object
+            var fd = new FormData();
+            fd.append("image", file); // Append the file
 
-        xhr.setRequestHeader('Authorization', 'Client-ID 2caf3e86e092d76'); // Get your own key http://api.imgur.com/
+            // Create the XHR (Cross-Domain XHR FTW!!!)
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "https://api.imgur.com/3/image.json"); // Boooom!
 
-        // Ok, I don't handle the errors. An exercise for the reader.
-        /* And now, we send the formdata */
-        xhr.send(fd);
-    }
+            xhr.onload = function() {
+                var link = JSON.parse(xhr.responseText).data.link;
+                $('#link').val(link);
+                $("#imageupload").hide();
+                //$('#imageid').val(file.name);
+                $('#imagePostPreview').attr('src', link);
+                $('.background-image').slideDown();
+                document.body.className = "uploaded";
+            };
+            xhr.setRequestHeader('Authorization', 'Client-ID 2caf3e86e092d76');
+
+            // And now, we send the formdata
+            xhr.send(fd);
+        },
+
+        // Image Retreival Functions
+        // Gets the photo from the Library
+        // callback_function set up :-
+        // function callback_func(img_url, message)
+        //
+        getPhotoFromLibrary: function(callback_func) {
+            Upload.callback_func = callback_func;
+            // Set up the necessary sources
+            pictureSource = navigator.camera.PictureSourceType;
+            destinationType = navigator.camera.DestinationType;
+
+            navigator.camera.getPicture(Upload.onPhotoDataSuccess, Upload.onFail, {
+                quality: 50,
+                destinationType: destinationType.DATA_URL,
+                sourceType: pictureSource.PHOTOLIBRARY
+            });
+        },
+
+        getPhotoFromCamera: function(callback_func) {
+            Upload.callback_func = callback_func;
+            // Set up the necessary sources
+            pictureSource = navigator.camera.PictureSourceType;
+            destinationType = navigator.camera.DestinationType;
+
+            navigator.camera.getPicture(Upload.onPhotoDataSuccess, Upload.onFail, {
+                quality: 50,
+                destinationType: destinationType.DATA_URL,
+                sourceType: pictureSource.CAMERA
+            });
+        },
+
+        onFail: function(message) {
+            if(Upload.callback_func) {
+                Upload.callback_func("", message);
+            }
+        },
+
+        onPhotoDataSuccess: function(imageData) {
+            if(Upload.callback_func) {
+                Upload.callback_func(imageData, "Success");
+            }
+        }
+    };
 
     if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/)) {
         mobile = true;
