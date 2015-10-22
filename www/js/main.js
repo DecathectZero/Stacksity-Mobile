@@ -738,7 +738,7 @@ function imgurupload(fileURL) {
         ///* And now, we send the formdata */
         //xhr.send(fd);
 
-        $("#imagespinner").show();
+        alert(fileURL);
         var ft = new FileTransfer();
         var headers = {'Authorization':'Client-ID 2caf3e86e092d76'};
         var options = new FileUploadOptions();
