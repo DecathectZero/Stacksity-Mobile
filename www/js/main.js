@@ -710,12 +710,6 @@ $(document).on('click', '.follow', function(){
     });
 });
 
-Object.prototype.getName = function() {
-    var funcNameRegex = /function (.{1,})\(/;
-    var results = (funcNameRegex).exec((this).constructor.toString());
-    return (results && results.length > 1) ? results[1] : "";
-};
-
 /* Drag'n drop stuff */
 function upload(file) {
     /* Is the file an image? */
@@ -723,7 +717,7 @@ function upload(file) {
         /* It is! */
         //document.body.className = "uploading";
         /* Lets build a FormData object*/
-        alert(file.getName());
+        alert($.type(file));
         $("imageupload").show();
         var fd = new FormData(); // I wrote about it: https://hacks.mozilla.org/2011/01/how-to-develop-a-html5-image-uploader/
         fd.append("image", file); // Append the file
@@ -738,7 +732,7 @@ function upload(file) {
             $('#imagePostPreview').attr('src', link);
             $('.background-image').slideDown();
             //document.body.className = "uploaded";
-        }
+        };
 
         xhr.setRequestHeader('Authorization', 'Client-ID 2caf3e86e092d76'); // Get your own key http://api.imgur.com/
 

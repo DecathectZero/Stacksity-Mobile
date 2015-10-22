@@ -27,7 +27,7 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-36.454544">
+            <state vertical-scroll-proportion="-6.7818184">
               <caret line="636" column="34" selection-start-line="636" selection-start-column="34" selection-end-line="636" selection-end-column="34" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -60,11 +60,11 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5235955">
-              <caret line="725" column="30" selection-start-line="725" selection-start-column="30" selection-end-line="725" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.6955056">
+              <caret line="734" column="10" selection-start-line="734" selection-start-column="10" selection-end-line="734" selection-end-column="10" />
               <folding>
-                <marker date="1445479515095" expanded="true" signature="3929:3949" placeholder="..." />
-                <marker date="1445479515095" expanded="true" signature="32643:32656" placeholder="..." />
+                <marker date="1445479790471" expanded="true" signature="3929:3949" placeholder="..." />
+                <marker date="1445479790471" expanded="true" signature="32419:32432" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -605,7 +605,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/www/js/main.js</url>
-          <line>789</line>
+          <line>783</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
@@ -926,7 +926,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-36.454544">
+        <state vertical-scroll-proportion="-6.7818184">
           <caret line="636" column="34" selection-start-line="636" selection-start-column="34" selection-end-line="636" selection-end-column="34" />
           <folding>
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -957,11 +957,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5235955">
-          <caret line="725" column="30" selection-start-line="725" selection-start-column="30" selection-end-line="725" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.6955056">
+          <caret line="734" column="10" selection-start-line="734" selection-start-column="10" selection-end-line="734" selection-end-column="10" />
           <folding>
-            <marker date="1445479515095" expanded="true" signature="3929:3949" placeholder="..." />
-            <marker date="1445479515095" expanded="true" signature="32643:32656" placeholder="..." />
+            <marker date="1445479790471" expanded="true" signature="3929:3949" placeholder="..." />
+            <marker date="1445479790471" expanded="true" signature="32419:32432" placeholder="..." />
           </folding>
         </state>
       </provider>
