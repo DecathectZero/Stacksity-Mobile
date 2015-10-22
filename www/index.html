@@ -634,7 +634,7 @@
         alert("1");
         $("#imagespinner").show();
         alert("2");
-        window.resolveLocalFileSystemURI(filelink,
+        window.resolveLocalFileSystemURI(imageURL,
                 function(fileEntry){
                     if (!fileEntry || !fileEntry.type.match(/image.*/)) return;
                     /* It is! */
