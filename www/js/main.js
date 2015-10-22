@@ -718,13 +718,14 @@ function imgurupload(imageURL) {
         /* It is! */
         document.body.className = "uploading";
         /* Lets build a FormData object*/
-        alert(imageURL.fullpath);
         var fd = new FormData(); // I wrote about it: https://hacks.mozilla.org/2011/01/how-to-develop-a-html5-image-uploader/
         fd.append("image", imageURL); // Append the file
         var xhr = new XMLHttpRequest(); // Create the XHR (Cross-Domain XHR FTW!!!) Thank you sooooo much imgur.com
         xhr.open("POST", "https://api.imgur.com/3/image.json"); // Boooom!
         xhr.onload = function() {
             // Big win!
+
+            alert("asdsadsa");
             var link = JSON.parse(xhr.responseText).data.link;
             $('#link').val(link);
             $("#imageupload").hide();

@@ -637,7 +637,7 @@
         window.resolveLocalFileSystemURI(filelink,
                 function(fileEntry){
                     alert("got image file entry: " + fileEntry.fullPath);
-                    imgurupload(fileEntry);
+                    imgurupload(fileEntry.file());
                 },
                 function(){});
     }
