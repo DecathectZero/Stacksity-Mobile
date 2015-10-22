@@ -651,7 +651,7 @@
         xhr.onload = function() {
             var link = JSON.parse(xhr.responseText).data.link;
             $('#link').val(link);
-            $("#imageupload").hide();
+            $("#imagespinner").hide();
             //$('#imageid').val(file.name);
             $('#imagePostPreview').attr('src', link);
             $('.background-image').slideDown();
@@ -720,14 +720,9 @@
     }
 
     function onDeviceReady() {
-        document.addEventListener("backbutton", onBackKeyDown, false);
-        function onBackKeyDown() {
-            if(login){
-
-            }else{
-                navigator.app.exitApp();
-            }
-        }
+        document.addEventListener("backbutton", function (e) {
+            if(!login) e.preventDefault();
+        }, false );
         if(mobile){
 //            alert(device.platform + " | " + device.version);
             if(device.platform == 'iOS' && parseInt(device.version.charAt(0)) >= 8){
