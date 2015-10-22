@@ -38,6 +38,9 @@ a:hover{
 .margintop{
     margin-top: 20px;
 }
+#loginbutton, #signupbutton{
+    height: 50px;
+}
 .container{
     position: absolute;
     margin-left: auto;

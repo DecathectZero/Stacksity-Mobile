@@ -141,7 +141,7 @@
                         <input  data-role="none" name="inputEm" type="text" id="inputEm" class="form-control" placeholder="Email/Username" required>
                         <label for="inputPass" class="sr-only">Password</label>
                         <input data-role="none" name="inputPass" type="password" id="inputPass" class="form-control" placeholder="Password" required>
-                        <button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+                        <button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit" id="loginbutton">Login</button>
                         <a class="small" href="#passpage" data-transition="slide">Forgot your password or username?</a>
                     </form>
                     <form class="signinform margintop">
@@ -159,6 +159,7 @@
                 e.preventDefault();
                 if(!submitform){
                     submitform = true;
+                    $("#loginbutton").html("<div class='loader'></div>");
                     $.ajax({
                         type     : "POST",
                         cache    : false,
@@ -167,6 +168,7 @@
                         dataType : "html",
                         crossDomain : true,
                         success  : function(data) {
+                            $("#loginbutton").html("Login");
                             submitform = false;
                             if(data<="2"){
                                 errorinfo("Password or Username incorrect");
@@ -202,6 +204,7 @@
                             }
                         },
                         error: function(request) {
+                            $("#loginbutton").html("Login");
                             submitform = false;
                             if (request.status == 0) {
                                 alert("You're offline!");
@@ -232,7 +235,7 @@
                         <input data-role="none" name="username" type="text" id="inputUsername" class="form-control margintop" placeholder="Stacksity Username" required="" maxlength="32">
                         <label for="inputPassword" class="sr-only">Password</label>
                         <input data-role="none" name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required="" maxlength="32">
-                        <button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+                        <button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit" id="signupbutton">Sign Up</button>
                         <p class="small">By signing up, you agree to the Terms of Service</p>
                     </div>
                 </form>
@@ -252,6 +255,7 @@
             }
             $("#account").on('submit', function(e){
                 if(!submitform) {
+                    $("#signupbutton").html("<div class='loader'></div>");
                     submitform = true;
                     e.preventDefault();
                     var formdata = $(this).serialize();
@@ -263,9 +267,11 @@
                     if(emptyfield){
                         serrorinfo("Please fill in all fields");
                         submitform = false;
+                        $("#signupbutton").html("Sign Up");
                     }else if($('#inputPassword').val().length<7){
                         serrorinfo("Please make your password longer than 6 characters");
                         submitform = false;
+                        $("#signupbutton").html("Sign Up");
                     }else{
                         $.ajax({
                             type     : "POST",
@@ -275,6 +281,7 @@
                             dataType : "html",
                             crossDomain : true,
                             success  : function(data) {
+                                $("#signupbutton").html("Sign Up");
                                 submitform = false;
                                 if(data=="3"){
                                     signupsuccess();
@@ -295,6 +302,7 @@
                                 }
                             },
                             error: function(request) {
+                                $("#signupbutton").html("Sign Up");
                                 submitform = false;
                                 if (request.status == 0) {
                                     alert("You're offline!");
@@ -645,6 +653,14 @@
     }
 
     function onDeviceReady() {
+        document.addEventListener("backbutton", onBackKeyDown, false);
+        function onBackKeyDown() {
+            if(login){
+
+            }else{
+                navigator.app.exitApp();
+            }
+        }
         if(mobile){
 //            alert(device.platform + " | " + device.version);
             if(device.platform == 'iOS' && parseInt(device.version.charAt(0)) >= 8){
