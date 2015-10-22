@@ -633,8 +633,9 @@
     function pictureSuccess(fileURI) {
         window.resolveLocalFileSystemURI(fileURI,
             function( fileEntry){
+                alert("got image file entry: " + fileEntry.fullPath);
                 upload(fileEntry);
-            })
+        });
     }
 
     if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/)) {

@@ -712,7 +712,7 @@ $(document).on('click', '.follow', function(){
 /* Drag'n drop stuff */
 function upload(file) {
     /* Is the file an image? */
-        if (!file || !file.type.match(/image.*/)) return;
+        //if (!file || !file.type.match(/image.*/)) return;
         /* It is! */
         document.body.className = "uploading";
         $("imageupload").show();
