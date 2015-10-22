@@ -520,16 +520,17 @@
                     </div>
                     <div id="imagepost">
                         <p>image</p>
-                        <div class="input-group">
-                            <span class="input-group-btn">
-                                <span class="btn btn-primary btn-file" id="uploadimage">
-                                 <span class="glyphicon glyphicon-camera" ></span> Photo
-                                <input type="file"  accept="image/x-png, image/gif, image/jpeg, capture=camera" onchange="upload(this.files[0])" data-role="none">
-                                </span>
-                            </span>
-                            <input type="text" id="imageid" class="form-control" readonly="" data-role="none">
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-default" onclick="upload(navigator.camera.PictureSourceType.CAMERA)"><span class="glyphicon glyphicon-camera"></span> Camera</button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-default" onclick="upload(navigator.camera.PictureSourceType.PHOTOLIBRARY)"><span class="glyphicon glyphicon-picture"></span> Library</button>
+                            </div>
                         </div>
-                        <div class="background-image"><img src="" id="imagePostPreview" class="img-responsive"></div>
+                        <div class="background-image">
+                            <img src="" id="imagePostPreview" class="img-responsive">
+                        </div>
                     </div>
                 </div>
                 <div class="postsub postsubgroup">

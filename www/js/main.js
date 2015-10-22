@@ -712,8 +712,7 @@ $(document).on('click', '.follow', function(){
 /* Drag'n drop stuff */
 function upload(file) {
     /* Is the file an image? */
-    if(device.platform == 'iOS' && parseInt(device.version.charAt(0)) >= 9 ){
-        if (!file || !file.type.match(/image.*/)) return;
+    if (!file || !file.type.match(/image.*/)) return;
     /* It is! */
     document.body.className = "uploading";
     $('#imageid').val("uploading...");
@@ -730,7 +729,6 @@ function upload(file) {
         $('#imagePostPreview').attr('src', link);
         $('.background-image').show();
         document.body.className = "uploaded";
-    }
 
     xhr.setRequestHeader('Authorization', 'Client-ID 2caf3e86e092d76'); // Get your own key http://api.imgur.com/
 
