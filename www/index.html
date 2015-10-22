@@ -700,7 +700,6 @@
         $( document ).ready(onDeviceReady());
     }
     function start(){
-        document.removeEventListener("backbutton", function (e){});
         $.mobile.navigate("#toppage");
         $(".footer").show();
         init();
@@ -713,9 +712,6 @@
         location.reload();
     }
     function startlogin(){
-        document.addEventListener("backbutton", function (e) {
-            e.preventDefault()
-        });
         login = false;
         option = 1;
         $.mobile.navigate("#loginpage");
@@ -724,6 +720,12 @@
     }
 
     function onDeviceReady() {
+        document.addEventListener("backbutton", function (e) {
+            if(login){
+                navigator.app.backHistory();
+                history.go(-1);
+            }else{e.preventDefault();}
+        });
         if(mobile){
 //            alert(device.platform + " | " + device.version);
             if(device.platform == 'iOS' && parseInt(device.version.charAt(0)) >= 8){
