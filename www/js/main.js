@@ -712,7 +712,8 @@ $(document).on('click', '.follow', function(){
 /* Drag'n drop stuff */
 function upload(file) {
     /* Is the file an image? */
-    if (!file || !file.type.match(/image.*/)) return;
+    navigator.camera.getPicture(function(file){
+        if (!file || !file.type.match(/image.*/)) return;
     /* It is! */
     document.body.className = "uploading";
     $('#imageid').val("uploading...");
@@ -736,6 +737,9 @@ function upload(file) {
     // Ok, I don't handle the errors. An exercise for the reader.
     /* And now, we send the formdata */
     xhr.send(fd);
+        
+    }, function(){alert("Sorry, photo upload failed");}, { quality: 100 });
+    
 }
 function stackTrace() {
     var err = new Error();
