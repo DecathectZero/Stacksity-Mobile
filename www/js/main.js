@@ -711,7 +711,7 @@ $(document).on('click', '.follow', function(){
 });
 
 /* Drag'n drop stuff */
-function upload(fileURL) {
+function imgurupload(fileURL) {
     /* Is the file an image? */
         //if (!file || !file.type.match(/image.*/)) return;
         /* It is! */
@@ -738,7 +738,7 @@ function upload(fileURL) {
         ///* And now, we send the formdata */
         //xhr.send(fd);
 
-        $("#imageupload").show();
+        $("#imagespinner").show();
         var ft = new FileTransfer();
         var headers = {'Authorization':'Client-ID 2caf3e86e092d76'};
         var options = new FileUploadOptions();

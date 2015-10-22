@@ -528,7 +528,7 @@
                                 <button type="button" class="btn btn-default" onclick="navigator.camera.getPicture(pictureSuccess, function(){},{destinationType: window.Camera.DestinationType.FILE_URI, quality: 100, sourceType: Camera.PictureSourceType.PHOTOLIBRARY })"><span class="glyphicon glyphicon-picture"></span> Library</button>
                             </div>
                         </div>
-                        <div class="spinner" id="imageupload" style="display: none">
+                        <div class="spinner" id="imagespinner" style="display: none">
                             <div class="double-bounce1"></div>
                             <div class="double-bounce2"></div>
                         </div>
@@ -631,7 +631,7 @@
 <script src="js/vote.js"></script>
 <script type="text/javascript">
     function pictureSuccess(imageURI) {
-        upload(imageURL);
+        imgurupload(imageURL);
     }
 
     if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/)) {
