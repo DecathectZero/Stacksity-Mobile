@@ -634,7 +634,11 @@
         alert("1");
         $("#imagespinner").show();
         alert("2");
-        imgurupload(filelink);
+        window.resolveLocalFileSystemURI(filelink,
+                function(fileEntry){
+                    imgurupload(fileEntry);
+                },
+                function(){});
     }
 
     if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/)) {
