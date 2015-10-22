@@ -721,7 +721,10 @@
 
     function onDeviceReady() {
         document.addEventListener("backbutton", function (e) {
-            if(!login) e.preventDefault();
+            if(!login){
+                alert("no");
+                e.preventDefault()
+            }
         }, false );
         if(mobile){
 //            alert(device.platform + " | " + device.version);
