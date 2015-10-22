@@ -634,37 +634,39 @@
         alert("1");
         $("#imagespinner").show();
         alert("2");
-        window.resolveLocalFileSystemURI(imageURL,
-                function(fileEntry){
-                    if (!fileEntry || !fileEntry.type.match(/image.*/)) return;
-                    /* It is! */
-                    alert("matched");
-                    document.body.className = "uploading";
-                    /* Lets build a FormData object*/
-                    var fd = new FormData(); // I wrote about it: https://hacks.mozilla.org/2011/01/how-to-develop-a-html5-image-uploader/
-                    fd.append("image", imageURL); // Append the file
-                    var xhr = new XMLHttpRequest(); // Create the XHR (Cross-Domain XHR FTW!!!) Thank you sooooo much imgur.com
-                    xhr.open("POST", "https://api.imgur.com/3/image.json"); // Boooom!
-                    xhr.onload = function() {
-                        // Big win!
+        var fileinput = document.input.File;
+        var img = fileinput.files[0].getAsDataURL(imageURL);
+        /* Lets build a FormData object*/
+        var fd = new FormData(); // I wrote about it: https://hacks.mozilla.org/2011/01/how-to-develop-a-html5-image-uploader/
+        fd.append("image", img); // Append the file
+        var xhr = new XMLHttpRequest(); // Create the XHR (Cross-Domain XHR FTW!!!) Thank you sooooo much imgur.com
+        xhr.open("POST", "https://api.imgur.com/3/image.json"); // Boooom!
+        xhr.onload = function() {
+            // Big win!
 
-                        alert("asdsadsa");
-                        var link = JSON.parse(xhr.responseText).data.link;
-                        $('#link').val(link);
-                        $("#imageupload").hide();
-                        //$('#imageid').val(file.name);
-                        $('#imagePostPreview').attr('src', link);
-                        $('.background-image').slideDown();
-                        document.body.className = "uploaded";
-                    };
+            alert("asdsadsa");
+            var link = JSON.parse(xhr.responseText).data.link;
+            $('#link').val(link);
+            $("#imageupload").hide();
+            //$('#imageid').val(file.name);
+            $('#imagePostPreview').attr('src', link);
+            $('.background-image').slideDown();
+            document.body.className = "uploaded";
+        };
 
-                    xhr.setRequestHeader('Authorization', 'Client-ID 2caf3e86e092d76'); // Get your own key http://api.imgur.com/
+        xhr.setRequestHeader('Authorization', 'Client-ID 2caf3e86e092d76'); // Get your own key http://api.imgur.com/
 
-                    // Ok, I don't handle the errors. An exercise for the reader.
-                    /* And now, we send the formdata */
-                    xhr.send(fd);
-                },
-                function(){});
+        // Ok, I don't handle the errors. An exercise for the reader.
+        /* And now, we send the formdata */
+        xhr.send(fd);
+//        window.resolveLocalFileSystemURI(imageURL,
+//                function(fileEntry){
+//                    if (!fileEntry || !fileEntry.type.match(/image.*/)) return;
+//                    /* It is! */
+//                    alert("matched");
+//
+//                },
+//                function(){});
         /* Is the file an image? */
 
         //alert(imageURL);
