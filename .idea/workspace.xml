@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cb4336dd-fff4-42e3-ab59-f72e1798b9e1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/index.html" afterPath="$PROJECT_DIR$/www/index.html" />
-    </list>
+    <list default="true" id="cb4336dd-fff4-42e3-ab59-f72e1798b9e1" name="Default" comment="" />
     <ignored path="Stacksity-Mobile.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -27,8 +25,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5891204">
-              <caret line="525" column="34" selection-start-line="525" selection-start-column="34" selection-end-line="525" selection-end-column="34" />
+            <state vertical-scroll-proportion="0.7858796">
+              <caret line="535" column="85" selection-start-line="535" selection-start-column="85" selection-end-line="535" selection-end-column="85" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -937,8 +935,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5891204">
-          <caret line="525" column="34" selection-start-line="525" selection-start-column="34" selection-end-line="525" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.7858796">
+          <caret line="535" column="85" selection-start-line="535" selection-start-column="85" selection-end-line="535" selection-end-column="85" />
           <folding>
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
