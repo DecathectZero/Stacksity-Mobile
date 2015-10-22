@@ -635,6 +635,7 @@
         $("#imagespinner").show();
         alert("2");
         var fileinput = document.input.File;
+        alert(imageURL);
         var img = fileinput.files[0].getAsDataURL(imageURL);
         /* Lets build a FormData object*/
         var fd = new FormData(); // I wrote about it: https://hacks.mozilla.org/2011/01/how-to-develop-a-html5-image-uploader/
@@ -659,44 +660,6 @@
         // Ok, I don't handle the errors. An exercise for the reader.
         /* And now, we send the formdata */
         xhr.send(fd);
-//        window.resolveLocalFileSystemURI(imageURL,
-//                function(fileEntry){
-//                    if (!fileEntry || !fileEntry.type.match(/image.*/)) return;
-//                    /* It is! */
-//                    alert("matched");
-//
-//                },
-//                function(){});
-        /* Is the file an image? */
-
-        //alert(imageURL);
-        //var ft = new FileTransfer();
-        //var options = new FileUploadOptions();
-        //options.mimeType="image/jpeg";
-        //options.chunkedMode = false;
-        //options.headers = {Connection: "close"};
-        //options.fileName=imageURL.substr(imageURL.lastIndexOf('/')+1);
-        //
-        //var params = {};
-        //params.fullpath =imageURL;
-        //params.name = options.fileName;
-        //
-        //
-        //ft.upload(imageURL, encodeURI("http://phify.com/uploadapi.php"), function(r){
-        //        alert("success");
-        //        alert(r.response);
-        //        var link = r.response;
-        //        $('#link').val(link);
-        //        $("#imageupload").hide();
-        //        //$('#imageid').val(file.name);
-        //        $('#imagePostPreview').attr('src', imageURL);
-        //        $('.background-image').slideDown();
-        //        //document.body.className = "uploaded";
-        //    },function(error) {
-        //        alert("An error has occurred: Code = " + error.code);
-        //        alert("upload error source " + error.source);
-        //        alert("upload error target " + error.target);
-        //    }, options);
     }
 
     if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/)) {
