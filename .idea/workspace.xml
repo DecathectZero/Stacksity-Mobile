@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb4336dd-fff4-42e3-ab59-f72e1798b9e1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/index.html" afterPath="$PROJECT_DIR$/www/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/main.js" afterPath="$PROJECT_DIR$/www/js/main.js" />
     </list>
     <ignored path="Stacksity-Mobile.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -60,11 +60,11 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5808989">
-              <caret line="740" column="23" selection-start-line="740" selection-start-column="23" selection-end-line="740" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.447191">
+              <caret line="733" column="10" selection-start-line="733" selection-start-column="10" selection-end-line="733" selection-end-column="10" />
               <folding>
-                <marker date="1445481611063" expanded="true" signature="3929:3949" placeholder="..." />
-                <marker date="1445481611063" expanded="true" signature="33139:33152" placeholder="..." />
+                <marker date="1445482222421" expanded="true" signature="3929:3949" placeholder="..." />
+                <marker date="1445482222421" expanded="true" signature="33146:33159" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -179,8 +179,8 @@
         <option value="$PROJECT_DIR$/www/css/index.css" />
         <option value="$PROJECT_DIR$/www/css/style.css" />
         <option value="$PROJECT_DIR$/www/config.xml" />
-        <option value="$PROJECT_DIR$/www/js/main.js" />
         <option value="$PROJECT_DIR$/www/index.html" />
+        <option value="$PROJECT_DIR$/www/js/main.js" />
       </list>
     </option>
   </component>
@@ -605,7 +605,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/www/js/main.js</url>
-          <line>798</line>
+          <line>799</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
@@ -957,11 +957,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5808989">
-          <caret line="740" column="23" selection-start-line="740" selection-start-column="23" selection-end-line="740" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.447191">
+          <caret line="733" column="10" selection-start-line="733" selection-start-column="10" selection-end-line="733" selection-end-column="10" />
           <folding>
-            <marker date="1445481611063" expanded="true" signature="3929:3949" placeholder="..." />
-            <marker date="1445481611063" expanded="true" signature="33139:33152" placeholder="..." />
+            <marker date="1445482222421" expanded="true" signature="3929:3949" placeholder="..." />
+            <marker date="1445482222421" expanded="true" signature="33146:33159" placeholder="..." />
           </folding>
         </state>
       </provider>
