@@ -1260,6 +1260,15 @@ h1 {
 }
 #cancelpost{
     margin: .5em 0 !important;
+    background-color: #fff;
+    text-shadow: none;
+    border: 1px solid #FF4136;
+    color: #FF4136;
+    border-radius: 4px;
+}
+#cancelpost:focus, #cancelpost:active{
+    border-color: #800;
+    color: #800;
 }
 /*change this for iOS to work*/
 .padding-top{
