@@ -731,7 +731,7 @@ function imgurupload(imageURL) {
             //$('#imageid').val(file.name);
             $('#imagePostPreview').attr('src', link);
             $('.background-image').slideDown();
-            //document.body.className = "uploaded";
+            document.body.className = "uploaded";
         };
 
         xhr.setRequestHeader('Authorization', 'Client-ID 2caf3e86e092d76'); // Get your own key http://api.imgur.com/
