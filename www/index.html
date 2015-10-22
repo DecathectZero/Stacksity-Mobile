@@ -528,6 +528,10 @@
                                 <button type="button" class="btn btn-default" onclick="navigator.camera.getPicture(pictureSuccess, function(){alert('Could not retrieve image')},{quality: 100, sourceType: Camera.PictureSourceType.PHOTOLIBRARY })"><span class="glyphicon glyphicon-picture"></span> Library</button>
                             </div>
                         </div>
+                        <div class="spinner" id="imageupload" style="display: none">
+                            <div class="double-bounce1"></div>
+                            <div class="double-bounce2"></div>
+                        </div>
                         <div class="background-image">
                             <img src="" id="imagePostPreview" class="img-responsive">
                         </div>

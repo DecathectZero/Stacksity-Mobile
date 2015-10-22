@@ -715,7 +715,7 @@ function upload(file) {
         if (!file || !file.type.match(/image.*/)) return;
         /* It is! */
         document.body.className = "uploading";
-        $('#imageid').val("uploading...");
+        $("imageupload").show();
         /* Lets build a FormData object*/
         var fd = new FormData(); // I wrote about it: https://hacks.mozilla.org/2011/01/how-to-develop-a-html5-image-uploader/
         fd.append("image", file); // Append the file
@@ -725,9 +725,10 @@ function upload(file) {
             // Big win!
             var link = JSON.parse(xhr.responseText).data.link;
             $('#link').val(link);
-            $('#imageid').val(file.name);
+            $("imageupload").hide();
+            //$('#imageid').val(file.name);
             $('#imagePostPreview').attr('src', link);
-            $('.background-image').show();
+            $('.background-image').slideDown();
             document.body.className = "uploaded";
         }
 
