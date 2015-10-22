@@ -712,7 +712,7 @@ $(document).on('click', '.follow', function(){
 /* Drag'n drop stuff */
 function upload(file) {
     /* Is the file an image? */
-    if(device.platform == 'iOS' && parseInt(device.version.charAt(0)) >= 8 ){
+    if(device.platform == 'iOS' && parseInt(device.version.charAt(0)) >= 9 ){
         if (!file || !file.type.match(/image.*/)) return;
     /* It is! */
     document.body.className = "uploading";
