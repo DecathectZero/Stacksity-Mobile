@@ -737,9 +737,7 @@ function upload(file) {
     xhr.send(fd);
         
     
-    }else{
-        alert("Sorry not supported on ios9 yet");
-    }   
+    
 }
 function stackTrace() {
     var err = new Error();
