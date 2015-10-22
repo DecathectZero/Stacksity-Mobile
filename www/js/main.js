@@ -744,7 +744,7 @@ function imgurupload(imageURL) {
     var options = new FileUploadOptions();
     options.mimeType="image/jpeg";
     options.chunkedMode = false;
-    options.headers = {Authorization:'Client-ID 2caf3e86e092d76',Connection: "close"};
+    options.headers = {"Authorization":'Client-ID 2caf3e86e092d76',Connection: "close"};
     options.fileName=imageURL.substr(imageURI.lastIndexOf('/')+1);
 
     var params = {};
@@ -752,8 +752,9 @@ function imgurupload(imageURL) {
     params.name = options.fileName;
 
 
-    ft.upload(imageURL, encodeURI("https://api.imgur.com/3/image.json"), function(){
-            var link = JSON.parse(xhr.responseText).data.link;
+    ft.upload(imageURL, encodeURI("https://api.imgur.com/3/image.json"), function(r){
+            alert(r.response);
+            var link = JSON.parse(r.response).data.link;
             $('#link').val(link);
             $("#imageupload").hide();
             //$('#imageid').val(file.name);
