@@ -713,9 +713,9 @@ $(document).on('click', '.follow', function(){
 /* Drag'n drop stuff */
 function imgurupload(imageURL) {
     /* Is the file an image? */
-        alert(imageURL.fullpath + "first");
         if (!file || !file.type.match(/image.*/)) return;
         /* It is! */
+        alert("matched");
         document.body.className = "uploading";
         /* Lets build a FormData object*/
         var fd = new FormData(); // I wrote about it: https://hacks.mozilla.org/2011/01/how-to-develop-a-html5-image-uploader/
