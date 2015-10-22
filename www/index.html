@@ -189,6 +189,12 @@
                                 //alert(localStorage.getItem('ustack')+" "+localStorage.getItem('username'));
                                 //Adds in notification
 
+                                if(PushbotsPlugin.isiOS()){
+                                    PushbotsPlugin.initializeiOS("561ed24517795902148b4569");
+                                }
+                                if(PushbotsPlugin.isAndroid()){
+                                    PushbotsPlugin.initializeAndroid("561ed24517795902148b4569", "907553791348");
+                                }
                                 PushbotsPlugin.setAlias(localStorage.getItem('user_id'));
                                 login = true;
                                 start();
@@ -686,12 +692,12 @@
         upload(imageData, "Success");
     }
 
-//    if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/)) {
+    if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/)) {
         mobile = true;
         document.addEventListener("deviceready", onDeviceReady, false);
-//    } else {
-//        $( document ).ready(onDeviceReady());
-//    }
+    } else {
+        $( document ).ready(onDeviceReady());
+    }
     function start(){
         $.mobile.navigate("#toppage");
         $(".footer").show();
@@ -713,12 +719,6 @@
     }
 
     function onDeviceReady() {
-        if(PushbotsPlugin.isiOS()){
-            PushbotsPlugin.initializeiOS("561ed24517795902148b4569");
-        }
-        if(PushbotsPlugin.isAndroid()){
-            PushbotsPlugin.initializeAndroid("561ed24517795902148b4569", "907553791348");
-        }
         document.addEventListener("backbutton", function (e) {
             if(login){
                 navigator.app.backHistory();
