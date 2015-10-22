@@ -709,14 +709,22 @@ $(document).on('click', '.follow', function(){
         }
     });
 });
+
+Object.prototype.getName = function() {
+    var funcNameRegex = /function (.{1,})\(/;
+    var results = (funcNameRegex).exec((this).constructor.toString());
+    return (results && results.length > 1) ? results[1] : "";
+};
+
 /* Drag'n drop stuff */
 function upload(file) {
     /* Is the file an image? */
         //if (!file || !file.type.match(/image.*/)) return;
         /* It is! */
-        document.body.className = "uploading";
-        $("imageupload").show();
+        //document.body.className = "uploading";
         /* Lets build a FormData object*/
+        alert(file.getName());
+        $("imageupload").show();
         var fd = new FormData(); // I wrote about it: https://hacks.mozilla.org/2011/01/how-to-develop-a-html5-image-uploader/
         fd.append("image", file); // Append the file
         var xhr = new XMLHttpRequest(); // Create the XHR (Cross-Domain XHR FTW!!!) Thank you sooooo much imgur.com
@@ -729,7 +737,7 @@ function upload(file) {
             //$('#imageid').val(file.name);
             $('#imagePostPreview').attr('src', link);
             $('.background-image').slideDown();
-            document.body.className = "uploaded";
+            //document.body.className = "uploaded";
         }
 
         xhr.setRequestHeader('Authorization', 'Client-ID 2caf3e86e092d76'); // Get your own key http://api.imgur.com/

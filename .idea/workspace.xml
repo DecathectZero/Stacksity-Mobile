@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb4336dd-fff4-42e3-ab59-f72e1798b9e1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/index.html" afterPath="$PROJECT_DIR$/www/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/main.js" afterPath="$PROJECT_DIR$/www/js/main.js" />
     </list>
     <ignored path="Stacksity-Mobile.iws" />
@@ -25,10 +24,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3136574">
+            <state vertical-scroll-proportion="-36.454544">
               <caret line="636" column="34" selection-start-line="636" selection-start-column="34" selection-end-line="636" selection-end-column="34" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -58,14 +57,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.137931">
-              <caret line="717" column="32" selection-start-line="717" selection-start-column="32" selection-end-line="717" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.5235955">
+              <caret line="725" column="30" selection-start-line="725" selection-start-column="30" selection-end-line="725" selection-end-column="30" />
               <folding>
-                <marker date="1445479050289" expanded="true" signature="3929:3949" placeholder="..." />
-                <marker date="1445479050289" expanded="true" signature="32384:32397" placeholder="..." />
+                <marker date="1445479515095" expanded="true" signature="3929:3949" placeholder="..." />
+                <marker date="1445479515095" expanded="true" signature="32643:32656" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -180,8 +179,8 @@
         <option value="$PROJECT_DIR$/www/img/post/downstacked.svg" />
         <option value="$PROJECT_DIR$/www/css/index.css" />
         <option value="$PROJECT_DIR$/www/css/style.css" />
-        <option value="$PROJECT_DIR$/www/js/main.js" />
         <option value="$PROJECT_DIR$/www/index.html" />
+        <option value="$PROJECT_DIR$/www/js/main.js" />
       </list>
     </option>
   </component>
@@ -606,7 +605,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/www/js/main.js</url>
-          <line>781</line>
+          <line>789</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
@@ -925,20 +924,9 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.137931">
-          <caret line="717" column="32" selection-start-line="717" selection-start-column="32" selection-end-line="717" selection-end-column="32" />
-          <folding>
-            <marker date="1445479050289" expanded="true" signature="3929:3949" placeholder="..." />
-            <marker date="1445479050289" expanded="true" signature="32384:32397" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3136574">
+        <state vertical-scroll-proportion="-36.454544">
           <caret line="636" column="34" selection-start-line="636" selection-start-column="34" selection-end-line="636" selection-end-column="34" />
           <folding>
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -963,6 +951,17 @@
             <element signature="n#style#0;n#div#5;n#div#0;n#div#0;n#div#9;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#form#0;n#div#2;n#div#1;n#div#10;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
             <marker date="1445479178884" expanded="true" signature="42948:42958" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5235955">
+          <caret line="725" column="30" selection-start-line="725" selection-start-column="30" selection-end-line="725" selection-end-column="30" />
+          <folding>
+            <marker date="1445479515095" expanded="true" signature="3929:3949" placeholder="..." />
+            <marker date="1445479515095" expanded="true" signature="32643:32656" placeholder="..." />
           </folding>
         </state>
       </provider>
