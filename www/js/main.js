@@ -48,10 +48,10 @@ function bannerset(activepage, stackids){
                 }
                 var $bannertext = activepage.find(".bannertext");
                 $bannertext.html('<h1 class="bannertitle"></h1><p class="bannerdesc"></p>');
-                
+
                 var $bannertitle = activepage.find(".bannertitle");
                 var $bannerdesc = activepage.find(".bannerdesc");
-                
+
                 $bannertitle.html(stackname);
                 if(stackids==0){
                     //ban.addClass("topbanner");
@@ -271,14 +271,14 @@ function startNews(startnum, activepage, stackid, distance) {
             return;
         }
         if(distance !== undefined){
-                navigator.geolocation.getCurrentPosition(function(pos){
+            navigator.geolocation.getCurrentPosition(function(pos){
                     //alert("geo");
                     displayNews(startnum, activepage, stackid, pos.coords.latitude, pos.coords.longitude, distance);
                 },
                 function(error){
                     $('.scroll').html('<p>Please turn on location services</p>');
                 },{timeout: 10000, enableHighAccuracy: true});
-                return;
+            return;
         }else{
             activepage.find('.scroll').html('<p>Loading Posts...</p>');
             displayNews(startnum, activepage, stackid);
@@ -485,16 +485,16 @@ function refreshPage(opt) {
         var goto = init();
         changepage = true;
         //if(goto>-10){
-            //localStorage.setItem('stack', goto);
-            stackid = goto;
-            $.mobile.changePage(
-                getOption(),
-                {
-                    transition              : trans,
-                    showLoadMsg             : false,
-                    reverse: rev
-                }
-            );
+        //localStorage.setItem('stack', goto);
+        stackid = goto;
+        $.mobile.changePage(
+            getOption(),
+            {
+                transition              : trans,
+                showLoadMsg             : false,
+                reverse: rev
+            }
+        );
         //}
     }
     postbox = false;
@@ -618,10 +618,10 @@ $(document).on('submit', "#toppost", function(e){
     $("#spinnerpost").show();
     navigator.geolocation.getCurrentPosition(function(position){
             makepost("&lat="+position.coords.latitude+"&long="+position.coords.longitude);
-    },
-    function(error){
-        makepost("");
-    },{timeout: 10000, enableHighAccuracy: true});
+        },
+        function(error){
+            makepost("");
+        },{timeout: 10000, enableHighAccuracy: true});
 });
 
 //This function makes an actual post
@@ -712,32 +712,30 @@ $(document).on('click', '.follow', function(){
 /* Drag'n drop stuff */
 function upload(file) {
     /* Is the file an image? */
-    if (!file || !file.type.match(/image.*/)) return;
-    /* It is! */
-    document.body.className = "uploading";
-    $('#imageid').val("uploading...");
-    /* Lets build a FormData object*/
-    var fd = new FormData(); // I wrote about it: https://hacks.mozilla.org/2011/01/how-to-develop-a-html5-image-uploader/
-    fd.append("image", file); // Append the file
-    var xhr = new XMLHttpRequest(); // Create the XHR (Cross-Domain XHR FTW!!!) Thank you sooooo much imgur.com
-    xhr.open("POST", "https://api.imgur.com/3/image.json"); // Boooom!
-    xhr.onload = function() {
-        // Big win!
-        var link = JSON.parse(xhr.responseText).data.link;
-        $('#link').val(link);
-        $('#imageid').val(file.name);
-        $('#imagePostPreview').attr('src', link);
-        $('.background-image').show();
-        document.body.className = "uploaded";
+        if (!file || !file.type.match(/image.*/)) return;
+        /* It is! */
+        document.body.className = "uploading";
+        $('#imageid').val("uploading...");
+        /* Lets build a FormData object*/
+        var fd = new FormData(); // I wrote about it: https://hacks.mozilla.org/2011/01/how-to-develop-a-html5-image-uploader/
+        fd.append("image", file); // Append the file
+        var xhr = new XMLHttpRequest(); // Create the XHR (Cross-Domain XHR FTW!!!) Thank you sooooo much imgur.com
+        xhr.open("POST", "https://api.imgur.com/3/image.json"); // Boooom!
+        xhr.onload = function() {
+            // Big win!
+            var link = JSON.parse(xhr.responseText).data.link;
+            $('#link').val(link);
+            $('#imageid').val(file.name);
+            $('#imagePostPreview').attr('src', link);
+            $('.background-image').show();
+            document.body.className = "uploaded";
+        }
 
-    xhr.setRequestHeader('Authorization', 'Client-ID 2caf3e86e092d76'); // Get your own key http://api.imgur.com/
+        xhr.setRequestHeader('Authorization', 'Client-ID 2caf3e86e092d76'); // Get your own key http://api.imgur.com/
 
-    // Ok, I don't handle the errors. An exercise for the reader.
-    /* And now, we send the formdata */
-    xhr.send(fd);
-        
-    
-    
+        // Ok, I don't handle the errors. An exercise for the reader.
+        /* And now, we send the formdata */
+        xhr.send(fd);
 }
 function stackTrace() {
     var err = new Error();
@@ -884,8 +882,8 @@ function commentHTML(element, depth){
     if(element.delete){
         del = '<a class="reply editcom">edit</a><a class="reply deletecom" data-delete="'+element.comment_id+'">delete</a>';
         edit = "<form class='editcon' style='display: none'><input name='postid' type='hidden' value='"+postid+"'>"+
-        "<input name='commentid' type='hidden' value='"+element.comment_id+"'><textarea name='text'>"+element.raw+"</textarea>"+
-        "<a class='reply canceledit'>cancel</a><a class='reply saveedit' onclick='$(this).parent().submit()'>save</a></form>";
+            "<input name='commentid' type='hidden' value='"+element.comment_id+"'><textarea name='text'>"+element.raw+"</textarea>"+
+            "<a class='reply canceledit'>cancel</a><a class='reply saveedit' onclick='$(this).parent().submit()'>save</a></form>";
     }
     var reply = del;
     if(depth == 0){
@@ -894,23 +892,23 @@ function commentHTML(element, depth){
     var vote = commentVote(element.vote, count);
     if(depth<7){
         reply = '<a class="reply replybutton" onclick="swapReply(this)">reply</a>'+del+'<form class="replycomment" style="display: none" data-depth="'+depth+'"><div class="postcon replycon">'+
-        '<input type="hidden" name="postid" value="'+postid+'">'+
-        '<input type="hidden" name="commentid" value="'+element.comment_id+'">'+
-        '<div class="textpost">'+
-        '<textarea name="text" class="expanding" id="text" placeholder="write something here..." rows="2" required></textarea>'+
-        '</div></div>'+
-        '<button type="submit" class="postb replypost commentb">Post</button>'+
-        '</form>';
+            '<input type="hidden" name="postid" value="'+postid+'">'+
+            '<input type="hidden" name="commentid" value="'+element.comment_id+'">'+
+            '<div class="textpost">'+
+            '<textarea name="text" class="expanding" id="text" placeholder="write something here..." rows="2" required></textarea>'+
+            '</div></div>'+
+            '<button type="submit" class="postb replypost commentb">Post</button>'+
+            '</form>';
     }
     return '<div class="child '+depthtext+'">'+
-    '<div class="comment" data-commentid="'+element.comment_id+'" data-depth="'+element.depth+'">'+
-    vote+
-    '<div class="comment-content">'+
-    '<p class="tagline"><a class="stacklink" data-link="'+element.user_stack+'" class="">'+element.username+element.flair+'</a> | <time>'+element.created+'</time>' +
-    //' | #'+element.comment_id +
-    "<br>" + edittime +'</p>'+
-    '<div class="commenttext"><div class="commentcontent">'+element.content +"</div><div class='commentoptions'>"+ reply +'</div></div>'+ edit +
-    '</div> </div> </div>';
+        '<div class="comment" data-commentid="'+element.comment_id+'" data-depth="'+element.depth+'">'+
+        vote+
+        '<div class="comment-content">'+
+        '<p class="tagline"><a class="stacklink" data-link="'+element.user_stack+'" class="">'+element.username+element.flair+'</a> | <time>'+element.created+'</time>' +
+            //' | #'+element.comment_id +
+        "<br>" + edittime +'</p>'+
+        '<div class="commenttext"><div class="commentcontent">'+element.content +"</div><div class='commentoptions'>"+ reply +'</div></div>'+ edit +
+        '</div> </div> </div>';
 }
 
 jQuery.event.special.dblclick = {
