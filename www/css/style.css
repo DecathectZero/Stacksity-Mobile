@@ -63,7 +63,6 @@ a:active{
 .con{
     -webkit-transform: translateZ(0px);
     -webkit-transform: translate3d(0,0,0);
-    -webkit-perspective: 1000;
     -webkit-backface-visibility: hidden;
     background-color: #e9eaed;
 }
@@ -156,7 +155,7 @@ a:active{
     /*border: 1px solid rgba(0,0,0,.1);*/
     min-width: 240px;
     max-width: 680px;
-    padding: 16px 0;
+    /*padding: 16px 0;*/
     margin-right: auto;
     margin-left: auto;
 }
@@ -284,7 +283,7 @@ a:active{
     -o-transition: background-color 0.2s ease-in;
     transition: background-color 0.2s ease-in;
 }
-.listlink a:hover, .listlink a:focus{
+.listlink a:active{
     background: #BCD;
     background-color: #5eabed;
 }
@@ -704,7 +703,7 @@ background-color: #CCC;
 .commentlink{
     padding: 3px 5px !important;
 }
-.stacklink:hover, .reply:hover, .commentlink:hover{
+.stacklink:active, .reply:active, .commentlink:active{
     color: #fff !important;
     background-color: #7CACD6;
     border-radius: 2px;
@@ -776,16 +775,16 @@ background-color: #CCC;
     transition : border 500ms ease-out;
     border-top: 3px solid #fafbfe;
 }
-.lpost:hover{
+.lpost:active{
     border-top: 3px solid #FF4136;
 }
-.ipost:hover{
+.ipost:active{
     border-top: 3px solid #FF851B;
 }
-.vpost:hover{
+.vpost:active{
     border-top: 3px solid #85144b;
 }
-.tpost:hover{
+.tpost:active{
     border-top: 3px solid #39CCCC;
 }
 .margins{
@@ -815,7 +814,7 @@ background-color: #CCC;
 .nsfw a{
     color: crimson !important;
 }
-.nsfw a:hover{
+.nsfw a:active{
     color: #FF4136 !important;
 }
 .cvote{
@@ -987,7 +986,7 @@ background-color: #CCC;
     text-shadow: none;
     color: #fff;
 }
-.btn-default[disabled], .locbar .btn:hover, .locbar .btn:focus, .locbar .btn:active{
+.btn-default[disabled], .locbar .btn:active{
     background-color: #7CACD6 !important;
 }
 .modal-footer .btn{
@@ -1019,7 +1018,7 @@ background-color: #CCC;
 .sideaction{
     background-color: #FF4136 !important;
 }
-.sideaction:hover{
+.sideaction:active{
     background-color: #ac2925 !important;
 }
 .comment_link{
@@ -1201,7 +1200,7 @@ h1 {
 .active{
     background-color: #001f3f;
 }
-/*.quarter:hover, .quarter:focus{*/
+/*.quarter:active, .quarter:focus{*/
 /*background-color: #001f3f;*/
 /*}*/
 .follow{
@@ -1237,7 +1236,7 @@ h1 {
     margin-top: 0px !important;
     display: table;
 }
-.posthead:hover{
+.posthead:active{
     text-decoration: none;
 }
 .posthead:active{
@@ -1360,7 +1359,7 @@ h1 {
     font-size: 16px;
     cursor: pointer;
 }
-.commentcollapse:hover, .commentcollapse:active, .commentcollapse:focus{
+.commentcollapse:active{
     color: #CCC;
 }
 .collapsedcss {
@@ -1380,4 +1379,8 @@ h1 {
 }
 .commentcontent img, .textpostcon img{
     max-width: 100%;
+}
+/*Pull to Refresh stuff */
+.pullRefresh{
+    height: 0;
 }
