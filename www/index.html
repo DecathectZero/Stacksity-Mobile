@@ -1002,7 +1002,16 @@
         e.preventDefault();
         refreshPage($(this).data("op"));
     });
+    $("#post").live("swiperight", function(){
+   //$.mobile.changePage( prev + ".html", { transition: "slide", reverse: true } );
+   $.mobile.back();
+        
+    });
+    $("#explorepage").live("swiperight", function(){
+        // $.mobile.changePage( prev + ".html", { transition: "slide", reverse: true } );
+        $.mobile.back();
+        
+    });
 </script>
-<script type="text/javascript" src="js/swipe.js"></script>
 </body>
 </html>
