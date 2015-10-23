@@ -1389,10 +1389,11 @@ h1 {
     width: 50px;
     text-align: center;
     display: block;
-    transform: rotate( 0deg );
-    transition: transform 0s ease;
+    -webkit-transform: translateZ(0);
+    -webkit-transform: rotate( 0deg );
+    transition: -webkit-transform 0s ease;
 }
 .rotate{
-    transform: rotate( -180deg );
-    transition: transform 500ms ease;
+    -webkit-transform: rotate( -180deg );
+    transition: -webkit-transform 500ms ease;
 }
