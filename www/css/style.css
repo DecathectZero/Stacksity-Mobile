@@ -1172,7 +1172,7 @@ h1 {
 .quarter{
     width: 20%;
     float: left;
-    padding: 8px 10px 4px 10px;
+    padding: 10px 10px 3px 10px;
     color: #fff;
 }
 .quarter .glyphicon{
