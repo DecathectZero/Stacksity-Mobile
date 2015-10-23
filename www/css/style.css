@@ -252,12 +252,15 @@ a:active{
 }
 .posting{
     padding: 0;
-    height: 30px;
+    height: 44px;
 }
 .posting div, .posting a{
     background: #fff;
     text-align: center;
     padding: 5px 0;
+    height: 44px;
+    line-height: 34px;
+    font-size: 16px;
     text-decoration: none;
     cursor: pointer;
     -webkit-transition: background-color 0.2s ease-in;
@@ -374,7 +377,9 @@ background-color: #CCC;
     border-bottom: 3px solid #0B9C03;
 }
 .postbar{
+    /*height: 46px;*/
     max-width: 720px;
+    overflow: auto;
 }
 .commentb{
     background-color: #fff;
@@ -392,18 +397,11 @@ background-color: #CCC;
     padding: 5px 12px;
     font-weight: normal;
 }
-.cancelpost{
-    font-family: Raleway;
-    font-size: 16px !important;
-    padding: 5px 10px !important;
-    text-align: left;
-}
 .postlabel p{
-    float: right;
-    margin-top: 2px;
-    margin-right: 12px;
+    margin: 1px 0px 0px;
     display: inline;
-    text-align: right;
+    text-align: left;
+    float: left;
 }
 .textpost{
     margin-bottom: 5px;
@@ -1174,8 +1172,15 @@ h1 {
 .quarter{
     width: 20%;
     float: left;
-    padding: 11px 10px 7px 10px;
+    padding: 8px 10px 4px 10px;
     color: #fff;
+}
+.quarter .glyphicon{
+    font-size: 16px;
+}
+.quarter .barcaption{
+    font-size: 10px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .postback{
     height: 100%;
@@ -1225,10 +1230,10 @@ h1 {
 .posthead{
     background-color: #fff;
     top: 0;
-    height: 30px;
+    height: 44px;
     width: 100%;
-    font-size: 20px !important;
-    line-height: 30px !important;
+    font-size: 24px !important;
+    line-height: 44px !important;
     margin-top: 0px !important;
     display: table;
 }
@@ -1245,9 +1250,10 @@ h1 {
     border: none;
 }
 .headercaption{
-    height: 30px;
+    height: 44px;
     text-align: center;
-    line-height: 30px;
+    line-height: 44px;
+    font-size: 20px;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -1259,16 +1265,21 @@ h1 {
     padding: 10px 0;
 }
 #cancelpost{
+    font-weight: normal;
     margin: .5em 0 !important;
     background-color: #fff;
     text-shadow: none;
-    border: 1px solid #FF4136;
-    color: #FF4136;
+    border: 1px solid #800;
+    color: #800;
     border-radius: 4px;
+    font-size: 16px !important;
+    padding: 5px 10px !important;
+    text-align: left;
+    float: right;
 }
 #cancelpost:focus, #cancelpost:active{
-    border-color: #800;
-    color: #800;
+    border-color: #FF4136;
+    color: #FF4136;
 }
 /*change this for iOS to work*/
 .padding-top{
@@ -1276,7 +1287,7 @@ h1 {
 }
 .topgap{
     /*change padding top between 30 and 50 for iOS*/
-    padding-top: 30px;
+    padding-top: 44px;
     width: 100%;
     background: transparent;
 }

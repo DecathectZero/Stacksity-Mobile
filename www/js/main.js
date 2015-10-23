@@ -78,7 +78,7 @@ function bannerset(activepage, stackids){
                     //}
                 }else {
                     if(is_user==0){
-                        ban.after('<div class="center locbar" style="padding: 0px 0 6px 0">'+
+                        ban.after('<div class="center locbar" style="padding: 0px">'+
                             '<div class="btn-group btn-group-justified" role="group" aria-label="...">'+
                             '<div class="btn-group" role="group">'+
                             '<button type="button" class="btn btn-default dist-btn" onclick="setDist(0, this)" disabled>All</button>'+
