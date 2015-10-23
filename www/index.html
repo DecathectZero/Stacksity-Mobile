@@ -1002,15 +1002,15 @@
         e.preventDefault();
         refreshPage($(this).data("op"));
     });
-    $("#post").live("swiperight", function(){
-   //$.mobile.changePage( prev + ".html", { transition: "slide", reverse: true } );
-   $.mobile.back();
-        
+    $("#post").on("swiperight", function(e){
+        if ( e.swipestart.coords[0] <50) {
+            $.mobile.back();
+        }
     });
-    $("#explorepage").live("swiperight", function(){
-        // $.mobile.changePage( prev + ".html", { transition: "slide", reverse: true } );
-        $.mobile.back();
-        
+    $("#explorepage").on("swiperight", function(e){
+        if ( e.swipestart.coords[0] <50) {
+            $.mobile.back();
+        }
     });
 </script>
 </body>

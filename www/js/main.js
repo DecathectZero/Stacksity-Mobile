@@ -746,6 +746,14 @@ $(document).on('tap','a',function(e){
         }else{
             var link = $(this).attr("href");
             if(link==null||$(this).hasClass("ui-input-clear")){
+                link = $(this).data("link");
+                if(link!=null){
+                    if(mobile && device.platform == "Android"){
+                        window.open(link, '_system');
+                    }else{
+                        window.open(link, '_blank', 'location=yes,enableViewportScale=yes');
+                    }
+                }
             }else{
                 e.preventDefault();
                 if(link.charAt(0)=="/"){
@@ -760,12 +768,6 @@ $(document).on('tap','a',function(e){
                         }else{
                             toPost(link.substring(3,midpoint),link.substring(midpoint+1));
                         }
-                    }
-                }else{
-                    if(mobile && device.platform == "Android"){
-                        window.open(link, '_system');
-                    }else{
-                        window.open(link, '_blank', 'location=yes,enableViewportScale=yes');
                     }
                 }
             }
