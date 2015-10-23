@@ -587,7 +587,6 @@ function textpost(){
     $('#postimage').removeClass('active');
     $('#posttext').addClass('active');
     $('#postlink').removeClass('active');
-    $("#text").expanding();
 }
 function imagepostShow(){
     $('#linkpost').hide();

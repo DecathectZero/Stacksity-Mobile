@@ -60,12 +60,6 @@ a:active{
     -webkit-overflow-scrolling: touch;
     background-color: #e9eaed;
 }
-.con{
-    -webkit-transform: translateZ(0px);
-    -webkit-transform: translate3d(0,0,0);
-    -webkit-backface-visibility: hidden;
-    background-color: #e9eaed;
-}
 .hide{
     display: none;
 }
@@ -333,9 +327,8 @@ background-color: #CCC;
     margin-bottom: 10px;
 }
 .postsubgroup{
-    height: 30px;
-    margin-bottom: 20px;
-    margin-top: 5px;
+    height: 40px;
+    margin: 5px 0px 8px 0px;
 }
 .comsub{
     margin-bottom: 0;
@@ -364,7 +357,7 @@ background-color: #CCC;
     border: none;
     outline: none;
     float: right;
-    height: 30px;
+    height: 40px;
     padding: 0 10px;
     min-width: 80px;
     background-color: #2EBF15;
@@ -418,7 +411,7 @@ background-color: #CCC;
     line-height: 40px;
     background-color: #0c4370;
     padding: 0 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     color: #fff;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -460,13 +453,13 @@ background-color: #CCC;
 .count{
     font-family: raleway !important;
     margin-bottom: 0 !important;
-    width: 30px;
+    width: 45px;
     height: 40px;
     line-height: 40px;
     float: right;
     text-align: center;
     color: #000 !important;
-    font-size: 20px !important;
+    font-size: 18px !important;
 }
 .ui-btn{
     margin: 0;
@@ -640,7 +633,7 @@ background-color: #CCC;
 .votewrap{
     display: block;
     margin: 0 auto;
-    width: 110px;
+    width: 125px;
 }
 .comwrap{
     margin: 0 auto;
@@ -657,7 +650,7 @@ background-color: #CCC;
     user-select: none;
 }
 .botgap{
-    padding-top: 30px;
+    padding-top: 49px;
 }
 .counter{
     position: absolute;
@@ -1291,7 +1284,11 @@ h1 {
     background: transparent;
 }
 .con{
-    min-height: 100%;
+    -webkit-transform: translateZ(0px);
+    -webkit-transform: translate3d(0,0,0);
+    -webkit-backface-visibility: hidden;
+    background-color: #e9eaed;
+    min-height: calc( 100% + 50px );
 }
 .newnote{
     background-color: #FF4136;
@@ -1382,5 +1379,20 @@ h1 {
 }
 /*Pull to Refresh stuff */
 .pullRefresh{
-    height: 0;
+    height: 50px;
+    padding: 11px 0;
+    width: 100%;
+}
+.refresh{
+    margin: 0 auto;
+    font-size: 28px;
+    width: 50px;
+    text-align: center;
+    display: block;
+    transform: rotate( 0deg );
+    transition: transform 0s ease;
+}
+.rotate{
+    transform: rotate( -180deg );
+    transition: transform 500ms ease;
 }

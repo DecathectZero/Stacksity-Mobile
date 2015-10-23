@@ -393,7 +393,9 @@
         <div class="extracontainer">
             <div class="con center">
                 <div class="topgap"></div>
-                <div class="pullRefresh"></div>
+                <div class="pullRefresh">
+                    <div class="refresh glyphicon glyphicon-chevron-up"></div>
+                </div>
                 <div class="banner" style="display: none">
                     <div class="banner-inner">
                         <div class="bannertext">
@@ -828,7 +830,9 @@
             }
             init();
         }
-        if(option == 7){
+        if(isStackOption()){
+            activepage.children(".extracontainer").scrollTop(50);
+        }else if(option == 7){
             $('#comments').show();
             $('#postcon').empty();
             $('#postcon').hide();
@@ -843,20 +847,6 @@
                 textpost();
             }else if(postype==3){
                 imagepostShow();
-            }
-        }else{
-            try {
-                _gaq.push(['_setAccount', 'UA-46439393-3']);
-
-                hash = location.hash;
-
-                if (hash) {
-                    _gaq.push(['_trackPageview', hash.substr(1)]);
-                } else {
-                    _gaq.push(['_trackPageview']);
-                }
-            } catch(err) {
-
             }
         }
     }
@@ -898,10 +888,10 @@
                             //activepage.find('.scroll').html('<p>Loading Posts</p> ');
                         }
                         bannerset(activepage, stackid);
-                        var contain = activepage.find(".extracontainer");
+                        var contain = activepage.children(".extracontainer");
                         contain.bind("scrollstop", function() {
                             if(!postbox){
-                                if(contain.scrollTop() + $(window).height() > activepage.find(".con").height() - 200) {
+                                if(contain.scrollTop() + $(window).height() > activepage.find(".con").height() - 250) {
                                     if(!end&&!bottom&&!loading){
                                         bottom = true;
                                         activepage.find('.scroll').html('<p>Loading Posts</p> ');
@@ -912,6 +902,13 @@
                                             startNews(startnews, activepage, stackid, activepage.data("distance"));
                                         }
                                     }
+                                }else if(contain.scrollTop() <= 0){
+                                    var reficon = contain.children().children(".pullRefresh").children();
+                                    reficon.addClass("rotate");
+                                    refresh();
+                                    contain.stop().animate({ scrollTop : 50 }, 1000, function(){
+                                        reficon.removeClass("rotate");
+                                    });
                                 }
                             }
                         });
@@ -943,8 +940,7 @@
                     dontdelete = false;
                     ui.prevPage.remove();
                 }
-            }
-            if(!postbox){
+            }if(!postbox){
 //                var activepage = $.mobile.activePage;
 //                activepage.find(".extracontainer").css("-webkit-overflow-scrolling","touch");
                 if(isStackOption()){
@@ -952,13 +948,16 @@
                         $.mobile.activePage.find(".extracontainer").scrollTop(0);
                         parsePostData();
                     }
+                }else if(option == 7){
+                    $("#commenttext").expanding();
                 }
+            }else if(postype == 2){
+                $("#text").expanding();
             }
         }
     });
 
-    $("#commenttext").expanding();
-    $("#text").expanding();
+//    $("#commenttext").expanding();
     $( "#autocomplete" ).on( "listviewbeforefilter", function ( e, data ) {
         var $ul = $( this ),
                 $input = $( data.input ),
