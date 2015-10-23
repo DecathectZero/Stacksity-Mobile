@@ -829,10 +829,7 @@
                 loginResetPage();
             }
             init();
-        }
-        if(isStackOption()){
-            activepage.children(".extracontainer").scrollTop(50);
-        }else if(option == 7){
+        }if(option == 7){
             $('#comments').show();
             $('#postcon').empty();
             $('#postcon').hide();
@@ -856,6 +853,7 @@
         var activepage = $.mobile.activePage;
         if(!postbox){
             if(isStackOption()){
+                activepage.children(".extracontainer").scrollTop(50);
                 loading = false;
                 end = false;
                 bottom = false;
@@ -905,9 +903,13 @@
                                 }else if(contain.scrollTop() <= 0){
                                     var reficon = contain.children().children(".pullRefresh").children();
                                     reficon.addClass("rotate");
-                                    refresh();
-                                    contain.stop().animate({ scrollTop : 50 }, 1000, function(){
-                                        reficon.removeClass("rotate");
+                                    contain.one("touchend", function(e) {
+                                        if(contain.scollTop() <= 5){
+                                            refresh();
+                                            contain.stop().animate({ scrollTop : 50 }, 500, function(){
+                                                reficon.removeClass("rotate");
+                                            });
+                                        }
                                     });
                                 }
                             }
