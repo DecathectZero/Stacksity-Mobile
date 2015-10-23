@@ -9,11 +9,11 @@
 // Prefetch the next page
 //$.mobile.loadPage( next + ".html" );
 // Navigate to next page on swipe right
-$("#post").on( "swiperight", page, function() {
+$("#post").live("swiperight", function(){
    //$.mobile.changePage( prev + ".html", { transition: "slide", reverse: true } );
    $.mobile.back();
 });
-$("#explorepage").on( "swiperight", page, function() {
+$("#explorepage").live("swiperight", function(){
   // $.mobile.changePage( prev + ".html", { transition: "slide", reverse: true } );
   $.mobile.back();
 });
