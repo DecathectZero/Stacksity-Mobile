@@ -887,12 +887,11 @@
                         }
                         bannerset(activepage, stackid);
                         var contain = activepage.children(".extracontainer");
-                        var con = activepage.children(".con");
                         var windowheight = $(window).height();
                         var reficon = contain.children().children(".pullRefresh").children();
-                        contain.bind("scroll", function() {
+                        contain.bind("scrollstop", function() {
                             if(!postbox){
-                                if(contain.scrollTop() + windowheight > con.height() - 250) {
+                                if(contain.scrollTop() + windowheight > contain.children(".con").height() - 250) {
                                     if(!end&&!bottom&&!loading){
                                         bottom = true;
                                         activepage.find('.scroll').html('<p>Loading Posts</p> ');
