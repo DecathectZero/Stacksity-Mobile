@@ -1,9 +1,9 @@
-$( document ).on( "pageinit", "[data-role='page']", function() {
-var page = "#" + $( this ).attr( "id" ),
+//$( document ).on( "pageinit", "[data-role='page']", function() {
+//var page = "#" + $( this ).attr( "id" ),
 // Get the filename of the next page that we stored in the data-next attribute
-next = $( this ).jqmData( "next" ),
+//next = $( this ).jqmData( "next" ),
 // Get the filename of the previous page that we stored in the data-prev attribute
-prev = $( this ).jqmData( "prev" );
+//prev = $( this ).jqmData( "prev" );
 // Check if we did set the data-next attribute
 //if ( prev ) {
 // Prefetch the next page
@@ -17,4 +17,4 @@ $("#explorepage").on( "swiperight", page, function() {
   // $.mobile.changePage( prev + ".html", { transition: "slide", reverse: true } );
   $.mobile.back();
 });
-});
+//});
