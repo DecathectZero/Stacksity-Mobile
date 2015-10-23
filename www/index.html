@@ -905,12 +905,13 @@
                                 }else if(contain.scrollTop() <= 0){
                                     reficon.addClass("rotate");
                                     contain.one("touchend touchcancel", function(e) {
-                                        if(contain.scollTop() <= 5){
-                                            refresh();
-                                            contain.stop().animate({ scrollTop : 50 }, 500, function(){
-                                                reficon.removeClass("rotate");
-                                            });
-                                        }
+                                        alert("touchend");
+//                                        if(contain.scollTop() <= 5){
+//                                            refresh();
+//                                            contain.stop().animate({ scrollTop : 50 }, 500, function(){
+//                                                reficon.removeClass("rotate");
+//                                            });
+//                                        }
                                     });
                                 }
                             }

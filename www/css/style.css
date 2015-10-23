@@ -1389,7 +1389,7 @@ h1 {
     width: 50px;
     text-align: center;
     display: block;
-    -webkit-transform: translateZ(0);
+    /*-webkit-transform: translateZ(0);*/
     -webkit-transform: rotate( 0deg );
     transition: -webkit-transform 0s ease;
 }
