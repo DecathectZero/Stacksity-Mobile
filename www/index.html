@@ -833,12 +833,6 @@
             $('#postcon').hide();
             $('#commentfeed').html(loader);
             getPost(postid);
-        }else if(option == 6){
-            activepage.on("swiperight", function(e){
-                if ( e.swipestart.coords[0] <50) {
-                    $.mobile.back();
-                }
-            });
         }
         if(postbox){
             initPostBox();
