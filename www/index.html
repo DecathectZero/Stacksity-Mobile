@@ -906,10 +906,11 @@
                                 }else if((contain.scrollTop() < 1)&&!touchcancel){
                                     contain.trigger("touchstart");
                                     touchcancel = true;
+                                    reficon.addClass("rotate");
                                     contain.one("touchend", function(e) {
-                                        alert(contain.scrollTop());
                                         if(contain.scollTop() < 50){
                                             refresh();
+                                            alert(contain.scrollTop());
                                             contain.stop().animate({ scrollTop : 50 }, 500, function(){
                                                 reficon.removeClass("rotate");
                                                 touchcancel = false;
