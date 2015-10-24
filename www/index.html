@@ -196,7 +196,6 @@
                                 //alert(localStorage.getItem('ustack')+" "+localStorage.getItem('username'));
                                 //Adds in notification
 
-                                PushbotsPlugin.setAlias(localStorage.getItem('user_id'));
                                 login = true;
                                 start();
                             }else{
@@ -707,6 +706,7 @@
     function start(){
         $.mobile.navigate("#toppage");
         $(".footer").show();
+        PushbotsPlugin.setAlias(localStorage.getItem('user_id'));
         init();
         ex();
         getNotification();
@@ -905,8 +905,8 @@
                                     }
                                 }else if((contain.scrollTop() < 1)&&!touchcancel){
                                     contain.trigger("touchstart");
-                                    contain.one("touchcancel", function(e) {
-                                        touchcancel = true;
+                                    touchcancel = true;
+                                    contain.one("touchend", function(e) {
                                         alert(contain.scrollTop());
                                         if(contain.scollTop() < 50){
                                             refresh();
