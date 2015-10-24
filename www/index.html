@@ -904,10 +904,11 @@
                                         }
                                     }
                                 }else if((contain.scrollTop() < 1)&&!touchcancel){
+                                    contain.trigger("touchstart");
                                     contain.one("touchcancel", function(e) {
                                         touchcancel = true;
                                         alert(contain.scrollTop());
-                                        if(contain.scollTop() < 5){
+                                        if(contain.scollTop() < 50){
                                             refresh();
                                             contain.stop().animate({ scrollTop : 50 }, 500, function(){
                                                 reficon.removeClass("rotate");
