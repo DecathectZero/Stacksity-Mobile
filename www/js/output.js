@@ -1,6 +1,6 @@
 function getlink(el, link){
     if(el==0||(option == 7)){
-        return '<a data-link = "'+link+'" style="text-decoration:none">';
+        return '<a href = "'+link+'" style="text-decoration:none">';
     }
     return '<a data-postlink="'+el+'" class="toPost">';
 }

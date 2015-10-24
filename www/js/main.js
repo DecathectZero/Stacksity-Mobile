@@ -721,6 +721,10 @@ $(document).on('tap','.postlink',function(e){
 
 /*post stuff*/
 $(document).on('tap','a',function(e){
+    e.preventDefault();
+    return $(this).trigger('click');
+
+});$(document).on('click','a',function(e){
     if(login){
         if($(this).hasClass("toPost")){
             e.preventDefault();
