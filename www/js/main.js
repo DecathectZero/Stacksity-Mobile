@@ -46,11 +46,11 @@ function bannerset(activepage, stackids){
                     ban.css("background-image","none");
                     ban.children().css("background-color","transparent");
                 }
-                var $bannertext = activepage.find(".bannertext");
+                var $bannertext = ban.find(".bannertext");
                 $bannertext.html('<h1 class="bannertitle"></h1><p class="bannerdesc"></p>');
 
-                var $bannertitle = activepage.find(".bannertitle");
-                var $bannerdesc = activepage.find(".bannerdesc");
+                var $bannertitle = ban.find(".bannertitle");
+                var $bannerdesc = ban.find(".bannerdesc");
 
                 $bannertitle.html(stackname);
                 if(stackids==0){
@@ -127,6 +127,40 @@ function bannerset(activepage, stackids){
                         activepage.data("distance", 0);
                         startNews(startnews,activepage, stackids);
                     }
+                    var contain = activepage.children(".extracontainer");
+                    var windowheight = $(window).height();
+                    var reficon = contain.children().children(".pullRefresh").children();
+                    var touchcancel = false;
+                    contain.bind("scrollstop", function() {
+                        if(!postbox){
+                            if(contain.scrollTop() + windowheight > contain.children(".con").height() - 250) {
+                                if(!end&&!bottom&&!loading){
+                                    bottom = true;
+                                    activepage.find('.scroll').html('<p>Loading Posts</p> ');
+                                    //alert(activepage.data("distance"));
+                                    if(activepage.data("distance")==0||activepage.data("distance")=='undefined'){
+                                        startNews(startnews, activepage, stackid);
+                                    }else{
+                                        startNews(startnews, activepage, stackid, activepage.data("distance"));
+                                    }
+                                }
+                            }else if((contain.scrollTop() < 1)&&!touchcancel){
+                                contain.trigger("touchend");
+                                reficon.addClass("rotate");
+                                touchcancel = true;
+                                contain.on('touchstart.refreshing', function(e) {
+                                    e.preventDefault();
+                                });
+                                refresh();
+                                contain.stop().animate({ scrollTop : 50 }, 500, function(){
+                                    contain.off('touchstart.refreshing');
+                                    contain.trigger("touchend");
+                                    touchcancel = false;
+                                    reficon.removeClass("rotate");
+                                });
+                            }
+                        }
+                    });
                 }});
             }
         },
@@ -273,6 +307,7 @@ function startNews(startnum, activepage, stackid, distance) {
         if(end){
             return;
         }
+        loading = true;
         if(distance !== undefined){
             navigator.geolocation.getCurrentPosition(function(pos){
                     //alert("geo");

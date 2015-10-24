@@ -894,40 +894,6 @@
                 if(!postbox){
                     if(activepage.data("stack_id")==null){
                         bannerset(activepage, stackid);
-                        var windowheight = $(window).height();
-                        var reficon = contain.children().children(".pullRefresh").children();
-                        var touchcancel = false;
-                        contain.bind("scrollstop", function() {
-                            if(!postbox){
-                                if(contain.scrollTop() + windowheight > contain.children(".con").height() - 250) {
-                                    if(!end&&!bottom&&!loading){
-                                        bottom = true;
-                                        activepage.find('.scroll').html('<p>Loading Posts</p> ');
-                                        //alert(activepage.data("distance"));
-                                        alert("start");
-                                        if(activepage.data("distance")==0||activepage.data("distance")=='undefined'){
-                                            startNews(startnews, activepage, stackid);
-                                        }else{
-                                            startNews(startnews, activepage, stackid, activepage.data("distance"));
-                                        }
-                                    }
-                                }else if((contain.scrollTop() < 1)&&!touchcancel){
-                                    contain.trigger("touchend");
-                                    reficon.addClass("rotate");
-                                    touchcancel = true;
-                                    contain.on('touchstart.refreshing', function(e) {
-                                        e.preventDefault();
-                                    });
-                                    refresh();
-                                    contain.stop().animate({ scrollTop : 50 }, 500, function(){
-                                        contain.off('touchstart.refreshing');
-                                        contain.trigger("touchend");
-                                        touchcancel = false;
-                                        reficon.removeClass("rotate");
-                                    });
-                                }
-                            }
-                        });
                     }else{
                         stackid = activepage.data("stack_id");
                         is_user = activepage.data("is_user");
