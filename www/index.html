@@ -40,6 +40,12 @@
         var postid = 0;
         var option = 1;
         var submitform = false;
+        $(document).one("mobileinit", function () {
+            $.mobile.pageContainer = $('#container');
+            $.mobile.defaultPageTransition = 'slide';
+            $.mobile.defaultPageTransition = 'slide';
+            $.mobile.autoInitializePage = false;
+        });
     </script>
 <body>
 <div class="footer" style="display: none">
@@ -781,13 +787,6 @@
         //PushbotsPlugin.unregister();
         loginResetPage();
     }
-
-    $(document).one("mobileinit", function () {
-        $.mobile.pageContainer = $('#container');
-        $.mobile.defaultPageTransition = 'slide';
-        $.mobile.defaultPageTransition = 'slide';
-        $.mobile.autoInitializePage = false;
-    });
     //This the HTML DOM structure for the loader with two circles inside each other
     var loader =
             '<div class="spinner">'+

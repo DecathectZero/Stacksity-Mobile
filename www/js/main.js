@@ -302,7 +302,7 @@ function setDist(distance, button){
 
 //retrieves the posts for a certain stack (probably one of the most important functions here, same as the site)
 function startNews(startnum, activepage, stackid, distance) {
-    alert(startnum + " | " + stackid + " | " + distance);
+    //alert(startnum + " | " + stackid + " | " + distance);
     if(!loading){
         if(end){
             return;
