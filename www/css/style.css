@@ -1286,9 +1286,10 @@ h1 {
 .con{
     -webkit-backface-visibility: hidden;
     background-color: #e9eaed;
-    min-height: calc( 100% + 144px );
+    min-height: 101%;
     -webkit-transform: translate3d(0,-100px,0);
     transform: translate3d(0,-100px,0);
+    margin-bottom: -100px;
 }
 .newnote{
     background-color: #FF4136;

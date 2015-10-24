@@ -51,7 +51,7 @@
 <div class="footer" style="display: none">
     <div class="center botmenu">
         <div class="quarter" id="topstack" data-op="1">
-            <div class="glyphicon glyphicon-home"></div><br>
+            <div class="glyphicon glyphicon-home"></div>
             <div class="barcaption">Best</div>
         </div>
         <div class="quarter" id="allstack" data-op="4">
@@ -233,7 +233,7 @@
                 </div>
                 <form class="signinform" id="account" role="form" data-toggle="validator">
                     <div id="sinforeg" style="display: none">
-                        <p>Alright, you're good to go<br> You can now <b>Login</b></p>
+                        <p>Alright, you're good to go<br/> You can now <b>Login</b></p>
                     </div>
                     <div id="sinfo">
                         <p id="serror-info" style="display: none" class="errorprompt"></p>
@@ -521,7 +521,7 @@
             <div class="topgap"></div>
             <label class="postlabel">
                 <div class="postbar" style="padding: 0">
-                    <p>posting to<br><span class="bold" id="posting"></span></p>
+                    <p>posting to<br/><span class="bold" id="posting"></span></p>
                     <a class="cancelpost" data-rel="back" data-role="button" data-corners="false" data-inline="true" onclick="postbox = false" id="cancelpost">cancel</a>
                 </div>
             </label>
@@ -844,6 +844,7 @@
         }
         if(activepage.data("stack_id")==null&&!postbox){
             activepage.find('.scroll').html('<p>Loading Stack...</p>');
+//            console.log(explore);
             var activestack = stackid;
             if(explore){
                 //activepage.find(".locbar").remove();
@@ -858,9 +859,9 @@
                     }
 //                                    $("#explorehead").hide();
 //                                    $("#exgap").hide();
-                    $("#explorehead").html('<div class="headercaption">'+explorename+'</div>')
+                    activepage.find("#explorehead").html('<div class="headercaption">'+explorename+'</div>')
                 }else{
-                    $("#explorehead").html('<div class="row posting center">'+
+                    activepage.find("#explorehead").html('<div class="row posting center">'+
                             '<a class="col-xs-4 postlink" onclick="postOpen(1)">Link</a>'+
                             '<a class="col-xs-4 postlink" onclick="postOpen(2)">Text</a>'+
                             '<a class="col-xs-4 postlink" onclick="postOpen(3)">Image</a>'+

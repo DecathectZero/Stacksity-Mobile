@@ -519,7 +519,7 @@ function refresh(){
     if(activep.data("stack_id")==null&&!postbox){
         bannerset(activep, stackid);
     }else{
-        if(option==6 || option==4){
+        if((option==6 && !is_user) || option==4){
             var buttons = activep.children(".extracontainer").children().children(".locbar").children().children();
             if(buttons.children().is(":disabled")){
                 setDist(activep.data("distance"))
@@ -532,7 +532,7 @@ function refresh(){
                 startnews = 0;
                 startNews(startnews, activep, stackid);
             }else if(scrollpos<4000){
-                activep.find(".extracontainer").stop().animate({ scrollTop : 50 }, 1000, function(){
+                activep.find(".extracontainer").stop().animate({ scrollTop : 0 }, 1000, function(){
                     activep.find(".feed").empty();
                     startnews = 0;
                     startNews(startnews, activep, stackid);
@@ -1330,7 +1330,7 @@ function delcom(){
 /*--notification system--*/
 var newcountNotif = 0;
 function notification(element, seen, stringText){
-    return '<div class="notification '+seen+' toPost" onclick="toPost('+element.link+','+element.commentlink+')" data-note="'+element.notification_id+'"><b>'+element.username+'</b> '+stringText+' P#'+element.link+'<br><span class="note-time">'+element.created+'</span></div>';
+    return '<div class="notification '+seen+' toPost" onclick="toPost('+element.link+','+element.commentlink+')" data-note="'+element.notification_id+'"><b>'+element.username+'</b> '+stringText+' P#'+element.link+'<br/><span class="note-time">'+element.created+'</span></div>';
 }
 var cycle = false;
 var interval = null;
@@ -1359,26 +1359,29 @@ function getNotification(){
     newcountNotif = 0;
     $.getJSON('https://stacksity.com/php/getnotification.php', {timestamp: 0, session_id: id}, function(data){
         if(data!=null){
+            var content = '';
             $.each(data, function(index, element) {
                 var seen = '';
                 if(element.seen==0){
                     seen = 'unseen';
                     newcountNotif++;
                 }
-                var content ='';
                 if(element.note_type==0){
-                    content =  notification(element, seen, "posted to your stack");
+                    content +=  notification(element, seen, "posted to your stack");
                 }else if(element.note_type==1){
-                    content =  notification(element, seen, "commented on your post");
+                    content +=  notification(element, seen, "commented on your post");
                 }else if(element.note_type==2){
-                    content =  notification(element, seen, "replied to your comment");
+                    content +=  notification(element, seen, "replied to your comment");
                 }else if(element.note_type==3){
-                    content =  notification(element, seen, "tagged you in a comment");
+                    content +=  notification(element, seen, "tagged you in a comment");
                 }else if(element.note_type==4){
-                    content =  notification(element, seen, "tagged you in a post");
+                    content +=  notification(element, seen, "tagged you in a post");
                 }
-                $(".note-header").prepend(content);
+
             });
+            $(".note-header").hide();
+            $(".note-header").html(content);
+            $(".note-header").slideDown();
         }
         if(option == 3){
             markseen();
