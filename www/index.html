@@ -786,6 +786,7 @@
         $.mobile.pageContainer = $('#container');
         $.mobile.defaultPageTransition = 'slide';
         $.mobile.defaultPageTransition = 'slide';
+        $.mobile.autoInitializePage = false;
     });
     //This the HTML DOM structure for the loader with two circles inside each other
     var loader =
@@ -892,7 +893,6 @@
                 bottom = false;
                 if(!postbox){
                     if(activepage.data("stack_id")==null){
-                        alert("banset");
                         bannerset(activepage, stackid);
                         var windowheight = $(window).height();
                         var reficon = contain.children().children(".pullRefresh").children();
@@ -904,6 +904,7 @@
                                         bottom = true;
                                         activepage.find('.scroll').html('<p>Loading Posts</p> ');
                                         //alert(activepage.data("distance"));
+                                        alert("start");
                                         if(activepage.data("distance")==0||activepage.data("distance")=='undefined'){
                                             startNews(startnews, activepage, stackid);
                                         }else{

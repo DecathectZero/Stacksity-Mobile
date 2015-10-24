@@ -474,7 +474,6 @@ function refreshPage(opt) {
             openNote();
         }
     }else{
-        alert(opt);
         explore = false;
         var rev = false;
         var trans = 'none';
