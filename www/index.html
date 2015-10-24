@@ -905,15 +905,14 @@
                                     }
                                 }else if((contain.scrollTop() < 1)&&!touchcancel){
                                     contain.trigger("touchstart");
-                                    touchcancel = true;
                                     reficon.addClass("rotate");
+                                    touchcancel = true;
                                     contain.one("touchend", function(e) {
                                         if(contain.scollTop() < 50){
                                             refresh();
-                                            alert(contain.scrollTop());
+                                            alert(contain.scrollTop() + "adsdg");
                                             contain.stop().animate({ scrollTop : 50 }, 500, function(){
                                                 reficon.removeClass("rotate");
-                                                touchcancel = false;
                                             });
                                         }
                                     });
