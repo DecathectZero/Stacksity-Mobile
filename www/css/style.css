@@ -1284,11 +1284,11 @@ h1 {
     background: transparent;
 }
 .con{
-    -webkit-transform: translateZ(0px);
-    -webkit-transform: translate3d(0,0,0);
     -webkit-backface-visibility: hidden;
     background-color: #e9eaed;
-    min-height: calc( 100% + 50px );
+    min-height: calc( 100% + 94px );
+    -webkit-transform: translate3d(0,-50px,0);
+    transform: translate3d(0,-50px,0);
 }
 .newnote{
     background-color: #FF4136;

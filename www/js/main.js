@@ -128,9 +128,10 @@ function bannerset(activepage, stackids){
                         startNews(startnews,activepage, stackids);
                     }
                     var contain = activepage.children(".extracontainer");
+                    pullToRefresh(contain, refresh());
                     var windowheight = $(window).height();
-                    var reficon = contain.children().children(".pullRefresh").children();
-                    var touchcancel = false;
+                    //var reficon = contain.children().children(".pullRefresh").children();
+                    //var touchcancel = false;
                     contain.bind("scrollstop", function() {
                         if(!postbox){
                             if(contain.scrollTop() + windowheight > contain.children(".con").height() - 250) {
@@ -144,21 +145,22 @@ function bannerset(activepage, stackids){
                                         startNews(startnews, activepage, stackid, activepage.data("distance"));
                                     }
                                 }
-                            }else if((contain.scrollTop() < 1)&&!touchcancel){
-                                contain.trigger("touchend");
-                                reficon.addClass("rotate");
-                                touchcancel = true;
-                                contain.on('touchstart.refreshing', function(e) {
-                                    e.preventDefault();
-                                });
-                                refresh();
-                                contain.stop().animate({ scrollTop : 50 }, 500, function(){
-                                    contain.off('touchstart.refreshing');
-                                    contain.trigger("touchend");
-                                    touchcancel = false;
-                                    reficon.removeClass("rotate");
-                                });
                             }
+                            //else if((contain.scrollTop() < 1)&&!touchcancel){
+                            //    contain.trigger("touchend");
+                            //    reficon.addClass("rotate");
+                            //    touchcancel = true;
+                            //    contain.on('touchstart.refreshing', function(e) {
+                            //        e.preventDefault();
+                            //    });
+                            //    refresh();
+                            //    contain.stop().animate({ scrollTop : 50 }, 500, function(){
+                            //        contain.off('touchstart.refreshing');
+                            //        contain.trigger("touchend");
+                            //        touchcancel = false;
+                            //        reficon.removeClass("rotate");
+                            //    });
+                            //}
                         }
                     });
                 }});
@@ -1281,4 +1283,141 @@ function markseen(){
             alert("error"+ xhr.responseText);
         }
     });
+}
+
+/**
+ * main.js
+ * http://www.codrops.com
+ *
+ * Licensed under the MIT license.
+ * http://www.opensource.org/licenses/mit-license.php
+ *
+ * Copyright 2015, Codrops
+ * http://www.codrops.com
+ */
+function pullToRefresh(element, func) {
+
+    var transEndEventNames = {'WebkitTransition': 'webkitTransitionEnd', 'MozTransition': 'transitionend', 'OTransition': 'oTransitionEnd', 'msTransition': 'MSTransitionEnd', 'transition': 'transitionend'},
+        transEndEventName = transEndEventNames[Modernizr.prefixed('transition')],
+        onEndTransition = function( el, callback ) {
+            var onEndCallbackFn = function( ev ) {
+                if( ev.target != this ) return;
+                $(this).off( transEndEventName, onEndCallbackFn );
+                if( callback && typeof callback === 'function' ) { callback.call(this); }
+            };
+            //el.on( transEndEventName, onEndCallbackFn );
+        },
+    // the wrapper of the share container, and a variable to store its height
+        shareWrap = element.children('.pullRefresh'), shareWrapH,
+
+        translateVal,
+    // friction factor
+        friction = 2.5,
+    // distance in px needed to push down the menu in order to be able to share
+        triggerDistance = 120,
+    // touch events: position of the initial touch (y-axis)
+        firstTouchY, initialScroll, real = false;
+
+    function scrollY() { return element.scrollTop() }
+
+    // from http://www.sberry.me/articles/javascript-event-throttling-debouncing
+    function throttle(fn, delay) {
+        var allowSample = true;
+
+        return function(e) {
+            if (allowSample) {
+                allowSample = false;
+                setTimeout(function() { allowSample = true; }, delay);
+                fn(e);
+            }
+        };
+    }
+
+    function init() {
+        element.on('touchstart', touchStart);
+        element.on('touchmove', touchMove);
+        element.on('touchend', touchEnd);
+    }
+
+    function touchStart(ev) {
+        // save the initial position of the touch (y-axis)
+        firstTouchY = parseInt(ev.originalEvent.touches[0].pageY);
+        // get the current height of the share wrapper
+        shareWrapH = shareWrap.height();
+
+        // make sure the element doesnt have the transition class (added when the user releases the touch)
+        element.removeClass('container--reset');
+    }
+
+    function touchMove(ev) {
+        if(scrollY()==0){
+            var moving = function() {
+                //alert(firstTouchY);
+                //alert(ev.originalEvent.touches[0].pageY);
+                var touchY = parseInt(ev.originalEvent.touches[0].pageY),
+                    touchYDelta = touchY - firstTouchY;
+
+                if ( scrollY() === 0 && touchYDelta > 0  ) {
+                    ev.preventDefault();
+                }
+
+                if ( initialScroll > 0 || scrollY() > 0 || scrollY() === 0 && touchYDelta < 0 ) {
+                    firstTouchY = touchY;
+                    return;
+                }
+
+                //alert(touchYDelta + " | " + friction+ " | " +shareWrapH);
+                // calculate the distance the container needs to be translated
+                translateVal = -shareWrapH + touchYDelta/friction;
+
+                // set the transform value for the container
+                setContentTransform();
+
+                // show the selected sharing item if touchYDelta > triggerDistance
+                if( touchYDelta > triggerDistance ) {
+                    element.addClass('container--active');
+                }
+                else {
+                    element.removeClass('container--active');
+                }
+            };
+
+            throttle(moving(), 60);
+        }
+    }
+
+    function touchEnd(ev) {
+
+        if( element.hasClass('container--active') ) {
+            // expanding effect on selected item
+            element.add('container--share');
+
+            onEndTransition(function() {
+                element.removeClass('container--share');
+                element.removeClass('container--active');
+                // after expanding trigger the share functionality
+                func();
+            });
+        }
+
+        // reset transform
+        element.css("-webkit-transform",'');
+        element.css("transform",'');
+
+        // move back the container (css transition)
+        if( translateVal !== -shareWrapH ) {
+            element.addClass('container--reset');
+            onEndTransition(element, function() {
+                element.removeClass('container--reset');
+            });
+        }
+    }
+
+    function setContentTransform() {
+        element.css("-webkit-transform",'translate3d(0, ' + translateVal + 'px, 0)');
+        element.css("transform",'translate3d(0, ' + translateVal + 'px, 0)');
+    }
+
+    init();
+
 }
