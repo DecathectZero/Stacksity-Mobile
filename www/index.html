@@ -706,7 +706,9 @@
     function start(){
         $.mobile.navigate("#toppage");
         $(".footer").show();
-        PushbotsPlugin.setAlias(localStorage.getItem('user_id'));
+        if(mobile){
+            PushbotsPlugin.setAlias(localStorage.getItem('user_id'));
+        }
         init();
         ex();
         getNotification();
