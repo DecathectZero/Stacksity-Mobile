@@ -247,8 +247,10 @@ function checklogin(){
 
 //this function is called when someone fires a change distance button
 function setDist(distance, button){
-    $(".dist-btn").prop('disabled', false);
-    $(button).prop('disabled', true);
+    if(button!=null){
+        $(".dist-btn").prop('disabled', false);
+        $(button).prop('disabled', true);
+    }
     bottom = false;
     startnews = 0;
     loading = false;
@@ -360,15 +362,9 @@ function refresh(){
         bannerset(activep, stackid);
     }else{
         if(option==7 || option==4){
-            if(activep.children(".extracontainer").children().children(".locbar").children().children().is(":disabled")){
-                if($(this).html()=="All"){
-                    activep.find(".feed").empty();
-                    activep.data("startnews", 0);
-                    startnews = 0;
-                    startNews(startnews, activep, stackid);
-                }else{
-                    $(this).trigger('click');
-                }
+            var buttons = activep.children(".extracontainer").children().children(".locbar").children().children();
+            if(buttons.children().is(":disabled")){
+                setDist(activep.data("distance"))
             }
         }else{
             var scrollpos = activep.children(".extracontainer").scrollTop();
@@ -777,6 +773,9 @@ $(document).on('tap','a',function(e){
         }
     }
 });
+$(document).on('click','a',function(e){
+    e.preventDefault();
+});
 var commentid = 0;
 //function toPost(link){
 //    postid = link;
@@ -1018,9 +1017,15 @@ function getComment(item)
             commentid = 0;
             if(comment.length!=0){
                 comment.children(".comment-content").css("background-color","#F0E68C");
+                var extra = $.mobile.activePage.children();
+                extra.on("touchstart.comment", function(e) {
+                    e.preventDefault();
+                });
                 $('#post .extracontainer').animate({
                     scrollTop: (comment.offset().top - 50)
-                }, 1000);
+                }, 1000, function(){
+                    extra.off('touchstart.comment');
+                });
             }
         }
     });

@@ -107,7 +107,7 @@
 </div>
 <div id="container">
     <div data-role="page" data-dom-cache="true" id="explorepage" class="ex">
-        <div data-role="header" data-id="persistent" data-position="fixed"  class="head padding-top" data-fullscreen="true" data-tap-toggle="false" id="explorehead">
+        <div data-role="header" class="head padding-top">
             <div class="headercaption">&nbsp;</div>
         </div>
         <div class="extracontainer">
@@ -613,9 +613,9 @@
     </div>
     <div data-role="page" id="post">
         <div data-role="header" class="head padding-top">
-            <a data-role="none" data-rel="back" class="postlink postback posthead padding-top">
+            <div class="postlink postback posthead" onclick="$.mobile.back()">
                 <div class="glyphicon glyphicon-chevron-left"></div>
-            </a>
+            </div>
         </div>
         <div class="extracontainer">
             <div class="topgap"></div>
@@ -913,12 +913,12 @@
                                     contain.trigger("touchend");
                                     reficon.addClass("rotate");
                                     touchcancel = true;
-                                    contain.on('touchmove.refreshing', function(e) {
+                                    contain.on('touchstart.refreshing', function(e) {
                                         e.preventDefault();
                                     });
                                     refresh();
                                     contain.stop().animate({ scrollTop : 50 }, 500, function(){
-                                        contain.off('touchmove.refreshing');
+                                        contain.off('touchstart.refreshing');
                                         touchcancel = false;
                                         reficon.removeClass("rotate");
                                     });
