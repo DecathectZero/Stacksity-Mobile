@@ -107,7 +107,7 @@
 </div>
 <div id="container">
     <div data-role="page" data-dom-cache="true" id="explorepage" class="ex">
-        <div data-role="header" class="head padding-top">
+        <div data-role="header" class="head padding-top" id="explorehead">
             <div class="headercaption">&nbsp;</div>
         </div>
         <div class="extracontainer">
@@ -436,7 +436,7 @@
                             <button type="button" class="btn btn-default dist-btn" onclick="setDist(0.1, this)" data-role="none">Close</button>
                         </div>
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default dist-btn" onclick="setDist(5, this)" data-role="none" disabled="">Near</button>
+                            <button type="button" class="btn btn-default dist-btn" onclick="setDist(5, this)" data-role="none" disabled>Near</button>
                         </div>
                         <div class="btn-group" role="group">
                             <button type="button" class="btn btn-default dist-btn" data-role="none" onclick="setDist(50, this)">Far</button>
@@ -612,10 +612,8 @@
         </div>
     </div>
     <div data-role="page" id="post">
-        <div data-role="header" class="head padding-top">
-            <div class="postlink postback posthead" onclick="$.mobile.back()">
-                <div class="glyphicon glyphicon-chevron-left"></div>
-            </div>
+        <div data-role="header" data-id="persistent" data-position="fixed" class="head padding-top" data-fullscreen="true" data-tap-toggle="false">
+            <a data-role="none" class="postlink postback posthead"><div class="glyphicon glyphicon-chevron-left"></div></a>
         </div>
         <div class="extracontainer">
             <div class="topgap"></div>
@@ -840,6 +838,34 @@
             $('#commentfeed').html(loader);
             getPost(postid);
         }
+        if(activepage.data("stack_id")==null&&!postbox){
+            activepage.find('.scroll').html('<p>Loading Stack...</p>');
+            var activestack = stackid;
+            if(explore){
+                //activepage.find(".locbar").remove();
+                if(activestack<0){
+                    var explorename;
+                    if(activestack=="-1"){
+                        explorename = "Everything"
+                    }else if(activestack=="-3"){
+                        explorename = "Recent"
+                    }else if(activestack=="-2"){
+                        explorename = "Followed"
+                    }
+//                                    $("#explorehead").hide();
+//                                    $("#exgap").hide();
+                    $("#explorehead").html('<div class="headercaption">'+explorename+'</div>')
+                }else{
+                    $("#explorehead").html('<div class="row posting center">'+
+                            '<a class="col-xs-4 postlink" onclick="postOpen(1)">Link</a>'+
+                            '<a class="col-xs-4 postlink" onclick="postOpen(2)">Text</a>'+
+                            '<a class="col-xs-4 postlink" onclick="postOpen(3)">Image</a>'+
+                            '</div>');
+//                                    $("#exgap").show();
+                }
+                //activepage.find('.scroll').html('<p>Loading Posts</p> ');
+            }
+        }
         if(postbox){
             initPostBox();
             if(postype==1){
@@ -865,33 +891,7 @@
                 end = false;
                 bottom = false;
                 if(!postbox){
-                    if(activepage.data("stack_id")==null&&!postbox){
-                        activepage.find('.scroll').html('<p>Loading Stack...</p>');
-                        var activestack = stackid;
-                        if(explore){
-                            //activepage.find(".locbar").remove();
-                            if(activestack<0){
-                                var explorename;
-                                if(activestack=="-1"){
-                                    explorename = "Everything"
-                                }else if(activestack=="-3"){
-                                    explorename = "Recent"
-                                }else if(activestack=="-2"){
-                                    explorename = "Followed"
-                                }
-//                                    $("#explorehead").hide();
-//                                    $("#exgap").hide();
-                                $("#explorehead").html('<div class="headercaption">'+explorename+'</div>')
-                            }else{
-                                $("#explorehead").html('<div class="row posting center">'+
-                                        '<a class="col-xs-4 postlink" onclick="postOpen(1)">Link</a>'+
-                                        '<a class="col-xs-4 postlink" onclick="postOpen(2)">Text</a>'+
-                                        '<a class="col-xs-4 postlink" onclick="postOpen(3)">Image</a>'+
-                                        '</div>');
-//                                    $("#exgap").show();
-                            }
-                            //activepage.find('.scroll').html('<p>Loading Posts</p> ');
-                        }
+                    if(activepage.data("stack_id")==null){
                         bannerset(activepage, stackid);
                         var windowheight = $(window).height();
                         var reficon = contain.children().children(".pullRefresh").children();
@@ -919,6 +919,7 @@
                                     refresh();
                                     contain.stop().animate({ scrollTop : 50 }, 500, function(){
                                         contain.off('touchstart.refreshing');
+                                        contain.trigger("touchend");
                                         touchcancel = false;
                                         reficon.removeClass("rotate");
                                     });

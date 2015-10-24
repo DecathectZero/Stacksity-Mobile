@@ -292,6 +292,7 @@ function displayNews(startnum, activepage, stackid, latpoint, longpoint, distanc
     checklogin();
     loading = true;
     var postnum = 0;
+    alert(latpoint + " | " + longpoint + " | " + distance);
     $.ajax({
         type     : "GET",
         cache    : false,
@@ -361,7 +362,7 @@ function refresh(){
     if(activep.data("stack_id")==null&&!postbox){
         bannerset(activep, stackid);
     }else{
-        if(option==7 || option==4){
+        if(option==6 || option==4){
             var buttons = activep.children(".extracontainer").children().children(".locbar").children().children();
             if(buttons.children().is(":disabled")){
                 setDist(activep.data("distance"))
@@ -744,6 +745,9 @@ $(document).on('tap','a',function(e){
             e.preventDefault();
             var goto = "https://stacksity.com/p/" + $(this).data('link');
             window.plugins.socialsharing.share('', null, null, goto);
+        }else if($(this).hasClass("postback")){
+            e.preventDefault();
+            $.mobile.back();
         }else{
             var link = $(this).attr("href");
             if(link==null||$(this).hasClass("ui-input-clear")){
