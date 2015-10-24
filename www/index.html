@@ -906,17 +906,17 @@
                                         }
                                     }
                                 }else if((contain.scrollTop() < 1)&&!touchcancel){
-                                    contain.trigger("touchstart");
+                                    contain.trigger("touchend");
                                     reficon.addClass("rotate");
                                     touchcancel = true;
-                                    contain.one("touchend", function(e) {
-                                        if(contain.scollTop() < 50){
-                                            refresh();
-                                            alert(contain.scrollTop() + "adsdg");
-                                            contain.stop().animate({ scrollTop : 50 }, 500, function(){
-                                                reficon.removeClass("rotate");
-                                            });
-                                        }
+                                    contain.on('touchmove.refreshing', function(e) {
+                                        e.preventDefault();
+                                    });
+                                    refresh();
+                                    contain.stop().animate({ scrollTop : 50 }, 500, function(){
+                                        contain.off('touchmove.refreshing');
+                                        touchcancel = false;
+                                        reficon.removeClass("rotate");
                                     });
                                 }
                             }
