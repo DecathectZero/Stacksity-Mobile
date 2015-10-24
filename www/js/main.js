@@ -121,7 +121,6 @@ function bannerset(activepage, stackids){
                     activepage.data("stackname", stackname);
                     startnews = 0;
                     if(stackids == -4){
-                        alert("setdisc");
                         activepage.data("distance", 5);
                         startNews(startnews,activepage, stackids, 5);
                     }else{
@@ -269,6 +268,7 @@ function setDist(distance, button){
 
 //retrieves the posts for a certain stack (probably one of the most important functions here, same as the site)
 function startNews(startnum, activepage, stackid, distance) {
+    alert(startnum + " | " + stackid + " | " + distance);
     if(!loading){
         if(end){
             return;
@@ -474,6 +474,7 @@ function refreshPage(opt) {
             openNote();
         }
     }else{
+        alert(opt);
         explore = false;
         var rev = false;
         var trans = 'none';
