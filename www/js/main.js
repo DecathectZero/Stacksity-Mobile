@@ -359,25 +359,37 @@ function refresh(){
     if(activep.data("stack_id")==null&&!postbox){
         bannerset(activep, stackid);
     }else{
-        var scrollpos = activep.find(".extracontainer").scrollTop();
-        if(scrollpos<100){
-            activep.find(".feed").empty();
-            activep.data("startnews", 0);
-            startnews = 0;
-            startNews(startnews, activep, stackid);
-        }else if(scrollpos<4000){
-            activep.find(".extracontainer").stop().animate({ scrollTop : 0 }, 1000, function(){
+        if(option==7 || option==4){
+            if(activep.children(".extracontainer").children().children(".locbar").children().children().is(":disabled")){
+                if($(this).html()=="All"){
+                    activep.find(".feed").empty();
+                    activep.data("startnews", 0);
+                    startnews = 0;
+                    startNews(startnews, activep, stackid);
+                }else{
+                    $(this).trigger('click');
+                }
+            }
+        }else{
+            var scrollpos = activep.children(".extracontainer").scrollTop();
+            if(scrollpos<100){
+                activep.find(".feed").empty();
+                activep.data("startnews", 0);
+                startnews = 0;
+                startNews(startnews, activep, stackid);
+            }else if(scrollpos<4000){
+                activep.find(".extracontainer").stop().animate({ scrollTop : 50 }, 1000, function(){
+                    activep.find(".feed").empty();
+                    startnews = 0;
+                    startNews(startnews, activep, stackid);
+                    activep.data("startnews", 0);
+                });
+            }else{
                 activep.find(".feed").empty();
                 startnews = 0;
                 startNews(startnews, activep, stackid);
                 activep.data("startnews", 0);
-            });
-        }else{
-            //activep.find(".extracontainer").scrollTop(0);
-            activep.find(".feed").empty();
-            startnews = 0;
-            startNews(startnews, activep, stackid);
-            activep.data("startnews", 0);
+            }
         }
     }
 }
@@ -523,7 +535,6 @@ function linkToStack(goto){
                     }
                 );
             }else{
-                //alert(option);
                 if(op==7){
                     $.mobile.back();
                 }else{
@@ -714,17 +725,8 @@ function stackTrace() {
     return err.stack;
 }
 
-$(document).on('tap','.postlink',function(e){
-    e.preventDefault();
-    $(this).trigger('click');
-});
-
 /*post stuff*/
 $(document).on('tap','a',function(e){
-    e.preventDefault();
-    return $(this).trigger('click');
-
-});$(document).on('click','a',function(e){
     if(login){
         if($(this).hasClass("toPost")){
             e.preventDefault();
@@ -749,14 +751,6 @@ $(document).on('tap','a',function(e){
         }else{
             var link = $(this).attr("href");
             if(link==null||$(this).hasClass("ui-input-clear")){
-                link = $(this).data("link");
-                if(link!=null){
-                    if(mobile && device.platform == "Android"){
-                        window.open(link, '_system');
-                    }else{
-                        window.open(link, '_blank', 'location=yes,enableViewportScale=yes');
-                    }
-                }
             }else{
                 e.preventDefault();
                 if(link.charAt(0)=="/"){
@@ -771,6 +765,12 @@ $(document).on('tap','a',function(e){
                         }else{
                             toPost(link.substring(3,midpoint),link.substring(midpoint+1));
                         }
+                    }
+                }else{
+                    if(mobile && device.platform == "Android"){
+                        window.open(link, '_system');
+                    }else{
+                        window.open(link, '_blank', 'location=yes,enableViewportScale=yes');
                     }
                 }
             }

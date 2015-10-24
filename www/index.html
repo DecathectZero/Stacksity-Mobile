@@ -789,13 +789,6 @@
         $.mobile.defaultPageTransition = 'slide';
         $.mobile.defaultPageTransition = 'slide';
     });
-    var _gaq = _gaq || [];
-
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
     //This the HTML DOM structure for the loader with two circles inside each other
     var loader =
             '<div class="spinner">'+
@@ -864,7 +857,10 @@
         var activepage = $.mobile.activePage;
         if(!postbox){
             if(isStackOption()){
-                activepage.children(".extracontainer").scrollTop(50);
+                var contain = activepage.children(".extracontainer");
+                if(contain.scrollTop()<50){
+                    contain.scrollTop(50);
+                }
                 loading = false;
                 end = false;
                 bottom = false;
@@ -897,7 +893,6 @@
                             //activepage.find('.scroll').html('<p>Loading Posts</p> ');
                         }
                         bannerset(activepage, stackid);
-                        var contain = activepage.children(".extracontainer");
                         var windowheight = $(window).height();
                         var reficon = contain.children().children(".pullRefresh").children();
                         var touchcancel = false;
@@ -908,7 +903,7 @@
                                         bottom = true;
                                         activepage.find('.scroll').html('<p>Loading Posts</p> ');
                                         //alert(activepage.data("distance"));
-                                        if(activepage.data("distance")==0||activepage.data("distance")==undefined){
+                                        if(activepage.data("distance")==0||activepage.data("distance")=='undefined'){
                                             startNews(startnews, activepage, stackid);
                                         }else{
                                             startNews(startnews, activepage, stackid, activepage.data("distance"));
@@ -963,7 +958,7 @@
 //                activepage.find(".extracontainer").css("-webkit-overflow-scrolling","touch");
                 if(isStackOption()){
                     if(postdata!=null){
-                        $.mobile.activePage.find(".extracontainer").scrollTop(0);
+                        $.mobile.activePage.find(".extracontainer").scrollTop(50);
                         parsePostData();
                     }
                 }else if(option == 7){

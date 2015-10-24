@@ -1288,7 +1288,6 @@ h1 {
     -webkit-transform: translate3d(0,0,0);
     -webkit-backface-visibility: hidden;
     background-color: #e9eaed;
-    top: -50px;
     min-height: calc( 100% + 50px );
 }
 .newnote{
