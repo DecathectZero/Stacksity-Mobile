@@ -14,6 +14,126 @@ function postOpen(type){
     }
 }
 
+/**
+ * main.js
+ * http://www.codrops.com
+ *
+ * Licensed under the MIT license.
+ * http://www.opensource.org/licenses/mit-license.php
+ *
+ * Copyright 2015, Codrops
+ * http://www.codrops.com
+ */
+function pullToRefresh(element, func) {
+
+    var shareWrapH,
+
+        translateVal,
+    // friction factor
+        friction = 2.5,
+    // distance in px needed to push down the menu in order to be able to share
+        triggerDistance = 60,
+    // touch events: position of the initial touch (y-axis)
+        firstTouchY, initialScroll, real = false;
+
+    function scrollY() { return element.parent().scrollTop() }
+
+    // from http://www.sberry.me/articles/javascript-event-throttling-debouncing
+    function throttle(fn, delay) {
+        var allowSample = true;
+
+        return function(e) {
+            if (allowSample) {
+                allowSample = false;
+                setTimeout(function() { allowSample = true; }, delay);
+                fn(e);
+            }
+        };
+    }
+
+    function init() {
+        element.on('touchstart', touchStart);
+        element.on('touchmove', touchMove);
+        element.on('touchend', touchEnd);
+    }
+
+    function touchStart(ev) {
+        // save the initial position of the touch (y-axis)
+        firstTouchY = parseInt(ev.originalEvent.touches[0].pageY);
+        // get the current height of the share wrapper
+        shareWrapH = 100;
+
+        // make sure the element doesnt have the transition class (added when the user releases the touch)
+        element.removeClass('container--reset');
+    }
+
+    function touchMove(ev) {
+        if(scrollY()<1){
+            var moving = function() {
+                //alert(firstTouchY);
+                //alert(ev.originalEvent.touches[0].pageY);
+                var touchY = parseInt(ev.originalEvent.touches[0].pageY),
+                    touchYDelta = touchY - firstTouchY;
+
+                if ( scrollY() === 0 && touchYDelta > 0  ) {
+                    ev.preventDefault();
+                }
+
+                if ( initialScroll > 0 || scrollY() > 0 || scrollY() === 0 && touchYDelta < 0 ) {
+                    firstTouchY = touchY;
+                    return;
+                }
+
+                //alert(touchYDelta + " | " + friction+ " | " +shareWrapH);
+                // calculate the distance the container needs to be translated
+                translateVal = -shareWrapH + touchYDelta/friction;
+
+                // set the transform value for the container
+                setContentTransform();
+
+                // show the selected sharing item if touchYDelta > triggerDistance
+                if( touchYDelta > triggerDistance ) {
+                    element.addClass('container--active');
+                    element.children(".pullRefresh").children().addClass("rotate");
+                }
+                else {
+                    element.removeClass('container--active');
+                }
+            };
+
+            throttle(moving(), 60);
+        }
+    }
+
+    function touchEnd(ev) {
+        if(scrollY()<1){
+            if( element.hasClass('container--active') ) {
+                element.removeClass('container--active');
+                // after expanding trigger the share functionality
+                func();
+                element.children(".pullRefresh").children().removeClass("rotate");
+            }
+
+            // reset transform
+            element.css("-webkit-transform",'');
+            element.css("transform",'');
+
+            // move back the container (css transition)
+            if( translateVal !== -shareWrapH ) {
+                element.addClass('container--reset');
+            }
+        }
+    }
+
+    function setContentTransform() {
+        element.css("-webkit-transform",'translate3d(0, ' + translateVal + 'px, 0)');
+        element.css("transform",'translate3d(0, ' + translateVal + 'px, 0)');
+    }
+
+    init();
+
+}
+
 //this function instates a stack that hasn't been open and fills the jqm page with jq data and creates the visuals of the stack header
 function bannerset(activepage, stackids){
     //checks login to double check if user is following or not
@@ -128,7 +248,7 @@ function bannerset(activepage, stackids){
                         startNews(startnews,activepage, stackids);
                     }
                     var contain = activepage.children(".extracontainer");
-                    pullToRefresh(contain, refresh());
+                    pullToRefresh(contain.children(), refresh);
                     var windowheight = $(window).height();
                     //var reficon = contain.children().children(".pullRefresh").children();
                     //var touchcancel = false;
@@ -1283,141 +1403,4 @@ function markseen(){
             alert("error"+ xhr.responseText);
         }
     });
-}
-
-/**
- * main.js
- * http://www.codrops.com
- *
- * Licensed under the MIT license.
- * http://www.opensource.org/licenses/mit-license.php
- *
- * Copyright 2015, Codrops
- * http://www.codrops.com
- */
-function pullToRefresh(element, func) {
-
-    var transEndEventNames = {'WebkitTransition': 'webkitTransitionEnd', 'MozTransition': 'transitionend', 'OTransition': 'oTransitionEnd', 'msTransition': 'MSTransitionEnd', 'transition': 'transitionend'},
-        transEndEventName = transEndEventNames[Modernizr.prefixed('transition')],
-        onEndTransition = function( el, callback ) {
-            var onEndCallbackFn = function( ev ) {
-                if( ev.target != this ) return;
-                $(this).off( transEndEventName, onEndCallbackFn );
-                if( callback && typeof callback === 'function' ) { callback.call(this); }
-            };
-            //el.on( transEndEventName, onEndCallbackFn );
-        },
-    // the wrapper of the share container, and a variable to store its height
-        shareWrap = element.children('.pullRefresh'), shareWrapH,
-
-        translateVal,
-    // friction factor
-        friction = 2.5,
-    // distance in px needed to push down the menu in order to be able to share
-        triggerDistance = 120,
-    // touch events: position of the initial touch (y-axis)
-        firstTouchY, initialScroll, real = false;
-
-    function scrollY() { return element.scrollTop() }
-
-    // from http://www.sberry.me/articles/javascript-event-throttling-debouncing
-    function throttle(fn, delay) {
-        var allowSample = true;
-
-        return function(e) {
-            if (allowSample) {
-                allowSample = false;
-                setTimeout(function() { allowSample = true; }, delay);
-                fn(e);
-            }
-        };
-    }
-
-    function init() {
-        element.on('touchstart', touchStart);
-        element.on('touchmove', touchMove);
-        element.on('touchend', touchEnd);
-    }
-
-    function touchStart(ev) {
-        // save the initial position of the touch (y-axis)
-        firstTouchY = parseInt(ev.originalEvent.touches[0].pageY);
-        // get the current height of the share wrapper
-        shareWrapH = shareWrap.height();
-
-        // make sure the element doesnt have the transition class (added when the user releases the touch)
-        element.removeClass('container--reset');
-    }
-
-    function touchMove(ev) {
-        if(scrollY()==0){
-            var moving = function() {
-                //alert(firstTouchY);
-                //alert(ev.originalEvent.touches[0].pageY);
-                var touchY = parseInt(ev.originalEvent.touches[0].pageY),
-                    touchYDelta = touchY - firstTouchY;
-
-                if ( scrollY() === 0 && touchYDelta > 0  ) {
-                    ev.preventDefault();
-                }
-
-                if ( initialScroll > 0 || scrollY() > 0 || scrollY() === 0 && touchYDelta < 0 ) {
-                    firstTouchY = touchY;
-                    return;
-                }
-
-                //alert(touchYDelta + " | " + friction+ " | " +shareWrapH);
-                // calculate the distance the container needs to be translated
-                translateVal = -shareWrapH + touchYDelta/friction;
-
-                // set the transform value for the container
-                setContentTransform();
-
-                // show the selected sharing item if touchYDelta > triggerDistance
-                if( touchYDelta > triggerDistance ) {
-                    element.addClass('container--active');
-                }
-                else {
-                    element.removeClass('container--active');
-                }
-            };
-
-            throttle(moving(), 60);
-        }
-    }
-
-    function touchEnd(ev) {
-
-        if( element.hasClass('container--active') ) {
-            // expanding effect on selected item
-            element.add('container--share');
-
-            onEndTransition(function() {
-                element.removeClass('container--share');
-                element.removeClass('container--active');
-                // after expanding trigger the share functionality
-                func();
-            });
-        }
-
-        // reset transform
-        element.css("-webkit-transform",'');
-        element.css("transform",'');
-
-        // move back the container (css transition)
-        if( translateVal !== -shareWrapH ) {
-            element.addClass('container--reset');
-            onEndTransition(element, function() {
-                element.removeClass('container--reset');
-            });
-        }
-    }
-
-    function setContentTransform() {
-        element.css("-webkit-transform",'translate3d(0, ' + translateVal + 'px, 0)');
-        element.css("transform",'translate3d(0, ' + translateVal + 'px, 0)');
-    }
-
-    init();
-
 }

@@ -1286,9 +1286,9 @@ h1 {
 .con{
     -webkit-backface-visibility: hidden;
     background-color: #e9eaed;
-    min-height: calc( 100% + 94px );
-    -webkit-transform: translate3d(0,-50px,0);
-    transform: translate3d(0,-50px,0);
+    min-height: calc( 100% + 144px );
+    -webkit-transform: translate3d(0,-100px,0);
+    transform: translate3d(0,-100px,0);
 }
 .newnote{
     background-color: #FF4136;
@@ -1379,8 +1379,8 @@ h1 {
 }
 /*Pull to Refresh stuff */
 .pullRefresh{
-    height: 50px;
-    padding: 11px 0;
+    height: 100px;
+    padding: 61px 0 11px;
     width: 100%;
 }
 .refresh{
@@ -1393,12 +1393,59 @@ h1 {
     -webkit-transform: translate3d(0,0,0);
     -webkit-transform: rotate( 0deg );
     transform: rotate( 0deg );
-    transition: -webkit-transform 0s ease;
-    transition: transform 0s ease;
+    transition: -webkit-transform 100ms ease;
+    transition: transform 100ms ease;
 }
 .rotate{
     -webkit-transform: rotate( -180deg );
     transform: rotate( -180deg );
     transition: -webkit-transform 300ms ease;
     transition: transform 300ms ease;
+}
+/* move to the right position */
+.container--active .share::before {
+    opacity: 1;
+    -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+.container--active .share--select-1::before {
+    -webkit-transform: translate3d(-90px,0,0);
+    transform: translate3d(-90px,0,0);
+}
+
+.container--active .share--select-2::before {
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+
+.container--active .share--select-3::before {
+    -webkit-transform: translate3d(90px,0,0);
+    transform: translate3d(90px,0,0);
+}
+
+/* scale up and fade out */
+.container--share .share::before {
+    opacity: 0;
+    -webkit-transition: -webkit-transform 0.5s, opacity 0.5s;
+    transition: transform 0.5s, opacity 0.5s;
+}
+
+.container--share .share--select-1::before {
+    -webkit-transform: translate3d(-90px,0,0) scale3d(20,20,1);
+    transform: translate3d(-90px,0,0) scale3d(20,20,1);
+}
+
+.container--share .share--select-2::before {
+    -webkit-transform: scale3d(20,20,1);
+    transform: scale3d(20,20,1);
+}
+
+.container--share .share--select-3::before {
+    -webkit-transform: translate3d(90px,0,0) scale3d(20,20,1);
+    transform: translate3d(90px,0,0) scale3d(20,20,1);
+}
+.container--reset {
+    -webkit-transition: -webkit-transform 0.5s;
+    transition: transform 0.5s;
 }

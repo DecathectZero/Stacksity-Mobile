@@ -464,8 +464,11 @@
             <div class="headercaption">Notifications</div>
         </div>
         <div class="extracontainer">
-            <div class="con center" style="min-height: 101%">
+            <div class="con center">
                 <div class="topgap"></div>
+                <div class="pullRefresh">
+                    <div class="refresh glyphicon glyphicon-chevron-up"></div>
+                </div>
                 <div class="note-header">
                 </div>
                 <div class="notescroll">
@@ -726,6 +729,7 @@
         ex();
         getNotification();
         set();
+        pullToRefresh($("#notepage").children(".extracontainer").children(".con"), openNote);
     }
     function loginResetPage(){
         localStorage.clear();
