@@ -711,7 +711,9 @@
         $( document ).ready(onDeviceReady());
     }
     function start(){
-        $.mobile.navigate("#toppage");
+        if($.mobile.activepage.attr("id")!="toppage") {
+            $.mobile.navigate("#toppage");
+        }
         $(".footer").show();
         if(mobile){
             PushbotsPlugin.setAlias(localStorage.getItem('user_id'));

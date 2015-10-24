@@ -121,6 +121,7 @@ function bannerset(activepage, stackids){
                     activepage.data("stackname", stackname);
                     startnews = 0;
                     if(stackids == -4){
+                        alert("setdisc");
                         activepage.data("distance", 5);
                         startNews(startnews,activepage, stackids, 5);
                     }else{
@@ -292,7 +293,6 @@ function displayNews(startnum, activepage, stackid, latpoint, longpoint, distanc
     checklogin();
     loading = true;
     var postnum = 0;
-    alert(latpoint + " | " + longpoint + " | " + distance);
     $.ajax({
         type     : "GET",
         cache    : false,
