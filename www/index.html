@@ -39,7 +39,7 @@
         var postid = 0;
         var option = 1;
         var submitform = false;
-        var first = true;
+        var first = false;
         $(document).one("mobileinit", function () {
             $.mobile.pageContainer = $('#container');
             $.mobile.defaultPageTransition = 'slide';
@@ -110,7 +110,7 @@
         </div>
     </div>
 </div>
-<div id="splashpage"></div>
+<!--<div id="splashpage"></div>-->
 <div id="container">
     <div data-role="page" data-dom-cache="true" id="explorepage" class="ex">
         <div data-role="header" class="head padding-top" id="explorehead">
@@ -720,9 +720,7 @@
         $( document ).ready(onDeviceReady());
     }
     function start(){
-        window.location.hash = "toppage";
-        $.mobile.initializePage();
-        $("#spashpage").hide();
+        $.mobile.navigate("#toppage");
         $(".footer").show();
         if(mobile){
             PushbotsPlugin.setAlias(localStorage.getItem('user_id'));
@@ -740,15 +738,12 @@
     function startlogin(){
         login = false;
         option = 1;
-        window.location.hash = "loginpage";
-        $.mobile.initializePage();
+        $.mobile.navigate("#loginpage");
         $("#loginloader").hide();
         $("#loginform").show();
-        $("#spashpage").hide();
     }
 
     function onDeviceReady() {
-        first = true;
         document.addEventListener("backbutton", function (e) {
             if(login){
                 navigator.app.backHistory();
@@ -756,6 +751,7 @@
             }else{e.preventDefault();}
         });
         if(mobile){
+            first = true;
 //            alert(device.platform + " | " + device.version);
             if(device.platform == 'iOS' && parseInt(device.version.charAt(0)) >= 8){
                 $("head").append("<style>.topgap{padding-top: 64px}.padding-top{padding-top: 21px}</style>");
@@ -766,7 +762,6 @@
             if(PushbotsPlugin.isAndroid()){
                 PushbotsPlugin.initializeAndroid("561ed24517795902148b4569", "907553791348");
             }
-            navigator.splashscreen.hide();
             document.addEventListener("resume", onResume, false);
             StatusBar.overlaysWebView(false);
             StatusBar.backgroundColorByHexString("#ffffff");
@@ -891,6 +886,10 @@
     //this function should be ran when logged in and during when a page shows
     function pageDuring(){
         var activepage = $.mobile.activePage;
+        if(first){
+            first = false;
+            navigator.splashscreen.hide();
+        }
         if(!postbox){
             if(isStackOption()){
                 var contain = activepage.children(".extracontainer");
