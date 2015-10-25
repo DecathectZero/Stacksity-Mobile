@@ -1230,7 +1230,7 @@ $(document).on('submit', '.replycomment', function(e){
     if(!posting && ($(this).children(".postcon").children(".textpost").children().val().trim().length > 0)){
         checklogin();
         posting = true;
-        $(this).children('.replypost').html('<div class="loader">Loading...</div>');
+        $(this).children('.replypost').html('Posting..');
         e.preventDefault();
         var el = $(this);
         $.ajax({
@@ -1267,7 +1267,7 @@ $(document).on('submit', '.replycomment', function(e){
 });
 $(document).on('submit', '#commentform',function(e){
     e.preventDefault();
-    if(!posting && ($(this).children(".postcon").children("#commenttext").val().trim().length > 0)){
+    if(!posting && ($(this).children(".postcon").find("#commenttext").val().trim().length > 0)){
         checklogin();
         posting = true;
         $('#cbutton').html('<div class="loader">Loading...</div>');
