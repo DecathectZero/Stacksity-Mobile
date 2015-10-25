@@ -241,8 +241,7 @@ function bannerset(activepage, stackids){
                     activepage.data("stackname", stackname);
                     startnews = 0;
                     if(stackids == -4){
-                        activepage.data("distance", 5);
-                        startNews(startnews,activepage, stackids, 5);
+                        setDist(5, "#nearbtn")
                     }else{
                         activepage.data("distance", 0);
                         startNews(startnews,activepage, stackids);
@@ -259,7 +258,7 @@ function bannerset(activepage, stackids){
                                     bottom = true;
                                     activepage.find('.scroll').html('<p>Loading Posts</p> ');
                                     //alert(activepage.data("distance"));
-                                    if(activepage.data("distance")==0||activepage.data("distance")=='undefined'){
+                                    if(activepage.data("distance")==0||activepage.data("distance")===undefined){
                                         startNews(startnews, activepage, stackid);
                                     }else{
                                         startNews(startnews, activepage, stackid, activepage.data("distance"));
@@ -403,7 +402,7 @@ function checklogin(){
 
 //this function is called when someone fires a change distance button
 function setDist(distance, button){
-    if(button!=null){
+    if(button!==undefined){
         $(".dist-btn").prop('disabled', false);
         $(button).prop('disabled', true);
     }
@@ -520,10 +519,10 @@ function refresh(){
         bannerset(activep, stackid);
     }else{
         if((option==6 && !is_user) || option==4){
-            var buttons = activep.children(".extracontainer").children().children(".locbar").children().children();
-            if(buttons.children().is(":disabled")){
-                setDist(activep.data("distance"))
-            }
+            //var buttons = activep.children(".extracontainer").children().children(".locbar").children().children();
+            //if(buttons.children().is(":disabled")){
+                setDist(activep.data("distance"));
+            //}
         }else{
             var scrollpos = activep.children(".extracontainer").scrollTop();
             if(scrollpos<100){

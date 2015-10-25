@@ -1147,10 +1147,10 @@ h1 {
 
 .footer { background: #1c5380; position: fixed; bottom: 0; width: 100%; text-align: center; z-index: 999; display: none}
 .head{
-    /*position:fixed;*/
-    /*z-index:100;*/
-    /*top:0;*/
-    /*width:100%;*/
+    position:fixed;
+    z-index:100;
+    top:0;
+    width:100%;
     background-color: #fff;
     /*-webkit-box-shadow: 0 5px 25px 5px rgba(0,0,0,.2);*/
     /*-moz-box-shadow: 0 5px 25px 5px rgba(0,0,0,.2);*/
@@ -1275,7 +1275,7 @@ h1 {
 }
 /*change this for iOS to work*/
 .padding-top{
-    padding-top: 1px;
+    padding-top: 0px;
 }
 .topgap{
     /*change padding top between 30 and 50 for iOS*/

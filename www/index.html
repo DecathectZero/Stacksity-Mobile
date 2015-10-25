@@ -442,7 +442,7 @@
                             <button type="button" class="btn btn-default dist-btn" onclick="setDist(0.1, this)" data-role="none">Close</button>
                         </div>
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default dist-btn" onclick="setDist(5, this)" data-role="none" disabled>Near</button>
+                            <button type="button" class="btn btn-default dist-btn" onclick="setDist(5, this)" data-role="none" id="nearbtn">Near</button>
                         </div>
                         <div class="btn-group" role="group">
                             <button type="button" class="btn btn-default dist-btn" data-role="none" onclick="setDist(50, this)">Far</button>
@@ -522,7 +522,7 @@
             <label class="postlabel">
                 <div class="postbar" style="padding: 0">
                     <p>posting to<br/><span class="bold" id="posting"></span></p>
-                    <a class="cancelpost" data-rel="back" data-role="button" data-corners="false" data-inline="true" onclick="postbox = false" id="cancelpost">cancel</a>
+                    <a class="cancelpost postback" data-role="button" data-corners="false" data-inline="true" onclick="postbox = false" id="cancelpost">cancel</a>
                 </div>
             </label>
             <form class="postform toppost" id="toppost">
