@@ -27,12 +27,11 @@ function postOpen(type){
 function pullToRefresh(element, func) {
 
     var shareWrapH,
-
         translateVal,
     // friction factor
         friction = 2.5,
     // distance in px needed to push down the menu in order to be able to share
-        triggerDistance = 60,
+        triggerDistance = 100,
     // touch events: position of the initial touch (y-axis)
         firstTouchY, initialScroll, real = false;
 
@@ -94,7 +93,7 @@ function pullToRefresh(element, func) {
                 // show the selected sharing item if touchYDelta > triggerDistance
                 if( touchYDelta > triggerDistance ) {
                     element.addClass('container--active');
-                    element.children(".pullRefresh").children().addClass("rotate");
+                    //element.children(".pullRefresh").children().addClass("rotate");
                 }
                 else {
                     element.removeClass('container--active');
@@ -108,10 +107,13 @@ function pullToRefresh(element, func) {
     function touchEnd(ev) {
         if(scrollY()<1){
             if( element.hasClass('container--active') ) {
-                element.removeClass('container--active');
-                // after expanding trigger the share functionality
-                func();
-                element.children(".pullRefresh").children().removeClass("rotate");
+                element.on( 'transitionend.refresh', function(){
+                    element.removeClass('container--active');
+                    // after expanding trigger the share functionality
+                    func();
+                    //element.children(".pullRefresh").children().removeClass("rotate");
+                    element.off('transitionend.refresh');
+                });
             }
 
             // reset transform
