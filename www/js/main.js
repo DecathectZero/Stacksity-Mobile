@@ -1187,7 +1187,7 @@ function getComment(item)
                     e.preventDefault();
                 });
                 $('#post .extracontainer').animate({
-                    scrollTop: (comment.offset().top - 50)
+                    scrollTop: (comment.offset().top - 60)
                 }, 1000, function(){
                     extra.off('touchstart.comment');
                 });
