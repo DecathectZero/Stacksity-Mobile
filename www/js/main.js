@@ -258,7 +258,7 @@ function bannerset(activepage, stackids){
                     //var touchcancel = false;
                     contain.bind("scrollstop", function() {
                         if(!postbox){
-                            if(contain.scrollTop() + windowheight > contain.children(".con").height() - 250) {
+                            if(contain.scrollTop() + windowheight > contain.children(".con").height() - 300) {
                                 if(!end&&!bottom&&!loading){
                                     bottom = true;
                                     activepage.find('.scroll').html('<p>Loading Posts</p> ');
@@ -669,57 +669,69 @@ function refreshPage(opt) {
     }
     postbox = false;
 }
+
 function linkToStack(goto){
     if(goto == userstack || goto == username){
         refreshPage(5);
     }else{
-        $('.active').removeClass('active');
-        //localStorage.setItem('stack', goto);
-        var op = option;
-        option = 6;
-        if(explore){
-            if(goto != stackid && goto != stackname){
-                stackid = goto;
-                dontdelete = true;
-                explore = true;
-                changepage = true;
-                $.mobile.changePage(
-                    "#explorepage",
-                    {
-                        allowSamePageTransition : true,
-                        transition              : 'turn',
-                        showLoadMsg             : false,
-                        reloadPage              : true
-                    }
-                );
-            }else{
-                if(op==7){
-                    $.mobile.back();
-                }else{
-                    refresh();
-                }
+        if(notransition){
+            notransition = false;
+            if(goto=="0" || goto=="$best"){
+                refreshPage(1);
+                return;
+            }else if(goto=="0" || goto=="$near"){
+                refreshPage(4);
+                return;
             }
-        }else{
-            if(goto == stackid&&op==7){
-                $.mobile.back();
-            }else if(op==2||op==7||(goto != stackid && goto != stackname)){
-                //alert(goto);
-                var banner = $('#explorepage .banner');
-                $('#explorepage').data("stack_id", null);
-                $('#explorepage').find(".locbar").remove();
-                banner.hide();
-                banner.removeClass("userbanner");
-                $('#explorepage .feed').empty();
-                stackid = goto;
-                explore = true;
-                changepage = true;
-                $.mobile.changePage(
-                    "#explorepage",
-                    {
-                        transition              : 'turn',
-                        showLoadMsg             : false
+            $('.active').removeClass('active');
+            //localStorage.setItem('stack', goto);
+            var op = option;
+            option = 6;
+            if(explore){
+                if(goto != stackid && goto != stackname){
+                    stackid = goto;
+                    dontdelete = true;
+                    explore = true;
+                    changepage = true;
+                    $.mobile.changePage(
+                        "#explorepage",
+                        {
+                            allowSamePageTransition : true,
+                            transition              : 'turn',
+                            showLoadMsg             : false,
+                            reloadPage              : true
+                        }
+                    );
+                }else{
+                    if(op==7){
+                        $.mobile.back();
+                    }else{
+                        notransition = true;
+                        refresh();
                     }
-                );
+                }
+            }else{
+                if(goto == stackid&&op==7){
+                    $.mobile.back();
+                }else if(op==2||op==7||(goto != stackid && goto != stackname)){
+                    //alert(goto);
+                    var banner = $('#explorepage .banner');
+                    $('#explorepage').data("stack_id", null);
+                    $('#explorepage').find(".locbar").remove();
+                    banner.hide();
+                    banner.removeClass("userbanner");
+                    $('#explorepage .feed').empty();
+                    stackid = goto;
+                    explore = true;
+                    changepage = true;
+                    $.mobile.changePage(
+                        "#explorepage",
+                        {
+                            transition              : 'turn',
+                            showLoadMsg             : false
+                        }
+                    );
+                }
             }
         }
     }
@@ -915,11 +927,11 @@ $(document).on('tap','a',function(e){
             }else{
                 e.preventDefault();
                 if(link.charAt(0)=="/"){
-                    if(link.charAt(1)=="u"){
+                    if(link.charAt(1)=="u"&& link.charAt(2)=="/"){
                         linkToStack(link.substring(3));
                     }else if(link.charAt(1)=="$"){
                         linkToStack(link.substring(1));
-                    }else if(link.charAt(1)=="p"){
+                    }else if(link.charAt(1)=="p"&& link.charAt(2)=="/"){
                         var midpoint = link.indexOf("&");
                         if (midpoint === -1){
                             toPost(link.substring(3));
@@ -1101,6 +1113,11 @@ $(document).on("dblclick", ".comment-content", function (event) {
         $(this).addClass("collapsedcss");
         $(this).parent().parent(".child").addClass("childcollapsed");
     }
+});
+$(document).on("dblclick", ".item", function (event) {
+    event.preventDefault();
+
+    $(this).find(".collapsecon").slideToggle();
 });
 
 //$(document).on("click", ".commentcollapse", function () {

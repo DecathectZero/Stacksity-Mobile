@@ -40,6 +40,10 @@
         var option = 1;
         var submitform = false;
         var first = false;
+        var notransition = false;
+        var posttrans = false;
+        var prevpageID = "";
+        var lastdefaultOP = 1;
         $(document).one("mobileinit", function () {
             $.mobile.pageContainer = $('#container');
             $.mobile.defaultPageTransition = 'slide';
@@ -841,6 +845,8 @@
             $('#postcon').hide();
             $('#commentfeed').html(loader);
             getPost(postid);
+        }else if(option<=5){
+            lastdefaultOP = option;
         }
         if(activepage.data("stack_id")==null&&!postbox){
             activepage.find('.scroll').html('<p>Loading Stack...</p>');
@@ -890,6 +896,7 @@
             first = false;
             navigator.splashscreen.hide();
         }
+        notransition = true;
         if(!postbox){
             if(isStackOption()){
                 var contain = activepage.children(".extracontainer");
@@ -915,6 +922,7 @@
 
     $(document).on('pagebeforeshow',function(event,ui){
         if(login){
+            prevpageID = ui.prevPage.attr("id");
             pageBefore();
         }
     });
@@ -992,9 +1000,27 @@
         e.preventDefault();
         refreshPage($(this).data("op"));
     });
-    $("#post").on("swiperight", function(e){
+    $("#container").on("swiperight", function(e){
         if ( e.swipestart.coords[0] <50) {
-            $.mobile.back();
+            if((!isStackOption() || option == 6)){
+                if(prevpageID=="explorepage"){
+                    option = lastdefaultOP;
+                    changepage = true;
+                    init();
+                    console.log(explore);
+                    explore = false;
+                    $.mobile.changePage(
+                            getOption(),
+                            {
+                                transition              : 'turn',
+                                showLoadMsg             : false,
+                                reverse: true
+                            }
+                    );
+                }else{
+                    $.mobile.back();
+                }
+            }
         }
     });
 </script>

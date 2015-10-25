@@ -80,7 +80,7 @@ function imagepost(element){
     getlink(element.post_id, element.link)+'<h4>' +  privt(element.title, element.private)  + '</h4></a>' +
     '<p class="postinfo">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id, element.flair, element.stackflair)+' | '+ element.created +'</p></div>' +
     getlink(0, element.link) +
-    '<div class="imagewrap">'+element.embed+'</div>' +
+    '<div class="imagewrap collapsecon">'+element.embed+'</div>' +
     '</a>' + '</div><div class="vote login">'+
     vote +
     '</div>'+comments(element)+
@@ -97,7 +97,7 @@ function videopost(element){
     getlink(element.post_id, element.link)+'<h4>' + privt(element.title, element.private) + '</h4></a>' +
     '<p class="postinfo">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id, element.flair, element.stackflair)+' | '+ element.created +'</p></div>' +
         //'<a href="/'+element.link+'" target="_blank">' +
-    '<div class="linkwrapper"><div class="videowrapper">'+element.embed+'</div>'+
+    '<div class="linkwrapper collapsecon"><div class="videowrapper">'+element.embed+'</div>'+
     '<div class="textfeed margins"><p class="content">'+element.text+'</p></div></div><div class="vote login">'+
     vote +
     '</div>'+comments(element)+
@@ -112,7 +112,7 @@ function videopostfeed(element){
     '<div class="textcon"><div class="linkwrapper"><div class="margins">' +
     getlink(element.post_id, element.link)+'<h4>' +  privt(element.title, element.private)  + '</h4></a>' +
     '<p class="postinfo">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id, element.flair, element.stackflair)+' | '+ element.created +'</p>' +
-    '</div>'+ getlink(0, element.link) +'<div class="imagewrap"><div class="play"></div><img src="'+element.image+'" class="imagecon"></div>' +
+    '</div>'+ getlink(0, element.link) +'<div class="imagewrap collapsecon"><div class="play"></div><img src="'+element.image+'" class="imagecon"></div>' +
     '</a>' + '</div><div class="vote login margins">'+
     vote +
     '</div>'+comments(element)+
@@ -134,7 +134,7 @@ function linkspost(element){
     '<div class="textcon">' +
     getlink(element.post_id, element.link)+'<h4>' + privt(element.title, element.private) + '</h4></a>' +
     '<p class="postinfo">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id, element.flair, element.stackflair)+' | '+ element.created +'</p>' +
-    '<div class="linkwrapper">' + getlink(0, element.link) +
+    '<div class="linkwrapper collapsecon">' + getlink(0, element.link) +
     '<div class="linkcontainer"><img class="linkimage" src="'+ parseimg(element.image) +'"></div>' +
     '<p class="content">'+element.text+'</p></a>' +
     '</div><div class="vote login">'+
@@ -157,7 +157,7 @@ function textspost(element){
     '">' +
     link +
     '<p class="postinfo">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id, element.flair, element.stackflair)+' | '+ element.created +'</p>' +
-    '<div class="content textpostcon">'+element.text+'</div><div class="vote login">'+
+    '<div class="content textpostcon collapsecon">'+element.text+'</div><div class="vote login">'+
     vote +
     '</div>'+comments(element)+
     '</div>' +
