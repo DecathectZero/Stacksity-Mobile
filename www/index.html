@@ -17,7 +17,6 @@
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/jquerymobile.js"></script>
     
-    
     <script type="text/javascript">
         var mobile = false;
         var login = (localStorage.getItem("session_id") !== null);
@@ -40,6 +39,7 @@
         var postid = 0;
         var option = 1;
         var submitform = false;
+        var first = true;
         $(document).one("mobileinit", function () {
             $.mobile.pageContainer = $('#container');
             $.mobile.defaultPageTransition = 'slide';
@@ -723,7 +723,6 @@
     function start(){
         $.mobile.navigate("#toppage");
         $(".footer").show();
-        $("#splash").fadeOut();
         if(mobile){
             PushbotsPlugin.setAlias(localStorage.getItem('user_id'));
         }
@@ -743,7 +742,7 @@
         $.mobile.navigate("#loginpage");
         $("#loginloader").hide();
         $("#loginform").show();
-        $("#splash").fadeOut();
+
     }
 
     function onDeviceReady() {
@@ -889,6 +888,10 @@
     //this function should be ran when logged in and during when a page shows
     function pageDuring(){
         var activepage = $.mobile.activePage;
+        if(first){
+            first = false;
+            $("#splash").hide();
+        }
         if(!postbox){
             if(isStackOption()){
                 var contain = activepage.children(".extracontainer");

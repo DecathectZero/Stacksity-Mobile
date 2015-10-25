@@ -94,7 +94,6 @@ function pullToRefresh(element, func) {
                 // show the selected sharing item if touchYDelta > triggerDistance
                 if( touchYDelta > triggerDistance ) {
                     real = true;
-                    rotate.addClass("rotate");
                     rotate.css("-webkit-transform","rotateZ( -180deg )");
                     rotate.css("transform","rotateZ( -180deg )");
                 }

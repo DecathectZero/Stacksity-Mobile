@@ -1163,7 +1163,7 @@ h1 {
     /*-webkit-box-shadow: 0 5px 25px 5px rgba(0,0,0,.2);*/
     /*-moz-box-shadow: 0 5px 25px 5px rgba(0,0,0,.2);*/
     /*box-shadow: 0 5px 25px 5px rgba(0,0,0,.2);*/
-    z-index: 1000;
+    z-index: 995;
     /*position:fixed;z-index:10;top:0;width:100%;*/
 }
 .botmenu{
