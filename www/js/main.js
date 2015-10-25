@@ -31,8 +31,9 @@ function pullToRefresh(element, func) {
     // friction factor
         friction = 2.5,
     // distance in px needed to push down the menu in order to be able to share
-        triggerDistance = 100,
+        triggerDistance = 150,
     // touch events: position of the initial touch (y-axis)
+        rotate = element.children(".pullRefresh").children(),
         firstTouchY, initialScroll, real = false;
 
     function scrollY() { return element.parent().scrollTop() }
@@ -92,11 +93,11 @@ function pullToRefresh(element, func) {
 
                 // show the selected sharing item if touchYDelta > triggerDistance
                 if( touchYDelta > triggerDistance ) {
-                    element.addClass('container--active');
-                    //element.children(".pullRefresh").children().addClass("rotate");
+                    real = true;
+                    rotate.addClass("rotate");
                 }
                 else {
-                    element.removeClass('container--active');
+                    real = false;
                 }
             };
 
@@ -106,12 +107,12 @@ function pullToRefresh(element, func) {
 
     function touchEnd(ev) {
         if(scrollY()<1){
-            if( element.hasClass('container--active') ) {
+            if( real ) {
                 element.on( 'transitionend.refresh', function(){
-                    element.removeClass('container--active');
+                    real = false;
                     // after expanding trigger the share functionality
                     func();
-                    //element.children(".pullRefresh").children().removeClass("rotate");
+                    rotate.removeClass("rotate");
                     element.off('transitionend.refresh');
                 });
             }

@@ -1391,60 +1391,16 @@ h1 {
     text-align: center;
     display: block;
     /*-webkit-transform: translateZ(0);*/
-    -webkit-transform: translate3d(0,0,0);
-    -webkit-transform: rotate( 0deg );
-    transform: rotate( 0deg );
+    -webkit-transform: rotateZ( 0deg );
+    transform: rotateZ( 0deg );
     transition: -webkit-transform 100ms ease;
     transition: transform 100ms ease;
 }
 .rotate{
-    -webkit-transform: rotate( -180deg );
-    transform: rotate( -180deg );
+    -webkit-transform: rotateZ( -180deg );
+    transform: rotateZ( -180deg );
     transition: -webkit-transform 300ms ease;
     transition: transform 300ms ease;
-}
-/* move to the right position */
-.container--active .share::before {
-    opacity: 1;
-    -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
-    transition: transform 0.3s, opacity 0.3s;
-}
-
-.container--active .share--select-1::before {
-    -webkit-transform: translate3d(-90px,0,0);
-    transform: translate3d(-90px,0,0);
-}
-
-.container--active .share--select-2::before {
-    -webkit-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
-}
-
-.container--active .share--select-3::before {
-    -webkit-transform: translate3d(90px,0,0);
-    transform: translate3d(90px,0,0);
-}
-
-/* scale up and fade out */
-.container--share .share::before {
-    opacity: 0;
-    -webkit-transition: -webkit-transform 0.5s, opacity 0.5s;
-    transition: transform 0.5s, opacity 0.5s;
-}
-
-.container--share .share--select-1::before {
-    -webkit-transform: translate3d(-90px,0,0) scale3d(20,20,1);
-    transform: translate3d(-90px,0,0) scale3d(20,20,1);
-}
-
-.container--share .share--select-2::before {
-    -webkit-transform: scale3d(20,20,1);
-    transform: scale3d(20,20,1);
-}
-
-.container--share .share--select-3::before {
-    -webkit-transform: translate3d(90px,0,0) scale3d(20,20,1);
-    transform: translate3d(90px,0,0) scale3d(20,20,1);
 }
 .container--reset {
     -webkit-transition: -webkit-transform 0.5s;
