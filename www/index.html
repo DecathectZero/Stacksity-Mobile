@@ -43,7 +43,7 @@
         $(document).one("mobileinit", function () {
             $.mobile.pageContainer = $('#container');
             $.mobile.defaultPageTransition = 'slide';
-//            $.mobile.autoInitializePage = false;
+            $.mobile.autoInitializePage = false;
         });
     </script>
 <body>
@@ -110,7 +110,7 @@
         </div>
     </div>
 </div>
-<div id="splash"></div>
+<div id="splashpage"></div>
 <div id="container">
     <div data-role="page" data-dom-cache="true" id="explorepage" class="ex">
         <div data-role="header" class="head padding-top" id="explorehead">
@@ -720,7 +720,9 @@
         $( document ).ready(onDeviceReady());
     }
     function start(){
-        $.mobile.navigate("#toppage");
+        window.location.hash = "toppage";
+        $.mobile.initializePage();
+        $("#spashpage").hide();
         $(".footer").show();
         if(mobile){
             PushbotsPlugin.setAlias(localStorage.getItem('user_id'));
@@ -738,10 +740,11 @@
     function startlogin(){
         login = false;
         option = 1;
-        $.mobile.navigate("#loginpage");
+        window.location.hash = "loginpage";
+        $.mobile.initializePage();
         $("#loginloader").hide();
         $("#loginform").show();
-
+        $("#spashpage").hide();
     }
 
     function onDeviceReady() {
@@ -888,10 +891,6 @@
     //this function should be ran when logged in and during when a page shows
     function pageDuring(){
         var activepage = $.mobile.activePage;
-        if(first){
-            first = false;
-            $("#splash").hide();
-        }
         if(!postbox){
             if(isStackOption()){
                 var contain = activepage.children(".extracontainer");
