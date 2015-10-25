@@ -95,6 +95,8 @@ function pullToRefresh(element, func) {
                 if( touchYDelta > triggerDistance ) {
                     real = true;
                     rotate.addClass("rotate");
+                    rotate.css("-webkit-transform","rotateZ( -180deg )");
+                    rotate.css("transform","rotateZ( -180deg )");
                 }
                 else {
                     real = false;
@@ -112,7 +114,8 @@ function pullToRefresh(element, func) {
                     real = false;
                     // after expanding trigger the share functionality
                     func();
-                    rotate.removeClass("rotate");
+                    rotate.css("-webkit-transform",'rotateZ( 0deg )');
+                    rotate.css("transform",'rotateZ( 0deg )');
                     element.off('transitionend.refresh');
                 });
             }

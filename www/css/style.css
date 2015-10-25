@@ -41,6 +41,14 @@ a:active{
     margin: 0;
     position: absolute;
 }
+#splash{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    background-color: #344D6E;
+    position: absolute;
+    z-index: 999;
+}
 .ui-page{
     -webkit-backface-visibility: hidden;
 }
@@ -1145,7 +1153,7 @@ h1 {
     margin: 5px 0;
 }
 
-.footer { background: #1c5380; position: fixed; bottom: 0; width: 100%; text-align: center; z-index: 999; display: none}
+.footer { background: #344D6E; position: fixed; bottom: 0; width: 100%; text-align: center; z-index: 999; display: none}
 .head{
     position:fixed;
     z-index:100;
@@ -1393,8 +1401,8 @@ h1 {
     /*-webkit-transform: translateZ(0);*/
     -webkit-transform: rotateZ( 0deg );
     transform: rotateZ( 0deg );
-    transition: -webkit-transform 100ms ease;
-    transition: transform 100ms ease;
+    transition: -webkit-transform 300ms ease;
+    transition: transform 300ms ease;
 }
 .rotate{
     -webkit-transform: rotateZ( -180deg );

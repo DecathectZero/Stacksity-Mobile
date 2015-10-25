@@ -111,6 +111,7 @@
         </div>
     </div>
 </div>
+<div id="splash"></div>
 <div id="container">
     <div data-role="page" data-dom-cache="true" id="explorepage" class="ex">
         <div data-role="header" class="head padding-top" id="explorehead">
@@ -722,6 +723,7 @@
     function start(){
         $.mobile.navigate("#toppage");
         $(".footer").show();
+        $("#splash").fadeOut();
         if(mobile){
             PushbotsPlugin.setAlias(localStorage.getItem('user_id'));
         }
@@ -741,6 +743,7 @@
         $.mobile.navigate("#loginpage");
         $("#loginloader").hide();
         $("#loginform").show();
+        $("#splash").fadeOut();
     }
 
     function onDeviceReady() {
