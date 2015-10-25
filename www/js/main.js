@@ -523,9 +523,11 @@ function refresh(){
     if(activep.data("stack_id")==null&&!postbox){
         bannerset(activep, stackid);
     }else{
-        if((option==6 && !is_user) || option==4){
+        //console.log(is_user);
+        if((option==6 && activep.data("is_user")==0) || option==4){
             //var buttons = activep.children(".extracontainer").children().children(".locbar").children().children();
             //if(buttons.children().is(":disabled")){
+            //    console.log(activep.data("distance"));
                 setDist(activep.data("distance"));
             //}
         }else{
