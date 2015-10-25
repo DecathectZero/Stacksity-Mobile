@@ -749,10 +749,28 @@
 
     function onDeviceReady() {
         document.addEventListener("backbutton", function (e) {
+            e.preventDefault();
             if(login){
-                navigator.app.backHistory();
-                history.go(-1);
-            }else{e.preventDefault();}
+                if((!isStackOption() || option == 6)){
+                    if(prevpageID=="explorepage"){
+                        option = lastdefaultOP;
+                        changepage = true;
+                        init();
+                        console.log(explore);
+                        explore = false;
+                        $.mobile.changePage(
+                                getOption(),
+                                {
+                                    transition              : 'turn',
+                                    showLoadMsg             : false,
+                                    reverse: true
+                                }
+                        );
+                    }else{
+                        $.mobile.back();
+                    }
+                }
+            }
         });
         if(mobile){
             first = true;
@@ -1001,7 +1019,7 @@
         refreshPage($(this).data("op"));
     });
     $("#container").on("swiperight", function(e){
-        if ( e.swipestart.coords[0] <50) {
+        if ( e.swipestart.coords[0] <100) {
             if((!isStackOption() || option == 6)){
                 if(prevpageID=="explorepage"){
                     option = lastdefaultOP;
