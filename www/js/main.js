@@ -109,14 +109,11 @@ function pullToRefresh(element, func) {
     function touchEnd(ev) {
         if(scrollY()<1){
             if( real ) {
-                element.on( 'transitionend.refresh', function(){
-                    real = false;
-                    // after expanding trigger the share functionality
-                    func();
-                    rotate.css("-webkit-transform",'rotateZ( 0deg )');
-                    rotate.css("transform",'rotateZ( 0deg )');
-                    element.off('transitionend.refresh');
-                });
+                real = false;
+                // after expanding trigger the share functionality
+                func();
+                rotate.css("-webkit-transform",'rotateZ( 0deg )');
+                rotate.css("transform",'rotateZ( 0deg )');
             }
 
             // reset transform
