@@ -72,7 +72,7 @@
     <gap:splash gap:platform="blackberry" src="res/screen/blackberry/screen-225.png" />
     <gap:splash gap:platform="ios" height="480" src="res/screen/ios/Default.png" width="320" />
     <gap:splash gap:platform="ios" height="960" src="res/screen/ios/Default@2x.png" width="640" />
-    <gap:splash gap:platform="ios" height="1136" src="res/screen/ios/Default-568h.png" width="640" />
+    <gap:splash gap:platform="ios" height="1136" src="res/screen/ios/screen-iphone-portrait-568h-2x.png" width="640" />
     <gap:splash gap:platform="ios" height="1334" src="res/screen/ios/Default-667h.png" width="750" />
     <gap:splash gap:platform="ios" width="1242" src="res/screen/ios/Default-Portrait-736h.png" height="2208" />
     <gap:splash gap:platform="ios" height="1024" src="res/screen/ios/screen-ipad-portrait.png" width="768" />
