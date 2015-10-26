@@ -1390,15 +1390,15 @@ function getNotification(){
                     newcountNotif++;
                 }
                 if(element.note_type==0){
-                    content +=  notification(element, seen, "posted to your stack");
+                    content =  notification(element, seen, "posted to your stack") + content;
                 }else if(element.note_type==1){
-                    content +=  notification(element, seen, "commented on your post");
+                    content =  notification(element, seen, "commented on your post") + content;
                 }else if(element.note_type==2){
-                    content +=  notification(element, seen, "replied to your comment");
+                    content =  notification(element, seen, "replied to your comment") + content;
                 }else if(element.note_type==3){
-                    content +=  notification(element, seen, "tagged you in a comment");
+                    content =  notification(element, seen, "tagged you in a comment") + content;
                 }else if(element.note_type==4){
-                    content +=  notification(element, seen, "tagged you in a post");
+                    content =  notification(element, seen, "tagged you in a post") + content;
                 }
 
             });
