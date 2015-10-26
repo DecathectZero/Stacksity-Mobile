@@ -910,11 +910,6 @@
     //this function should be ran when logged in and during when a page shows
     function pageDuring(){
         var activepage = $.mobile.activePage;
-        alert("during");
-        if(first){
-            first = false;
-            navigator.splashscreen.hide();
-        }
         notransition = true;
         if(!postbox){
             if(isStackOption()){
@@ -946,6 +941,10 @@
         }
     });
     $(document).on('pagechange',function(event,ui){
+        if(first){
+            first = false;
+            navigator.splashscreen.hide();
+        }
         if(login){
             pageDuring();
         }
