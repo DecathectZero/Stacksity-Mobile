@@ -59,6 +59,9 @@
     <icon gap:platform="ios" height="72" src="res/icons/ios/icon-72.png" width="72" />
     <icon gap:platform="ios" height="114" src="res/icons/ios/icon-57-2x.png" width="114" />
     <icon gap:platform="ios" height="144" src="res/icons/ios/icon-72-2x.png" width="144" />
+    <icon gap:platform="ios" height="120" src="res/icons/ios/icon-120.png" width="120" />
+    <icon gap:platform="ios" height="152" src="res/icons/ios/icon-152.png" width="152" />
+    <icon gap:platform="ios" height="76" src="res/icons/ios/icon-152.png" width="76" />
     <icon gap:platform="webos" src="res/icons/webos/icon-64.png" />
     <icon gap:platform="winphone" src="res/icons/windows-phone/icon-48.png" />
     <icon gap:platform="winphone" gap:role="background" src="res/icons/windows-phone/icon-173-tile.png" />
@@ -69,9 +72,9 @@
     <gap:splash gap:platform="blackberry" src="res/screen/blackberry/screen-225.png" />
     <gap:splash gap:platform="ios" height="480" src="res/screen/ios/Default.png" width="320" />
     <gap:splash gap:platform="ios" height="960" src="res/screen/ios/Default@2x.png" width="640" />
-    <gap:splash gap:platform="ios" height="1136" src="res/screen/ios/Default-568h@2x.png" width="640" />
-    <gap:splash gap:platform="ios" height="1334" src="res/screen/ios/Default-667h@2x.png" width="750" />
-    <gap:splash gap:platform="ios" width="1242" src="res/screen/ios/Default-Portrait-736h@3x.png" height="2208" />
+    <gap:splash gap:platform="ios" height="1136" src="res/screen/ios/Default-568h.png" width="640" />
+    <gap:splash gap:platform="ios" height="1334" src="res/screen/ios/Default-667h.png" width="750" />
+    <gap:splash gap:platform="ios" width="1242" src="res/screen/ios/Default-Portrait-736h.png" height="2208" />
     <gap:splash gap:platform="ios" height="1024" src="res/screen/ios/screen-ipad-portrait.png" width="768" />
     <gap:splash gap:platform="ios" height="768" src="res/screen/ios/screen-ipad-landscape.png" width="1024" />
     <gap:splash gap:platform="winphone" src="res/screen/windows-phone/screen-portrait.jpg" />
