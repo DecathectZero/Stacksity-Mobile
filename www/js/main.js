@@ -950,7 +950,9 @@ $(document).on('tap','a',function(e){
     }
 });
 $(document).on('click','a',function(e){
-    e.preventDefault();
+    if(login){
+        e.preventDefault();
+    }
 });
 var commentid = 0;
 //function toPost(link){
