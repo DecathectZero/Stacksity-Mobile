@@ -1065,35 +1065,35 @@ function commentHTML(element, depth){
         '</div> </div> </div>';
 }
 
-jQuery.event.special.dblclick = {
-    setup: function(data, namespaces) {
-        var elem = this,
-            $elem = jQuery(elem);
-        $elem.bind('touchend.dblclick', jQuery.event.special.dblclick.handler);
-    },
+//jQuery.event.special.dblclick = {
+//    setup: function(data, namespaces) {
+//        var elem = this,
+//            $elem = jQuery(elem);
+//        $elem.bind('touchend.dblclick', jQuery.event.special.dblclick.handler);
+//    },
+//
+//    teardown: function(namespaces) {
+//        var elem = this,
+//            $elem = jQuery(elem);
+//        $elem.unbind('touchend.dblclick');
+//    },
+//
+//    handler: function(event) {
+//        var elem = event.target,
+//            $elem = jQuery(elem),
+//            lastTouch = $elem.data('lastTouch') || 0,
+//            now = new Date().getTime();
+//
+//        var delta = now - lastTouch;
+//        if(delta > 20 && delta<500){
+//            $elem.data('lastTouch', 0);
+//            $elem.trigger('dblclick');
+//        }else
+//            $elem.data('lastTouch', now);
+//    }
+//};
 
-    teardown: function(namespaces) {
-        var elem = this,
-            $elem = jQuery(elem);
-        $elem.unbind('touchend.dblclick');
-    },
-
-    handler: function(event) {
-        var elem = event.target,
-            $elem = jQuery(elem),
-            lastTouch = $elem.data('lastTouch') || 0,
-            now = new Date().getTime();
-
-        var delta = now - lastTouch;
-        if(delta > 20 && delta<500){
-            $elem.data('lastTouch', 0);
-            $elem.trigger('dblclick');
-        }else
-            $elem.data('lastTouch', now);
-    }
-};
-
-$(document).on("dblclick", ".comment-content", function (event) {
+$(document).on("swipeleft", ".comment-content", function (event) {
     event.preventDefault();
 
     // Set up collapse state variables to keep track of opened/closed comments
@@ -1115,7 +1115,7 @@ $(document).on("dblclick", ".comment-content", function (event) {
         $(this).parent().parent(".child").addClass("childcollapsed");
     }
 });
-$(document).on("dblclick", ".item", function (event) {
+$(document).on("swipeleft", ".item", function (event) {
     event.preventDefault();
 
     $(this).find(".collapsecon").slideToggle();
