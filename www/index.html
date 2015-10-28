@@ -44,6 +44,7 @@
         var posttrans = false;
         var prevpageID = "";
         var lastdefaultOP = 1;
+        var postRefresh = true;
         $(document).one("mobileinit", function () {
             $.mobile.pageContainer = $('#container');
             $.mobile.defaultPageTransition = 'slide';
@@ -625,7 +626,7 @@
         </div>
     </div>
     <div data-role="page" id="post">
-        <div data-role="header" data-id="persistent" data-position="fixed" class="head padding-top" data-fullscreen="true" data-tap-toggle="false">
+        <div data-role="header" data-id="persistent" class="head padding-top">
             <a data-role="none" class="postlink postback posthead"><div class="glyphicon glyphicon-chevron-left"></div></a>
         </div>
         <div class="extracontainer">
@@ -859,11 +860,15 @@
             }
             init();
         }if(option == 7){
-            $('#comments').show();
-            $('#postcon').empty();
-            $('#postcon').hide();
-            $('#commentfeed').html(loader);
-            getPost(postid);
+            if(postRefresh){
+                $('#comments').show();
+                $('#postcon').empty();
+                $('#postcon').hide();
+                $('#commentfeed').html(loader);
+                getPost(postid);
+            }else{
+                postRefresh = true;
+            }
         }else if(option<=5){
             lastdefaultOP = option;
         }
@@ -936,8 +941,8 @@
     }
 
     $(document).on('pagebeforeshow',function(event,ui){
+        prevpageID = ui.prevPage.attr("id");
         if(login){
-            prevpageID = ui.prevPage.attr("id");
             pageBefore();
         }
     });
@@ -1021,7 +1026,7 @@
     });
     $("#container").on("swiperight", function(e){
         if ( e.swipestart.coords[0] <100) {
-            if((!isStackOption() || option == 6)){
+            if(login && prevpageID!="loginpage"){
                 if(prevpageID=="explorepage"){
                     option = lastdefaultOP;
                     changepage = true;
@@ -1037,6 +1042,9 @@
                             }
                     );
                 }else{
+                    if(prevpageID=="post"){
+                        postRefresh = false;
+                    }
                     $.mobile.back();
                 }
             }

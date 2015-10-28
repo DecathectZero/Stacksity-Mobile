@@ -417,7 +417,7 @@ background-color: #CCC;
 .scroll, .notescroll{
     height: 40px;
     line-height: 40px;
-    background-color: #0c4370;
+    background-color: #334C6D;
     padding: 0 20px;
     margin-bottom: 10px;
     color: #fff;
@@ -1153,7 +1153,7 @@ h1 {
     margin: 5px 0;
 }
 
-.footer { background: #1c5380; position: fixed; bottom: 0; width: 100%; text-align: center; z-index: 999; display: none}
+.footer { background: #334C6D; position: fixed; bottom: 0; width: 100%; text-align: center; z-index: 999; display: none}
 .head{
     position:fixed;
     z-index:100;
@@ -1294,7 +1294,7 @@ h1 {
 .con{
     -webkit-backface-visibility: hidden;
     background-color: #e9eaed;
-    min-height: calc( 100% + 120px);
+    min-height: calc( 100% + 102px);
     -webkit-transform: translate3d(0,-100px,0);
     transform: translate3d(0,-100px,0);
     margin-bottom: -100px;

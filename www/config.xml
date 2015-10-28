@@ -45,8 +45,6 @@
 
     <gap:plugin name="com.telerik.plugins.wkwebview" />
 
-    <preference name="StatusBarBackgroundColor" value="#FFFFFF"/>
-    <preference name="StatusBarStyle" value="default" />
     <preference name="StatusBarOverlaysWebView" value="false"/>
     <icon src="icon.png" />
     <icon gap:platform="android" gap:qualifier="ldpi" src="res/icons/android/icon-36-ldpi.png" />
@@ -66,6 +64,8 @@
     <icon gap:platform="winphone" src="res/icons/windows-phone/icon-48.png" />
     <icon gap:platform="winphone" gap:role="background" src="res/icons/windows-phone/icon-173-tile.png" />
 
+    <gap:splash src="res/screen/screen.png" />
+    <preference name="SplashScreen" value="res/screen/screen.png" />
     <gap:splash src="res/screen/android/ldpi.png" gap:platform="android" gap:qualifier="ldpi" />
     <gap:splash src="res/screen/android/mdpi.png" gap:platform="android" gap:qualifier="mdpi" />
     <gap:splash src="res/screen/android/hdpi.png" gap:platform="android" gap:qualifier="hdpi" />
