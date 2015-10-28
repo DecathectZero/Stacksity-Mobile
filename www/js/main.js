@@ -1097,62 +1097,64 @@ jQuery.event.special.dblclick = {
 };
 
 //swipleleft to collapse posts and comments in iOS, double tap/click on android or browser
-if(mobile&&evice.platform == "iOS"){
-    $(document).on("swipeleft", ".comment-content", function (event) {
-        event.preventDefault();
+function bindSwipe(){
+    if(mobile&&device.platform == "iOS"){
+        $(document).on("swipeleft", ".comment-content", function (event) {
+            event.preventDefault();
 
-        // Set up collapse state variables to keep track of opened/closed comments
-        // Depending on whether it's collapsed, expand/collapse the children comments and the comment
-        // itself except for the title line with username, etc.
-        if ($(this).hasClass("collapsedcss")) {
-            $(this).children(".commenttext").slideDown();
-            $(this).siblings(".cvote").show();
-            $(this).parent().siblings(".child").show();
-            //$(this).removeClass("collapse");
-            //$(this).addClass("glyphicon-minus-sign");
-            $(this).removeClass("collapsedcss");
-            $(this).parent().parent(".child").removeClass("childcollapsed");
-        } else {
-            $(this).parent().siblings(".child").slideUp();
-            $(this).children(".commenttext, .editcon").slideUp();
-            $(this).siblings(".cvote").hide();
-            $(this).addClass("collapsedcss");
-            $(this).parent().parent(".child").addClass("childcollapsed");
-        }
-    });
-    $(document).on("swipeleft", ".item", function (event) {
-        event.preventDefault();
+            // Set up collapse state variables to keep track of opened/closed comments
+            // Depending on whether it's collapsed, expand/collapse the children comments and the comment
+            // itself except for the title line with username, etc.
+            if ($(this).hasClass("collapsedcss")) {
+                $(this).children(".commenttext").slideDown();
+                $(this).siblings(".cvote").show();
+                $(this).parent().siblings(".child").show();
+                //$(this).removeClass("collapse");
+                //$(this).addClass("glyphicon-minus-sign");
+                $(this).removeClass("collapsedcss");
+                $(this).parent().parent(".child").removeClass("childcollapsed");
+            } else {
+                $(this).parent().siblings(".child").slideUp();
+                $(this).children(".commenttext, .editcon").slideUp();
+                $(this).siblings(".cvote").hide();
+                $(this).addClass("collapsedcss");
+                $(this).parent().parent(".child").addClass("childcollapsed");
+            }
+        });
+        $(document).on("swipeleft", ".item", function (event) {
+            event.preventDefault();
 
-        $(this).find(".collapsecon").slideToggle();
-    });
-}else{
-    $(document).on("dblclick", ".comment-content", function (event) {
-        event.preventDefault();
+            $(this).find(".collapsecon").slideToggle();
+        });
+    }else{
+        $(document).on("dblclick", ".comment-content", function (event) {
+            event.preventDefault();
 
-        // Set up collapse state variables to keep track of opened/closed comments
-        // Depending on whether it's collapsed, expand/collapse the children comments and the comment
-        // itself except for the title line with username, etc.
-        if ($(this).hasClass("collapsedcss")) {
-            $(this).children(".commenttext").slideDown();
-            $(this).siblings(".cvote").show();
-            $(this).parent().siblings(".child").show();
-            //$(this).removeClass("collapse");
-            //$(this).addClass("glyphicon-minus-sign");
-            $(this).removeClass("collapsedcss");
-            $(this).parent().parent(".child").removeClass("childcollapsed");
-        } else {
-            $(this).parent().siblings(".child").slideUp();
-            $(this).children(".commenttext, .editcon").slideUp();
-            $(this).siblings(".cvote").hide();
-            $(this).addClass("collapsedcss");
-            $(this).parent().parent(".child").addClass("childcollapsed");
-        }
-    });
-    $(document).on("dblclick", ".item", function (event) {
-        event.preventDefault();
+            // Set up collapse state variables to keep track of opened/closed comments
+            // Depending on whether it's collapsed, expand/collapse the children comments and the comment
+            // itself except for the title line with username, etc.
+            if ($(this).hasClass("collapsedcss")) {
+                $(this).children(".commenttext").slideDown();
+                $(this).siblings(".cvote").show();
+                $(this).parent().siblings(".child").show();
+                //$(this).removeClass("collapse");
+                //$(this).addClass("glyphicon-minus-sign");
+                $(this).removeClass("collapsedcss");
+                $(this).parent().parent(".child").removeClass("childcollapsed");
+            } else {
+                $(this).parent().siblings(".child").slideUp();
+                $(this).children(".commenttext, .editcon").slideUp();
+                $(this).siblings(".cvote").hide();
+                $(this).addClass("collapsedcss");
+                $(this).parent().parent(".child").addClass("childcollapsed");
+            }
+        });
+        $(document).on("dblclick", ".item", function (event) {
+            event.preventDefault();
 
-        $(this).find(".collapsecon").slideToggle();
-    });
+            $(this).find(".collapsecon").slideToggle();
+        });
+    }
 }
 
 //$(document).on("click", ".commentcollapse", function () {

@@ -64,8 +64,8 @@
     <icon gap:platform="winphone" src="res/icons/windows-phone/icon-48.png" />
     <icon gap:platform="winphone" gap:role="background" src="res/icons/windows-phone/icon-173-tile.png" />
 
-    <gap:splash src="res/screen/screen.png" />
-    <preference name="SplashScreen" value="res/screen/screen.png" />
+    <gap:splash src="res/screen/splash.png" />
+    <preference name="SplashScreen" value="res/screen/splash.png" />
     <gap:splash src="res/screen/android/ldpi.png" gap:platform="android" gap:qualifier="ldpi" />
     <gap:splash src="res/screen/android/mdpi.png" gap:platform="android" gap:qualifier="mdpi" />
     <gap:splash src="res/screen/android/hdpi.png" gap:platform="android" gap:qualifier="hdpi" />
