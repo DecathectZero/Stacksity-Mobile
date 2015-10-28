@@ -922,7 +922,7 @@ $(document).on('tap','a',function(e){
             window.plugins.socialsharing.share('', null, null, goto);
         }else if($(this).hasClass("postback")){
             e.preventDefault();
-            $.mobile.back();
+            back();
         }else{
             var link = $(this).attr("href");
             if(link==null||$(this).hasClass("ui-input-clear")){
@@ -1095,6 +1095,30 @@ jQuery.event.special.dblclick = {
             $elem.data('lastTouch', now);
     }
 };
+
+function back(){
+    if(login && (!isStackOption() || option == 6)){
+        if(option == 6 && prevpageID=="explorepage" || prevpageID == ""){
+            option = lastdefaultOP;
+            changepage = true;
+            init();
+            explore = false;
+            $.mobile.changePage(
+                getOption(),
+                {
+                    transition              : 'turn',
+                    showLoadMsg             : false,
+                    reverse: true
+                }
+            );
+        }else{
+            if(prevpageID=="post"){
+                postRefresh = false;
+            }
+            $.mobile.back();
+        }
+    }
+}
 
 //swipleleft to collapse posts and comments in iOS, double tap/click on android or browser
 function bindSwipe(){

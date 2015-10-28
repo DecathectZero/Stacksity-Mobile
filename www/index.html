@@ -750,30 +750,6 @@
     }
 
     function onDeviceReady() {
-        document.addEventListener("backbutton", function (e) {
-            e.preventDefault();
-            if(login){
-                if((!isStackOption() || option == 6)){
-                    if(prevpageID=="explorepage"){
-                        option = lastdefaultOP;
-                        changepage = true;
-                        init();
-                        console.log(explore);
-                        explore = false;
-                        $.mobile.changePage(
-                                getOption(),
-                                {
-                                    transition              : 'turn',
-                                    showLoadMsg             : false,
-                                    reverse: true
-                                }
-                        );
-                    }else{
-                        $.mobile.back();
-                    }
-                }
-            }
-        });
         if(mobile){
             first = true;
 //            alert(device.platform + " | " + device.version);
@@ -785,6 +761,10 @@
             }
             if(PushbotsPlugin.isAndroid()){
                 PushbotsPlugin.initializeAndroid("561ed24517795902148b4569", "907553791348");
+                document.addEventListener("backbutton", function (e) {
+                    e.preventDefault();
+                    back();
+                });
             }else{
                 StatusBar.backgroundColorByHexString("#ffffff");
                 StatusBar.styleDefault();
@@ -838,6 +818,7 @@
         }else{
             explore = false;
             postbox = false;
+            prevpageID = "";
             var acrid = activepage.attr("id");
             if(acrid=="toppage"){
                 option = 1;
@@ -1027,28 +1008,7 @@
     });
     $("#container").on("swiperight", function(e){
         if ( e.swipestart.coords[0] <100) {
-            if(login && prevpageID!="loginpage"){
-                if(prevpageID=="explorepage"){
-                    option = lastdefaultOP;
-                    changepage = true;
-                    init();
-                    console.log(explore);
-                    explore = false;
-                    $.mobile.changePage(
-                            getOption(),
-                            {
-                                transition              : 'turn',
-                                showLoadMsg             : false,
-                                reverse: true
-                            }
-                    );
-                }else{
-                    if(prevpageID=="post"){
-                        postRefresh = false;
-                    }
-                    $.mobile.back();
-                }
-            }
+            back();
         }
     });
 </script>
