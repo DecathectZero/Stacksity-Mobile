@@ -1103,10 +1103,14 @@ function back(){
             changepage = true;
             init();
             explore = false;
+            var transition = "turn";
+            if(option == 7){
+                transition = "slide"
+            }
             $.mobile.changePage(
                 getOption(),
                 {
-                    transition              : 'turn',
+                    transition              : transition,
                     showLoadMsg             : false,
                     reverse: true
                 }
