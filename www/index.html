@@ -32,6 +32,7 @@
         var user_id = localStorage.getItem('user_id');
         var explore = false;
         var postbox = false;
+        var postboxclose = false;
         var postype = 1;
         var is_user = 0;
         var dontdelete = false;
@@ -527,7 +528,7 @@
             <label class="postlabel">
                 <div class="postbar" style="padding: 0">
                     <p>posting to<br/><span class="bold" id="posting"></span></p>
-                    <a class="cancelpost postback" data-role="button" data-corners="false" data-inline="true" onclick="postbox = false" id="cancelpost">cancel</a>
+                    <a class="cancelpost" data-role="button" data-corners="false" data-inline="true" onclick="postbox = false; postboxclose = true; changepage=true; $.mobile.back()" id="cancelpost">cancel</a>
                 </div>
             </label>
             <form class="postform toppost" id="toppost">
@@ -923,10 +924,15 @@
     }
 
     $(document).on('pagebeforeshow',function(event,ui){
-        prevpageID = ui.prevPage.attr("id");
+        if(!postbox && !postboxclose){
+            prevpageID = ui.prevPage.attr("id");
+        }else if(postboxclose){
+            postboxclose = false;
+        }
         if(login){
             pageBefore();
         }
+        console.log(prevpageID);
     });
     $(document).on('pagechange',function(event,ui){
         if(first){
