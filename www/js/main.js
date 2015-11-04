@@ -792,7 +792,7 @@ $(document).on("click", "#private", function(e){
 var postdata = null;
 $(document).on('submit', "#toppost", function(e){
     e.preventDefault();
-    if(!posting && !postimage && ($("#title-input").val().trim().length > 0)){
+    if(!posting && !postingimage && ($("#title-input").val().trim().length > 0)){
         $('#pbutton').hide();
         $('#private').hide();
         $("#spinnerpost").show();
@@ -839,7 +839,9 @@ function makepost(info){
 function parsePostData(){
     var data = postdata;
     if(data.length<=2) {
-        if(data!=3){
+        if(data=="4"){
+            alert("You need to provide a link");
+        }else if(data!=3){
             alert("error :" + data);
         }
     }else{
