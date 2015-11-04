@@ -1271,11 +1271,11 @@ h1 {
     text-shadow: none;
     border: 1px solid #800;
     color: #800;
-    border-radius: 4px;
     font-size: 16px !important;
     padding: 5px 10px !important;
     text-align: left;
     float: right;
+    z-index: 800;
 }
 #cancelpost:focus, #cancelpost:active{
     border-color: #FF4136;

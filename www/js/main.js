@@ -792,47 +792,48 @@ $(document).on("click", "#private", function(e){
 var postdata = null;
 $(document).on('submit', "#toppost", function(e){
     e.preventDefault();
-    $('#pbutton').hide();
-    $('#private').hide();
-    $("#spinnerpost").show();
-    navigator.geolocation.getCurrentPosition(function(position){
-            makepost("&lat="+position.coords.latitude+"&long="+position.coords.longitude);
-        },
-        function(error){
-            makepost("");
-        },{timeout: 10000, enableHighAccuracy: true});
+    if(!posting && !postimage && ($("#title-input").val().trim().length > 0)){
+        $('#pbutton').hide();
+        $('#private').hide();
+        $("#spinnerpost").show();
+        navigator.geolocation.getCurrentPosition(function(position){
+                makepost("&lat="+position.coords.latitude+"&long="+position.coords.longitude);
+            },
+            function(error){
+                makepost("");
+            },{timeout: 10000, enableHighAccuracy: true}
+        );
+    }
 });
 
 //This function makes an actual post
 function makepost(info){
-    if(!posting && ($("#title-input").val().trim().length > 0)){
-        checklogin();
-        var data = $("#toppost").serialize()+"&stack="+stackid+"&user_value="+is_user+"&session_id="+id+info;
-        posting = true;
-        $.ajax({
-            type     : "POST",
-            cache    : false,
-            url      : 'https://stacksity.com/php/post.php',
-            crossDomain : true,
-            data     : data,
-            success  : function(data) {
-                postbox = false;
-                postdata = data;
-                $.mobile.back();
-            },
-            error: function(request) {
-                if(request.status == 0) {
-                    alert("You're offline!");
-                }else{
-                    alert("Error Connection");
-                }
-                $('#pbutton').show();
-                $('#private').show();
-                $("#spinnerpost").hide();
-                posting = false;
+    checklogin();
+    var data = $("#toppost").serialize()+"&stack="+stackid+"&user_value="+is_user+"&session_id="+id+info;
+    posting = true;
+    $.ajax({
+        type     : "POST",
+        cache    : false,
+        url      : 'https://stacksity.com/php/post.php',
+        crossDomain : true,
+        data     : data,
+        success  : function(data) {
+            postbox = false;
+            postdata = data;
+            $.mobile.back();
+        },
+        error: function(request) {
+            if(request.status == 0) {
+                alert("You're offline!");
+            }else{
+                alert("Error Connection");
             }
-        });
-    }
+            $('#pbutton').show();
+            $('#private').show();
+            $("#spinnerpost").hide();
+            posting = false;
+        }
+    });
     return false;
 }
 function parsePostData(){
