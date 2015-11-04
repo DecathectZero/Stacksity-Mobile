@@ -792,17 +792,21 @@ $(document).on("click", "#private", function(e){
 var postdata = null;
 $(document).on('submit', "#toppost", function(e){
     e.preventDefault();
-    if(!posting && !postingimage && ($("#title-input").val().trim().length > 0)){
-        $('#pbutton').hide();
-        $('#private').hide();
-        $("#spinnerpost").show();
-        navigator.geolocation.getCurrentPosition(function(position){
-                makepost("&lat="+position.coords.latitude+"&long="+position.coords.longitude);
-            },
-            function(error){
-                makepost("");
-            },{timeout: 10000, enableHighAccuracy: true}
-        );
+    if(!posting && !postingimage){
+        if($("#title-input").val().trim().length > 0){
+            $('#pbutton').hide();
+            $('#private').hide();
+            $("#spinnerpost").show();
+            navigator.geolocation.getCurrentPosition(function(position){
+                    makepost("&lat="+position.coords.latitude+"&long="+position.coords.longitude);
+                },
+                function(error){
+                    makepost("");
+                },{timeout: 10000, enableHighAccuracy: true}
+            );
+        }else{
+            alert("Make sure you have a title");
+        }
     }
 });
 

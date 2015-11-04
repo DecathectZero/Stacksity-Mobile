@@ -669,8 +669,8 @@
         postingimage = true;
         $("#pbutton").prop( "disabled", true );
         $("#private").prop( "disabled", true );
-        $('.background-image').hide();
         $("#imagespinner").show();
+        $('.background-image').hide();
         // Checking if the file selected
         if (!file || file.length<1) {
             Upload.callback_func(null, "Invalid File");
@@ -691,7 +691,7 @@
             $("#imagespinner").hide();
             //$('#imageid').val(file.name);
             $('#imagePostPreview').attr('src', link);
-            $('.background-image').slideDown();
+            $('.background-image').show();
             document.body.className = "uploaded";
             postingimage = false;
             $("#pbutton").prop( "disabled", false );
