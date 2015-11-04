@@ -690,7 +690,8 @@
             $('#link').val(link);
             $("#imagespinner").hide();
             //$('#imageid').val(file.name);
-            $('#imagePostPreview').attr('src', file);
+            alert(file + " | " + file.name);
+            $('#imagePostPreview').attr('src', file.name);
             $('.background-image').show();
             document.body.className = "uploaded";
             postingimage = false;
