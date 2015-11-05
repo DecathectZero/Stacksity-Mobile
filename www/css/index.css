@@ -1,14 +1,12 @@
 #loginpage{
-    background: url(../../../stacksity/img/rain/bg.png) no-repeat center center fixed;
+    background: url(../img/background.jpeg) no-repeat center center fixed;
     background-size: cover;
 }
 .password{
-    background: #aaa;
+    background: #0074D9;
 }
 .signup{
-    background: url(../img/background.jpeg) no-repeat center center fixed;
-    background-size: cover;
-    /*background: #aaa;*/
+    background: #001f3f;
 }
 input{
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
