@@ -1157,7 +1157,14 @@ h1 {
     margin: 5px 0;
 }
 
-.footer { background: #334C6D; position: fixed; bottom: 0; width: 100%; text-align: center; z-index: 999; display: none}
+.footer { background: #334C6D; position: fixed; bottom: 0; width: 100%; text-align: center; z-index: 999; display: none;
+-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 .head{
     position:fixed;
     z-index:100;
@@ -1268,12 +1275,29 @@ h1 {
 .comwrap a {
     padding: 10px 0;
 }
+.titletoggle{
+    float: right;
+    margin: .5em 0 !important;
+    color: #fff !important;
+    border:1px solid #fff;
+    font-weight: normal;
+    font-size: 16px !important;
+    padding: 5px 10px !important;
+    text-align: left;
+    float: right;
+    z-index: 800;
+}
+.onbutton{
+    background-color: #fff;
+    color:#333 !important;
+    border-right: 1px solid #ddd;
+}
 #cancelpost{
     font-weight: normal;
     margin: .5em 0 !important;
     background-color: #fff;
     text-shadow: none;
-    border: 1px solid #800;
+    border: 1px solid #fff;
     color: #800;
     font-size: 16px !important;
     padding: 5px 10px !important;

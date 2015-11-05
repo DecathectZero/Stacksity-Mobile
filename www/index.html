@@ -537,21 +537,24 @@
             <label class="postlabel">
                 <div class="postbar" style="padding: 0">
                     <p>posting to<br/><span class="bold" id="posting"></span></p>
-                    <a class="cancelpost" data-role="button" data-corners="false" data-inline="true" onclick="postbox = false; postboxclose = true; changepage=true; $.mobile.back()" id="cancelpost">cancel</a>
+                    <a class="cancelpost" onclick="postbox = false; postboxclose = true; changepage=true; $.mobile.back()" id="cancelpost">cancel</a>
+                    <a id="addtitle" class="titletoggle">title</a>
                 </div>
             </label>
             <form class="postform toppost" id="toppost">
                 <input type="hidden" id="posttype" name="type" value="0">
                 <div class="postcon">
-                    <p>title <span id="title-count">100</span></p>
-                    <input name="title" type="text" id="title-input" class="texts" placeholder="post title" maxlength="100" required="" data-role="none">
+                    <div id = "titlediv" style="display: none">
+                        <p>title <span id="title-count">100</span></p>
+                        <input name="title" type="text" id="title-input" class="texts" placeholder="post title" maxlength="100" required="" data-role="none">
+                    </div>
                     <div id="linkpost" style="display: none;">
                         <p>link <span id="link-alert"></span></p>
                         <input name="link" type="url" id="link" class="texts" placeholder="submit a link here" maxlength="500" required="" data-role="none">
                     </div>
                     <div id="textpost" style="display: none;">
                         <p>text</p>
-                        <textarea name="text" class="expanding" id="text" placeholder="write something here..." rows="2" maxlength="6500" data-role="none"></textarea>
+                        <textarea id="textpostfield" name="text" class="expanding" id="text" placeholder="write something here..." rows="2" maxlength="6500" data-role="none"></textarea>
                     </div>
                     <div id="imagepost">
                         <p>image</p>
@@ -744,7 +747,7 @@
     function onPhotoDataSuccess(imageData) {
         upload(imageData, "Success");
     }
-
+//    $( document ).ready(onDeviceReady());
     if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/)) {
         mobile = true;
         document.addEventListener("deviceready", onDeviceReady, false);

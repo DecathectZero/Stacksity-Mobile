@@ -744,8 +744,10 @@ function linkToStack(goto){
  }*/
 
 //Shows the post box for links
+var textposting = false;
 function linkpost(){
-    cancelimagepost();
+    //cancelimagepost();
+    textposting = false;
     $('#imagepost').hide();
     $('#textpost').hide();
     $('#linkpost').show();
@@ -758,7 +760,8 @@ function linkpost(){
     $('#postlink').addClass('active');
 }
 function textpost(){
-    cancelimagepost();
+    //cancelimagepost();
+    textposting = true;
     $('#linkpost').hide();
     $('#imagepost').hide();
     $('#textpost').show();
@@ -771,6 +774,7 @@ function textpost(){
     $('#postlink').removeClass('active');
 }
 function imagepostShow(){
+    textposting = false;
     $('#linkpost').hide();
     $('#textpost').hide();
     $('#imagepost').show();
@@ -795,20 +799,19 @@ var postdata = null;
 $(document).on('submit', "#toppost", function(e){
     e.preventDefault();
     if(!posting && !postingimage){
-        if($("#title-input").val().trim().length > 0){
-            $('#pbutton').hide();
-            $('#private').hide();
-            $("#spinnerpost").show();
-            navigator.geolocation.getCurrentPosition(function(position){
-                    makepost("&lat="+position.coords.latitude+"&long="+position.coords.longitude);
-                },
-                function(error){
-                    makepost("");
-                },{timeout: 10000, enableHighAccuracy: true}
-            );
-        }else{
-            alert("Make sure you have a title");
+        if(textposting && !$.trim($("#textpostfield").val())){
+            return;
         }
+        $('#pbutton').hide();
+        $('#private').hide();
+        $("#spinnerpost").show();
+        navigator.geolocation.getCurrentPosition(function(position){
+                makepost("&lat="+position.coords.latitude+"&long="+position.coords.longitude);
+            },
+            function(error){
+                makepost("");
+            },{timeout: 10000, enableHighAccuracy: true}
+        );
     }
 });
 
@@ -940,6 +943,10 @@ $(document).on('tap','a',function(e){
         }else if($(this).hasClass("postback")){
             e.preventDefault();
             back();
+        }else if($(this).attr("id")=="addtitle"){
+            e.preventDefault();
+            $("#addtitle").toggleClass("onbutton");
+            $("#titlediv").slideToggle();
         }else{
             var link = $(this).attr("href");
             if(link==null||$(this).hasClass("ui-input-clear")){
