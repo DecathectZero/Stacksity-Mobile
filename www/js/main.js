@@ -111,9 +111,9 @@ function pullToRefresh(element, func) {
             if( real ) {
                 real = false;
                 // after expanding trigger the share functionality
-                func();
                 rotate.css("-webkit-transform",'rotateZ( 0deg )');
                 rotate.css("transform",'rotateZ( 0deg )');
+                setTimeout(func, 500);
             }
 
             // reset transform
@@ -437,7 +437,7 @@ function startNews(startnum, activepage, stackid, distance) {
                     displayNews(startnum, activepage, stackid, pos.coords.latitude, pos.coords.longitude, distance);
                 },
                 function(error){
-                    $('.scroll').html('<p>Please turn on location services</p>');
+                    $.mobile.activePage.find('.scroll').html('<p>Please turn on location services</p>');
                 },{timeout: 10000, enableHighAccuracy: true});
             return;
         }else{
@@ -745,6 +745,7 @@ function linkToStack(goto){
 
 //Shows the post box for links
 function linkpost(){
+    cancelimagepost();
     $('#imagepost').hide();
     $('#textpost').hide();
     $('#linkpost').show();
@@ -757,6 +758,7 @@ function linkpost(){
     $('#postlink').addClass('active');
 }
 function textpost(){
+    cancelimagepost();
     $('#linkpost').hide();
     $('#imagepost').hide();
     $('#textpost').show();
@@ -810,6 +812,14 @@ $(document).on('submit', "#toppost", function(e){
     }
 });
 
+function cancelimagepost(){
+    if(postingimage){
+        postingimage = false;
+        $("#pbutton").prop( "disabled", false );
+        $("#private").prop( "disabled", false );
+        $("#imagespinner").hide();
+    }
+}
 //This function makes an actual post
 function makepost(info){
     checklogin();

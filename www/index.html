@@ -146,6 +146,7 @@
     </div>
 
     <div data-role="page" id="loginpage" class="login">
+        <canvas width="1" height="1" id="raincontainer" style="position:absolute"></canvas>
         <div data-role="main">
             <div class="container">
                 <div class="intro padding-top">
@@ -173,6 +174,7 @@
                 </div>
             </div>
         </div>
+        <script type="text/javascript" src="js/rain.js"></script>
         <script>
             function errorinfo(inner){
                 $('#error-info').html(inner);
@@ -565,6 +567,7 @@
                             <div class="double-bounce1"></div>
                             <div class="double-bounce2"></div>
                         </div>
+                        <div class="errorbar" id="imageposterror" style="display: none">Took too long to upload, cancelled</div>
                         <div class="background-image" style="display:none;">
                             <img src="" id="imagePostPreview" class="img-responsive">
                         </div>
@@ -686,21 +689,30 @@
         xhr.open("POST", "https://api.imgur.com/3/image.json"); // Boooom!
 
         xhr.onload = function() {
-            var link = JSON.parse(xhr.responseText).data.link;
-            $('#link').val(link);
-            $("#imagespinner").hide();
-            //$('#imageid').val(file.name);
-            $('#imagePostPreview').attr('src', link);
-            $('.background-image').show();
-            document.body.className = "uploaded";
-            postingimage = false;
-            $("#pbutton").prop( "disabled", false );
-            $("#private").prop( "disabled", false );
+            if(postingimage){
+                var link = JSON.parse(xhr.responseText).data.link;
+                $('#link').val(link);
+                $("#imagespinner").hide();
+                //$('#imageid').val(file.name);
+                $('#imagePostPreview').attr('src', link);
+                $('.background-image').show();
+                document.body.className = "uploaded";
+                postingimage = false;
+                $("#pbutton").prop( "disabled", false );
+                $("#private").prop( "disabled", false );
+            }
         };
         xhr.setRequestHeader('Authorization', 'Client-ID 2caf3e86e092d76');
 
         // And now, we send the formdata
         xhr.send(fd);
+        setTimeout(function(){
+            cancelimagepost();
+            $("#imageposterror").slideDown(500);
+            setTimeout(function(){
+                $("#imageposterror").slideUp(500);
+            },3000)
+        },6000)
     }
     function getPhotoFromLibrary(){
         // Set up the necessary sources
@@ -742,6 +754,9 @@
     function start(){
         $.mobile.navigate("#toppage");
         $(".footer").show();
+        $("#loginpage").remove();
+        $("#signuppage").remove();
+        $("#passpage").remove();
         if(mobile){
             PushbotsPlugin.setAlias(localStorage.getItem('user_id'));
         }

@@ -427,6 +427,10 @@ background-color: #CCC;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    -webkit-transition : background-color 500ms ease-out;
+    -moz-transition : background-color 500ms ease-out;
+    -o-transition : background-color 500ms ease-out;
+    transition : background-color 500ms ease-out;
 }
 .scroll p{
     display: inline;
@@ -1280,6 +1284,13 @@ h1 {
 #cancelpost:focus, #cancelpost:active{
     border-color: #FF4136;
     color: #FF4136;
+}
+.errorbar{
+    background-color: #FF851B;
+    text-align: center;
+    padding: 5px;
+    color: #fff;
+    font-weight: bold;
 }
 /*change this for iOS to work*/
 .padding-top{

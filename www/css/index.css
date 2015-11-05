@@ -3,10 +3,12 @@
     background-size: cover;
 }
 .password{
-    background: #0074D9;
+    background: #aaa;
 }
 .signup{
-    background: #001f3f;
+    background: url(../img/background.jpeg) no-repeat center center fixed;
+    background-size: cover;
+    /*background: #aaa;*/
 }
 input{
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -60,7 +62,7 @@ a:hover{
     max-width: 350px;
     margin: 0 auto;
     padding: 15px;
-    background-color: rgba(255,255,255,0.9);
+    background-color: rgba(255,255,255,0.6);
 }
 .signinform h2{
     font-size: 20px;
