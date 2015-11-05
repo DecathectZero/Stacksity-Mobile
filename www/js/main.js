@@ -974,6 +974,9 @@ $(document).on('tap','a',function(e){
                 }
             }
         }
+    }else{
+        e.preventDefault();
+        $(this).trigger("click");
     }
 });
 $(document).on('click','a',function(e){
@@ -1464,7 +1467,7 @@ function openNote(){
 //This function retrieves the notifications from the server
 function getNotification(){
     $(".note-header").empty();
-    $(".notescroll").html('<img class="note-loader" src="img/post/ajax-loader.gif" />');
+    $(".notescroll").html('Loading notifications');
     checklogin();
     newcountNotif = 0;
     $.getJSON('https://stacksity.com/php/getnotification.php', {timestamp: 0, session_id: id}, function(data){

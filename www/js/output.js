@@ -76,7 +76,7 @@ function imagepost(element){
     var vote = voting(element.vote, count);
 
     return '<div class="item ipost '+priv(element.private, element.nsfw)+'" data-post="'+element.post_id+'">' +
-    '<div class="textcon"><div class="linkwrapper"><div class="margins"> ' +
+    '<div class="linkwrapper"><div class="margins"> ' +
     getlink(element.post_id, element.link)+'<h4>' +  privt(element.title, element.private)  + '</h4></a>' +
     '<p class="postinfo">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id, element.flair, element.stackflair)+' | '+ element.created +'</p></div>' +
     getlink(0, element.link) +
@@ -85,7 +85,7 @@ function imagepost(element){
     vote +
     '</div>'+comments(element)+
         /*'<p class="link">'+link.substring(0,100)+'</p>'+<a href="'+element.link+'">See More</a>*/
-    '</div>' +
+    //'</div>' +
     '</div>';
 }
 function videopost(element){
@@ -93,7 +93,7 @@ function videopost(element){
     var vote = voting(element.vote, count);
 
     return '<div class="item vpost '+priv(element.private, element.nsfw)+'" data-post="'+element.post_id+'">' +
-    '<div class="textcon"><div class="margins">' +
+    '<div class="margins">' +
     getlink(element.post_id, element.link)+'<h4>' + privt(element.title, element.private) + '</h4></a>' +
     '<p class="postinfo">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id, element.flair, element.stackflair)+' | '+ element.created +'</p></div>' +
         //'<a href="/'+element.link+'" target="_blank">' +
@@ -101,7 +101,7 @@ function videopost(element){
     '<div class="textfeed margins"><p class="content">'+element.text+'</p></div></div><div class="vote login">'+
     vote +
     '</div>'+comments(element)+
-    '</div>' +
+    //'</div>' +
     '</div>';
 }
 function videopostfeed(element){
@@ -109,7 +109,7 @@ function videopostfeed(element){
     var vote = voting(element.vote, count);
 
     return '<div class="item ipost '+priv(element.private, element.nsfw)+'" data-post="'+element.post_id+'">' +
-    '<div class="textcon"><div class="linkwrapper"><div class="margins">' +
+    '<div class="linkwrapper"><div class="margins">' +
     getlink(element.post_id, element.link)+'<h4>' +  privt(element.title, element.private)  + '</h4></a>' +
     '<p class="postinfo">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id, element.flair, element.stackflair)+' | '+ element.created +'</p>' +
     '</div>'+ getlink(0, element.link) +'<div class="imagewrap collapsecon"><div class="play"></div><img src="'+element.image+'" class="imagecon"></div>' +
@@ -117,7 +117,6 @@ function videopostfeed(element){
     vote +
     '</div>'+comments(element)+
         /*'<p class="link">'+link.substring(0,100)+'</p>'+<a href="'+element.link+'">See More</a>*/
-    '</div>' +
     '</div>';
 }
 function parseimg(img){
@@ -131,7 +130,7 @@ function linkspost(element){
     var count = element.upstacks-element.downstacks;
     var vote = voting(element.vote, count);
     return '<div class="item lpost margins '+priv(element.private, element.nsfw)+'" data-post="'+element.post_id+'">' +
-    '<div class="textcon">' +
+    //'<div class="textcon">' +
     getlink(element.post_id, element.link)+'<h4>' + privt(element.title, element.private) + '</h4></a>' +
     '<p class="postinfo">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id, element.flair, element.stackflair)+' | '+ element.created +'</p>' +
     '<div class="linkwrapper collapsecon">' + getlink(0, element.link) +
@@ -140,7 +139,7 @@ function linkspost(element){
     '</div><div class="vote login">'+
     vote +
     '</div>'+comments(element)+'</div>'+
-    '</div>' +
+    //'</div>' +
     '</div>'
 }
 function textspost(element){
@@ -153,14 +152,12 @@ function textspost(element){
         link = getlink(element.post_id, element.link)+'<h4>' + privt(element.title, element.private) + '</h4></a>';
     }
     return '<div class="item tpost margins '+priv(element.private, element.nsfw)+'" data-post="'+element.post_id+'">' +
-    '<div class="textcon' +
-    '">' +
     link +
     '<p class="postinfo">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id, element.flair, element.stackflair)+' | '+ element.created +'</p>' +
     '<div class="content textpostcon collapsecon">'+element.text+'</div><div class="vote login">'+
     vote +
     '</div>'+comments(element)+
-    '</div>' +
+    //'</div>' +
     '</div>';
 }
 

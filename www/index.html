@@ -146,7 +146,6 @@
     </div>
 
     <div data-role="page" id="loginpage" class="login">
-        <!--<canvas width="1" height="1" id="raincontainer" style="position:absolute"></canvas>-->
         <div data-role="main">
             <div class="container">
                 <div class="intro padding-top">
@@ -162,7 +161,7 @@
                         <input type="hidden" name="checked" value="1">
                         <p id="error-info" style="display: none" class="errorprompt"></p>
                         <label for="inputEm" class="sr-only">Username/Email</label>
-                        <input  data-role="none" name="inputEm" type="text" id="inputEm" class="form-control" placeholder="Email/Username" required>
+                        <input data-role="none" name="inputEm" type="text" id="inputEm" class="form-control" placeholder="Email/Username" required>
                         <label for="inputPass" class="sr-only">Password</label>
                         <input data-role="none" name="inputPass" type="password" id="inputPass" class="form-control" placeholder="Password" required>
                         <button data-role="none" class="btn btn-lg btn-primary btn-block" type="submit" id="loginbutton">Login</button>
@@ -174,7 +173,6 @@
                 </div>
             </div>
         </div>
-        <!--<script type="text/javascript" src="js/rain.js"></script>-->
         <script>
             function errorinfo(inner){
                 $('#error-info').html(inner);
@@ -184,6 +182,10 @@
             }
             $("#login").on('submit', function(e){
                 e.preventDefault();
+                if($("#inputEm").val().trim().length == 0 || $("#inputPass").val().trim().length == 0){
+                    errorinfo("Please fill in the fields");
+                    return
+                }
                 if(!submitform){
                     submitform = true;
                     $("#loginbutton").html("<div class='loader'></div>");
@@ -282,7 +284,7 @@
                     var formdata = $(this).serialize();
                     var emptyfield = false;
                     $("#account:input").each(function() {
-                        if ( $(this).val() === '' )
+                        if ( $(this).val().trim() === '' )
                             emptyfield = true;
                     });
                     if(emptyfield){
