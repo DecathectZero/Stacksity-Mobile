@@ -1494,7 +1494,9 @@ function getNotification(){
             });
             $(".note-header").hide();
             $(".note-header").html(content);
-            $(".note-header").slideDown();
+            $(".note-header").slideDown(function(){
+                $(".notescroll").html('No More Notifications to Show');
+            });
         }
         if(option == 3){
             markseen();
@@ -1503,7 +1505,6 @@ function getNotification(){
                 $('#notestack').addClass('newnote');
             }
         }
-        $(".notescroll").html('No More Notifications to Show');
     });
 }
 function markseen(){

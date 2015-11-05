@@ -695,6 +695,7 @@
 
         xhr.onload = function() {
             if(postingimage){
+                postingimage = false;
                 var link = JSON.parse(xhr.responseText).data.link;
                 $('#link').val(link);
                 $("#imagespinner").hide();
@@ -702,7 +703,6 @@
                 $('#imagePostPreview').attr('src', link);
                 $('.background-image').show();
                 document.body.className = "uploaded";
-                postingimage = false;
                 $("#pbutton").prop( "disabled", false );
                 $("#private").prop( "disabled", false );
             }
@@ -712,12 +712,14 @@
         // And now, we send the formdata
         xhr.send(fd);
         setTimeout(function(){
-            cancelimagepost();
-            $("#imageposterror").slideDown(500);
-            setTimeout(function(){
-                $("#imageposterror").slideUp(500);
-            },3000)
-        },6000)
+            if(postingimage){
+                cancelimagepost();
+                $("#imageposterror").slideDown(500);
+                setTimeout(function(){
+                    $("#imageposterror").slideUp(500);
+                },3000)
+            }
+        },9000)
     }
     function getPhotoFromLibrary(){
         // Set up the necessary sources
