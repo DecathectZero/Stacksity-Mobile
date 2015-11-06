@@ -111,9 +111,11 @@ function pullToRefresh(element, func) {
             if( real ) {
                 real = false;
                 // after expanding trigger the share functionality
-                rotate.css("-webkit-transform",'rotateZ( 0deg )');
-                rotate.css("transform",'rotateZ( 0deg )');
-                setTimeout(func, 500);
+                setTimeout(function(){
+                    rotate.css("-webkit-transform",'rotateZ( 0deg )');
+                    rotate.css("transform",'rotateZ( 0deg )');
+                    func();
+                }, 500);
             }
 
             // reset transform
