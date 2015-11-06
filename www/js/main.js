@@ -826,6 +826,9 @@ function cancelimagepost(){
 //This function makes an actual post
 function makepost(info){
     checklogin();
+    if(!$("#addtitle").hasClass("onbutton")){
+        $("#title-input").val('');
+    }
     var data = $("#toppost").serialize()+"&stack="+stackid+"&user_value="+is_user+"&session_id="+id+info;
     posting = true;
     $.ajax({
@@ -1018,7 +1021,6 @@ function toPost(link, commentlink){
 
 function getPost(postid)
 {
-    //alert("get");
     $.getJSON('https://stacksity.com/php/postname.php', {id : postid, session_id:id}, function(element){
         if(null==element){
             //alert("post not found");
