@@ -173,23 +173,25 @@ $(document).on('click', '.delete', function(e) {
     );
     return false;
 });
-function del(){
-    $.ajax({
-        type     : "POST",
-        cache    : false,
-        url      : 'https://stacksity.com/php/deletepost.php',
-        data     : {delid : delete_id, session_id: id},
-        success  : function(data) {
-            if(data==0){
-                $('*[data-post="'+delete_id+'"]').fadeOut();
-            }else{
-                alert(data);
+function del(num){
+    if(num==1){
+        $.ajax({
+            type     : "POST",
+            cache    : false,
+            url      : 'https://stacksity.com/php/deletepost.php',
+            data     : {delid : delete_id, session_id: id},
+            success  : function(data) {
+                if(data==0){
+                    $('*[data-post="'+delete_id+'"]').fadeOut();
+                }else{
+                    alert(data);
+                }
+            },
+            error: function(xhr, status, error) {
+                alert("error"+ xhr.responseText);
             }
-        },
-        error: function(xhr, status, error) {
-            alert("error"+ xhr.responseText);
-        }
-    });
+        });
+    }
 }
 var report_id = 0;
 $(document).on('click', '.report', function(e) {
@@ -203,22 +205,24 @@ $(document).on('click', '.report', function(e) {
     );
     return false;
 });
-function report(){
-    $.ajax({
-        type     : "POST",
-        cache    : false,
-        url      : 'https://stacksity.com/php/reportpost.php',
-        data     : {relid : report_id, session_id: id},
-        success  : function(data) {
-            if(data==0){
-                $('*[data-post="'+report_id+'"]').fadeOut();
-                alert("Your report has been submitted and will be reviewed by the admins");
-            }else{
-                alert(data);
+function report(num){
+    if(num==1){
+        $.ajax({
+            type     : "POST",
+            cache    : false,
+            url      : 'https://stacksity.com/php/reportpost.php',
+            data     : {relid : report_id, session_id: id},
+            success  : function(data) {
+                if(data==0){
+                    $('*[data-post="'+report_id+'"]').fadeOut();
+                    alert("Your report has been submitted and will be reviewed by the admins");
+                }else{
+                    alert(data);
+                }
+            },
+            error: function(xhr, status, error) {
+                alert("error"+ xhr.responseText);
             }
-        },
-        error: function(xhr, status, error) {
-            alert("error"+ xhr.responseText);
-        }
-    });
+        });
+    }
 }

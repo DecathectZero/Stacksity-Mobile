@@ -1436,27 +1436,29 @@ $(document).on('click', '.deletecom', function(e) {
     );
     return false;
 });
-function delcom(){
-    $.ajax({
-        type     : "POST",
-        cache    : false,
-        url      : 'https://stacksity.com/php/deletecomment.php',
-        data     : {delid : deletecom_id, session_id: id},
-        success  : function(data) {
-            if(data==0){
-                var del = $('*[data-commentid="'+deletecom_id+'"]');
-                del.find('.deletecom').remove();
-                del.find('.commenttext').html('[deleted]');
-            }else{
-                alert(data);
+function delcom(num){
+    if(num==1){
+        $.ajax({
+            type     : "POST",
+            cache    : false,
+            url      : 'https://stacksity.com/php/deletecomment.php',
+            data     : {delid : deletecom_id, session_id: id},
+            success  : function(data) {
+                if(data==0){
+                    var del = $('*[data-commentid="'+deletecom_id+'"]');
+                    del.find('.deletecom').remove();
+                    del.find('.commenttext').html('[deleted]');
+                }else{
+                    alert(data);
+                }
+                $('#commentdelete').modal('hide');
+            },
+            error: function(xhr, status, error) {
+                alert("error"+ xhr.responseText);
+                $('#commentdelete').modal('hide');
             }
-            $('#commentdelete').modal('hide');
-        },
-        error: function(xhr, status, error) {
-            alert("error"+ xhr.responseText);
-            $('#commentdelete').modal('hide');
-        }
-    });
+        });
+    }
 }
 
 /*--notification system--*/
