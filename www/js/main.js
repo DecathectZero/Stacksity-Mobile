@@ -928,6 +928,74 @@ function stackTrace() {
     return err.stack;
 }
 
+//following 3 functions are for deleting things and showing a confirmation box
+var delete_id = 0;
+function del(num){
+    if(num==1){
+        $.ajax({
+            type     : "POST",
+            cache    : false,
+            url      : 'https://stacksity.com/php/deletepost.php',
+            data     : {delid : delete_id, session_id: id},
+            success  : function(data) {
+                if(data==0){
+                    $('*[data-post="'+delete_id+'"]').fadeOut();
+                }else{
+                    alert(data);
+                }
+            },
+            error: function(xhr, status, error) {
+                alert("error"+ xhr.responseText);
+            }
+        });
+    }
+}
+var report_id = 0;
+function report(num){
+    if(num==1){
+        $.ajax({
+            type     : "POST",
+            cache    : false,
+            url      : 'https://stacksity.com/php/reportpost.php',
+            data     : {relid : report_id, session_id: id},
+            success  : function(data) {
+                if(data==0){
+                    $('*[data-post="'+report_id+'"]').fadeOut();
+                    alert("Your report has been submitted and will be reviewed by the admins");
+                }else{
+                    alert(data);
+                }
+            },
+            error: function(xhr, status, error) {
+                alert("error"+ xhr.responseText);
+            }
+        });
+    }
+}
+var deletecom_id = 0;
+function delcom(num){
+    if(num==1){
+        $.ajax({
+            type     : "POST",
+            cache    : false,
+            url      : 'https://stacksity.com/php/deletecomment.php',
+            data     : {delid : deletecom_id, session_id: id},
+            success  : function(data) {
+                if(data==0){
+                    var del = $('*[data-commentid="'+deletecom_id+'"]');
+                    del.find('.deletecom').remove();
+                    del.find('.commenttext').html('[deleted]');
+                }else{
+                    alert(data);
+                }
+            },
+            error: function(xhr, status, error) {
+                alert("error"+ xhr.responseText);
+            }
+        });
+    }
+}
+
 /*post stuff*/
 $(document).on('tap','a',function(e){
     if(login){
@@ -957,6 +1025,33 @@ $(document).on('tap','a',function(e){
         }else if($(this).hasClass("postback")){
             e.preventDefault();
             back();
+        }else if($(this).hasClass("delete")){
+            delete_id = $(this).data('delete');
+            e.preventDefault();
+            navigator.notification.confirm(
+                'Are you sure you want to remove this post?',  // message
+                del,              // callback to invoke with index of button pressed
+                'Delete Post',            // title
+                'Delete,Cancel'          // buttonLabels
+            );
+        }else if($(this).hasClass("report")){
+            report_id = $(this).data('delete');
+            e.preventDefault();
+            navigator.notification.confirm(
+                'Only report posts that have not been properly labeled NSFW or are blatantly illegal, an abuse of the report function will have automatic severe consequences',  // message
+                report,             // callback to invoke with index of button pressed
+                'Report Post',            // title
+                'Report,Cancel'          // buttonLabels
+            );
+        }else if($(this).hasClass("deletecom")){
+            deletecom_id = $(this).data('delete');
+            e.preventDefault();
+            navigator.notification.confirm(
+                'Are you sure you want to remove this comment?',  // message
+                delcom,             // callback to invoke with index of button pressed
+                'Delete Comment',            // title
+                'Delete,Cancel'          // buttonLabels
+            );
         }else if($(this).attr("id")=="addtitle"){
             e.preventDefault();
             $("#addtitle").toggleClass("onbutton");
@@ -1423,42 +1518,6 @@ $(document).on('submit', '#commentform',function(e){
         e.preventDefault();
     }
 });
-var deletecom_id = 0;
-
-$(document).on('tap', '.deletecom', function(e) {
-    deletecom_id = $(this).data('delete');
-    e.preventDefault();
-    navigator.notification.confirm(
-        'Are you sure you want to remove this comment?',  // message
-        delcom,             // callback to invoke with index of button pressed
-        'Delete Comment',            // title
-        'Delete,Cancel'          // buttonLabels
-    );
-});
-function delcom(num){
-    if(num==1){
-        $.ajax({
-            type     : "POST",
-            cache    : false,
-            url      : 'https://stacksity.com/php/deletecomment.php',
-            data     : {delid : deletecom_id, session_id: id},
-            success  : function(data) {
-                if(data==0){
-                    var del = $('*[data-commentid="'+deletecom_id+'"]');
-                    del.find('.deletecom').remove();
-                    del.find('.commenttext').html('[deleted]');
-                }else{
-                    alert(data);
-                }
-                $('#commentdelete').modal('hide');
-            },
-            error: function(xhr, status, error) {
-                alert("error"+ xhr.responseText);
-                $('#commentdelete').modal('hide');
-            }
-        });
-    }
-}
 
 /*--notification system--*/
 var newcountNotif = 0;
