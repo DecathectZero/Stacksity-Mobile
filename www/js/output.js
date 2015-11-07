@@ -162,7 +162,7 @@ function textspost(element){
 }
 
 var delete_id = 0;
-$(document).on('click', '.delete', function(e) {
+$(document).on('tap', '.delete', function(e) {
     delete_id = $(this).data('delete');
     e.preventDefault();
     navigator.notification.confirm(
@@ -193,7 +193,7 @@ function del(num){
     }
 }
 var report_id = 0;
-$(document).on('click', '.report', function(e) {
+$(document).on('tap', '.report', function(e) {
     report_id = $(this).data('delete');
     e.preventDefault();
     navigator.notification.confirm(

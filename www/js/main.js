@@ -1425,7 +1425,7 @@ $(document).on('submit', '#commentform',function(e){
 });
 var deletecom_id = 0;
 
-$(document).on('click', '.deletecom', function(e) {
+$(document).on('tap', '.deletecom', function(e) {
     deletecom_id = $(this).data('delete');
     e.preventDefault();
     navigator.notification.confirm(
