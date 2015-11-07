@@ -10,7 +10,10 @@
 }
 input{
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    -webkit-user-select: text;
+    -webkit-user-select: text;  /* Chrome all / Safari all */
+    -moz-user-select: text;     /* Firefox all */
+    -ms-user-select: text;      /* IE 10+ */
+    user-select: text;
 }
 input[type="text"],input[type="email"],input[type="password"]{
     box-shadow: none !important;
