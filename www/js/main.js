@@ -757,7 +757,7 @@ function linkToStack(goto){
 //Shows the post box for links
 var textposting = false;
 function linkpost(){
-    //cancelimagepost();
+    cancelimagepost();
     textposting = false;
     $('#imagepost').hide();
     $('#textpost').hide();
@@ -771,7 +771,7 @@ function linkpost(){
     $('#postlink').addClass('active');
 }
 function textpost(){
-    //cancelimagepost();
+    cancelimagepost();
     textposting = true;
     $('#linkpost').hide();
     $('#imagepost').hide();
