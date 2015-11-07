@@ -1027,7 +1027,7 @@ $(document).on('tap','a',function(e){
             back();
         }else if($(this).hasClass("delete")){
             delete_id = $(this).data('delete');
-            e.preventDefault();
+            //e.preventDefault();
             navigator.notification.confirm(
                 'Are you sure you want to remove this post?',  // message
                 del,              // callback to invoke with index of button pressed
@@ -1036,16 +1036,16 @@ $(document).on('tap','a',function(e){
             );
         }else if($(this).hasClass("report")){
             report_id = $(this).data('delete');
-            e.preventDefault();
+            //e.preventDefault();
             navigator.notification.confirm(
-                'Only report posts that have not been properly labeled NSFW or are blatantly illegal, an abuse of the report function will have automatic severe consequences',  // message
+                'Only report posts that have not been properly labeled NSFW or are blatantly illegal, an abuse of the report function will have severe consequences',  // message
                 report,             // callback to invoke with index of button pressed
                 'Report Post',            // title
                 'Report,Cancel'          // buttonLabels
             );
         }else if($(this).hasClass("deletecom")){
             deletecom_id = $(this).data('delete');
-            e.preventDefault();
+            //e.preventDefault();
             navigator.notification.confirm(
                 'Are you sure you want to remove this comment?',  // message
                 delcom,             // callback to invoke with index of button pressed
