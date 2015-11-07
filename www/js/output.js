@@ -171,7 +171,6 @@ $(document).on('click', '.delete', function(e) {
         'Delete Post',            // title
         'Delete,Cancel'          // buttonLabels
     );
-    return false;
 });
 function del(num){
     if(num==1){
@@ -203,7 +202,6 @@ $(document).on('click', '.report', function(e) {
         'Report Post',            // title
         'Report,Cancel'          // buttonLabels
     );
-    return false;
 });
 function report(num){
     if(num==1){

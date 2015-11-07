@@ -1434,7 +1434,6 @@ $(document).on('click', '.deletecom', function(e) {
         'Delete Comment',            // title
         'Delete,Cancel'          // buttonLabels
     );
-    return false;
 });
 function delcom(num){
     if(num==1){
