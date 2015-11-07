@@ -164,7 +164,13 @@ function textspost(element){
 var delete_id = 0;
 $(document).on('click', '.delete', function(e) {
     delete_id = $(this).data('delete');
-    $('#delpost').modal();
+    e.preventDefault();
+    navigator.notification.confirm(
+        'Are you sure you want to remove this post?',  // message
+        del,              // callback to invoke with index of button pressed
+        'Delete Post',            // title
+        'Delete,Cancel'          // buttonLabels
+    );
     return false;
 });
 function del(){
@@ -184,12 +190,17 @@ function del(){
             alert("error"+ xhr.responseText);
         }
     });
-    $('#delpost').modal('hide');
 }
 var report_id = 0;
 $(document).on('click', '.report', function(e) {
     report_id = $(this).data('delete');
-    $('#repost').modal();
+    e.preventDefault();
+    navigator.notification.confirm(
+        'Only report posts that have not been properly labeled NSFW or are blatantly illegal, an abuse of the report function will have automatic severe consequences',  // message
+        report,             // callback to invoke with index of button pressed
+        'Report Post',            // title
+        'Report,Cancel'          // buttonLabels
+    );
     return false;
 });
 function report(){
@@ -205,11 +216,9 @@ function report(){
             }else{
                 alert(data);
             }
-            $('#repost').modal('hide')
         },
         error: function(xhr, status, error) {
             alert("error"+ xhr.responseText);
-            $('#repost').modal('hide');
         }
     });
 }

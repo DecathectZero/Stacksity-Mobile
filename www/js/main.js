@@ -257,7 +257,7 @@ function bannerset(activepage, stackids){
                     //var touchcancel = false;
                     contain.bind("scrollstop", function() {
                         if(!postbox){
-                            if(contain.scrollTop() + windowheight > contain.children(".con").height() - 300) {
+                            if(contain.scrollTop() + windowheight > contain.children(".con").height() - 2048) {
                                 if(!end&&!bottom&&!loading){
                                     bottom = true;
                                     activepage.find('.scroll').html('<p>Loading Posts</p> ');
@@ -461,6 +461,9 @@ function displayNews(startnum, activepage, stackid, latpoint, longpoint, distanc
         data     : {id : stackid , start : startnum , session_id: id , latitude : latpoint, longitude : longpoint, distance: distance},
         dataType : "html",
         success  : function(data) {
+            if(option==7){
+                return;
+            }
             if(data=="null"||data==''){
                 loading = false;
                 end = true;
@@ -477,15 +480,21 @@ function displayNews(startnum, activepage, stackid, latpoint, longpoint, distanc
                     activepage.find('.feed').empty();
                 }
                 var postlist = "";
+                var existingPost = {};
+                $(activepage.find(".item").get().reverse()).each(function() {
+                    existingPost[$(this).data("post")] = null;
+                });
                 $.each(data, function(index, element) {
-                    if(element.posttype == 0){
-                        postlist += (linkspost(element));
-                    }else if(element.posttype == 1){
-                        postlist += (textspost(element));
-                    }else if(element.posttype == 2){
-                        postlist += (imagepost(element));
-                    }else if(element.posttype == 3){
-                        postlist += (videopostfeed(element));
+                    if(!(parseInt(element.post_id) in existingPost)){
+                        if(element.posttype == 0){
+                            postlist += (linkspost(element));
+                        }else if(element.posttype == 1){
+                            postlist += (textspost(element));
+                        }else if(element.posttype == 2){
+                            postlist += (imagepost(element));
+                        }else if(element.posttype == 3){
+                            postlist += (videopostfeed(element));
+                        }
                     }
                     postnum++;
                 });
@@ -1418,7 +1427,13 @@ var deletecom_id = 0;
 
 $(document).on('click', '.deletecom', function(e) {
     deletecom_id = $(this).data('delete');
-    $('#commentdelete').modal({keyboard: true});
+    e.preventDefault();
+    navigator.notification.confirm(
+        'Are you sure you want to remove this comment?',  // message
+        delcom,             // callback to invoke with index of button pressed
+        'Delete Comment',            // title
+        'Delete,Cancel'          // buttonLabels
+    );
     return false;
 });
 function delcom(){
