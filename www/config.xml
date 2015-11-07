@@ -25,8 +25,9 @@
     <preference name="DisallowOverscroll" value="true" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="webviewbounce" value="false"/>
-    <preference name="android-windowSoftInputMode" value="adjustResize" />
-    
+    <!--<preference name="android-windowSoftInputMode" value="adjustResize" />-->
+    <preference name="fullscreen" value="false"/>
+
     <gap:plugin name="pushbots-cordova-plugin" source="npm" />
     <gap:plugin name="cordova-plugin-whitelist" source="npm" />
     <gap:plugin name="cordova-plugin-camera" source="npm"/>
