@@ -1088,12 +1088,12 @@ $(document).on('click','a',function(e){
         $(this).trigger("click");
     }
 });
-$(document).on('tap','a',function(e){
-    //if(login){
-    //    e.preventDefault();
-    //}
-    $(this).trigger("click")
-});
+//$(document).on('tap','a',function(e){
+//    //if(login){
+//    //    e.preventDefault();
+//    //}
+//    $(this).trigger("click")
+//});
 var commentid = 0;
 //function toPost(link){
 //    postid = link;
