@@ -1005,10 +1005,6 @@
             });
         }
     });
-    $(".quarter").on('tap', function (e) {
-        e.preventDefault();
-        refreshPage($(this).data("op"));
-    });
     $("#container").on("swiperight", function(e){
         if ( e.swipestart.coords[0] <100) {
             back();

@@ -996,8 +996,46 @@ function delcom(num){
     }
 }
 
+$.event.special.tapped = {
+    // Abort tap if touch lasts longer than half a second
+    timeThreshold: 500,
+    setup: function() {
+        var self = this,
+            $self = $(self);
+
+        // Bind touch start
+        $self.on('touchstart', function(startEvent) {
+            // Save the target element of the start event
+            var target = startEvent.target,
+                timeout;
+
+            function removeTapHandler() {
+                clearTimeout(timeout);
+                $self.off('touchend', tapHandler);
+            };
+
+            function tapHandler(endEvent) {
+                removeTapHandler();
+
+                // When the touch end event fires, check if the target of the
+                // touch end is the same as the target of the start, and if
+                // so, fire a click.
+                if (target == endEvent.target) {
+                    $.event.simulate('tap', self, endEvent);
+                }
+            };
+
+            // Remove the tap handler if the timeout expires
+            timeout = setTimeout(removeTapHandler, $.event.special.tapped.timeThreshold);
+
+            // When a touch starts, bind a touch end handler
+            $self.on('touchend', tapHandler);
+        });
+    }
+};
+
 /*post stuff*/
-$(document).on('tap','a',function(e){
+$(document).on('tapped','a',function(e){
     if(login){
         if($(this).hasClass("toPost")){
             e.preventDefault();
@@ -1018,6 +1056,9 @@ $(document).on('tap','a',function(e){
             e.preventDefault();
             var goto = $(this).data('link');
             linkToStack(goto);
+        }else if($(this).hasClass("quarter")){
+            e.preventDefault();
+            refreshPage($(this).data("op"));
         }else if($(this).hasClass("sharelink")){
             e.preventDefault();
             var goto = "https://stacksity.com/p/" + $(this).data('link');
