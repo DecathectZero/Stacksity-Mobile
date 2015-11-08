@@ -1018,9 +1018,6 @@ $(document).on('click','a',function(e){
             e.preventDefault();
             var goto = $(this).data('link');
             linkToStack(goto);
-        }else if($(this).hasClass("quarter")){
-            e.preventDefault();
-            refreshPage($(this).data("op"));
         }else if($(this).hasClass("sharelink")){
             e.preventDefault();
             var goto = "https://stacksity.com/p/" + $(this).data('link');
