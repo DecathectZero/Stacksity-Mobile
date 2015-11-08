@@ -668,7 +668,7 @@
                 $("#private").prop( "disabled", false );
             }
         };
-        xhr.setRequestHeader('Authorization', 'Client-ID 2caf3e86e092d76');
+        xhr.setRequestHeader('Authorization', 'Client-ID 5299531cfb40c5e');
 
         // And now, we send the formdata
         xhr.send(fd);
@@ -680,7 +680,7 @@
                     $("#imageposterror").slideUp(500);
                 },3000)
             }
-        },10000)
+        },15000)
     }
     function getPhotoFromLibrary(){
         // Set up the necessary sources
@@ -688,7 +688,7 @@
         destinationType = navigator.camera.DestinationType;
 
         navigator.camera.getPicture(onPhotoDataSuccess, onFail, {
-            quality: 50,
+            quality: 25,
             destinationType: destinationType.DATA_URL,
             sourceType: pictureSource.PHOTOLIBRARY
         });
@@ -700,7 +700,7 @@
         destinationType = navigator.camera.DestinationType;
 
         navigator.camera.getPicture(onPhotoDataSuccess, onFail, {
-            quality: 50,
+            quality: 25,
             destinationType: destinationType.DATA_URL,
             sourceType: pictureSource.CAMERA
         });
@@ -751,19 +751,24 @@
         if(mobile){
             first = true;
 //            alert(device.platform + " | " + device.version);
-            if(PushbotsPlugin.isiOS()){
-                PushbotsPlugin.initializeiOS("561ed24517795902148b4569");
-                if(parseInt(device.version.charAt(0)) >= 8){
-                    $("head").append("<style>.topgap{padding-top: 64px}.padding-top{padding-top: 21px}</style>");
+            if(localStorage.getItem("register") === null){
+                if(PushbotsPlugin.isiOS()){
+                    PushbotsPlugin.initializeiOS("561ed24517795902148b4569");
+                    if(parseInt(device.version.charAt(0)) >= 8){
+                        $("head").append("<style>.topgap{padding-top: 64px}.padding-top{padding-top: 21px}</style>");
+                    }
+                    localStorage.register = true;
+                }
+                if(PushbotsPlugin.isAndroid()){
+                    PushbotsPlugin.initializeAndroid("561ed24517795902148b4569", "907553791348");
+                    document.addEventListener("backbutton", function (e) {
+                        e.preventDefault();
+                        back();
+                    });
+                    localStorage.register = true;
                 }
             }
-            if(PushbotsPlugin.isAndroid()){
-                PushbotsPlugin.initializeAndroid("561ed24517795902148b4569", "907553791348");
-                document.addEventListener("backbutton", function (e) {
-                    e.preventDefault();
-                    back();
-                });
-            }else{
+            if(!PushbotsPlugin.isAndroid()){
                 StatusBar.backgroundColorByHexString("#ffffff");
                 StatusBar.styleDefault();
             }
