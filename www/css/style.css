@@ -374,6 +374,7 @@ background-color: #CCC;
 .commentb{
     background-color: #fff;
     color: #333;
+    height: auto !important;
 }
 .commentb:active{
     background-color: #EEE;
@@ -661,7 +662,6 @@ background-color: #CCC;
 .stacklink:active, .reply:active, .commentlink:active{
     color: #fff !important;
     background-color: #7CACD6;
-    border-radius: 2px;
 
 }
 .logout{
@@ -865,7 +865,6 @@ background-color: #CCC;
     margin-bottom: 0;
 }
 .replycomment{
-    background-color: #DDD;
     margin-top: 10px;
 }
 .replycon{
@@ -1236,7 +1235,7 @@ h1 {
 .con{
     -webkit-backface-visibility: hidden;
     background-color: #e9eaed;
-    min-height: 100%;
+    min-height: calc(100% + 101px)
     -webkit-transform: translate3d(0,-100px,0);
     transform: translate3d(0,-100px,0);
     margin-bottom: -100px;
