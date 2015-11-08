@@ -95,10 +95,6 @@ a:hover{
     white-space: nowrap;
     vertical-align: middle;
     cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
     background-image: none;
     border: 1px solid transparent;
 }
@@ -185,4 +181,13 @@ a:hover{
           transform: scale(1.0);
           -webkit-transform: scale(1.0);
       }
+}
+
+button, .footer, .notification, .postlabel, .btn, .scroll, .notescroll, .vote, #stacksearch, .banner, .linkcontainer, .comwrapper, .reply, .stacklink, .commentlink, .cvote, .tagline, .replycomment, .stacklist, .headercaption, .imagecon, .postinfo, .posting{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }

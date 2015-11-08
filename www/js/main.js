@@ -464,6 +464,7 @@ function displayNews(startnum, activepage, stackid, latpoint, longpoint, distanc
             if(option==7){
                 return;
             }
+            activepage.find('.scroll').css('background-color','#0C4370');
             if(data=="null"||data==''){
                 loading = false;
                 end = true;
@@ -503,7 +504,6 @@ function displayNews(startnum, activepage, stackid, latpoint, longpoint, distanc
                 bottom = false;
                 startnews = startnews + 10;
                 activepage.data("startnews", startnews);
-                activepage.find('.scroll').css('background-color','#0C4370');
                 if(postnum < 10){
                     end = true;
                     activepage.find('.scroll').html('<p>No more posts</p>');
@@ -512,10 +512,10 @@ function displayNews(startnum, activepage, stackid, latpoint, longpoint, distanc
         },
         error: function(request) {
             if(request.status == 0) {
-                activepage.find('.scroll').html('<p>You\'re offline :(</p>');
+                activepage.find('.scroll').html('<p>No Connection :(</p>');
                 activepage.find('.scroll').css('background-color','#FF851B');
             }else{
-                alert("connection arror");
+                alert("Connection Error");
             }
         }
     });
@@ -998,6 +998,7 @@ function delcom(num){
 
 /*post stuff*/
 $(document).on('click','a',function(e){
+    e.stopPropagation();
     if(login){
         if($(this).hasClass("toPost")){
             e.preventDefault();
@@ -1085,7 +1086,7 @@ $(document).on('click','a',function(e){
         }
     }
 });
-$(document).on('tap','.postlink',function(e){
+$(document).on('tap','.postlink, button',function(e){
     e.preventDefault();
     e.stopPropagation();
     $(this).trigger('click');
@@ -1547,42 +1548,61 @@ function openNote(){
 //This function retrieves the notifications from the server
 function getNotification(){
     $(".note-header").empty();
-    $(".notescroll").html('Loading notifications');
+    var $notescroll = $(".notescroll");
+    $notescroll.html('Loading notifications');
     checklogin();
     newcountNotif = 0;
-    $.getJSON('https://stacksity.com/php/getnotification.php', {timestamp: 0, session_id: id}, function(data){
-        if(data!=null){
-            var content = '';
-            $.each(data, function(index, element) {
-                var seen = '';
-                if(element.seen==0){
-                    seen = 'unseen';
-                    newcountNotif++;
-                }
-                if(element.note_type==0){
-                    content =  notification(element, seen, "posted to your stack") + content;
-                }else if(element.note_type==1){
-                    content =  notification(element, seen, "commented on your post") + content;
-                }else if(element.note_type==2){
-                    content =  notification(element, seen, "replied to your comment") + content;
-                }else if(element.note_type==3){
-                    content =  notification(element, seen, "tagged you in a comment") + content;
-                }else if(element.note_type==4){
-                    content =  notification(element, seen, "tagged you in a post") + content;
-                }
+    $.ajax({
+        type     : "GET",
+        cache    : false,
+        url      : 'https://stacksity.com/php/getnotification.php',
+        crossDomain : true,
+        data     : {timestamp: 0, session_id: id},
+        dataType : "json",
+        success  : function(data) {
+            $notescroll.css('background-color','#0C4370');
+            if(data!=null){
+                var content = '';
+                $.each(data, function(index, element) {
+                    var seen = '';
+                    if(element.seen==0){
+                        seen = 'unseen';
+                        newcountNotif++;
+                    }
+                    if(element.note_type==0){
+                        content =  notification(element, seen, "posted to your stack") + content;
+                    }else if(element.note_type==1){
+                        content =  notification(element, seen, "commented on your post") + content;
+                    }else if(element.note_type==2){
+                        content =  notification(element, seen, "replied to your comment") + content;
+                    }else if(element.note_type==3){
+                        content =  notification(element, seen, "tagged you in a comment") + content;
+                    }else if(element.note_type==4){
+                        content =  notification(element, seen, "tagged you in a post") + content;
+                    }
 
-            });
-            $(".note-header").hide();
-            $(".note-header").html(content);
-            $(".note-header").slideDown(function(){
-                $(".notescroll").html('No More Notifications to Show');
-            });
-        }
-        if(option == 3){
-            markseen();
-        }else{
-            if(newcountNotif!=0){
-                $('#notestack').addClass('newnote');
+                });
+                $(".note-header").hide();
+                $(".note-header").html(content);
+                $(".note-header").slideDown(function(){
+                    $notescroll.html('No More Notifications to Show');
+                });
+            }
+            if(option == 3){
+                markseen();
+            }else{
+                if(newcountNotif!=0){
+                    $('#notestack').addClass('newnote');
+                }
+            }
+        },
+        error: function(request) {
+            if(request.status == 0) {
+                $notescroll.html('<p>You\'re offline :(</p>');
+                $notescroll.css('background-color','#FF851B');
+            }else{
+                alert("" +
+                    "Connection Error");
             }
         }
     });
