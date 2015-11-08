@@ -751,24 +751,25 @@
         if(mobile){
             first = true;
 //            alert(device.platform + " | " + device.version);
-            if(localStorage.getItem("register") === null){
-                if(PushbotsPlugin.isiOS()){
+            if(PushbotsPlugin.isiOS()){
+                if(localStorage.getItem("register") === null){
                     PushbotsPlugin.initializeiOS("561ed24517795902148b4569");
-                    if(parseInt(device.version.charAt(0)) >= 8){
-                        $("head").append("<style>.topgap{padding-top: 64px}.padding-top{padding-top: 21px}</style>");
-                    }
                     localStorage.register = true;
                 }
-                if(PushbotsPlugin.isAndroid()){
-                    PushbotsPlugin.initializeAndroid("561ed24517795902148b4569", "907553791348");
-                    document.addEventListener("backbutton", function (e) {
-                        e.preventDefault();
-                        back();
-                    });
-                    localStorage.register = true;
+                if(parseInt(device.version.charAt(0)) >= 8){
+                    $("head").append("<style>.topgap{padding-top: 64px}.padding-top{padding-top: 21px}</style>");
                 }
             }
-            if(!PushbotsPlugin.isAndroid()){
+            if(PushbotsPlugin.isAndroid()){
+                if(localStorage.getItem("register") === null){
+                    PushbotsPlugin.initializeAndroid("561ed24517795902148b4569", "907553791348");
+                    localStorage.register = true;
+                }
+                document.addEventListener("backbutton", function (e) {
+                    e.preventDefault();
+                    back();
+                });
+            }else{
                 StatusBar.backgroundColorByHexString("#ffffff");
                 StatusBar.styleDefault();
             }
