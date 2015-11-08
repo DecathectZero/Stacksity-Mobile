@@ -1083,17 +1083,17 @@ $(document).on('click','a',function(e){
                 }
             }
         }
-    }else{
-        e.preventDefault();
-        $(this).trigger("click");
     }
 });
-//$(document).on('tap','a',function(e){
-//    //if(login){
-//    //    e.preventDefault();
-//    //}
-//    $(this).trigger("click")
-//});
+$(document).on('tap','.postlink',function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    $(this).trigger('click');
+});
+$(".quarter").on('tap', function (e) {
+    e.preventDefault();
+    refreshPage($(this).data("op"));
+});
 var commentid = 0;
 //function toPost(link){
 //    postid = link;
