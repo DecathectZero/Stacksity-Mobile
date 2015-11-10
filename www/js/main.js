@@ -26,7 +26,7 @@ function postOpen(type){
  */
 function pullToRefresh(element, func) {
 
-    var shareWrapH,
+    var shareWrapH = 100,
         translateVal,
     // friction factor
         friction = 2.5,
@@ -34,7 +34,7 @@ function pullToRefresh(element, func) {
         triggerDistance = 150,
     // touch events: position of the initial touch (y-axis)
         rotate = element.children(".pullRefresh").children(),
-        firstTouchY, initialScroll, real = false;
+        firstTouchY, initialScroll, real = false, touchPast = false;
 
     function scrollY() { return element.parent().scrollTop() }
 
@@ -60,8 +60,6 @@ function pullToRefresh(element, func) {
     function touchStart(ev) {
         // save the initial position of the touch (y-axis)
         firstTouchY = parseInt(ev.originalEvent.touches[0].pageY);
-        // get the current height of the share wrapper
-        shareWrapH = 100;
 
         // make sure the element doesnt have the transition class (added when the user releases the touch)
         element.removeClass('container--reset');
@@ -69,6 +67,10 @@ function pullToRefresh(element, func) {
 
     function touchMove(ev) {
         if(scrollY()<1){
+            if(!touchPast){
+                touchPast = true;
+                firstTouchY = parseInt(ev.originalEvent.touches[0].pageY);
+            }
             var moving = function() {
                 //alert(firstTouchY);
                 //alert(ev.originalEvent.touches[0].pageY);
@@ -103,6 +105,8 @@ function pullToRefresh(element, func) {
             };
 
             throttle(moving(), 60);
+        }else{
+            touchPast = false;
         }
     }
 
