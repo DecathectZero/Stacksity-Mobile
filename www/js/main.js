@@ -34,7 +34,7 @@ function pullToRefresh(element, func) {
         triggerDistance = 150,
     // touch events: position of the initial touch (y-axis)
         rotate = element.children(".pullRefresh").children(),
-        firstTouchY, real = false, touchPast = false;
+        firstTouchY, initialScroll, real = false, touchPast = false;
 
     function scrollY() { return element.parent().scrollTop() }
 
@@ -60,23 +60,18 @@ function pullToRefresh(element, func) {
     function touchStart(ev) {
 
         // make sure the element doesnt have the transition class (added when the user releases the touch)
+        firstTouchY = parseInt(ev.originalEvent.touches[0].pageY);
+        initialScroll = scrollY();
         element.removeClass('container--reset');
     }
 
     function touchMove(ev) {
-        if(scrollY>=0){
-            touchPast = false;
-        }
         if(scrollY()<1){
-            if(!touchPast){
-                touchPast = true;
-                firstTouchY = parseInt(ev.originalEvent.touches[0].pageY);
-            }
             var moving = function() {
                 //alert(firstTouchY);
                 //alert(ev.originalEvent.touches[0].pageY);
                 var touchY = parseInt(ev.originalEvent.touches[0].pageY),
-                    touchYDelta = touchY - firstTouchY;
+                    touchYDelta = touchY - firstTouchY - initialScroll;
 
                 if ( scrollY() === 0 && touchYDelta > 0  ) {
                     ev.preventDefault();
@@ -90,8 +85,6 @@ function pullToRefresh(element, func) {
                 //alert(touchYDelta + " | " + friction+ " | " +shareWrapH);
                 // calculate the distance the container needs to be translated
                 translateVal = -shareWrapH + touchYDelta/friction;
-
-                //$("#yoloswag").prepend(touchY + " | " + firstTouchY + " | " + translateVal +"<br>");
 
                 // set the transform value for the container
                 setContentTransform();
