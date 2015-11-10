@@ -177,7 +177,7 @@ function bannerset(activepage, stackids){
                 var $bannerdesc = ban.find(".bannerdesc");
 
                 $bannertitle.html(stackname);
-                if(stackids==0){
+                if(stackids==0||stackids==4917){
                     //ban.addClass("topbanner");
                     $bannerdesc.html(element.stack_desc);
                 }else if(stackids==-1){
@@ -205,16 +205,13 @@ function bannerset(activepage, stackids){
                         ban.after('<div class="locbar" style="padding: 0px">'+
                             '<div class="btn-group btn-group-justified" role="group" aria-label="...">'+
                             '<div class="btn-group" role="group">'+
-                            '<button type="button" class="btn btn-default dist-btn" onclick="setDist(0, this)" disabled>All</button>'+
+                            '<button type="button" class="btn btn-default dist-btn" onclick="setDist(0, this, 0)" disabled>Best</button>'+
                             '</div>'+
                             '<div class="btn-group" role="group">'+
-                            '<button type="button" class="btn btn-default dist-btn" onclick="setDist(0.1, this)">Close</button>'+
+                            '<button type="button" class="btn btn-default dist-btn" onclick="setDist(0, this, 1)">New</button>'+
                             '</div>'+
                             '<div class="btn-group" role="group">'+
-                            '<button type="button" class="btn btn-default dist-btn" onclick="setDist(5, this)">Near</button>'+
-                            '</div>'+
-                            '<div class="btn-group" role="group">'+
-                            '<button type="button" class="btn btn-default dist-btn" onclick="setDist(50, this)">Far</button>'+
+                            '<button type="button" class="btn btn-default dist-btn" onclick="setDist(0, this, 2)">Top</button>'+
                             '</div>'+
                             '</div>'+
                             '</div>');
@@ -244,11 +241,12 @@ function bannerset(activepage, stackids){
                     activepage.data("startnews", 0);
                     activepage.data("stackname", stackname);
                     startnews = 0;
-                    if(stackids == -4){
+                    activepage.data("status", 0);
+                    if(stackids == 4917){
                         setDist(5, "#nearbtn")
                     }else{
                         activepage.data("distance", 0);
-                        startNews(startnews,activepage, stackids);
+                        startNews(startnews,activepage, stackids, 0);
                     }
                     var contain = activepage.children(".extracontainer");
                     pullToRefresh(contain.children(), refresh);
@@ -263,9 +261,9 @@ function bannerset(activepage, stackids){
                                     activepage.find('.scroll').html('<p>Loading Posts</p> ');
                                     //alert(activepage.data("distance"));
                                     if(activepage.data("distance")==0||activepage.data("distance")===undefined){
-                                        startNews(startnews, activepage, stackid);
+                                        startNews(startnews, activepage, stackid, activepage.data("status"));
                                     }else{
-                                        startNews(startnews, activepage, stackid, activepage.data("distance"));
+                                        startNews(startnews, activepage, stackid, activepage.data("status"), activepage.data("distance"));
                                     }
                                 }
                             }
@@ -306,6 +304,9 @@ function initPostBox(){
     if(stackid < 1){
         $("#posting").html(username);
         $('#private').show();
+    }else if(stackid==4917){
+        $("#posting").html("nearby");
+        $('#private').hide();
     }else{
         if(is_user==0){
             $('#private').hide();
@@ -344,7 +345,7 @@ function init(){
         goto = -10;
     }else if(option == 4){
         $('#allstack').addClass('active');
-        goto = -4;
+        goto = 4917;
     }else if(option == 5){
         $('#userstack').addClass('active');
         goto = userstack;
@@ -405,7 +406,7 @@ function checklogin(){
 //}
 
 //this function is called when someone fires a change distance button
-function setDist(distance, button){
+function setDist(distance, button, status){
     if(button!==undefined){
         $(".dist-btn").prop('disabled', false);
         $(button).prop('disabled', true);
@@ -418,25 +419,26 @@ function setDist(distance, button){
     activepage.find('.scroll').html('Loading...');
     activepage.find('.feed').empty();
     activepage.data("distance", distance);
+    activepage.data("status", status);
     if(distance==0){
-        startNews(startnews, activepage, stackid);
+        startNews(startnews, activepage, stackid, status);
     }else{
-        startNews(startnews, activepage, stackid, distance);
+        startNews(startnews, activepage, stackid, status, distance);
     }
 }
 
 //retrieves the posts for a certain stack (probably one of the most important functions here, same as the site)
-function startNews(startnum, activepage, stackid, distance) {
+function startNews(startnum, activepage, stackid, status, distance) {
     //alert(startnum + " | " + stackid + " | " + distance);
     if(!loading){
         if(end){
             return;
         }
         loading = true;
-        if(distance !== undefined){
+        if(stackid==4917 && distance !== undefined){
             navigator.geolocation.getCurrentPosition(function(pos){
                     //alert("geo");
-                    displayNews(startnum, activepage, stackid, pos.coords.latitude, pos.coords.longitude, distance);
+                    displayNews(startnum, activepage, stackid, status, pos.coords.latitude, pos.coords.longitude, distance);
                 },
                 function(error){
                     $.mobile.activePage.find('.scroll').html('<p>Please turn on location services</p>');
@@ -444,12 +446,12 @@ function startNews(startnum, activepage, stackid, distance) {
             return;
         }else{
             activepage.find('.scroll').html('<p>Loading Posts...</p>');
-            displayNews(startnum, activepage, stackid);
+            displayNews(startnum, activepage, stackid, status);
         }
     }
 }
 
-function displayNews(startnum, activepage, stackid, latpoint, longpoint, distance){
+function displayNews(startnum, activepage, stackid, status, latpoint, longpoint, distance){
     checklogin();
     loading = true;
     var postnum = 0;
@@ -458,7 +460,7 @@ function displayNews(startnum, activepage, stackid, latpoint, longpoint, distanc
         cache    : false,
         url      : 'https://stacksity.com/php/feed.php',
         crossDomain : true,
-        data     : {id : stackid , start : startnum , session_id: id , latitude : latpoint, longitude : longpoint, distance: distance},
+        data     : {id : stackid , start : startnum , session_id: id , latitude : latpoint, longitude : longpoint, distance: distance, status: status},
         dataType : "html",
         success  : function(data) {
             if(option==7){
@@ -531,33 +533,11 @@ function refresh(){
     if(activep.data("stack_id")==null&&!postbox){
         bannerset(activep, stackid);
     }else{
-        //console.log(is_user);
-        if((option==6 && activep.data("is_user")==0) || option==4){
-            //var buttons = activep.children(".extracontainer").children().children(".locbar").children().children();
-            //if(buttons.children().is(":disabled")){
-            //    console.log(activep.data("distance"));
-                setDist(activep.data("distance"));
-            //}
+        var scrollpos = activep.children(".extracontainer").scrollTop();
+        if(scrollpos<4000){
+            activep.children(".extracontainer").stop().animate({ scrollTop : 0 }, 1000);
         }else{
-            var scrollpos = activep.children(".extracontainer").scrollTop();
-            if(scrollpos<100){
-                activep.find(".feed").empty();
-                activep.data("startnews", 0);
-                startnews = 0;
-                startNews(startnews, activep, stackid);
-            }else if(scrollpos<4000){
-                activep.find(".extracontainer").stop().animate({ scrollTop : 0 }, 1000, function(){
-                    activep.find(".feed").empty();
-                    startnews = 0;
-                    startNews(startnews, activep, stackid);
-                    activep.data("startnews", 0);
-                });
-            }else{
-                activep.find(".feed").empty();
-                startnews = 0;
-                startNews(startnews, activep, stackid);
-                activep.data("startnews", 0);
-            }
+            activep.children(".extracontainer").scrollTop(0);
         }
     }
 }
@@ -638,9 +618,7 @@ function refreshPage(opt) {
         if(postbox) {
             $.mobile.back();
         }else if(isStackOption()){
-            if(option != 4){
-                refresh();
-            }
+            refresh();
         }else if(option == 3){
             openNote();
         }
@@ -813,16 +791,23 @@ $(document).on('submit', "#toppost", function(e){
         if(textposting && !$.trim($("#textpostfield").val())){
             return;
         }
-        $('#pbutton').hide();
-        $('#private').hide();
-        $("#spinnerpost").show();
-        navigator.geolocation.getCurrentPosition(function(position){
-                makepost("&lat="+position.coords.latitude+"&long="+position.coords.longitude);
-            },
-            function(error){
-                makepost("");
-            },{timeout: 10000, enableHighAccuracy: true}
-        );
+        if(stackid==4917){
+            navigator.geolocation.getCurrentPosition(function(position){
+                    $('#pbutton').hide();
+                    $('#private').hide();
+                    $("#spinnerpost").show();
+                    makepost("&lat="+position.coords.latitude+"&long="+position.coords.longitude);
+                },
+                function(error){
+                    alert("Please enable location services to post on $near")
+                },{timeout: 10000, enableHighAccuracy: true}
+            );
+        }else{
+            $('#pbutton').hide();
+            $('#private').hide();
+            $("#spinnerpost").show();
+            makepost("");
+        }
     }
 });
 
@@ -1039,7 +1024,7 @@ $(document).on('click','a',function(e){
             report_id = $(this).data('delete');
             //e.preventDefault();
             navigator.notification.confirm(
-                'Only report posts that have not been properly labeled NSFW or are blatantly illegal, an abuse of the report function will have severe consequences',  // message
+                'Only report posts that have not been properly labeled NSFW or are blatantly illegal. An abuse of the report function will have severe consequences',  // message
                 report,             // callback to invoke with index of button pressed
                 'Report Post',            // title
                 'Report,Cancel'          // buttonLabels
