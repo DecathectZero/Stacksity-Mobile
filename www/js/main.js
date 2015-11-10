@@ -249,7 +249,7 @@ function bannerset(activepage, stackids){
                         startNews(startnews,activepage, stackids, 0);
                     }
                     var contain = activepage.children(".extracontainer");
-                    pullToRefresh(contain.children(), refresh);
+                    pullToRefresh(contain.children(), refreshPull);
                     var windowheight = $(window).height();
                     //var reficon = contain.children().children(".pullRefresh").children();
                     //var touchcancel = false;
@@ -539,6 +539,21 @@ function refresh(){
         }else{
             activep.children(".extracontainer").scrollTop(0);
         }
+    }
+}
+function refreshPull(){
+    var activep = $.mobile.activePage;
+    if(option==4){
+        setDist(activep.data("distance"));
+    }else{
+        bottom = false;
+        end = false;
+        loading = false;
+        activep.find('.scroll').html('<p>Loading Posts</p>');
+        activep.find(".feed").empty();
+        startnews = 0;
+        startNews(startnews, activep, stackid, activep.data("status"));
+        activep.data("startnews", 0);
     }
 }
 function searchPageRefresh(){
