@@ -31,10 +31,10 @@ function pullToRefresh(element, func) {
     // friction factor
         friction = 2.5,
     // distance in px needed to push down the menu in order to be able to share
-        triggerDistance = 150,
+        triggerDistance = 100,
     // touch events: position of the initial touch (y-axis)
         rotate = element.children(".pullRefresh").children(),
-        firstTouchY, initialScroll, real = false, touchPast = false;
+        firstTouchY, real = false, touchPast = false;
 
     function scrollY() { return element.parent().scrollTop() }
 
@@ -58,8 +58,6 @@ function pullToRefresh(element, func) {
     }
 
     function touchStart(ev) {
-        // save the initial position of the touch (y-axis)
-        firstTouchY = parseInt(ev.originalEvent.touches[0].pageY);
 
         // make sure the element doesnt have the transition class (added when the user releases the touch)
         element.removeClass('container--reset');
@@ -81,7 +79,7 @@ function pullToRefresh(element, func) {
                     ev.preventDefault();
                 }
 
-                if ( initialScroll > 0 || scrollY() > 0 || scrollY() === 0 && touchYDelta < 0 ) {
+                if ( scrollY() === 0 && touchYDelta < 0 ) {
                     firstTouchY = touchY;
                     return;
                 }
@@ -89,6 +87,8 @@ function pullToRefresh(element, func) {
                 //alert(touchYDelta + " | " + friction+ " | " +shareWrapH);
                 // calculate the distance the container needs to be translated
                 translateVal = -shareWrapH + touchYDelta/friction;
+
+                $("#yoloswag").prepend(touchY + " | " + firstTouchY + " | " + translateVal +"<br>");
 
                 // set the transform value for the container
                 setContentTransform();
@@ -130,6 +130,9 @@ function pullToRefresh(element, func) {
             if( translateVal !== -shareWrapH ) {
                 element.addClass('container--reset');
             }
+        }else{
+            rotate.css("-webkit-transform",'rotateZ( 0deg )');
+            rotate.css("transform",'rotateZ( 0deg )');
         }
     }
 
