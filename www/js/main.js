@@ -66,9 +66,6 @@ function pullToRefresh(element, func) {
     }
 
     function touchMove(ev) {
-        if(parseInt(ev.originalEvent.touches[0].pageY - firstTouchY - initialScroll>0)){
-            ev.preventDefault()
-        }
         if(scrollY()<1){
             var moving = function() {
                 //alert(firstTouchY);
@@ -76,9 +73,9 @@ function pullToRefresh(element, func) {
                 var touchY = parseInt(ev.originalEvent.touches[0].pageY),
                     touchYDelta = touchY - firstTouchY - initialScroll;
 
-                //if ( touchYDelta > 0  ) {
-                //    ev.preventDefault();
-                //}
+                if ( touchYDelta > 0  ) {
+                    ev.preventDefault();
+                }
 
                 if ( scrollY() === 0 && touchYDelta < 0 ) {
                     firstTouchY = touchY;
