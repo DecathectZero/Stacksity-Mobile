@@ -407,15 +407,15 @@ function checklogin(){
 
 //this function is called when someone fires a change distance button
 function setDist(distance, button, status){
+    var activepage = $.mobile.activePage;
     if(button!==undefined){
-        $(".dist-btn").prop('disabled', false);
+        activepage.find(".dist-btn").prop('disabled', false);
         $(button).prop('disabled', true);
     }
     bottom = false;
     startnews = 0;
     loading = false;
     end = false;
-    var activepage = $.mobile.activePage;
     activepage.find('.scroll').html('Loading...');
     activepage.find('.feed').empty();
     activepage.data("distance", distance);
