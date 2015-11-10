@@ -1587,6 +1587,8 @@ function getNotification(){
                 $(".note-header").slideDown(function(){
                     $notescroll.html('No More Notifications to Show');
                 });
+            }else{
+                $notescroll.html('No More Notifications to Show');
             }
             if(option == 3){
                 markseen();
