@@ -34,7 +34,7 @@ function pullToRefresh(element, func) {
         triggerDistance = 150,
     // touch events: position of the initial touch (y-axis)
         rotate = element.children(".pullRefresh").children(),
-        firstTouchY, initialScroll=false, real = false;
+        firstTouchY, initialScroll, real = false;
 
     function scrollY() { return element.parent().scrollTop() }
 
@@ -61,25 +61,24 @@ function pullToRefresh(element, func) {
 
         // make sure the element doesnt have the transition class (added when the user releases the touch)
         firstTouchY = parseInt(ev.originalEvent.touches[0].pageY);
-        if(scrollY()==0){
-            initialScroll = true;
-        }else{
-            initialScroll = false;
-        }
+        initialScroll = parseInt(scrollY());
         element.removeClass('container--reset');
     }
 
     function touchMove(ev) {
-        if(scrollY()<1&&initialScroll){
+        if(parseInt(ev.originalEvent.touches[0].pageY - firstTouchY - initialScroll>0)){
+            ev.preventDefault()
+        }
+        if(scrollY()<1){
             var moving = function() {
                 //alert(firstTouchY);
                 //alert(ev.originalEvent.touches[0].pageY);
                 var touchY = parseInt(ev.originalEvent.touches[0].pageY),
-                    touchYDelta = touchY - firstTouchY;
+                    touchYDelta = touchY - firstTouchY - initialScroll;
 
-                if ( scrollY() === 0 && touchYDelta > 0  ) {
-                    ev.preventDefault();
-                }
+                //if ( touchYDelta > 0  ) {
+                //    ev.preventDefault();
+                //}
 
                 if ( scrollY() === 0 && touchYDelta < 0 ) {
                     firstTouchY = touchY;
