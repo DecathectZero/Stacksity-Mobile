@@ -74,6 +74,7 @@ function pullToRefresh(element, func) {
                     touchYDelta = touchY - firstTouchY - initialScroll;
 
                 if (touchYDelta > 0  ) {
+                    //$("#yoloswag").prepend(touchY + " | " + firstTouchY + " | " + translateVal +" | " + initialScroll +"<br>");
                     ev.preventDefault();
                 }
 
@@ -86,7 +87,6 @@ function pullToRefresh(element, func) {
                 // calculate the distance the container needs to be translated
                 translateVal = -shareWrapH + touchYDelta/friction;
 
-                $("#yoloswag").prepend(touchY + " | " + firstTouchY + " | " + translateVal +" | " + initialScroll +"<br>");
                 // set the transform value for the container
                 setContentTransform();
 
