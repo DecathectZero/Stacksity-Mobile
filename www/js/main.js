@@ -998,8 +998,8 @@ function delcom(num){
 
 /*post stuff*/
 $(document).on('click','a',function(e){
-    e.stopPropagation();
     if(login){
+        e.stopPropagation();
         if($(this).hasClass("toPost")){
             e.preventDefault();
             if(postid == $(this).data("postlink")){
