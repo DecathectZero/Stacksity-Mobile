@@ -31,7 +31,7 @@ function pullToRefresh(element, func) {
     // friction factor
         friction = 2.5,
     // distance in px needed to push down the menu in order to be able to share
-        triggerDistance = 100,
+        triggerDistance = 150,
     // touch events: position of the initial touch (y-axis)
         rotate = element.children(".pullRefresh").children(),
         firstTouchY, real = false, touchPast = false;
@@ -64,6 +64,9 @@ function pullToRefresh(element, func) {
     }
 
     function touchMove(ev) {
+        if(scrollY>=0){
+            touchPast = false;
+        }
         if(scrollY()<1){
             if(!touchPast){
                 touchPast = true;
@@ -88,7 +91,7 @@ function pullToRefresh(element, func) {
                 // calculate the distance the container needs to be translated
                 translateVal = -shareWrapH + touchYDelta/friction;
 
-                $("#yoloswag").prepend(touchY + " | " + firstTouchY + " | " + translateVal +"<br>");
+                //$("#yoloswag").prepend(touchY + " | " + firstTouchY + " | " + translateVal +"<br>");
 
                 // set the transform value for the container
                 setContentTransform();
@@ -105,8 +108,6 @@ function pullToRefresh(element, func) {
             };
 
             throttle(moving(), 60);
-        }else{
-            touchPast = false;
         }
     }
 
