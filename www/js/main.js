@@ -529,7 +529,6 @@ function refresh(){
     end = false;
     loading = false;
     var activep = $.mobile.activePage;
-    activep.find('.scroll').html('<p>Loading Posts</p>');
     if(activep.data("stack_id")==null&&!postbox){
         bannerset(activep, stackid);
     }else{
