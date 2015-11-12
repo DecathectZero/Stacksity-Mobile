@@ -47,6 +47,7 @@
         var lastdefaultOP = 1;
         var postRefresh = true;
         var postingimage = false;
+        var ios = false;
         $(document).one("mobileinit", function () {
             $.mobile.pageContainer = $('#container');
             $.mobile.defaultPageTransition = 'slide';
@@ -762,6 +763,7 @@
                     localStorage.register = true;
                 }
                 if(parseInt(device.version.charAt(0)) >= 8){
+                    ios = true;
                     $("head").append("<style>.topgap{padding-top: 64px}.padding-top{padding-top: 21px}</style>");
                 }
             }

@@ -52,9 +52,14 @@ function pullToRefresh(element, func) {
     }
 
     function init() {
-        element.on('touchstart', touchStart);
-        element.on('touchmove', touchMove);
-        element.on('touchend', touchEnd);
+        if(ios){
+            element.on('touchmove', itouchmove);
+            element.on('touchend', itouchend);
+        }else{
+            element.on('touchstart', touchStart);
+            element.on('touchmove', touchMove);
+            element.on('touchend', touchEnd);
+        }
     }
 
     function touchStart(ev) {
@@ -100,6 +105,21 @@ function pullToRefresh(element, func) {
             };
 
             throttle(moving(), 60);
+        }
+    }
+    function itouchmove(){
+        if(scrollY()<-100){
+            rotate.css("-webkit-transform","rotateZ( -180deg )");
+            rotate.css("transform","rotateZ( -180deg )");
+        }
+    }
+    function itouchend(){
+        if(scrollY()<-100){
+            setTimeout(function(){
+                rotate.css("-webkit-transform",'rotateZ( 0deg )');
+                rotate.css("transform",'rotateZ( 0deg )');
+                func();
+            }, 500);
         }
     }
 
