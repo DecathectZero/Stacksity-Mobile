@@ -108,18 +108,18 @@ function pullToRefresh(element, func) {
         }
     }
     function itouchmove(){
-        if(scrollY()<-100){
+        if(scrollY()<-50){
             rotate.css("-webkit-transform","rotateZ( -180deg )");
             rotate.css("transform","rotateZ( -180deg )");
         }
     }
     function itouchend(){
-        if(scrollY()<-100){
+        if(scrollY()<-40){
             setTimeout(function(){
                 rotate.css("-webkit-transform",'rotateZ( 0deg )');
                 rotate.css("transform",'rotateZ( 0deg )');
                 func();
-            }, 500);
+            }, 400);
         }
     }
 
