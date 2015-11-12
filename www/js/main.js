@@ -120,6 +120,9 @@ function pullToRefresh(element, func) {
                 rotate.css("transform",'rotateZ( 0deg )');
                 func();
             }, 400);
+        }else{
+            rotate.css("-webkit-transform",'rotateZ( 0deg )');
+            rotate.css("transform",'rotateZ( 0deg )');
         }
     }
 
