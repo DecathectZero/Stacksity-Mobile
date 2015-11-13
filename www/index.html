@@ -653,50 +653,41 @@
 
         // It is!
         // Let's build a FormData object
-        var blob = null;
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", file);
-        xhr.responseType = "blob";//force the HTTP response, response-type header to be blob
-        xhr.onload = function()
-        {
-            blob = xhr.response;//xhr.response is now a blob object
-            var fd = new FormData();
-            fd.append("fileToUpload", blob); // Append the file
 
-            xhr = new XMLHttpRequest();
-            xhr.open("POST", "https://phify.com/uploadapi.php"); // Boooom!
-
-            xhr.onload = function() {
-                if(postingimage){
-                    postingimage = false;
-                    var link = xhr.responseText;
-                    alert(link);
-                    $('#link').val(link);
-                    $("#imagespinner").hide();
-                    //$('#imageid').val(file.name);
-                    $('#imagePostPreview').attr('src', link);
-                    $('.background-image').show();
-                    document.body.className = "uploaded";
-                    $("#pbutton").prop( "disabled", false );
-                    $("#private").prop( "disabled", false );
-                }
-            };
-
-            // And now, we send the formdata
-            xhr.send(fd);
-            setTimeout(function(){
-                if(postingimage){
-                    cancelimagepost();
-                    $("#imageposterror").slideDown(500);
-                    setTimeout(function(){
-                        $("#imageposterror").slideUp(500);
-                    },3000)
-                }
-            },15000)
-        }
-        xhr.send();
+        var fd = new FormData();
+        fd.append("fileToUpload", file); // Append the file
 
         // Create the XHR (Cross-Domain XHR FTW!!!)
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "https://phify.com/uploadapi64.php"); // Boooom!
+
+        xhr.onload = function() {
+            if(postingimage){
+                postingimage = false;
+                var link = xhr.responseText;
+                alert(link);
+                $('#link').val(link);
+                $("#imagespinner").hide();
+                //$('#imageid').val(file.name);
+                $('#imagePostPreview').attr('src', link);
+                $('.background-image').show();
+                document.body.className = "uploaded";
+                $("#pbutton").prop( "disabled", false );
+                $("#private").prop( "disabled", false );
+            }
+        };
+
+        // And now, we send the formdata
+        xhr.send(fd);
+        setTimeout(function(){
+            if(postingimage){
+                cancelimagepost();
+                $("#imageposterror").slideDown(500);
+                setTimeout(function(){
+                    $("#imageposterror").slideUp(500);
+                },3000)
+            }
+        },15000)
     }
     function getPhotoFromLibrary(){
         // Set up the necessary sources
@@ -705,7 +696,7 @@
 
         navigator.camera.getPicture(onPhotoDataSuccess, onFail, {
             quality: 25,
-            destinationType: destinationType.FILE_URI,
+            destinationType: destinationType.DATA_URL,
             sourceType: pictureSource.PHOTOLIBRARY
         });
     }
@@ -717,7 +708,7 @@
 
         navigator.camera.getPicture(onPhotoDataSuccess, onFail, {
             quality: 25,
-            destinationType: destinationType.FILE_URI,
+            destinationType: destinationType.DATA_URL,
             sourceType: pictureSource.CAMERA
         });
     }
