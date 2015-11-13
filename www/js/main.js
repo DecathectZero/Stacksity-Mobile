@@ -114,7 +114,7 @@ function pullToRefresh(element, func) {
         }
     }
     function itouchend(){
-        if(scrollY()<-40){
+        if(scrollY()<-10){
             setTimeout(function(){
                 rotate.css("-webkit-transform",'rotateZ( 0deg )');
                 rotate.css("transform",'rotateZ( 0deg )');
@@ -524,9 +524,7 @@ function displayNews(startnum, activepage, stackid, status, latpoint, longpoint,
                     }
                     postnum++;
                 });
-                setTimeout(function(){
-                    activepage.find('.feed').append(postlist);
-                },500)
+                activepage.find('.feed').append(postlist);
                 loading = false;
                 bottom = false;
                 startnews = startnews + 10;
