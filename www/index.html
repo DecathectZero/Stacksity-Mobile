@@ -700,7 +700,7 @@
     var win = function (r){
         if(postingimage){
             postingimage = false;
-            var link = r;
+            var link = r.response;
             alert(link);
             $('#link').val(link);
             $("#imagespinner").hide();
