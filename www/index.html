@@ -654,6 +654,7 @@
         // It is!
         // Let's build a FormData object
         var fd = new FormData();
+        alert(file);
         fd.append("fileToUpload", file); // Append the file
 
         // Create the XHR (Cross-Domain XHR FTW!!!)
@@ -661,11 +662,10 @@
         xhr.open("POST", "https://phify.com/uploadapi.php"); // Boooom!
 
         xhr.onload = function() {
-            alert("sendingbeforepostingimage");
             if(postingimage){
-                alert("sendingimage");
                 postingimage = false;
                 var link = xhr.responseText;
+                alert(link);
                 $('#link').val(link);
                 $("#imagespinner").hide();
                 //$('#imageid').val(file.name);
@@ -678,7 +678,6 @@
         };
 
         // And now, we send the formdata
-        alert("sending");
         xhr.send(fd);
         setTimeout(function(){
             if(postingimage){
