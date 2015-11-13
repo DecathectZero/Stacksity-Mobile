@@ -651,34 +651,37 @@
             Upload.callback_func(null, "Invalid File");
         }
 
-        // It is!
-        // Let's build a FormData object
-
-        var fd = new FormData();
-        fd.append("fileToUpload", file); // Append the file
-
-        // Create the XHR (Cross-Domain XHR FTW!!!)
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "https://phify.com/uploadapi64.php"); // Boooom!
-
-        xhr.onload = function() {
-            if(postingimage){
-                postingimage = false;
-                var link = xhr.responseText;
-                alert(link);
-                $('#link').val(link);
-                $("#imagespinner").hide();
-                //$('#imageid').val(file.name);
-                $('#imagePostPreview').attr('src', link);
-                $('.background-image').show();
-                document.body.className = "uploaded";
-                $("#pbutton").prop( "disabled", false );
-                $("#private").prop( "disabled", false );
-            }
-        };
-
-        // And now, we send the formdata
-        xhr.send(fd);
+//        // It is!
+//        // Let's build a FormData object
+//
+//        var fd = new FormData();
+//        fd.append("fileToUpload", file); // Append the file
+//
+//        // Create the XHR (Cross-Domain XHR FTW!!!)
+//        var xhr = new XMLHttpRequest();
+//        xhr.open("POST", "https://phify.com/uploadapi64.php"); // Boooom!
+//
+//        xhr.onload = function() {
+//
+//        };
+//
+//        // And now, we send the formdata
+//        xhr.send(fd);
+//        setTimeout(function(){
+//            if(postingimage){
+//                cancelimagepost();
+//                $("#imageposterror").slideDown(500);
+//                setTimeout(function(){
+//                    $("#imageposterror").slideUp(500);
+//                },3000)
+//            }
+//        },15000)
+        var options = new FileUploadOptions();
+        options.fileKey = "fileToUpload";
+        options.fileName = file.substr(file.lastIndexOf('/') + 1);
+//        options.mimeType = "text/plain";
+        var ft = new FileTransfer();
+        ft.upload(file, encodeURI("https://phify.com/uploadapi.php"), win, fail, options);
         setTimeout(function(){
             if(postingimage){
                 cancelimagepost();
@@ -687,8 +690,29 @@
                     $("#imageposterror").slideUp(500);
                 },3000)
             }
-        },15000)
+        },10000)
     }
+    var fail = function (error) {
+        alert("An error has occurred: Code = " + error.code);
+        console.log("upload error source " + error.source);
+        console.log("upload error target " + error.target);
+    }
+    var win = function (r){
+        if(postingimage){
+            postingimage = false;
+            var link = r;
+            alert(link);
+            $('#link').val(link);
+            $("#imagespinner").hide();
+            //$('#imageid').val(file.name);
+            $('#imagePostPreview').attr('src', link);
+            $('.background-image').show();
+            document.body.className = "uploaded";
+            $("#pbutton").prop( "disabled", false );
+            $("#private").prop( "disabled", false );
+        }
+    }
+
     function getPhotoFromLibrary(){
         // Set up the necessary sources
         pictureSource = navigator.camera.PictureSourceType;
@@ -696,7 +720,7 @@
 
         navigator.camera.getPicture(onPhotoDataSuccess, onFail, {
             quality: 25,
-            destinationType: destinationType.DATA_URL,
+            destinationType: destinationType.FILE_URI,
             sourceType: pictureSource.PHOTOLIBRARY
         });
     }
@@ -708,7 +732,7 @@
 
         navigator.camera.getPicture(onPhotoDataSuccess, onFail, {
             quality: 25,
-            destinationType: destinationType.DATA_URL,
+            destinationType: destinationType.FILE_URI,
             sourceType: pictureSource.CAMERA
         });
     }
