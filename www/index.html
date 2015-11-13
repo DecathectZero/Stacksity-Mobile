@@ -661,7 +661,9 @@
         xhr.open("POST", "https://phify.com/uploadapi.php"); // Boooom!
 
         xhr.onload = function() {
+            alert("sendingbeforepostingimage");
             if(postingimage){
+                alert("sendingimage");
                 postingimage = false;
                 var link = xhr.responseText;
                 $('#link').val(link);
@@ -676,6 +678,7 @@
         };
 
         // And now, we send the formdata
+        alert("sending");
         xhr.send(fd);
         setTimeout(function(){
             if(postingimage){
