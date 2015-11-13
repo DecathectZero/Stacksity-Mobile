@@ -573,9 +573,11 @@ function refreshPull(){
         loading = false;
         activep.find('.scroll').html('<p>Loading Posts</p>');
         activep.find(".feed").empty();
-        startnews = 0;
-        startNews(startnews, activep, stackid, activep.data("status"));
-        activep.data("startnews", 0);
+        setTimeout(function(){
+            startnews = 0;
+            startNews(startnews, activep, stackid, activep.data("status"));
+            activep.data("startnews", 0);
+        },200);
     }
 }
 function searchPageRefresh(){
