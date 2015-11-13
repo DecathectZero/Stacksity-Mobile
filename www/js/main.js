@@ -524,7 +524,9 @@ function displayNews(startnum, activepage, stackid, status, latpoint, longpoint,
                     }
                     postnum++;
                 });
-                activepage.find('.feed').append(postlist);
+                setTimeout(function(){
+                    activepage.find('.feed').append(postlist);
+                },500)
                 loading = false;
                 bottom = false;
                 startnews = startnews + 10;

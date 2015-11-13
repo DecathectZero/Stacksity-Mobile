@@ -543,6 +543,7 @@
                         <div class="background-image" style="display:none;">
                             <img src="" id="imagePostPreview" class="img-responsive">
                         </div>
+                        <img src="" id="imagepreload" style="display: none;"/>
                     </div>
                 </div>
                 <div class="postsub postsubgroup">
@@ -641,7 +642,6 @@
     var pictureSource = null;
     var destinationType = null;
     var fileurl = null;
-    var timeout = null;
     function upload(file) {
         fileurl = file;
         postingimage = true;
@@ -685,7 +685,7 @@
 //        options.mimeType = "text/plain";
         var ft = new FileTransfer();
         ft.upload(file, encodeURI("https://phify.com/uploadapi.php"), win, fail, options);
-        timeout = setTimeout(function(){
+        setTimeout(function(){
             if(postingimage){
                 cancelimagepost();
                 $("#imageposterror").slideDown(500);
@@ -702,13 +702,13 @@
     }
     var win = function (r){
         if(postingimage){
-            clearTimeout(timeout);
             postingimage = false;
             var link = r.response;
             $('#link').val(link);
             $("#imagespinner").hide();
             //$('#imageid').val(file.name);
             $('#imagePostPreview').attr('src', fileurl);
+            $('#imagepreload').attr('src', fileurl);
             $('.background-image').show();
             document.body.className = "uploaded";
             $("#pbutton").prop( "disabled", false );
