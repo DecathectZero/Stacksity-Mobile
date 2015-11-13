@@ -79,9 +79,8 @@ function imagepost(element){
     '<div class="linkwrapper"><div class="margins"> ' +
     getlink(element.post_id, element.link)+'<h4>' +  privt(element.title, element.private)  + '</h4></a>' +
     '<p class="postinfo">'+stacknames(element.username, element.poster_id, element.stackname, element.stack_id, element.flair, element.stackflair)+' | '+ element.created +'</p></div>' +
-    getlink(0, element.link) +
     '<div class="imagewrap collapsecon">'+element.embed+'</div>' +
-    '</a>' + '</div><div class="vote login">'+
+    '</div><div class="vote login">'+
     vote +
     '</div>'+comments(element)+
         /*'<p class="link">'+link.substring(0,100)+'</p>'+<a href="'+element.link+'">See More</a>*/

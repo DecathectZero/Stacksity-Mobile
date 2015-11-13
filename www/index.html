@@ -724,7 +724,8 @@
         navigator.camera.getPicture(onPhotoDataSuccess, onFail, {
             quality: 25,
             destinationType: destinationType.FILE_URI,
-            sourceType: pictureSource.PHOTOLIBRARY
+            sourceType: pictureSource.PHOTOLIBRARY,
+            correctOrientation: true
         });
     }
 
@@ -736,7 +737,8 @@
         navigator.camera.getPicture(onPhotoDataSuccess, onFail, {
             quality: 25,
             destinationType: destinationType.FILE_URI,
-            sourceType: pictureSource.CAMERA
+            sourceType: pictureSource.CAMERA,
+            correctOrientation: true
         });
     }
 
