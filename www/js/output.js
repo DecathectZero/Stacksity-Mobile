@@ -57,17 +57,17 @@ function stacknames(from, from_id, too, too_id, flair, stackflair){
     return stack_name;
 }
 function voting(votetype, count){
-    var re = '<div class="vbutton stackup" name="up"></div>'+
+    var re = '<div class="vbutton stackdown" name="down"></div>'+
         '<p class="count">'+count+'</p>'+
-        '<div class="vbutton stackdown" name="down"></div>';
+        '<div class="vbutton stackup" name="up"></div>';
     if(votetype == 0){
-        re = '<div class="vbutton stackup" name="up"></div>'+
+        re = '<div class="vbutton stackdown stack-down" name="down"></div>'+
         '<p class="count">'+count+'</p>'+
-        '<div class="vbutton stackdown stack-down" name="down"></div>';
+        '<div class="vbutton stackup" name="up"></div>';
     }else if(votetype == 2){
-        re = '<div class="vbutton stackup stack-up" name="up"></div>'+
+        re = '<div class="vbutton stackdown" name="down"></div>'+
         '<p class="count">'+count+'</p>'+
-        '<div class="vbutton stackdown" name="down"></div>';
+        '<div class="vbutton stackup stack-up" name="up"></div>';
     }
     return '<div class="votewrap" >'+re+'</div>';
 }
