@@ -640,7 +640,10 @@
 <script type="text/javascript">
     var pictureSource = null;
     var destinationType = null;
+    var fileurl = null;
+    var timeout = null;
     function upload(file) {
+        fileurl = file;
         postingimage = true;
         $("#pbutton").prop( "disabled", true );
         $("#private").prop( "disabled", true );
@@ -682,7 +685,7 @@
 //        options.mimeType = "text/plain";
         var ft = new FileTransfer();
         ft.upload(file, encodeURI("https://phify.com/uploadapi.php"), win, fail, options);
-        setTimeout(function(){
+        timeout = setTimeout(function(){
             if(postingimage){
                 cancelimagepost();
                 $("#imageposterror").slideDown(500);
@@ -699,13 +702,13 @@
     }
     var win = function (r){
         if(postingimage){
+            clearTimeout(timeout);
             postingimage = false;
             var link = r.response;
-            alert(link);
             $('#link').val(link);
             $("#imagespinner").hide();
             //$('#imageid').val(file.name);
-            $('#imagePostPreview').attr('src', link);
+            $('#imagePostPreview').attr('src', fileurl);
             $('.background-image').show();
             document.body.className = "uploaded";
             $("#pbutton").prop( "disabled", false );
