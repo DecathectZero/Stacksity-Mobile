@@ -695,7 +695,6 @@
 
         navigator.camera.getPicture(onPhotoDataSuccess, onFail, {
             quality: 25,
-            destinationType: destinationType.DATA_URL,
             sourceType: pictureSource.PHOTOLIBRARY
         });
     }
@@ -707,7 +706,6 @@
 
         navigator.camera.getPicture(onPhotoDataSuccess, onFail, {
             quality: 25,
-            destinationType: destinationType.DATA_URL,
             sourceType: pictureSource.CAMERA
         });
     }
@@ -716,7 +714,7 @@
     }
 
     function onPhotoDataSuccess(imageData) {
-        upload(imageData, "Success");
+        upload(imageData);
     }
 //    $( document ).ready(onDeviceReady());
     if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/)) {
