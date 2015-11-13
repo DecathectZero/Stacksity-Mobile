@@ -654,16 +654,16 @@
         // It is!
         // Let's build a FormData object
         var fd = new FormData();
-        fd.append("image", file); // Append the file
+        fd.append("fileToUpload", file); // Append the file
 
         // Create the XHR (Cross-Domain XHR FTW!!!)
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "https://api.imgur.com/3/image.json"); // Boooom!
+        xhr.open("POST", "https://phify.com/uploadapi.php"); // Boooom!
 
         xhr.onload = function() {
             if(postingimage){
                 postingimage = false;
-                var link = JSON.parse(xhr.responseText).data.link;
+                var link = xhr.responseText;
                 $('#link').val(link);
                 $("#imagespinner").hide();
                 //$('#imageid').val(file.name);
@@ -674,7 +674,6 @@
                 $("#private").prop( "disabled", false );
             }
         };
-        xhr.setRequestHeader('Authorization', 'Client-ID 5299531cfb40c5e');
 
         // And now, we send the formdata
         xhr.send(fd);
