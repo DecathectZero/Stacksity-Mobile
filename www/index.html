@@ -653,14 +653,20 @@
 
         // It is!
         // Let's build a FormData object
-        var fd = new FormData();
-        fd.append("fileToUpload", file); // Append the file
-
-        // Create the XHR (Cross-Domain XHR FTW!!!)
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "https://phify.com/uploadapi.php"); // Boooom!
-
-        xhr.onload = function() {
+//        var fd = new FormData();
+//        fd.append("fileToUpload", file); // Append the file
+//
+//        // Create the XHR (Cross-Domain XHR FTW!!!)
+//        var xhr = new XMLHttpRequest();
+//        xhr.open("POST", "https://phify.com/uploadapi.php"); // Boooom!
+//
+//        xhr.onload = function() {
+//
+//        };
+        var options = new FileUploadOptions();
+        options.fileKey = "fileToUpload";
+        var ft = new FileTransfer();
+        ft.upload(file, "https://phify.com/uploadapi.php", function(){
             if(postingimage){
                 postingimage = false;
                 var link = xhr.responseText;
@@ -674,10 +680,12 @@
                 $("#pbutton").prop( "disabled", false );
                 $("#private").prop( "disabled", false );
             }
-        };
+        }, function(){
 
-        // And now, we send the formdata
-        xhr.send(fd);
+        }, options);
+
+//        // And now, we send the formdata
+//        xhr.send(fd);
         setTimeout(function(){
             if(postingimage){
                 cancelimagepost();
