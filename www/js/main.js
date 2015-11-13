@@ -119,6 +119,11 @@ function pullToRefresh(element, func) {
     function itouchend(){
         if(scrollY()<1){
             if(real){
+                var activep = $.mobile.activePage;
+                if(activep.attr("id")!="notepage"){
+                    activep.find('.scroll').html('<p>Loading Posts</p>');
+                    activep.find(".feed").empty();
+                }
                 real = false;
                 setTimeout(function(){
                     rotate.css("-webkit-transform",'rotateZ( 0deg )');
@@ -577,8 +582,6 @@ function refreshPull(){
         bottom = false;
         end = false;
         loading = false;
-        activep.find('.scroll').html('<p>Loading Posts</p>');
-        activep.find(".feed").empty();
         startnews = 0;
         startNews(startnews, activep, stackid, activep.data("status"));
         activep.data("startnews", 0);
@@ -738,7 +741,7 @@ function linkToStack(goto){
                         $.mobile.back();
                     }else{
                         notransition = true;
-                        refresh();
+                        //refresh();
                     }
                 }
             }else{

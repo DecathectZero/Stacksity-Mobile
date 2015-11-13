@@ -183,7 +183,7 @@ a:hover{
       }
 }
 
-button, .footer, .notification, .postlabel, .btn, .scroll, .notescroll, .vote, #stacksearch, .banner, .linkcontainer, .comwrapper, .reply, .stacklink, .commentlink, .cvote, .tagline, .replycomment, .stacklist, .headercaption, .imagecon, .postinfo, .posting{
+button, .footer, .notification, .postlabel, .btn, .scroll, .notescroll, .vote, #stacksearch, .banner, .linkcontainer, .comwrapper, .reply, .stacklink, .commentlink, .cvote, .tagline, .replycomment, .stacklist, .headercaption, .postinfo, .posting{
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
