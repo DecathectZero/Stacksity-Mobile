@@ -695,6 +695,7 @@
 
         navigator.camera.getPicture(onPhotoDataSuccess, onFail, {
             quality: 25,
+            destinationType: destinationType.FILE_URI,
             sourceType: pictureSource.PHOTOLIBRARY
         });
     }
@@ -706,6 +707,7 @@
 
         navigator.camera.getPicture(onPhotoDataSuccess, onFail, {
             quality: 25,
+            destinationType: destinationType.FILE_URI,
             sourceType: pictureSource.CAMERA
         });
     }
