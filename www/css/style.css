@@ -314,6 +314,8 @@ background-color: #CCC;
     border: 1px solid #cccccc;
     color: #333;
     margin-bottom: 4px;
+}
+textarea{
     min-height: 68px;
 }
 .postcon input:focus, .postsub label input, .postcon textarea:focus{
