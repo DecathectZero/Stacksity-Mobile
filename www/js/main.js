@@ -117,18 +117,13 @@ function pullToRefresh(element, func) {
         }
     }
     function itouchend(){
-        if(scrollY()<1){
-            if(real){
-                real = false;
-                setTimeout(function(){
-                    rotate.css("-webkit-transform",'rotateZ( 0deg )');
-                    rotate.css("transform",'rotateZ( 0deg )');
-                    func();
-                }, 400);
-            }else{
+        if(real){
+            real = false;
+            setTimeout(function(){
                 rotate.css("-webkit-transform",'rotateZ( 0deg )');
                 rotate.css("transform",'rotateZ( 0deg )');
-            }
+                func();
+            }, 400);
         }else{
             rotate.css("-webkit-transform",'rotateZ( 0deg )');
             rotate.css("transform",'rotateZ( 0deg )');
