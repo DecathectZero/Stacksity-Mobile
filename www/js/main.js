@@ -807,7 +807,7 @@ function textpost(){
     $('#postimage').removeClass('active');
     $('#posttext').addClass('active');
     $('#postlink').removeClass('active');
-    $("#commenttext").autoGrow();
+    $("#textpostfield").autoGrow();
 }
 function imagepostShow(){
     textposting = false;

@@ -235,6 +235,7 @@ a:active{
     background-color: #DDD;
     padding: 0;
     overflow: hidden;
+    min-height: 101%;
 }
 .postrow .active{
     background-color: #266282;
@@ -313,6 +314,7 @@ background-color: #CCC;
     border: 1px solid #cccccc;
     color: #333;
     margin-bottom: 4px;
+    min-height: 68px;
 }
 .postcon input:focus, .postsub label input, .postcon textarea:focus{
     border-color: #999;

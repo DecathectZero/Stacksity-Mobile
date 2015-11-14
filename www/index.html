@@ -524,7 +524,7 @@
                         </div>
                         <div id="textpost" style="display: none;">
                             <p>text</p>
-                            <textarea id="textpostfield" name="text" class="expanding" id="text" placeholder="write something here..." rows="2" maxlength="6500" data-role="none"></textarea>
+                            <textarea name="text" id="textpostfield" placeholder="write something here..." rows="2" data-role="none"></textarea>
                         </div>
                         <div id="imagepost">
                             <p>image</p>
@@ -999,8 +999,6 @@
                 }else if(option == 7){
                     $("#commenttext").autoGrow();
                 }
-            }else if(postype == 2){
-                $("#text").autoGrow();
             }
         }
     });
