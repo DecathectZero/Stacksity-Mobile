@@ -501,67 +501,65 @@
                 <div class="col-xs-4 postlink" onclick="imagepostShow()" id="postimage">Image</div>
             </div>
         </div>
-        <div class="center post">
-            <div class="topgap"></div>
-            <label class="postlabel">
-                <div class="postbar" style="padding: 0">
-                    <p>posting to<br/><span class="bold" id="posting"></span></p>
-                    <a class="cancelpost" onclick="postbox = false; postboxclose = true; changepage=true; $.mobile.back()" id="cancelpost">cancel</a>
-                    <a id="addtitle" class="titletoggle">title</a>
-                </div>
-            </label>
-            <form class="postform toppost" id="toppost">
-                <input type="hidden" id="posttype" name="type" value="0">
-                <div class="postcon">
-                    <div id = "titlediv" style="display: none">
-                        <p>title <span id="title-count">100</span></p>
-                        <input name="title" type="text" id="title-input" class="texts" placeholder="post title" maxlength="100" data-role="none">
+        <div class="extracontainer">
+            <div class="center post">
+                <div class="topgap"></div>
+                <label class="postlabel">
+                    <div class="postbar" style="padding: 0">
+                        <p>posting to<br/><span class="bold" id="posting"></span></p>
+                        <a class="cancelpost" onclick="postbox = false; postboxclose = true; changepage=true; $.mobile.back()" id="cancelpost">cancel</a>
+                        <a id="addtitle" class="titletoggle">title</a>
                     </div>
-                    <div id="linkpost" style="display: none;">
-                        <p>link <span id="link-alert"></span></p>
-                        <input name="link" type="url" id="link" class="texts" placeholder="submit a link here" maxlength="500" required="" data-role="none">
-                    </div>
-                    <div id="textpost" style="display: none;">
-                        <p>text</p>
-                        <textarea id="textpostfield" name="text" class="expanding" id="text" placeholder="write something here..." rows="2" maxlength="6500" data-role="none"></textarea>
-                    </div>
-                    <div id="imagepost">
-                        <p>image</p>
-                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                            <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-default" onclick="getPhotoFromCamera()"><span class="glyphicon glyphicon-camera"></span> Camera</button>
-                            </div>
-                            <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-default" onclick="getPhotoFromLibrary()"><span class="glyphicon glyphicon-picture"></span> Library</button>
-                            </div>
+                </label>
+                <form class="postform toppost" id="toppost">
+                    <input type="hidden" id="posttype" name="type" value="0">
+                    <div class="postcon">
+                        <div id = "titlediv" style="display: none">
+                            <p>title <span id="title-count">100</span></p>
+                            <input name="title" type="text" id="title-input" class="texts" placeholder="post title" maxlength="100" data-role="none">
                         </div>
-                        <div class="spinner" id="imagespinner" style="display: none">
+                        <div id="linkpost" style="display: none;">
+                            <p>link <span id="link-alert"></span></p>
+                            <input name="link" type="url" id="link" class="texts" placeholder="submit a link here" maxlength="500" required="" data-role="none">
+                        </div>
+                        <div id="textpost" style="display: none;">
+                            <p>text</p>
+                            <textarea id="textpostfield" name="text" class="expanding" id="text" placeholder="write something here..." rows="2" maxlength="6500" data-role="none"></textarea>
+                        </div>
+                        <div id="imagepost">
+                            <p>image</p>
+                            <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-default" onclick="getPhotoFromCamera()"><span class="glyphicon glyphicon-camera"></span> Camera</button>
+                                </div>
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-default" onclick="getPhotoFromLibrary()"><span class="glyphicon glyphicon-picture"></span> Library</button>
+                                </div>
+                            </div>
+                            <div class="spinner" id="imagespinner" style="display: none">
+                                <div class="double-bounce1"></div>
+                                <div class="double-bounce2"></div>
+                            </div>
+                            <div class="errorbar" id="imageposterror" style="display: none">Took too long to upload, cancelled</div>
+                            <div class="background-image" style="display:none;">
+                                <img src="" id="imagePostPreview" class="img-responsive">
+                            </div>
+                            <img src="" id="imagepreload" style="display: none;"/>
+                        </div>
+                    </div>
+                    <div class="postsub postsubgroup">
+                        <input type="hidden" name="setprivate" value="0" id="privatefield">
+                        <div id="spinnerpost">
                             <div class="double-bounce1"></div>
                             <div class="double-bounce2"></div>
                         </div>
-                        <div class="errorbar" id="imageposterror" style="display: none">Took too long to upload, cancelled</div>
-                        <div class="background-image" style="display:none;">
-                            <img src="" id="imagePostPreview" class="img-responsive">
-                        </div>
-                        <img src="" id="imagepreload" style="display: none;"/>
+                        <button type="submit" id="pbutton" class="postb" data-role="none">Post</button>
+                        <button type="button" id="private" class="postb private" data-role="none">Private</button>
                     </div>
-                </div>
-                <div class="postsub postsubgroup">
-                    <input type="hidden" name="setprivate" value="0" id="privatefield">
-                    <div id="spinnerpost">
-                        <div class="double-bounce1"></div>
-                        <div class="double-bounce2"></div>
-                    </div>
-                    <button type="submit" id="pbutton" class="postb" data-role="none">Post</button>
-                    <button type="button" id="private" class="postb private" data-role="none">Private</button>
-                </div>
-            </form>
+                </form>
+            </div>
+            <div class="botgap"></div>
         </div>
-        <div class="botgap"></div>
-        <script>$( "#title-input" ).keyup(function() {
-            var length = $( this ).val().length;
-            $( "#title-count").html(100-length);
-        });</script>
     </div>
 
     <div data-role="page" data-dom-cache="true" id="searchpage">
@@ -793,9 +791,9 @@
                     localStorage.register = true;
                 }
                 if(parseInt(device.version.charAt(0)) >= 8){
-                    ios = true;
                     $("head").append("<style>.topgap{padding-top: 64px}.padding-top{padding-top: 21px}</style>");
                 }
+                ios = true;
             }
             if(PushbotsPlugin.isAndroid()){
                 if(localStorage.getItem("register") === null){
@@ -999,15 +997,15 @@
                         parsePostData();
                     }
                 }else if(option == 7){
-                    $("#commenttext").expanding();
+                    $("#commenttext").autoGrow();
                 }
             }else if(postype == 2){
-                $("#text").expanding();
+                $("#text").autoGrow();
             }
         }
     });
 
-//    $("#commenttext").expanding();
+//    $("#commenttext").autoGrow();
     $( "#autocomplete" ).on( "listviewbeforefilter", function ( e, data ) {
         var $ul = $( this ),
                 $input = $( data.input ),

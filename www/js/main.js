@@ -125,6 +125,9 @@ function pullToRefresh(element, func) {
                     rotate.css("transform",'rotateZ( 0deg )');
                     func();
                 }, 400);
+            }else{
+                rotate.css("-webkit-transform",'rotateZ( 0deg )');
+                rotate.css("transform",'rotateZ( 0deg )');
             }
         }else{
             rotate.css("-webkit-transform",'rotateZ( 0deg )');
@@ -804,6 +807,7 @@ function textpost(){
     $('#postimage').removeClass('active');
     $('#posttext').addClass('active');
     $('#postlink').removeClass('active');
+    $("#commenttext").autoGrow();
 }
 function imagepostShow(){
     textposting = false;
@@ -1122,6 +1126,10 @@ $(document).on('tap','.postlink, button',function(e){
 $(".quarter").on('tap', function (e) {
     e.preventDefault();
     refreshPage($(this).data("op"));
+});
+$( "#title-input" ).keyup(function() {
+    var length = $( this ).val().length;
+    $( "#title-count").html(100-length);
 });
 var commentid = 0;
 //function toPost(link){
