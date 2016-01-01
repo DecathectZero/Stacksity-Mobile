@@ -555,6 +555,7 @@
                         </div>
                         <button type="submit" id="pbutton" class="postb" data-role="none">Post</button>
                         <button type="button" id="private" class="postb private" data-role="none">Private</button>
+                        <button type="button" id="exclude" class="postb private" data-role="none">Exclude</button>
                     </div>
                 </form>
             </div>
@@ -645,6 +646,7 @@
         postingimage = true;
         $("#pbutton").prop( "disabled", true );
         $("#private").prop( "disabled", true );
+        $("#exclude").prop( "disabled", true );
         $("#imagespinner").show();
         $('.background-image').hide();
         // Checking if the file selected
@@ -711,6 +713,7 @@
             document.body.className = "uploaded";
             $("#pbutton").prop( "disabled", false );
             $("#private").prop( "disabled", false );
+            $("#exclude").prop( "disabled", false );
         }
     }
 
@@ -786,6 +789,8 @@
             first = true;
 //            alert(device.platform + " | " + device.version);
             if(PushbotsPlugin.isiOS()){
+                PushbotsPlugin.resetBadge();
+                PushbotsPlugin.setBadge(0);
                 if(localStorage.getItem("register") === null){
                     PushbotsPlugin.initializeiOS("561ed24517795902148b4569");
                     localStorage.register = true;
@@ -813,14 +818,15 @@
         }
         if(login){
             start();
-            //PushbotsPlugin.resetBadge();s
         }else{
             startlogin();
         }
     }
     function onResume(){
+        PushbotsPlugin.resetBadge();
+        PushbotsPlugin.setBadge(0);
+//        alert("resume");
         if(login){
-            PushbotsPlugin.resetBadge();
             getNotification();
             if(option==3){
                 markseen();
@@ -829,6 +835,8 @@
     }
     //self explanatory figure it out, login.html wipes all localdata
     function logout(){
+        PushbotsPlugin.resetBadge();
+        PushbotsPlugin.setBadge(0);
         if(mobile){
             PushbotsPlugin.setAlias("0");
         }

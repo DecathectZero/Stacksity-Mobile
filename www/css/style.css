@@ -11,11 +11,16 @@ body, html{
     background: #e9eaed;
 }
 h4{
-    font-weight: bold;
+    font-weight: normal;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     display: inline;
     margin: 0;
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 0;
+    color: #333;
+}
+h4:active{
+    color: #777;
 }
 a{
     z-index: 998;
@@ -157,6 +162,7 @@ a:active{
     /*border: 1px solid rgba(0,0,0,.1);*/
     min-width: 240px;
     max-width: 680px;
+    width: 100%;
     /*padding: 16px 0;*/
     margin-right: auto;
     margin-left: auto;
@@ -193,17 +199,14 @@ a:active{
 }
 .videowrapper {
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
     margin-top: 5px;
 }
 .videowrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 100%;
+    /*min-height: 260px;*/
+}
+.commentid{
+    color: #BBB;
 }
 .textcon, .item{
     word-wrap: break-word;
@@ -213,8 +216,9 @@ a:active{
     width:100%;
 }
 .postinfo{
-    font-size: 16px !important;
+    font-size: 14px !important;
     margin: 3px 0 !important;
+    font-weight: bold;
 }
 .ui-dialog  .ui-header .ui-btn-icon-notext	{ display:none;}
 .textcon p, .item p{
@@ -409,6 +413,14 @@ textarea{
     background-color: #4b82da;
     border-bottom: 3px solid #3b72da;
 }
+#exclude{
+    margin-right: 0 !important;
+    background-color: #39CCCC;
+}
+#exclude:active{
+    background-color: #19ACAC;
+    border-bottom: 3px solid #099C9C !important;
+}
 .scroll, .notescroll{
     height: 40px;
     line-height: 40px;
@@ -436,7 +448,11 @@ textarea{
 .vbutton{
     width: 40px;
     height: 40px;
-    background-size: 100%;
+    background-size: 120%;
+    line-height: 40px;
+    font-size: 36px;
+    color: #aaa;
+    text-align: center;
     background-repeat: no-repeat;
     cursor: pointer;
     float: right;
@@ -460,25 +476,25 @@ textarea{
     margin: 0;
     padding: 10px 0;
 }
-.stackup{
-    background-image: url("../img/post/upstack.svg");
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: center
-}
-.stackdown{
-    background-image: url("../img/post/downstack.svg");
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: center
-}
+/*.stackup{*/
+    /*background-image: url("../img/post/upstack1.svg");*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: center*/
+/*}*/
+/*.stackdown{*/
+    /*background-image: url("../img/post/downstack1.svg");*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: center*/
+/*}*/
 .stack-up{
     /*background-color: #980200;*/
-    background-image: url("../img/post/upstacked.svg");
+    /*background-image: url("../img/post/upstack2.svg");*/
+    color: #890000;
 }
 .stack-down{
-    background-image: url("../img/post/downstacked.svg");
+    /*background-image: url("../img/post/downstack2.svg");*/
     /*background-color: #3C81A8;*/
+    color: #004079;
 }
 #stacksearch{
     margin-top: 0;
@@ -598,7 +614,6 @@ textarea{
     }
 }
 .commentlink{
-    font-weight: bold;
     margin-right: 10px;
     cursor: pointer;
 }
@@ -617,10 +632,15 @@ textarea{
 .comwrap{
     margin: 0 auto;
     display: table;
+    font-size: 14px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
 }
 .comwrapper{
-    margin-top: 10px;
+    margin-top: 5px;
     width: 100%;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
 }
 .botgap{
     padding-top: 49px;
@@ -652,6 +672,8 @@ textarea{
 .reply, .stacklink, .commentlink{
     cursor: pointer;
     padding: 1px 3px;
+    margin-left: -3px;
+    margin-right: -3px;
 }
 .reply{
     font-size: 16px;
@@ -662,6 +684,7 @@ textarea{
 }
 .commentlink{
     padding: 3px 5px !important;
+    margin-right: 10px;
 }
 .stacklink:active, .reply:active, .commentlink:active{
     color: #fff !important;
@@ -723,7 +746,7 @@ textarea{
 .item {
     background: #fafbfe;
     text-align: left;
-    padding: 20px 0px;
+    padding: 15px 0px 20px 0;
     margin-bottom: 15px;
     overflow: auto;
     background: #fff;

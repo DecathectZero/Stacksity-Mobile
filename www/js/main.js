@@ -228,20 +228,37 @@ function bannerset(activepage, stackids){
                     //        '</div>');
                     //}
                 }else {
-                    if(is_user==0){
-                        ban.after('<div class="locbar" style="padding: 0px">'+
-                            '<div class="btn-group btn-group-justified" role="group" aria-label="...">'+
-                            '<div class="btn-group" role="group">'+
-                            '<button type="button" class="btn btn-default dist-btn" onclick="setDist(0, this, 0)" disabled>Best</button>'+
-                            '</div>'+
-                            '<div class="btn-group" role="group">'+
-                            '<button type="button" class="btn btn-default dist-btn" onclick="setDist(0, this, 1)">New</button>'+
-                            '</div>'+
-                            '<div class="btn-group" role="group">'+
-                            '<button type="button" class="btn btn-default dist-btn" onclick="setDist(0, this, 2)">Top</button>'+
-                            '</div>'+
-                            '</div>'+
-                            '</div>');
+                    if(!activepage.find(".locbar").length){
+                        if(is_user==0){
+                            ban.after('<div class="locbar" style="padding: 0px">'+
+                                '<div class="btn-group btn-group-justified" role="group" aria-label="...">'+
+                                '<div class="btn-group" role="group">'+
+                                '<button type="button" class="btn btn-default dist-btn" onclick="setDist(0, this, 0)" disabled>Best</button>'+
+                                '</div>'+
+                                '<div class="btn-group" role="group">'+
+                                '<button type="button" class="btn btn-default dist-btn" onclick="setDist(0, this, 1)">New</button>'+
+                                '</div>'+
+                                '<div class="btn-group" role="group">'+
+                                '<button type="button" class="btn btn-default dist-btn" onclick="setDist(0, this, 2)">Top</button>'+
+                                '</div>'+
+                                '</div>'+
+                                '</div>');
+                        }
+                        //}else{
+                        //    ban.after('<div class="locbar" style="padding: 0px">'+
+                        //        '<div class="btn-group btn-group-justified" role="group" aria-label="...">'+
+                        //        '<div class="btn-group" role="group">'+
+                        //        '<button type="button" class="btn btn-default dist-btn" onclick="setDist(0, this, 0)" disabled>All</button>'+
+                        //        '</div>'+
+                        //        '<div class="btn-group" role="group">'+
+                        //        '<button type="button" class="btn btn-default dist-btn" onclick="setDist(0, this, 1)">Self</button>'+
+                        //        '</div>'+
+                        //        '<div class="btn-group" role="group">'+
+                        //        '<button type="button" class="btn btn-default dist-btn" onclick="setDist(0, this, 2)">Stacks</button>'+
+                        //        '</div>'+
+                        //        '</div>'+
+                        //        '</div>');
+                        //}
                     }
                     var space = '';
                     if (element.stack_desc != "" && element.stack_desc != null) {
@@ -282,7 +299,7 @@ function bannerset(activepage, stackids){
                     //var touchcancel = false;
                     contain.bind("scrollstop", function() {
                         if(!postbox){
-                            if(contain.scrollTop() + windowheight > contain.children(".con").height() - 2048) {
+                            if(contain.scrollTop() + windowheight > contain.children(".con").height() - 3000) {
                                 if(!end&&!bottom&&!loading){
                                     bottom = true;
                                     activepage.find('.scroll').html('<p>Loading Posts</p> ');
@@ -328,6 +345,7 @@ function bannerset(activepage, stackids){
 //sets the parameters for the posting box, (can private post, either show username or stackname for "posting to")
 function initPostBox(){
     //alert(stackid);
+    $("#exclude").hide();
     if(stackid < 1){
         $("#posting").html(username);
         $('#private').show();
@@ -337,6 +355,7 @@ function initPostBox(){
     }else{
         if(is_user==0){
             $('#private').hide();
+            $("#exclude").show();
         }else{
             $('#private').show();
         }
@@ -821,7 +840,7 @@ $( "#title-input" ).keyup(function() {
     var length = $( this ).val().length;
     $( "#title-count").html(100-length);
 });
-$(document).on("click", "#private", function(e){
+$(document).on("click", "#private, #exclude", function(e){
     e.preventDefault();
     $('#privatefield').val(1);
     $("#toppost").submit();
@@ -833,23 +852,21 @@ $(document).on('submit', "#toppost", function(e){
         if(textposting && !$.trim($("#textpostfield").val())){
             return;
         }
-        if(stackid==4917){
-            navigator.geolocation.getCurrentPosition(function(position){
-                    $('#pbutton').hide();
-                    $('#private').hide();
-                    $("#spinnerpost").show();
-                    makepost("&lat="+position.coords.latitude+"&long="+position.coords.longitude);
-                },
-                function(error){
-                    alert("Please enable location services to post on $near")
-                },{timeout: 10000, enableHighAccuracy: true}
-            );
-        }else{
-            $('#pbutton').hide();
-            $('#private').hide();
-            $("#spinnerpost").show();
-            makepost("");
-        }
+        navigator.geolocation.getCurrentPosition(function(position){
+                $('#pbutton').hide();
+                $('#private').hide();
+                $("#exclude").hide();
+                $("#spinnerpost").show();
+                makepost("&lat="+position.coords.latitude+"&long="+position.coords.longitude);
+            },
+            function(error){
+                $('#pbutton').hide();
+                $('#private').hide();
+                $("#exclude").hide();
+                $("#spinnerpost").show();
+                makepost("");
+            },{timeout: 10000, enableHighAccuracy: true}
+        );
     }
 });
 
@@ -858,6 +875,7 @@ function cancelimagepost(){
         postingimage = false;
         $("#pbutton").prop( "disabled", false );
         $("#private").prop( "disabled", false );
+        $("#exclude").prop( "disabled", false );
         $("#imagespinner").hide();
     }
 }
@@ -876,9 +894,23 @@ function makepost(info){
         crossDomain : true,
         data     : data,
         success  : function(data) {
-            postbox = false;
-            postdata = data;
-            $.mobile.back();
+            if(data=='9'){
+                alert("You have been posting too much, try again in awhile");
+                $('#pbutton').show();
+                if(stackid!=4917){
+                    if(is_user==1){
+                        $('#private').show();
+                    }else{
+                        $("#exclude").show();
+                    }
+                }
+                $("#spinnerpost").hide();
+                posting = false;
+            }else{
+                postbox = false;
+                postdata = data;
+                $.mobile.back();
+            }
         },
         error: function(request) {
             if(request.status == 0) {
@@ -887,7 +919,13 @@ function makepost(info){
                 alert("Error Connection");
             }
             $('#pbutton').show();
-            $('#private').show();
+            if(stackid!=4917){
+                if(is_user==1){
+                    $('#private').show();
+                }else{
+                    $("#exclude").show();
+                }
+            }
             $("#spinnerpost").hide();
             posting = false;
         }
@@ -920,6 +958,7 @@ function parsePostData(){
     }
     $('#pbutton').show();
     $('#private').show();
+    $('#exclude').show();
     $("#spinnerpost").hide();
     $('#privatefield').val(0);
     posting = false;
@@ -1143,7 +1182,7 @@ var commentid = 0;
 
 function toPost(link, commentlink){
     postid = link;
-    if(commentlink!=null){
+    if(commentlink!=null || commentlink!='undefined'){
         commentid = commentlink;
     }
     option = 7;
@@ -1175,13 +1214,15 @@ function getPost(postid)
             }else if(element.posttype == 3){
                 $('#postcon').append(videopost(element));
             }
-            $("#postcon").slideDown(function(){
-                if(element.comments>0){
-                    getComment($("#commentfeed"));
-                }else{
-                    $('#commentfeed').html("<div class='nocomments'>No comments currently</div>");
-                }
-            });
+            setTimeout(function () {
+                $("#postcon").slideDown(function(){
+                    if(element.comments>0){
+                        getComment($("#commentfeed"));
+                    }else{
+                        $('#commentfeed').html("<div class='nocomments'>No comments currently</div>");
+                    }
+                });
+            }, 100);
         }
     });
 }
@@ -1210,13 +1251,13 @@ function commentHTML(element, depth){
             "<input name='commentid' type='hidden' value='"+element.comment_id+"'><textarea name='text'>"+element.raw+"</textarea>"+
             "<a class='reply canceledit'>cancel</a><a class='reply saveedit' onclick='$(this).parent().submit()'>save</a></form>";
     }
-    var reply = del;
+    var reply = del+ '<span class="commentid">C#'+element.comment_id+'</span>';
     if(depth == 0){
         depthtext = 'depth';
     }
     var vote = commentVote(element.vote, count);
     if(depth<7){
-        reply = '<a class="reply replybutton" onclick="swapReply(this)">reply</a>'+del+'<form class="replycomment" style="display: none" data-depth="'+depth+'"><div class="postcon replycon">'+
+        reply = '<a class="reply replybutton" onclick="swapReply(this)">reply</a>'+del+'<span class="commentid">C#'+element.comment_id+'</span><form class="replycomment" style="display: none" data-depth="'+depth+'"><div class="postcon replycon">'+
             '<input type="hidden" name="postid" value="'+postid+'">'+
             '<input type="hidden" name="commentid" value="'+element.comment_id+'">'+
             '<div class="textpost">'+
@@ -1229,7 +1270,7 @@ function commentHTML(element, depth){
         '<div class="comment" data-commentid="'+element.comment_id+'" data-depth="'+element.depth+'">'+
         vote+
         '<div class="comment-content">'+
-        '<p class="tagline"><a class="stacklink" data-link="'+element.user_stack+'" class="">'+element.username+element.flair+'</a> | <time>'+element.created+'</time>' +
+        '<p class="tagline"><a class="stacklink" data-link="'+element.user_stack+'" class="">'+element.username+element.flair+'</a> <time>'+element.created+'</time>' +
             //' | #'+element.comment_id +
         "<br>" + edittime +'</p>'+
         '<div class="commenttext"><div class="commentcontent">'+element.content +"</div><div class='commentoptions'>"+ reply +'</div></div>'+ edit +
@@ -1491,8 +1532,15 @@ $(document).on('submit', '.replycomment', function(e){
             success  : function(data) {
                 if(data.length<=1) {
                     if(data!=3){
-                        alert("error :" + data);
+                        alert("error: " + data);
                     }
+                    if(data == '9'){
+                        alert("You have been commenting too much, try again in awhile")
+                    }
+                    $(this).children('.replypost').html('Post');
+                    $(this).siblings('.replybutton').trigger( "click" );
+                    $(this).hide();
+                    posting = false;
                 }else{
                     var element = $.parseJSON(data);
                     $(commentHTML(element, el.data('depth')+1)).hide().insertAfter(el.closest('.comment')).fadeIn("slow");
@@ -1532,6 +1580,11 @@ $(document).on('submit', '#commentform',function(e){
                     if(data!=3){
                         alert("error :" + data);
                     }
+                    if(data == '9'){
+                        alert("You have been commenting too much, try again in awhile")
+                    }
+                    $('#cbutton').html('comment');
+                    posting = false;
                 }else{
                     var element = $.parseJSON(data);
                     $(commentHTML(element, 0)).hide().prependTo('#commentfeed').fadeIn("slow");
