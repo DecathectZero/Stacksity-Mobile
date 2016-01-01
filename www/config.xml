@@ -42,7 +42,7 @@
     <!--<gap:plugin name="cordova-plugin-file" source="npm"/>-->
     <!--<gap:plugin name="cordova-plugin-splashscreen" source="npm"/>-->
     <!--<gap:plugin name="cordova-plugin-vibration" source="npm"/>-->
-    <!--<gap:plugin name="cordova-plugin-statusbar" source="npm"/>-->
+    <gap:plugin name="cordova-plugin-statusbar" source="npm"/>
     <!--<gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />-->
 
     <gap:plugin name="com.telerik.plugins.wkwebview" />
