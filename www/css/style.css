@@ -489,12 +489,12 @@ textarea{
 .stack-up{
     /*background-color: #980200;*/
     /*background-image: url("../img/post/upstack2.svg");*/
-    color: #890000;
+    color: #890000 !important;
 }
 .stack-down{
     /*background-image: url("../img/post/downstack2.svg");*/
     /*background-color: #3C81A8;*/
-    color: #004079;
+    color: #004079 !important;
 }
 #stacksearch{
     margin-top: 0;
@@ -822,7 +822,10 @@ textarea{
     width: 25px;
     height: 25px;
     margin: 0;
-    background-position-y:50%;
+    color: #AAA;
+    font-size: 24px;
+    text-align: center;
+    line-height: 25px;
     z-index: 999;
     cursor: pointer;
 }

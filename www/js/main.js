@@ -1228,12 +1228,12 @@ function getPost(postid)
 }
 function commentVote(type, count){
     if(type==2){
-        return '<div class="cvote"><div class="cbutton stackup stack-up" name="up"></div><p class="score">'+count+'</p><div class="cbutton stackdown" name="down"></div></div>'
+        return '<div class="cvote"><div class="cbutton stackup glyphicon glyphicon-triangle-top stack-up" name="up"></div><p class="score">'+count+'</p><div class="cbutton glyphicon glyphicon-triangle-bottom stackdown" name="down"></div></div>'
     }
     if(type==0){
-        return '<div class="cvote"><div class="cbutton stackup" name="up"></div><p class="score">'+count+'</p><div class="cbutton stackdown stack-down" name="down"></div></div>'
+        return '<div class="cvote"><div class="cbutton glyphicon glyphicon-triangle-top stackup" name="up"></div><p class="score">'+count+'</p><div class="cbutton stackdown glyphicon glyphicon-triangle-bottom stack-down" name="down"></div></div>'
     }
-    return '<div class="cvote"><div class="cbutton stackup" name="up"></div><p class="score">'+count+'</p><div class="cbutton stackdown" name="down"></div></div>'
+    return '<div class="cvote"><div class="cbutton glyphicon glyphicon-triangle-top stackup" name="up"></div><p class="score">'+count+'</p><div class="cbutton glyphicon glyphicon-triangle-bottom stackdown" name="down"></div></div>'
 }
 function commentHTML(element, depth){
     var count = element.upstacks-element.downstacks;
