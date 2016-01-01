@@ -28,15 +28,15 @@
     <!--<preference name="android-windowSoftInputMode" value="adjustResize" />-->
     <preference name="fullscreen" value="false"/>
 
-    <!--<gap:plugin name="pushbots-cordova-plugin" source="npm" />-->
-    <!--<gap:plugin name="cordova-plugin-whitelist" source="npm" />-->
-    <!--<gap:plugin name="cordova-plugin-camera" source="npm"/>-->
-    <!--<gap:plugin name="cordova-plugin-media-capture" source="npm"/>-->
-    <!--<gap:plugin name="cordova-plugin-device" source="npm"/>-->
-    <!--<gap:plugin name="cordova-plugin-dialogs" source="npm"/>-->
-    <!--<gap:plugin name="cordova-plugin-device-orientation" source="npm"/>-->
-    <!--<gap:plugin name="cordova-plugin-geolocation" source="npm"/>-->
-    <!--<gap:plugin name="cordova-plugin-inappbrowser" source="npm"/>-->
+    <gap:plugin name="pushbots-cordova-plugin" source="npm" />
+    <gap:plugin name="cordova-plugin-whitelist" source="npm" />
+    <gap:plugin name="cordova-plugin-camera" source="npm"/>
+    <gap:plugin name="cordova-plugin-media-capture" source="npm"/>
+    <gap:plugin name="cordova-plugin-device" source="npm"/>
+    <gap:plugin name="cordova-plugin-dialogs" source="npm"/>
+    <gap:plugin name="cordova-plugin-device-orientation" source="npm"/>
+    <gap:plugin name="cordova-plugin-geolocation" source="npm"/>
+    <gap:plugin name="cordova-plugin-inappbrowser" source="npm"/>
     <!--<gap:plugin name="cordova-plugin-media" source="npm"/>-->
     <!--<gap:plugin name="cordova-plugin-file-transfer" source="npm"/>-->
     <!--<gap:plugin name="cordova-plugin-file" source="npm"/>-->
@@ -45,7 +45,7 @@
     <!--<gap:plugin name="cordova-plugin-statusbar" source="npm"/>-->
     <!--<gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />-->
 
-    <!--<gap:plugin name="com.telerik.plugins.wkwebview" />-->
+    <gap:plugin name="com.telerik.plugins.wkwebview" />
 
     <preference name="StatusBarOverlaysWebView" value="false"/>
     <icon src="icon.png" />
