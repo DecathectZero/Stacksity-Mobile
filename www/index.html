@@ -785,9 +785,9 @@
     }
 
     function onDeviceReady() {
-//        if(mobile){
-//            first = true;
-////            alert(device.platform + " | " + device.version);
+        if(mobile){
+            first = true;
+//            alert(device.platform + " | " + device.version);
 //            if(PushbotsPlugin.isiOS()){
 //                PushbotsPlugin.resetBadge();
 //                PushbotsPlugin.setBadge(0);
@@ -796,7 +796,7 @@
 //                    localStorage.register = true;
 //                }
 //                if(parseInt(device.version.charAt(0)) >= 8){
-//                    $("head").append("<style>.topgap{padding-top: 64px}.padding-top{padding-top: 21px}</style>");
+                    $("head").append("<style>.topgap{padding-top: 64px}.padding-top{padding-top: 21px}</style>");
 //                }
 //                ios = true;
 //            }
@@ -813,9 +813,9 @@
 //                StatusBar.backgroundColorByHexString("#ffffff");
 //                StatusBar.styleDefault();
 //            }
-//            document.addEventListener("resume", onResume, false);
-//            StatusBar.overlaysWebView(false);
-//        }
+            document.addEventListener("resume", onResume, false);
+            StatusBar.overlaysWebView(false);
+        }
         if(login){
             start();
         }else{
