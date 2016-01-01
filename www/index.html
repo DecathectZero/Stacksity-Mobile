@@ -788,33 +788,31 @@
         if(mobile){
             first = true;
 //            alert(device.platform + " | " + device.version);
-//            if(PushbotsPlugin.isiOS()){
-//                PushbotsPlugin.resetBadge();
-//                PushbotsPlugin.setBadge(0);
-//                if(localStorage.getItem("register") === null){
-//                    PushbotsPlugin.initializeiOS("561ed24517795902148b4569");
-//                    localStorage.register = true;
-//                }
-//                if(parseInt(device.version.charAt(0)) >= 8){
+            if(PushbotsPlugin.isiOS()){
+                PushbotsPlugin.resetBadge();
+                PushbotsPlugin.setBadge(0);
+                if(localStorage.getItem("register") === null){
+                    PushbotsPlugin.initializeiOS("561ed24517795902148b4569");
+                    localStorage.register = true;
+                }
+                if(parseInt(device.version.charAt(0)) >= 8){
                     $("head").append("<style>.topgap{padding-top: 64px}.padding-top{padding-top: 21px}</style>");
-                    StatusBar.backgroundColorByHexString("#ffffff");
-                    StatusBar.styleDefault();
-//                }
-//                ios = true;
-//            }
-//            if(PushbotsPlugin.isAndroid()){
-//                if(localStorage.getItem("register") === null){
-//                    PushbotsPlugin.initializeAndroid("561ed24517795902148b4569", "907553791348");
-//                    localStorage.register = true;
-//                }
-//                document.addEventListener("backbutton", function (e) {
-//                    e.preventDefault();
-//                    back();
-//                });
-//            }else{
-//                StatusBar.backgroundColorByHexString("#ffffff");
-//                StatusBar.styleDefault();
-//            }
+                }
+                ios = true;
+            }
+            if(PushbotsPlugin.isAndroid()){
+                if(localStorage.getItem("register") === null){
+                    PushbotsPlugin.initializeAndroid("561ed24517795902148b4569", "907553791348");
+                    localStorage.register = true;
+                }
+                document.addEventListener("backbutton", function (e) {
+                    e.preventDefault();
+                    back();
+                });
+            }else{
+                StatusBar.backgroundColorByHexString("#ffffff");
+                StatusBar.styleDefault();
+            }
             document.addEventListener("resume", onResume, false);
             StatusBar.overlaysWebView(false);
         }

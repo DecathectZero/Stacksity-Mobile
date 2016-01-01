@@ -28,7 +28,7 @@
     <!--<preference name="android-windowSoftInputMode" value="adjustResize" />-->
     <preference name="fullscreen" value="false"/>
 
-    <gap:plugin name="pushbots-cordova-plugin" source="npm" />
+    <gap:plugin name="pushbots-cordova-plugin" source="npm" spec="1.2.8"/>
     <gap:plugin name="cordova-plugin-whitelist" source="npm" />
     <gap:plugin name="cordova-plugin-camera" source="npm"/>
     <gap:plugin name="cordova-plugin-media-capture" source="npm"/>
